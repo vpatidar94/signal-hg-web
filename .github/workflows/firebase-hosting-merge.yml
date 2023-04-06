@@ -9,18 +9,18 @@ name: Deploy to Firebase Hosting on merge
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [14.x]
+    using: 'node16'
     steps:
       - uses: actions/checkout@v2
-      - run: ng serve --aot
+      - run: |
+          npm install
+          ng build --aot
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SIGNAL_HG_WEB }}'
           channelId: live
           projectId: signal-hg-web
-          node-version: ${{ matrix.node-version }}
+
+
 

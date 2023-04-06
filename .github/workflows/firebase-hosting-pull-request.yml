@@ -7,18 +7,16 @@ jobs:
   build_and_preview:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [14.x]
+    using: 'node16'
     steps:
       - uses: actions/checkout@v2
-      - run: ng serve --aot
+      - run: |
+          npm install
+          ng build --aot
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SIGNAL_HG_WEB }}'
           projectId: signal-hg-web
-          node-version: ${{ matrix.node-version }}
           
 
