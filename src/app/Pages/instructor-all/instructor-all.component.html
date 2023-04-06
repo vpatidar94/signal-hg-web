@@ -1,0 +1,76 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+<!-- My Studio Card Detials Section -->
+<div class="studio-details client-home-inner">
+    <div class="container">
+      <app-sub-header></app-sub-header>
+
+      <div class="home-staff pb-4">
+        <div class="row">
+          <div class="col-12 col-md-7">
+            <div class="section-heading pt-2 pb-4 text-left">
+              <a href="Javascript:void(0);" class="black-color font-w-100 text-uppercase font-20">  instructors </a>
+            </div>
+          </div><!-- end of col-12 -->
+          <div class="col-12 col-sm-9 col-md-4">
+            <div class="section-search">
+              <div class="form-group has-search pl-0 pl-md-3" > 
+                <a href="Javascript:void(0);" >
+                  <!-- <button type="submit" > -->
+                    <!-- <img src="magnifying_glass.png" alt="Search" (click)="searchHome()" class="form-control-feedback"  /> -->
+                     <span class="fas fa-search form-control-feedback" (click)="getStaffList()"  style="bottom:7px;top: unset;pointer-events: initial;"></span>
+                     <!-- </button>  -->
+                 </a>                
+                <input type="text" class="form-control" placeholder="Search" onkeyup="this.value=this.value.replace(/^\s+/g, '')" [(ngModel)]="search_text" (change)="getStaffList()">
+              </div>
+
+            </div>
+          </div><!-- end of col-6 -->
+          <div class="col-12 col-sm-3 col-md-1">
+            <button type="button" class="btn btn-blue-grad px-2 text-uppercase mb-2 mb-md-5" (click)="reset()" >Reset </button>
+
+          </div>
+        </div><!-- end of Heading(staff & instructors) -->
+        <div *ngIf="StaffDetail.length != 0">
+          <div class="home-staff-details white-bg box-shadow1 border-radius6 px-3 py-4 mb-4" *ngFor="let staffdetail of StaffDetail">
+            <a href="Javascript:void(0);" (click) ="redirectUrl(staffdetail.id)" >
+            <div class="row align-items-start"> 
+              <div class="col-12 col-md-10 d-flex flex-wrap flex-fill align-items-center">
+                <div class="home-staff-detail-img box-shadow1">
+                  <img src="{{staffdetail.profile_img}}" class="img-fluid">
+                </div>
+                <div class="details pl-3 pt-1">
+                  <h5 class="heading-titlenew black-color font-w-100 font-16 mb-2"> {{staffdetail.name}} {{staffdetail.lastname}} </h5>
+                  <p class="black-color paratitle mb-0"> Skills : </p>
+                  <p class="black-color paratitle mb-0 brand-color3"> {{staffdetail.skill}} </p>
+                </div>
+              </div>
+
+              <div class="col-md-2 col-12">
+                  <h5 class="heading-titlenew mb-2 text-right" *ngIf="staffdetail.availability_status=='Available'" style="color:green"> {{staffdetail.availability_status}}</h5>
+                  <h5 class="heading-titlenew mb-2 text-right" *ngIf="staffdetail.availability_status=='Unavailable'" style="color:red"> {{staffdetail.availability_status}}</h5>                
+              </div><!-- end of col-md-6 -->
+
+             
+            </div><!-- end of row -->     
+          </a>      
+          </div><!-- end of home-staff-details -->
+        </div>
+       <div  *ngIf="StaffDetail.length == 0">
+        <div class="text-center">
+          <p class="font-awesome black-color font-18 d-inline mx-2 "> No Instructors Available</p>
+        </div>
+       </div>
+      
+      </div><!-- end of home-staff -->
+    </div><!-- end of container -->
+  </div>          
+<!-- End of My Studio Card Detials Section -->
+</div>
+<app-inner-footer></app-inner-footer>
+
+
+
+

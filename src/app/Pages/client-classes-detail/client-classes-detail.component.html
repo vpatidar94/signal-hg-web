@@ -1,0 +1,645 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+<!-- My Studio Card Detials Section -->
+<div class="studio-details client-home-inner">
+    <div class="container">
+      <app-sub-header></app-sub-header>
+      <div class="text-right mb-3">
+        <button type="button" class="btn btn-blue-grad px-2 text-uppercase" (click)="commonservice.back()" >Back </button>
+      </div>
+    </div><!-- end of container -->
+  
+    <div class="client-class-inner mb-4">
+      <div class="container">
+        <div class="row" >
+          <div class="col-12 col-md-4 mb-4" >
+            <p class="black-color font-w-100 text-uppercase font-20"> classes </p>
+            <div class="white-bg box-shadow1 border-radius6 p-3 mt-3 text-center fixed-hight">
+              <div class="row">
+                <!-- <div class="col-10"> -->
+                  <!-- <ul class="text-left mb-3">
+                    <li class="d-inline-block"> <img src="{{businessDetail.logo}}" class="new-log-img"> </li>
+                    <li class="d-inline-block"> <p class="black-color font-w-100 text-uppercase font-20 ml-2">{{ClassData.class_name}}  </p> </li>
+                  </ul> -->
+                <div class="col-2 mb-3 ">
+                  <img src="{{businessDetail.logo}}" class="new-log-img"> 
+                </div >
+                <div class="col-8 text-left mb-3"> 
+                  <p class="black-color font-w-100 text-uppercase font-20 ml-2 ">{{ClassData.class_name}}  </p>
+                </div>
+                <div class="col-2 text-right">
+                  <div *ngIf = "ClassData.covid_info == 1">
+                    <button type="button" class="infotab text-success"
+                    data-toggle="modal" data-target="#Infocovid19"
+                    *ngIf="ClassData.covid_status == 0"
+                    ><i
+                        class="fas fa-info-circle"></i></button>
+                <button type="button" class="infotab text-danger"
+                    data-toggle="modal" data-target="#Infocovid19"
+                    *ngIf="ClassData.covid_status == 1"
+                   ><i
+                        class="fas fa-info-circle"></i></button>
+               
+              </div>
+                </div>
+              </div>
+              <div *ngIf="ClassData.waiting_status == 0">
+                <div class="d-flex align-items-center justify-content-center flex-wrap mt-4" *ngIf="ClassData.class_end_status == 2">
+                  <button type="button" class="btn btn-green-grad px-5 text-uppercase"> Class Finished
+                    </button> 
+                </div>
+                <div class="d-flex align-items-center justify-content-center flex-wrap mt-4" *ngIf="ClassData.class_end_status != 2">
+                  <button type="button" class="btn btn-blue-grad px-5 text-uppercase"  *ngIf="classStatus == 0 || classStatus == 1" (click)="CheckInfo()"> sign-up </button>
+                  <button type="button" Id="covidForm" style ="display: none;" class="btn btn-blue-grad px-5 text-uppercase"  data-toggle="modal" data-target="#covid19"  data-backdrop="static" data-keyboard="false">  </button>
+                  <button type="button" class="btn btn-blue-grad px-5 text-uppercase" (click)="changePassStatus1('checkin','1')" *ngIf="classStatus == 2"> Check-In </button>
+                  <button type="button" class="btn btn-green-grad px-5 text-uppercase" *ngIf="classStatus == 3">
+                    Checked-In </button>
+                  <button type="button" class="btn btn-green-grad px-5 text-uppercase" *ngIf="classStatus == 4"> Wait List -
+                    {{ClassData.waitng_list_no}} </button>  
+                    <button class="btn btn-danger px-3 text-uppercase infobtn"
+                    (click)="changePassStatus1('cancel','1')" *ngIf="classStatus == 2 || classStatus == 4"> <i class="fas fa-times"></i> </button>
+                
+                    <button type="button" id="passselect"
+                    data-toggle="modal" data-target="#PassSelectModal" data-backdrop="static" data-keyboard="false" style="display: none"    (click)="makeActive()"
+                    ></button>          
+              </div>  
+              </div>
+              <!-- <div class="d-flex align-items-center justify-content-center flex-wrap mt-4" *ngIf="ClassData.waiting_status == 1">
+                <button type="button" class="btn btn-blue-grad px-5 text-uppercase"  (click)="changePassStatus1('singup','1')"> Join WaitList </button> 
+              </div> -->
+
+              <div class="d-flex align-items-center justify-content-center flex-wrap mt-4" *ngIf="ClassData.waiting_status == 1">
+                <button type="button" class="btn btn-blue-grad px-5 text-uppercase" (click)="CheckInfo()"> Join WaitList </button> 
+                <button type="button" Id="covidForm" style ="display: none;" class="btn btn-blue-grad px-5 text-uppercase"  data-toggle="modal" data-target="#covid19"  data-backdrop="static" data-keyboard="false">  </button>
+
+              </div>
+              <div class="d-flex align-items-center justify-content-center flex-wrap mt-4" *ngIf="ClassData.waiting_status == 2">
+                <button type="button" class="btn btn-blue-grad px-5 text-uppercase"> Class Full </button> 
+              </div>
+
+              </div>
+          </div>
+
+         
+
+          <div class="col-12 col-md-4 mb-4">
+            <p class="black-color font-w-100 text-uppercase font-20"> other details </p>
+            <div class="white-bg box-shadow1 border-radius6 p-3 mt-3 fixed-hight">
+              <div class="row">
+                <div class="col-6 col-md-6">
+                  <div class="text-left">
+                    <p class="font-14 black-color mb-0"> Date </p>
+                    <h5 class="title black-color mb-0">{{ClassData.start_date_utc_new}}  </h5>
+                  </div>
+                </div>
+                <div class="col-6 col-md-6 border-left">
+                  <div class="text-left">
+                    <p class="font-14 black-color mb-0"> Start Time</p>
+                    <h5 class="title black-color mb-0">{{ClassData.from_time_new}}  </h5>
+                  </div>
+                </div>
+              </div><!-- end of row -->
+              <div class="row mt-3">
+                <div class="col-6 col-md-6">
+                  <div class="text-left">
+                    <p class="font-14 black-color mb-0"> Duration </p>
+                    <h5 class="title black-color mb-0">{{ClassData.duration}}</h5>
+                  </div>
+                </div>
+                <div class="col-6 col-md-6 border-left">
+                  <div class="text-left">
+                    <p class="font-14 black-color mb-0"> Capacity </p>
+                    <h5 class="title black-color mb-0">  {{ClassData.capacity_used}} / {{ClassData.total_capacity}}  </h5>                             
+                  </div>
+                </div>
+              </div><!-- end of row -->
+              <div class="row mt-3">
+                <div class="col-12 col-md-12">
+                  <div class="text-left">
+                    <p class="font-14 black-color mb-0">Location </p>
+                    <h5 class="title black-color mb-0"><a href="{{ClassData.location_url}}" target="_blank" title="{{ClassData.location_url}}">{{ClassData.location}}</a></h5>
+                    <!-- <h5 class="title black-color mb-0" *ngIf="!ClassData.location_url">{{ClassData.location}}</h5> -->
+
+                    <!--   <h5 class="title black-color mb-0">{{ClassData.location}}  </h5>                         -->
+                  </div>
+                </div>
+              </div><!-- end of row -->
+              <div class="row mt-3" >
+                <div class="col-12 col-md-12">
+                  <div class="text-left">
+                    <p class="font-14 black-color mb-0"> Web Link </p>
+                    <h5 class="title black-color mb-0" *ngIf="ClassData.web_link"> <a href="{{ClassData.web_link}}" target="_blank"><i class="fa fa-link" aria-hidden="true" title="{{ClassData.web_link}}"></i>
+                    </a></h5>                             
+                    <h5 class="title black-color mb-0" *ngIf="!ClassData.web_link">N/A </h5>    
+                  </div>
+                </div>
+              </div><!-- end of row -->
+            </div>
+          </div><!-- end of col-md-4 -->
+
+          <div class="col-12 col-md-4 mb-4">
+            <p class="black-color font-w-100 text-uppercase font-20"> description </p>
+            <div class="white-bg box-shadow1 border-radius6 p-3 mt-3 text-left fixed-hight description-box">
+              <p class="font-14 black-color mb-0"> Description </p>
+              <p class="brand-color3 font-12 mb-2">{{ClassData.description}} </p>
+            </div>
+          </div><!-- end of col-md-4 -->
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="white-bg box-shadow1 border-radius6 p-4">
+              <div class="row">
+                <div class="col-6">
+                  <div class="section-heading pt-2 pb-4 text-left">
+                    <p class="black-color font-w-100 text-uppercase font-20">  instructors </p>
+                  </div>
+                </div><!-- end of col-6 -->
+
+                <div class="col-6">
+                  <div class="section-heading pt-2 pb-3 text-right">
+                    <!-- <a routerLink="/staff" class="brand-color3 font-w-100 font-14"> View ALL </a> -->
+                  </div>
+                </div><!-- end of col-6 -->
+              </div><!-- end of row -->
+
+              <!-- <div class="row">
+                <div class="col-12 col-md-4 col-lg-2 mb-4 mb-lg-0"  *ngFor="let itemss of instrustorData">
+                  <div class="row">
+                    {{itemss.week_name}}
+                  </div>
+                
+                  <div class="row">
+                    <div class="col-6 col-md-6">
+                      <div class="text-left">
+                        <p class="font-14 black-color mb-0"> From </p>
+                        <h5 class="title black-color mb-0">{{itemss.from_time}}  </h5>
+                      </div>
+                    </div>
+                    <div class="col-6 col-md-6 border-left pl-lg-2 pl-xl-5">
+                      <div class="text-left pl-3 pl-sm-3 pl-md-0 pl-lg-3">
+                        <p class="font-14 black-color mb-0"> To </p>
+                        <h5 class="title black-color mb-0">{{itemss.to_time}}  </h5>                        
+                      </div>
+                    </div>
+                  </div>
+                  <a href="Javascript:void(0);"  (click) ="redirectUrl(itemss.instructor_id,'/instructor-detail','')">
+                    <div class="text-center">
+                      <img src="{{itemss.profile_img}}" class="img-fluid border-radius100 box-shadow1">
+                      <p class="black-color font-w-100 font-16 mt-3 mb-2">{{itemss.name}}  {{itemss.lastname}} </p>
+                    </div>
+                  </a>
+                </div>
+              </div> -->
+              
+              <div class="row">
+                <div class="col-12 col-md-3 mb-4" *ngFor ="let itemss of instrustorData">
+                    <div class="activity-card box-shadow1 border-radius6 white-bg p-4">
+                      <div class="col-12 mt-0 mt-md-4 mt-lg-0">
+                        <div class="activity-card-details text-left">                             
+
+                          <a href="Javascript:void(0);"  (click) ="redirectUrl(itemss.id,'/instructor-detail','')">
+                            <div class="text-center">
+                              <div class="img-height box-shadow1 mx-auto">
+                                <img src="{{itemss.profile_img}}" class="img-fluid">
+                              </div>
+                              <p class="black-color font-w-100 font-16 mt-3 mb-2">{{itemss.name}}  {{itemss.lastname}} </p>
+                            </div>
+                          </a>
+                        </div>
+                      </div><!-- end of col-7 -->                  
+                    </div><!-- end of activity-card -->
+                  </div></div>
+            </div>
+          </div>
+        </div>          
+      </div>
+    </div>
+    <div class="mb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+
+<div *ngIf="CustomerDetail.length != 0">
+  <div class="row py-4">
+      <div class="col-8">
+          <h5 class="title black-color font-w-500 text-uppercase font-16 mb-0"> User Details </h5>
+      </div>
+      
+  </div>
+
+  <div class="row  mt-3">
+      <div class="col-md-4 mb-4" *ngFor="let items of CustomerDetail">
+          <div class="class-detail-slot-box box-shadow1 border-radius6 p-3 bg-white">
+              <div class="row">
+                  <div class="col-3">
+                      <div class="profile-img box-shadow1">
+                          <img src="{{items.profile_img}}" class="img-fluid">
+                      </div>
+                  </div>
+                  <div class="col-9">
+                      <h5 class="brand-color3 heading-titlenew mb-1">{{items.name}}
+                          {{items.lastname}}</h5>
+                      <ul class="d-flex">
+                          <li class="flex-fill">
+                              <p class="black-color paratitle font-w-400 font-14">{{items.Age}},
+                                  {{items.gender}}</p>
+                          </li>
+                      </ul>
+                      <div>
+                          <div class="d-flex align-items-center">
+                          <!-- <p class="brand-color3 font-15 font-w-500 mb-1"
+                                  >Status : {{items.attendance_status}}</p> -->
+                                  <button class="btn btn-green-grad"
+                                  >{{items.attendance_status}}</button>
+                      </div>
+
+                         <!-- <div *ngIf = "items.covid_info == '1'">
+                            <button type="button" class="btn btn-success p-2 text-uppercase mb-2 infobtn" data-toggle="modal" data-target="#Infocovid19" *ngIf="items.covid_status == 0" (click)="getCovidInfo(items.id)"><i class="fas fa-info-circle"></i></button>
+                            <button type="button" class="btn btn-danger p-2 text-uppercase mb-2 infobtn" data-toggle="modal" data-target="#Infocovid19" *ngIf="items.covid_status == 1" (click)="getCovidInfo(items.id)"><i class="fas fa-info-circle"></i></button>
+                          </div>  
+                                     -->
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+      <div  class="row" *ngIf="CustomerDetail.length == 0" >
+          <div class="text-center">
+              <p class="font-awesome black-color font-18 d-inline mx-2 "> No User Available</p>
+            </div> 
+      </div>
+
+</div>
+
+
+</div></div></div>
+
+
+
+   <div class="container-fluid pr-0">
+      <div class="home-inner-available studio-padding-left"  *ngIf="PassData.length != 0">
+        <div class="mb-2 pb-1">
+          <p class="black-color font-w-100 text-uppercase font-20"> available passes </p>
+        </div>
+
+
+        <div class="row new-slider-logo" *ngIf="PassData.length <=1">
+          <div class="col-6" *ngFor ="let items of PassData" >
+            <div class="mb-5" >
+              <div class="available-card" >
+                
+                <a href="Javascript:void(0);"  (click) ="redirectUrl(items,'/pass-detail',currentUrl)" >
+                
+                <div class="available-blue-card p-3 p-sm-4">
+    
+                  <div class="row mx-0 ">
+                    <div class="pass-logo">
+                      <img src="{{items.business_logo}}" class="img-fluid">
+                    </div>
+                    <div class="flex-fill pr-4 pl-5 passTextwidth">
+                      <h5 class="white-color font-14 mb-2 mt-0">{{items.pass_name}}</h5>
+                      <!-- <h5 class="white-color font-14 mb-3 mt-0">{{items.pass_type}}</h5> -->
+                      <h5 class="white-color font-14 mb-2 mt-0">${{items.amount}} <span class="font-12"> Plus Tax </span> </h5>
+                    </div>
+                  </div>
+                  <div class="row mt-5 align-items-end">
+                    <div class="col-8 text-left pr-0">  
+                      <p class="mb-0 white-color paratitle"> Valid For {{items.pass_validity}}</p>         
+                    </div>
+                  </div>
+                </div>
+              </a>
+                <div class="studio-card-select">
+                  <i class="fas fa-heart brand-color3 font-22" *ngIf="items.favourite == 0" (click)="addFav(items.pass_id,1)"></i>
+                  <i class="fas fa-heart brand-color2 font-22" *ngIf="items.favourite == 1" (click)="addFav(items.pass_id,0)"></i>
+                </div>
+              </div>
+              
+              <!-- end of purchase-blue-card -->
+      </div>
+          </div>
+
+      </div>
+            <owl-carousel-o [options]="passDetail_Options" class="new-slider-logo" *ngIf="PassData.length > 1"> 
+            <ng-template carouselSlide *ngFor ="let items of PassData"  [id]="items.pass_id">
+        <div class="mb-5" >
+                <div class="available-card" >
+                  <a href="Javascript:void(0);"  (click) ="redirectUrl(items,'/pass-detail',currentUrl)">
+                   
+                    <div class="available-blue-card p-3 p-sm-4">
+    
+                      <div class="row mx-0 ">
+                        <div class="pass-logo">
+                          <img src="{{items.business_logo}}" class="img-fluid">
+                        </div>
+                        <div class="flex-fill pr-4 pl-5 passTextwidth">
+                          <h5 class="white-color font-14 mb-2 mt-0">{{items.pass_name}}</h5>
+                          <!-- <h5 class="white-color font-14 mb-3 mt-0">{{items.pass_type}}</h5> -->
+                          <h5 class="white-color font-14 mb-2 mt-0">${{items.amount}} <span class="font-12"> Plus Tax </span></h5>  
+                        </div>
+                      </div>
+                      <div class="row mt-5 align-items-end">
+                        <!-- <div class="col-12 text-left pr-0">
+                          <p class="white-color paratitle">Remaining Classes : 4</p>
+                        </div> -->
+                        <div class="col-8 text-left pr-0"> 
+                          <!-- <p class="mb-0 white-color paratitle"> Valid For {{items.total_count}} 
+                            <span *ngIf="items.pass_type_category == 'PunchCard'"> Classes </span>
+                            <span *ngIf="items.pass_type_category == 'TimeFrame' || items.pass_type_category == 'Other'  || items.pass_type_category == 'Recurring Membership' "> Days </span>
+                          </p>    -->
+                          <p class="mb-0 white-color paratitle"> Valid For {{items.pass_validity}}</p>         
+                          <!-- <p class="mb-0 white-color paratitle"> Start Date : {{items.start_date_utc_new}} </p> -->
+  
+                        </div>
+                        <!-- <div class="col-4 text-right pl-0">
+                          <div class="paraframe">
+                          <p class="mb-0 white-color  paratitle"> {{items.pass_type_name}}</p>
+                          <p class="mb-0 white-color paratitle"> Pass Id : {{items.booking_pass_id}} </p>
+                          </div>
+                        </div> -->
+                      </div>
+                    </div>
+                  </a> 
+               
+                  <div class="studio-card-select">
+                    <i class="fas fa-heart brand-color3 font-22" *ngIf="items.favourite == 0" (click)="addFav(items.pass_id,1)"></i>
+                    <i class="fas fa-heart brand-color2 font-22" *ngIf="items.favourite == 1" (click)="addFav(items.pass_id,0)"></i>
+
+                  </div>
+                </div><!-- end of purchase-blue-card -->
+        </div><!-- Card-3 -->
+      </ng-template>                   
+        </owl-carousel-o>
+
+        <div class="row" *ngIf="PassData.length == 0">
+          <div class="col-4"></div>
+          <div class="col-4">
+            <div class="text-center">
+              <p class="font-awesome black-color font-18 d-inline mx-2 " > No Pass Available</p>
+            </div> 
+          </div>
+          <div class="col-4"></div>
+ 
+      </div><!-- end of home-inner-class -->
+    </div><!-- End of Available Passes -->
+  </div>  
+
+<!-- End of My Studio Card Detials Section -->
+</div>
+<app-inner-footer></app-inner-footer>
+
+    <!-- Pass Select modal popup -->
+    <div class="modal fade modalwidth" id="PassSelectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body border-radius6 box-shadow1 p-5 white-bg">
+            <div class="home-inner-available">
+              <div class="mb-2 pb-1">
+                <p class="black-color font-w-100 text-uppercase font-20"> Purchased passes </p>
+              </div><!-- end of Heading -->
+          
+           
+              <div id="puchasePassmodal" class="carousel slide" data-ride="carousel" >
+                <!-- Indicators -->
+                <ul class="carousel-indicators">
+                  <!-- <li data-target="#puchasePassmodal" data-slide-to="0" class="active"></li>
+                  <li data-target="#puchasePassmodal" data-slide-to="1"></li>
+                  <li data-target="#puchasePassmodal" data-slide-to="2"></li> -->
+                  <li data-target="#puchasePassmodal" *ngFor="let item of PurchasedPassData;let i = index" [attr.data-slide-to]="i" [ngClass]="i == 0 ? 'active':''"></li>
+
+                </ul>
+                <!-- The slideshow -->
+                <div class="carousel-inner" id="purchasePassPopupSlide" *ngIf="PurchasedPassData.length !=0">
+                  <div class="carousel-item" *ngFor ="let items of PurchasedPassData">
+                    <div class="available-card">                      
+                      <div class="available-blue-card p-3 p-sm-4">
+            
+                        <div class="row mx-0 ">
+                          <div class="pass-logo">
+                            <img src="{{items.business_logo}}" class="img-fluid">
+                          </div>
+                          <div class="flex-fill pr-4 pl-5 passTextwidth">
+                            <h5 class="white-color font-14 mb-2 mt-0">{{items.pass_name}}</h5>
+                            <!-- <h5 class="white-color font-14 mb-3 mt-0">{{items.pass_type}}</h5> -->
+                            <h5 class="white-color font-14 mb-2 mt-0">${{items.amount}} <span class="font-12"> Plus Tax </span></h5> 
+                          </div>
+                        </div>
+                        <div class="row mt-5 align-items-end">
+                          <div class="col-8 text-left pr-0">  
+                            <p class="white-color paratitle" *ngIf="items.pass_type_category == 'PunchCard'">Remaining Classes : {{items.remaining_count}} of {{items.total_count}}</p>
+                            <p class="white-color paratitle" *ngIf="items.pass_type_category == 'TimeFrame' || items.pass_type_category == 'Other' || items.pass_type_category == 'Recurring Membership'">Remaining Days : {{items.remaining_count}} of {{items.total_count}}</p>
+                            <p class="mb-0 white-color paratitle"> Start Date : {{items.start_date_utc_new}} </p>
+                            <p class="white-color paratitle">Expiration Date : {{items.end_date_utc_new}}</p>
+    
+                          </div>
+                          <!-- <div class="col-4 text-right pl-0">
+                            <div class="paraframe">
+                            <p class="mb-0 white-color  paratitle"> {{items.pass_type_name}}</p>
+                            <p class="mb-0 white-color paratitle">Pass Id : {{items.booking_pass_id}} </p>
+                            </div>
+                          </div> -->
+                        </div>
+                      </div>
+                      <div class="studio-card-select">
+                        <input type="radio" [id]="items.pass_id" [value]="items.pass_id" [name]="items.pass_id"  [(ngModel)]="PassID" [ngModelOptions]="{standalone: true}"  (click)="getPassId($event)">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Left and right controls -->
+                <!-- <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                  <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                -->
+              </div>
+              <div class="row" *ngIf="PurchasedPassData.length == 0">
+                <div class="col-4"></div>
+                <div class="col-4">
+                  <div class="text-center">
+                    <p class="font-awesome black-color font-18 d-inline mx-2 " > No Pass Purchased</p>
+                  </div> 
+                </div>
+                <div class="col-4"></div>
+          
+            </div><!-- end of home-inner-class -->
+            <div class="form-group px-3 pt-0 pt-sm-4 mb-0 mb-sm-2 d-flex buttonWidth justify-content-center">
+          
+               <button type="button" data-dismiss="modal" id="btn_close11"  class="btn btn-green-grad text-uppercase mt-3 mr-3" data-backdrop="static" data-keyboard="false" (click)="changePassStatus1('singup','1')"
+               > Submit </button>
+               <button type="button" data-dismiss="modal" id="btn_close1"
+               class="btn btn-blue-grad text-uppercase mt-3" data-backdrop="static" data-keyboard="false"
+               (click)="closed()"> close </button>
+            </div>
+            </div><!-- end of home-inner-class -->
+           
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- END OF Pass Select modal popup -->
+  <div class="modal fade" id="covid19" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">     
+       
+        <div class="modal-body white-bg box-shadow1 border-radius6 p-4">  
+          <h4 >  COVID 19 Pre-Screening Questionnaire
+        
+            Answer each of the following questions before entering the building:</h4>
+          <form >
+  
+                    <div class="form-group profile-change-password">
+              <p class="text-left font-14 "> Have you traveled outside of the Province/State in the last 14 days?  </p>
+              <div class="d-flex flex-wrap form group">
+              <div class="profile-gender-button covid-positive">
+              <input type='radio' id='yes' value="1" name='radio' [ngModelOptions]="{standalone: true}" [(ngModel)]="q1_answer"  (change)="getvalue($event ,'q1_answer')">
+              <label for='yes'>Yes</label>
+              </div>             
+               <div class="profile-gender-button">
+              <input type='radio' id='no' value="0" name='radio' [ngModelOptions]="{standalone: true}" [(ngModel)]="q1_answer"   (change)="getvalue($event,'q1_answer')">
+              <label for='no'>No</label>
+              </div>
+              <div *ngIf="submitted && !q1_answer" class="invalid-feedback">
+                <div *ngIf="!q1_answer">Answer is Requeired</div>  
+             </div>
+              </div>
+            </div><!-- Current Password -->
+            <div class="form-group">
+              <p class="text-left font-14 "> Have you been in contact with someone who has tested positive for COVID 19 in the past 14 days?  </p>
+              <div class="d-flex flex-wrap form group">
+                <div class="profile-gender-button covid-positive">
+                <input type='radio' id='yes1' value="1" name='radio1' [ngModelOptions]="{standalone: true}" [(ngModel)]="q2_answer"  (change)="getvalue($event ,'q2_answer')">
+                <label for='yes1'>Yes</label>
+              </div>              <div class="profile-gender-button">
+
+                <input type='radio' id='no1' value="0" name='radio1' [ngModelOptions]="{standalone: true}" [(ngModel)]="q2_answer"   (change)="getvalue($event,'q2_answer')">
+                <label for='no1'>No</label>
+                </div></div>
+              <!-- <input id="" type="text" value="" class="form-control white" placeholder="DOB"> -->
+              <div *ngIf="submitted && !q2_answer" class="invalid-feedback">
+                <div *ngIf="!q2_answer">Answer is Requeired</div>  
+             </div>
+            </div><!-- New Password -->
+  
+            <div class="form-group profile-change-password">
+              <p class="text-left font-14 "> Have you tested positive for COVID 19 in past 14 days? </p>
+              <div class="d-flex flex-wrap form group">
+                <div class="profile-gender-button covid-positive">
+                <input type='radio' id='yes2' value="1" name='radio2' [ngModelOptions]="{standalone: true}" [(ngModel)]="q3_answer"  (change)="getvalue($event ,'q3_answer')">
+                <label for='yes2'>Yes</label>
+              </div>              <div class="profile-gender-button">
+
+                <input type='radio' id='no2' value="0" name='radio2' [ngModelOptions]="{standalone: true}" [(ngModel)]="q3_answer"   (change)="getvalue($event,'q3_answer')">
+                <label for='no2'>No</label>
+                </div></div>
+                <div *ngIf="submitted && !q3_answer" class="invalid-feedback">
+                  <div *ngIf="!q3_answer">Answer is Requeired</div>  
+               </div>
+            </div>
+  
+            <div class="form-group relative">
+              <p class="text-left font-14 ">Do you have any of the following:               </p>
+              
+              <p class="text-left font-14 "></p>
+                  <div class="checkboxtypebtn" *ngFor="let qqq of q4_answer">
+                    <input type="checkbox" class="form-control" name="checkbox" id="{{qqq.id}}" value="{{qqq.id}}"
+                      [(ngModel)]="qqq.checked" (change)="changeSelection($event)">
+                    <label for="{{qqq.id}}"><span>{{qqq.text}}</span></label>
+                  </div>
+            </div><!-- Confirm Password -->
+  
+            <div class="form-group px-3 pt-0 pt-sm-4 mb-0 mb-sm-2">
+              <button type="button" class="btn btn-green-grad text-uppercase w-100 mt-3 "  data-backdrop="static" data-keyboard="false" (click)="SubmitCovidInfo()" [disabled]="CovidSpinner"> <span class="spinner-grow spinner-grow-sm" *ngIf="CovidSpinner" role="status" aria-hidden="true"></span> Save </button>
+              <button type="button" data-dismiss="modal" id="btn_close21"
+              class="btn btn-blue-grad text-uppercase w-100 mt-3" data-backdrop="static" data-keyboard="false"
+              (click)="closeModal()"> close </button>  
+            </div>
+         
+            </form>
+            <h5>
+              Note:- If you are not feeling well, stay home and contact us over the phone or by email to cancel your visit.
+
+            </h5>
+        </div><!-- end of modal-body -->
+        <div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="modal fade" id="Infocovid19" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">     
+       
+        <div class="modal-body white-bg box-shadow1 border-radius6 p-4">  
+          <h4 >  COVID 19 Pre-Screening Questionnaire
+        
+            Answer each of the following questions before entering the building:</h4>
+          <form >
+  
+            <div class="form-group profile-change-password" *ngFor =" let qq of QuestionShhet; let i = index">
+              <p class="text-left font-14 "> {{qq.question_text}} </p>
+              <div class="d-flex flex-wrap form group" *ngIf="i != '3'">
+              <div class="profile-gender-button covid-positive">
+              <input type='radio' id="{{qq.id}}1" value="1" name='radio{{qq.id}}' [ngModelOptions]="{standalone: true}" [(ngModel)]="qq.question_answer"  (change)="getvalue($event,'' )">
+              <label for='{{qq.id}}1'>Yes</label>
+              </div>             
+               <div class="profile-gender-button">
+              <input type='radio' id="{{qq.id}}2" value="0" name='radio{{qq.id}}' [ngModelOptions]="{standalone: true}" [(ngModel)]="qq.question_answer"   (change)="getvalue($event,'')">
+              <label for='{{qq.id}}2'>No</label>
+              </div>
+              </div>
+
+              <div class="d-flex flex-wrap form group symptoms" *ngIf="i == '3'">
+                <!-- <div class="covid-checks-button" *ngFor="let qqq of q4_answer1">
+                  <input type="checkbox" name="checkbox" id="{{qqq.id}}" value="{{qqq.id}}" [(ngModel)]="qqq.checked"
+                    (change)="changeSelection()">
+                  <label for="{{qqq.id}}"></label>{{qqq.text}}
+                </div> -->
+                <div class="checkboxtypebtn" *ngFor="let qqq of q4_answer1">
+                  <input type="checkbox" class="form-control" name="checkbox" id="{{qqq.id}}" value="{{qqq.id}}" 
+                  checked="{{qqq.checked}}" [(ngModel)]="qqq.checked"  [ngModelOptions]="{standalone: true}"  readonly disabled>
+                  <label for="{{qqq.id}}"><span>{{qqq.text}}</span></label>
+                </div>
+              </div>
+              <!-- <div class="d-flex flex-wrap form group" *ngIf="i == '3'">
+                <div class="covid-checks-button" *ngFor="let qqq of q4_answer1">
+                  <input type="checkbox" name="checkbox" id ="{{qqq.id}}" value ="{{qqq.checked}}"  [(ngModel)]="qqq.checked" (change)="changeSelection()" >
+                  <label for="{{qqq.id}}"></label>{{qqq.text}}
+                  </div>
+              </div> -->
+            </div>
+               
+
+            
+            <div class="form-group px-3 pt-0 pt-sm-4 mb-0 mb-sm-2">
+              <button type="button" data-dismiss="modal" id="btn_close1"
+                class="btn btn-blue-grad text-uppercase w-100 mt-3" data-backdrop="static" data-keyboard="false"
+               > close </button>
+            </div>
+         
+            </form>
+            <h5>
+              Note:- If you are not feeling well, stay home and contact us over the phone or by email to cancel your visit.
+
+            </h5>
+        </div><!-- end of modal-body -->
+       
+      </div>
+    </div>
+  </div>
+

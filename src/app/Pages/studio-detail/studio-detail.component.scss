@@ -1,0 +1,19 @@
+.tabbox{
+    width: 100%;
+
+}
+.staff-studio-details{
+    min-height: 1px!important;
+    height: auto;
+}
+.staff-studio-details .tabbox{
+    margin: 10px 0px;
+}
+.staff-studio-details .tabbox h4{
+    font-family: "Arial-Rounded";
+}
+/* font-family: "Arial-Rounded"; */
+
+.client-refer .custom-control.ios-switch .ios-switch-control-indicator{
+    background-image: linear-gradient(90deg, #32C3F1 0%, #2AACE3 50%, #1B96D3 99%);
+}

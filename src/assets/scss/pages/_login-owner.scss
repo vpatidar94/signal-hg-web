@@ -1,0 +1,111 @@
+
+.login-box-owner {
+	width: 100%;
+	max-width: 400px;
+	
+	.field-icon {
+	    float: right;
+	    margin-left: -25px;
+	    margin-top: 14px;
+	    position: absolute;
+	    z-index: 2;
+	    right: 35px;
+	}
+}
+
+/******** Login Register Owner ********/
+.login-box-owner {
+	.login-body {
+		ul.login-plan-list {
+			margin: 0px;
+			padding: 0px 0px 0px 12px;
+			list-style: none;
+
+			li {
+				text-decoration: none;
+				margin: 0px;
+				padding: 0px;
+				text-align: left;
+				color: $brandcolor3;
+				display: inline-flex;
+				margin-bottom: 16px;
+
+				span {
+					color: $brandcolor2;
+					font-size: $font12;
+					font-weight: 100;
+					margin-right: 22px;
+				}
+			}
+		}
+	}
+}
+
+.login-height {
+	min-height: 673px;
+	height: 100%;
+}
+
+/******* Login Register Owner Form ********/
+
+
+/******************* Studio Staff *****************/
+
+.staff-login-height {
+	min-height: 783px;
+	height: 100%;
+}
+.staff-register-height {
+	min-height: 920px;
+	height: 100%;
+}
+
+.staff-login-box-owner {
+	width: 100%;
+	min-width: 400px;
+}
+
+
+.profile-gender-button2 input[type="radio"] {
+  display: none;
+}
+
+.profile-gender-button2 input[type="radio"] + label {
+  z-index: 8;
+  margin: 0 10px 10px 0;
+  position: relative;
+  color: $brandcolor3;
+  text-shadow: 0 1px 0 rgba(255,255,255,.1);
+  font-weight: 600;
+  background-color: $light;
+  border: 2px solid #ced4da;
+  cursor: pointer;
+  transition: all 200ms ease;
+  font-size: 14px;
+}
+
+.profile-gender-button2 input[type="radio"]:checked + label {
+  color: $white;
+  background-color: $transparent;
+  background-image: $bluegradient;
+  border: 2px solid $brandcolor1;
+}
+
+.profile-gender-button2 input[type="radio"] + label {
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

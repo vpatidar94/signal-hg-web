@@ -1,0 +1,79 @@
+
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+<!-- My Studio Card Detials Section -->
+<div class="studio-details client-home-inner">
+    <div class="container">
+      <app-sub-header></app-sub-header>
+
+
+      <div class="home-staff pb-4">
+        <div class="row">
+          <div class="col-12">
+            <div class="section-heading pt-2 pb-4 text-left">
+              <p href="Javascript:void(0);" class="black-color font-w-100 text-uppercase font-20">  instructors  detail</p>
+            </div>
+          </div><!-- end of col-12 -->
+        </div><!-- end of Heading(staff & instructors) -->
+
+        <div class="home-staff-details white-bg box-shadow1 border-radius6 px-3 py-4 pb-4">
+          <div class="row">
+            <div class="col-12 col-md-2 text-center">
+              <div class="home-staff-detail-img">
+                <img src="{{StaffDetail.profile_img}}" class="img-fluid box-shadow1 border-radius100  staf-img">
+              </div>
+            </div><!-- end of col-md-2 -->
+
+            <div class="col-12 col-md-10 pl-3 pl-md-0 mt-4 mt-md-0">
+              <div class="home-staff-detail-text">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="">
+                      <h5 class="heading-titlenew black-color font-w-100 mb-0">{{StaffDetail.name}} {{StaffDetail.lastname}} </h5>
+                      <h5 class="heading-titlenew black-color font-w-100 mb-0">{{StaffDetail.email}} </h5>
+                      <h5 class="heading-titlenew black-color font-w-100 mb-0" *ngIf="StaffDetail.country_code">{{StaffDetail.country_code}}-{{StaffDetail.mobile}} </h5><br>
+                      <p class="black-color font-w-100 paratitle mb-0"> Address : </p>
+                      <p class="brand-color3 paratitle mb-2 paratitle" *ngIf="!StaffDetail.address"> </p>
+
+                      <p class="brand-color3 paratitle mb-2 paratitle" *ngIf="StaffDetail.address"> {{StaffDetail.address}}, {{StaffDetail.city}}, {{StaffDetail.state}}, {{StaffDetail.country}}</p>
+
+                      <p class="black-color font-w-100 paratitle mb-0" > Skills : </p>
+                      <p class="brand-color3 font-12 mb-2 paratitle"  > {{StaffDetail.skill}}  </p>
+
+                      <p class="black-color font-w-100 paratitle mb-0"  > Experience : </p>
+                      <p class="brand-color3 font-12 mb-2 paratitle"  > {{StaffDetail.experience}} Years </p>
+                    </div>
+                  </div><!-- end of col-6 -->
+
+                  <div class="col-md-6">
+                    <div class="pr-0 pr-lg-3">    
+                      <ul class="home-staff-detail-contact"  >
+                        <li> <a href="tel:{{StaffDetail.country_code}} {{StaffDetail.mobile}}" target="blank" > <img src="assets/img/ic_call_web.png"> </a> </li>
+                        <li> <a href="https://mail.google.com/mail/u/0/?view=cm&to={{StaffDetail.email}}&:&bcc&cc&fs=1&tf=1" target="blank" > <img src="assets/img/ic_email_web.png"> </a> </li>
+                        <li > <button class="btn btn-blue-grad" (click)="commonservice.back()">Back</button> </li>
+
+                      </ul>
+                    </div>                      
+                  </div><!-- end of col-md-6 -->
+
+                  <div class="col-12 mt-4 mt-md-0">
+                    <div class="text-left pr-0 pr-lg-3"  >
+                      <p class="black-color font-w-100 mb-0 paratitle"> About the Instructor </p>
+                      <p class="brand-color3 font-12 mb-0 paratitle">  {{StaffDetail.about }} </p>
+
+                    </div>                      
+                  </div><!-- end of col-12(about the instructor) -->
+                </div> <!-- end of row -->                 
+              </div><!-- end of home-staff-detail-text -->
+            </div> <!-- end of col-md-10 -->
+          </div><!-- end of row -->            
+        </div><!-- end of home-staff-details -->
+      </div><!-- end of home-staff -->
+    </div><!-- end of container -->
+  </div>          
+<!-- End of My Studio Card Detials Section -->
+</div>
+<app-inner-footer></app-inner-footer>
+

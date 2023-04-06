@@ -1,0 +1,27 @@
+<div *ngIf="loginInfo">
+    <app-inner-header></app-inner-header>
+  </div>
+  <div *ngIf="!loginInfo">
+    <app-header></app-header>
+  </div>
+  
+     <!-- About Content Section -->
+    <section class="about-content-height">
+      <div class="background-before">
+        <div class="py-4 mt-2">
+          <div class="container">
+            <div class="text-left wow animated slideInLeft pt-2">
+              <h2 class="new-title dark-color font-w-900 pb-4"> About Us </h2>
+              <div innerHtml = "{{Description}}"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  <!-- End of About Content Section --> 
+  <div *ngIf="loginInfo">
+    <app-inner-footer></app-inner-footer>
+  </div>
+  <div *ngIf="!loginInfo">
+    <app-footer></app-footer>
+  </div>

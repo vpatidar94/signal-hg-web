@@ -1,0 +1,271 @@
+/******* Login Register Step Form ********/
+
+.middle-content-wrp {
+	min-height: calc(100vh - 100px);
+	background: $brandlightdark;
+	@include flexcenter;
+
+	.signwrapp-back-layer {
+		top: 98px;
+		right: 0;
+		position: fixed;
+	}
+
+	.middle-innerbox {
+		min-height: 300px;
+		background: $white;
+		border-radius: $borderradius6;
+		box-shadow: $box-shadow-green;
+
+		.svg-checkico {
+			@include circle(50);
+			background: $brandcolor2;
+			@include flexcenter;
+			color: $white;
+			font-size: 1.5rem;
+		}
+
+		.field-icon {
+		    float: right;
+		    margin-right: 15px;
+		    margin-top: 14px;
+		    position: absolute;
+		    z-index: 2;
+		    right: 35px;
+		}
+	}
+
+	.planlist {
+		li {
+			position: relative;
+			padding-left: 25px;
+
+			&::before {
+				content: "\2713";
+				position: absolute;
+				left: 0;
+				top: 0;
+				position: absolute;
+				color: $brandcolor2;
+			}
+		}
+	}
+
+	.planbox {
+		.plan-detail {
+			min-height: 200px;
+			border-radius: $borderradius6;
+			box-shadow: $box-shadow-green;
+
+			label {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				border-radius: $borderradius6;
+				top: 0;
+				left: 0;
+				@include flexcenter;
+				font-size: 1.2rem;
+				line-height: 1.5rem;
+				font-weight: 500;
+				color: $brandlight;
+				text-align: center;
+			}
+
+			&:hover {
+				background: $brandcolor1;
+
+				label {
+					color: $white;
+				}
+			}
+		}
+
+		@media (max-width: 450px) {
+			.plan-detail {
+				height: 100px;
+				min-height: 150px;
+			}
+		}
+
+		.customradio {
+			position: relative;
+			z-index: 1;
+			width: 100%;
+			height: 200px;
+			opacity: 0;
+			cursor: pointer;
+		}
+
+		.customradio:checked ~ label {
+			color: $white;
+			background: $brandcolor1;
+		}
+	}
+
+	/*.planbox .customradio:checked .planbox .plan-detail::before{
+		background: red;
+	}*/
+
+	.choose-plan-sec {
+		.btn-brandcolor1grad {
+			width: 30%;
+			display: block;
+			margin: auto;
+		}
+	}
+
+	.setuppayment {
+		img {
+			max-width: 25px;
+		}
+
+		@media (max-width: 450px) {
+			img {
+				width: 15px;
+			}
+		}
+	}
+
+	.setupcard-sec {
+		.btn-brandlight {
+			width: 100%;
+		}
+		.default-tab {
+			border-radius: $borderradius6;
+			background: $light;
+		}
+	}
+
+	.stepsinfo-fill {
+		position: absolute;
+		left: 0;
+
+		.steps {
+			height: 600px;
+			width: 6px;
+			background: #c1c2c4;
+			border-radius: $borderradius50;
+			display: -ms-flexbox;
+			display: flex;
+			flex-direction: column;
+			position: relative;
+
+			&::after {
+				content: "";
+				position: absolute;
+				@include circle(25);
+				background: #c1c2c4;
+				bottom: 0;
+				left: -9px;
+			}
+
+		    li {
+				flex: 1;
+				position: relative;
+
+				&::before {
+					content: "";
+					position: absolute;
+					@include circle(25);
+					background: #c1c2c4;
+					top: 0;
+					left: -9px;
+		      	}
+		    }
+
+			.completed-step{
+				background: $brandcolor2;
+
+				&::before{
+					content: "\2713";
+					color: $white;
+					background: $brandcolor2;
+					@include flexcenter;
+				}
+			}
+		}
+
+		@media (min-width: 1440px) {
+			.steps {
+				height: 540px;
+			}
+		}
+
+		@media (max-width: 1366px) {
+			.steps {
+				height: 600px;
+			}
+		}
+
+		@media (max-width: 1024px) {
+			.steps {
+				    height: 540px;
+			}
+		}
+
+		@media (max-width: 768px) {
+			.steps {
+				height: 500px;
+			}
+		}
+
+		@media (max-width: 412px) {
+			.steps {
+				height: 500px;
+			}
+		}
+
+		.allstep_complete{
+			background: $brandcolor2;
+
+			&::after{
+				content: "\2713";
+				color: $white;
+				background: $brandcolor2;
+				@include flexcenter;
+			}
+		}
+	}
+
+	@media (max-width: 578px) {
+		.stepsinfo-fill {
+			position: absolute;
+			left: 27px;
+		}
+	}
+
+	.setminheight{
+		min-height: 572px;
+	}
+
+	/*.successModal{
+		.modal-dialog{
+			max-width: 320px!important;
+		}
+
+		.modal-content{
+			min-height: 300px;
+			background-image: $btngradient;
+			border-radius: $borderradius6;
+			border: 0;
+		}
+	}*/
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

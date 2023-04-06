@@ -1,0 +1,154 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}"></ngx-loading>
+
+    <!-- My Studio Card Detials Section -->
+    <div class="studio-details client-home-inner">
+        <div class="container">
+            <app-sub-header></app-sub-header>
+
+
+            <div class="home-staff pb-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="title black-color font-w-500 text-uppercase font-16 mb-0"> Appointment </h5>
+                </div>
+                <div class="col-md-6 text-right">
+                    <button type="button" class="btn btn-blue-grad px-2 text-uppercase mb-0" routerLink="/studio-detail">Back </button>
+                </div> 
+            </div>
+                <div class="white-bg border-radius6 box-shadow1 p-4 mt-3 available-slots">
+                    <div class="row" >
+                        <div class="col-12 col-md-4">
+                          <div class="centered-cover w-100">
+                            <div class="flex-break">
+                              <div class="std-detail-select position-relative w-100"  (change)="getval($event)">
+                                <select class="form-control brand-color1 border-radius6">
+                                    <!-- <option value="all"  > All Appointment </option> -->
+                                    <option value="my"  > My Appointment </option>
+                                    <option value="cancel"  > Cancelled Appointment </option>
+                                </select>    
+                              </div>
+                            </div><!-- end of flex-break -->
+                          </div><!-- end of centered-cover -->                  
+                        </div><!-- end of col-md-4 -->
+                        <div class="col-12 col-md-6">
+                            <div class="text-right w-100">
+                              <div class="flex-break">
+                                <div class="std-detail-select position-relative w-100">
+                                    <button class="colorchnage mr-2" (click)="decreaseDate()"><i class="fas fa-chevron-left"></i></button>
+                                    <mat-form-field >
+                                    <input matInput [matDatepicker]="passdate5" [(ngModel)]="currentDate" (click)="passdate5.open()" (focus)="passdate5.open()"  name="currentDate"  style="color: black;" readonly (dateChange)="upcoming()" >
+                                    <mat-datepicker-toggle matSuffix [for]="passdate5" ></mat-datepicker-toggle>
+                                    <mat-datepicker #passdate5 ></mat-datepicker>
+                                </mat-form-field>
+                                <button class="colorchnage ml-2" (click)="increaseDate()"><i class="fas fa-chevron-right"></i></button>
+
+                                  </div>
+                              </div><!-- end of flex-break -->
+            
+                            </div><!-- end of centered-cover -->                  
+                          </div><!-- end of col-md-4 -->    
+                          <div class="col-12 col-md-2" >
+                            <div class="pt-3">
+                                <button type="button" class="btn btn-blue-grad px-4 text-uppercase mb-0 mb-md-5" (click)="reset()" >Reset </button>
+                            </div>
+                          </div>           
+                      </div>
+                    <div class="activity-card-section mt-4 pt-2"  *ngIf="AppointmentDetail.length != 0">
+                        <!-- <div  infinite-scroll  [infiniteScrollDistance]="scrollDistance"  [infiniteScrollUpDistance]="scrollUpDistance"  [infiniteScrollThrottle]="throttle"  (scrolled)="onScroll()" alwaysCallback="true">  -->
+                    
+                          <div class="row">
+                            <div class="col-12 col-md-4 mb-4" *ngFor ="let items of AppointmentDetail">
+                              <a href="Javascript:void(0);"    (click) ="redirectUrl(items)">
+                                <div class="activity-card box-shadow1 border-radius6 white-bg p-2">
+                                    <div class ="row">
+                                        <div class ="col-12 text-right">
+                                            <a class="black-color font-w-100  mr-1 mb-1 paratitle" *ngIf="items.booking_status == 'Success' ">Paid </a>
+                                            <a class="black-color font-w-100  mr-1 mb-1 paratitle" *ngIf="items.booking_status == 'Completed' ">Payment Pending </a>
+                                            <a class="black-color font-w-100  mr-1 mb-1 paratitle" *ngIf="items.booking_status == 'Confirm' ">Confirmed </a>
+                                            <a class="black-color font-w-100  mr-1 mb-1 paratitle" *ngIf="items.booking_status == 'Cancel' ">Cancelled </a>
+                                        </div>
+                                    </div>
+                                  <div class="row">
+                                    <div class="col-3 col-sm-3 col-md-12 col-lg-3">
+                                      <div class="activity-card-logo">
+                                        <img src="{{items.profile_img}}" class="box-shadow1 new-log-img">
+                                      </div>
+                                    </div><!-- end of col-3 -->
+                    
+                                    <div class="col-9 col-sm-9 col-md-12 col-lg-9 pl-0 pl-sm-0 pl-md-3 pl-lg-0">
+                                      <div class="row">
+                                        <div class="col-7 col-md-12 col-lg-7 mt-0 mt-md-4 mt-lg-0 pl-0 pl-sm-0 pl-md-3 pl-lg-0">
+                                          <div class="activity-card-details text-left">
+                                            <h5 class="classname-title black-color mb-0">{{items.Name}}  </h5>
+                                            <p class="brand-color3 font-w-500"> {{items.age}} Years, {{items.gender}}</p>
+
+                                            <ul  class="d-flex align-items-center py-2">
+                                              <!-- <li> <div class="subinst-profileimg"><img src="{{items.instructor_profile_img}}" class="img-fluid"> </div></li> -->
+                                              <li> <h5 class="black-color mb-0 classname-title">{{items.service_name}} </h5> </li>
+                                            </ul>
+                    
+                                          </div>
+                                        </div><!-- end of col-7 -->
+                                        <div class="col-5 col-md-12 col-lg-5 pr-1">
+                                          <div class="text-right">
+                                            <p class="black-color font-w-100  mr-1 mb-4 paratitle">{{items.start_date_utc_new}} </p>
+                                            <div class="card-green-box text-center">
+                                              <p class="white-color mb-0 paratitle"> {{items.duration}} Min.</p>
+                                            </div>
+                                          </div>
+                                        </div><!-- end of col-5 -->
+                                      </div><!-- end of row -->
+                    
+                                      <!-- <div class="row pt-3">
+                                        <p class="black-color font-w-100 paratitle mb-0">Location :
+                                        </p>
+                                        <h5 class="heading-titlenew ml-2 mb-0 black-color">{{items.location_detail}}</h5>
+                                      </div> -->
+                                      <div class="row pt-2">
+                                        <p class="black-color font-w-100 paratitle mb-0">Location :
+                                        </p>
+                                        <h5 class="heading-titlenew ml-2 mb-0 black-color" *ngIf="items.location_url"><a href="{{items.location_url}}" target="_blank">{{items.location_name}}</a></h5>
+                                        <h5 class="heading-titlenew ml-2 mb-0 black-color" *ngIf="!items.location_url">{{items.location_name}}</h5>
+        
+                                        <!-- <h5 class="heading-titlenew ml-2 mb-0 black-color">{{items.location_detail}}</h5> -->
+                                      </div>
+                                      <div class="row pt-2">                              
+                                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 px-0 border-right">
+                                          <div class="text-left">
+                                            <p class="paratitle black-color mb-0"> Start Time </p>
+                                            <h5 class="classname-title black-color mb-0"> {{items.start_time_new}} </h5>
+                                          </div>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 d-flex justify-content-end">
+                                          <div class="text-left">
+                                            <p class="paratitle black-color mb-0"> End Time </p>
+                                            <h5 class="classname-title black-color mb-0"> {{items.end_time_new}} </h5>                        
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- end of row -->
+                                    </div><!-- end of col-9 -->
+                                  </div><!-- end of row -->
+                                </div><!-- end of activity-card -->
+                              </a>
+                            </div><!-- end of col-4 -->
+                    
+                          </div><!-- end of row -->
+                          <!-- </div> -->
+                        </div><!-- end of activity-card-section --> 
+                    <div class="row staff-studio-details" *ngIf="AppointmentDetail.length == 0">
+                        <div class="text-center">
+                            <p class="font-awesome black-color font-18 d-inline mx-2 "> No Appointment Available</p>
+                          </div>
+                          
+                    </div>
+                </div>
+            </div><!-- end of home-staff -->
+        </div><!-- end of container -->
+    </div>
+    <!-- End of My Studio Card Detials Section -->
+</div>
+
+<app-inner-footer></app-inner-footer>

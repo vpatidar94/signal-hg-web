@@ -1,0 +1,120 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+<!-- My Studios Section -->
+<div class="my-studio py-5 internal-studio">
+    <div class="studio-cards">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 pb-3">
+            <!-- <div class="section-heading">
+              <h5 class="title black-color font-w-100 text-uppercase font-16"> my studios </h5>
+            </div> -->
+          </div><!-- end of section-heading --> 
+        </div><!-- end  of row -->  
+
+        <div class="row">
+            <div class="col-sm-6 col-lg-6" *ngFor="let items of feedList">
+                <div class="newsdetail_box" >
+                    <div class="news_img" (click)="redirect(items)">
+                        <img [src]="items.newsfeed_img_url" alt="news-image-1" class="img-fluid">
+                    </div>
+                    <div class="news_content p-4">
+                        <h3 (click)="redirect(items)" class="texts"> {{items.title}}</h3>
+                        <p (click)="redirect(items)" class="texts"> {{items.description}}</p>
+                        <div class="social_box d-flex">
+                            <div *ngIf="items.is_like=='1'">
+                                <img src="assets/img/ic_heart_active.png" class="img-fluid" alt="icon-heart" (click)="postLike(items.id,'0')">
+                                <!-- <img src="../../../assets/img/ic_chat_active.png" class="img-fluid" alt="icon-chat"> -->
+                            </div>
+                            <div *ngIf="items.is_like=='0'">
+                                <img src="assets/img/ic_heart_inactive.png" class="img-fluid" alt="icon-heart" (click)="postLike(items.id,'1')">
+                            </div>
+                            <div class="ml-5">
+                                <img src="assets/img/ic_chat_active.png" class="img-fluid" alt="icon-chat" (click)="redirect(items)">
+                            </div>
+                            <!-- <div class="ic_heart" *ngIf="items.is_like=='1'">
+                                <svg width="15px" height="14px" viewBox="0 0 15 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" (click)="postLike(items.id,'0')">
+                                    <g id="Website-Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <path d="M10.875,0 C13.1535,0 15,1.875 15,4.5 C15,9.75 9.375,12.75 7.5,13.875 C5.625,12.75 0,9.75 0,4.5 C0,1.875 1.875,0 4.125,0 C5.52,0 6.75,0.75 7.5,1.5 C8.25,0.75 9.48,0 10.875,0 Z M8.2005,11.703 C8.86125,11.286 9.4575,10.87125 10.0155,10.42725 C12.25125,8.64975 13.5,6.70725 13.5,4.5 C13.5,2.73 12.34725,1.5 10.875,1.5 C10.068,1.5 9.195,1.9275 8.5605,2.5605 L7.5,3.621 L6.4395,2.5605 C5.805,1.9275 4.932,1.5 4.125,1.5 C2.67,1.5 1.5,2.742 1.5,4.5 C1.5,6.708 2.7495,8.64975 4.98375,10.42725 C5.5425,10.87125 6.13875,11.286 6.7995,11.70225 C7.02375,11.844 7.24575,11.97975 7.5,12.13125 C7.75425,11.97975 7.97625,11.844 8.2005,11.703 L8.2005,11.703 Z" id="ic_heart" fill="#FFFFFF" fill-rule="nonzero"></path>
+                                    </g>
+                                </svg>
+                            </div>   
+                            <div class="ic_heart" *ngIf="items.is_like=='0'">
+                                <svg width="15px" height="14px" viewBox="0 0 15 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" (click)="postLike(items.id,'1')" >
+                                    <g id="Website-Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <path d="M10.875,0 C13.1535,0 15,1.875 15,4.5 C15,9.75 9.375,12.75 7.5,13.875 C5.625,12.75 0,9.75 0,4.5 C0,1.875 1.875,0 4.125,0 C5.52,0 6.75,0.75 7.5,1.5 C8.25,0.75 9.48,0 10.875,0 Z M8.2005,11.703 C8.86125,11.286 9.4575,10.87125 10.0155,10.42725 C12.25125,8.64975 13.5,6.70725 13.5,4.5 C13.5,2.73 12.34725,1.5 10.875,1.5 C10.068,1.5 9.195,1.9275 8.5605,2.5605 L7.5,3.621 L6.4395,2.5605 C5.805,1.9275 4.932,1.5 4.125,1.5 C2.67,1.5 1.5,2.742 1.5,4.5 C1.5,6.708 2.7495,8.64975 4.98375,10.42725 C5.5425,10.87125 6.13875,11.286 6.7995,11.70225 C7.02375,11.844 7.24575,11.97975 7.5,12.13125 C7.75425,11.97975 7.97625,11.844 8.2005,11.703 L8.2005,11.703 Z" id="ic_heart" fill="#FFFFFF" fill-rule="nonzero"></path>
+                                    </g>
+                                </svg>
+                            </div>   -->
+                            <!-- <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                <li class="nav-item ic_chat">
+                                <a class="" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">
+                                    <svg width="15px" height="14px" viewBox="0 0 15 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <defs>
+                                            <linearGradient x1="100%" y1="50%" x2="0%" y2="50%" id="linearGradient-1">
+                                                <stop stop-color="#FF2B50" offset="0%"></stop>
+                                                <stop stop-color="#FF7493" offset="100%"></stop>
+                                            </linearGradient>
+                                        </defs>
+                                        <g id="Website-Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <g id="ic_chat" fill="url(#linearGradient-1)">
+                                                <path d="M1.00477833e-06,4.4955122 C-0.00079651644,3.30220686 0.473196744,2.15761248 1.31741323,1.3142402 C2.16162972,0.47086793 3.30669777,-0.00197992718 4.500001,6.23180689e-06 L10.500001,6.23180689e-06 C12.9847511,6.23180689e-06 15.000001,2.02126237 15.000001,4.4955122 L15.000001,13.5000062 L4.500001,13.5000062 C2.01525188,13.5000062 1.00477833e-06,11.4787617 1.00477833e-06,9.0045119 L1.00477833e-06,4.4955122 Z M13.5000004,12.000003 L13.5000004,4.4955122 C13.49587,2.84110116 12.1544167,1.50166001 10.5000004,1.50000299 L4.5000004,1.50000299 C3.70452262,1.49801831 2.94098455,1.81283021 2.3780721,2.37489829 C1.81515965,2.93696637 1.49920194,3.70003102 1.5000004,4.4955122 L1.5000004,9.0045119 C1.504133,10.6589229 2.84558633,11.9983641 4.5000004,12.000003 L13.5000004,12.000003 Z M9.00000141,6.0000121 L10.5000014,6.0000121 L10.5000014,7.5000121 L9.00000141,7.5000121 L9.00000141,6.0000121 Z M4.50000171,6.0000121 L6.00000171,6.0000121 L6.00000171,7.5000121 L4.50000171,7.5000121 L4.50000171,6.0000121 Z" id="Shape"></path>
+                                            </g>
+                                        </g>
+                                    </svg>    
+                                </a>
+                                </li>
+                            </ul> -->
+                            <!-- <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                    <form>
+                                        <div class="form-group row">
+                                            <div class="col-sm-12" *ngIf="items.comments_data.length!=0">
+                                                <ul>
+                                                    <li *ngFor="let item of items.comments_data">
+                                                        {{item.comments}}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <input type="text" class="form-control form-custom-control" id="" placeholder="Type here..." [(ngModel)]="comment"   [ngModelOptions]="{standalone: true}">
+                                                <svg class="ic_next_chat" width="19px" height="19px" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                    <g id="Website-Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <g id="2-News-Feed-Customer" transform="translate(-1328.000000, -886.000000)">
+                                                            <g id="2" transform="translate(834.000000, 318.000000)">
+                                                                <g id="Group-18" transform="translate(21.000000, 552.000000)">
+                                                                    <g id="ic_arrow_back" transform="translate(482.500000, 25.500000) scale(-1, 1) translate(-482.500000, -25.500000) translate(469.000000, 12.000000)">
+                                                                        <g id="ic_next_chat">
+                                                                            <polygon id="Shape" points="0 0 27 0 27 27 0 27"></polygon>
+                                                                            <polygon fill="#2E3749" points="22.5 12.375 8.80875 12.375 15.0975 6.08625 13.5 4.5 4.5 13.5 13.5 22.5 15.08625 20.91375 8.80875 14.625 22.5 14.625"></polygon>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="mt-2">
+                            <a class="mr-3 text-dark"  > {{items.total_like_count}} Likes</a>
+                            <a class="text-dark" > {{items.total_comment_count}} Comments</a>
+                        </div>                     
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+      </div>
+    </div><!-- End of studio-cards -->
+  </div>          
+<!-- End of My Studios Section -->
+</div>
+<app-inner-footer></app-inner-footer>

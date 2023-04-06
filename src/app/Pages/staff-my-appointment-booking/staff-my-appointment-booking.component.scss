@@ -1,0 +1,39 @@
+
+  // .special-date {
+  //   background-color: #0e8542;
+  //   box-shadow: inset 0 0 0 1px white;
+  //   border-radius: 999px;
+  //   //border-radius: 100%;
+  //   .mat-calendar-body-cell-content,.mat-calendar-body-disabled > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected){
+  //     color:white;
+  //   }
+  // }
+
+  
+.special-date .mat-calendar-body-cell-content {
+  background: linear-gradient(270deg, #0D8340 0%, #75BA81 100%);
+  // linear-gradient(90deg, #32c3f1, #2aace3 50%, #1b96d3 99%);
+  color: #fff;
+  }
+
+  .special1-date .mat-calendar-body-cell-content {
+    background: linear-gradient(270deg, #F40808 0%, #AC0606 100%);
+    // linear-gradient(270deg, #0D8340 0%, #75BA81 100%);
+    // linear-gradient(90deg, #32c3f1, #2aace3 50%, #1b96d3 99%);
+    color: #fff;
+    }
+
+  .mat-calendar-body-label{
+    padding-top: unset !important;
+  }
+
+  // .mat-calendar-previous-button, .mat-calendar-next-button{
+  //   display : none !important;
+  // }
+
+  // .mat-calendar-controls{display : none !important;}
+
+  .mat-calendar-body-selected {
+    background-color: #2baee4;
+    color: white;
+}

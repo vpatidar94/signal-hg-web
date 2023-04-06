@@ -1,0 +1,339 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+<!-- My Studio Card Detials-Service Section -->
+<div class="studio-details">
+    <div class="container">
+
+      <div class="pb-5">
+        <div class="row">
+          <div class="col-12 text-left">
+            <h4 class="title black-color text-uppercase mt-5"> Items in your Cart </h4>
+          </div>
+        </div><!-- End of Heading -->
+
+        <div class="s-d-appoint-block">
+          <div class="row">
+            <div class="col-12 col-lg-6 mt-3 mt-lg-0" *ngIf="CartItem.length != 0">
+              <div class="client-buy-input border-radius6 box-shadow1 white-bg p-4"  *ngFor="let ITEMS of CartItem.business_details" >
+
+                <div class="row pb-2">
+                  <div class="col-3 col-sm-2">
+                    <div class="cart-logo">
+                      <img src="{{ITEMS.logo}}" class="img-fluid">
+                    </div>
+                  </div><!-- end of col-3 -->
+                  <div class="col-9 col-sm-9 pl-0 pt-2">
+                    <div class="text-left mt-1 mt-md-3 mt-lg-1">
+                      <h4 class="title black-color font-w-100"> {{ITEMS.business_name}} </h4>
+                    </div>
+                  </div><!-- end of col-10 -->                  
+                </div><!-- end of row -->   
+
+                        <div class="row">
+                          <div class="col-12 ">
+                            <div class="white-bg border-radius6 box-shadow1 p-4 mb-2 mt-2" *ngFor="let SubITEMS of ITEMS.cart_details">
+                              <div class="row mb-0" >
+                                <div class="col-3 pr-0">
+                                  <div class="border-radius6 box-shadow1 p-3">
+                                    <img src="{{SubITEMS.item_image}}" class="img-fluid w-10" *ngIf ="SubITEMS.item_image!=''">
+                                    <img src="assets/img/logo_green_web.png" class="img-fluid w-10" *ngIf ="SubITEMS.item_image ==''">
+
+                                  </div>
+                                </div><!-- end of col-9 -->
+                                <div class="col-9">
+                                  <div class="">
+                                    <div class="row">
+                                      <div class="col-10">
+                                        <h5 class="title black-color mb-0"> {{SubITEMS.item_name}}</h5>
+
+                                      </div>
+                                      <div class="col-2 text-right ">
+                                        <span class="delete d-inline-block border-radius6" (click)="RemoveCartDetail(SubITEMS)"> <a href="Javascript:void(0);" > <i class="fas fa-trash-alt"></i> </a> </span>
+
+                                      </div>
+
+                                    </div>
+                                    <p class="brand-color3 font-12 my-2"  *ngIf="SubITEMS.item_decription.length <= 40" >{{SubITEMS.item_decription }}</p>
+                                    <p class="brand-color3 font-12 my-2"  *ngIf="SubITEMS.item_decription.length > 40" >{{SubITEMS.item_decription | ellipsis:40}}</p>
+                                    <div class="row" *ngIf="SubITEMS.service_type == '1'">
+                                      <!-- <div class="col-6">                                     <h5 class="brand-color3 mb-0"> {{SubITEMS.pass_type }}</h5>
+                                      </div>                                      -->
+                                       <div class="col-6">                                    <h5 class="brand-color3 mb-0">Valid For {{SubITEMS.pass_validity }}</h5>
+                                       </div>
+
+                                    </div>
+                               
+                                    <div class="row">
+                                      <div class="col-12">
+                                        <h5 class="title brand-color3 mb-0"> Amount : $ {{SubITEMS.amount}} </h5>
+
+                                      </div>
+                                      <div class="col-6">
+                                        <h5 class="title brand-color3 mb-0"> Tax 1 : $ {{SubITEMS.tax1_rate}} </h5>
+                                      </div>
+                                      <div class="col-6">
+                                        <h5 class="title brand-color3 mb-0"> Tax 2 : $ {{SubITEMS.tax2_rate}} </h5>
+                                      </div>
+                                    </div>
+
+                                   
+                                  </div>
+                                  <div class ="row">
+                                  
+                                    <div class="col-5 pt-2 " *ngIf="SubITEMS.service_type != '1'">                            
+                                      <div id="input_div" class="counter-box d-flex align-items-center" >
+                                        <input type="button" value="+" id="plus" class="brand-color2 font-w-600 font-28 mr-1 functionplus" (click)="updateCount('+',SubITEMS)" style="font-family: Arial">
+                                        <!-- <label class="brand-color1 mb-0"> Quantity </label> -->
+                                        <input type="text"  id="count" class="inputWidth brand-color1 flex-fill" [(ngModel)]="SubITEMS.quantity" name="ProductCount">
+                                        <input type="button" value="-" id="moins" class="brand-color2 font-w-600 font-28 mr-1 functionplus" (click)="updateCount('-',SubITEMS)" style="font-family: Arial">
+                                      </div>
+                                    </div>
+                                    <div class="col-7 pt-2">
+                                      
+                                    </div>
+                                  </div>
+                                
+                                </div><!-- end of col-9 -->
+                               <!-- ENd of Quantity -->
+                                                       
+
+                                <!-- <div class="col-3 pt-4" >
+                                    <span class="delete d-inline-block border-radius6" (click)="RemoveCartDetail(SubITEMS)"> <a href="Javascript:void(0);" > <i class="fas fa-trash-alt"></i> </a> </span>
+                                </div> -->
+                              </div><!-- end of row -->
+                            </div>
+                          </div><!-- end of New Rollin yoga -->
+                                      
+                        </div> <!-- end of row -->
+              </div><!-- end of s-d-appoint -->
+        
+            </div><!-- end of container -->
+            <div class="col-12 col-lg-6 mt-3 mt-lg-0" *ngIf="CartItem.length == 0"> 
+                <div class="client-buy-input border-radius6 box-shadow1 white-bg p-4">
+                    <div class="row pb-2">
+                        <div class="col-3 col-sm-2">
+                         
+                        </div><!-- end of col-3 -->
+                        <div class="col-9 col-sm-9 pl-0 pt-2">                         
+                          <div class="text-center mt-1 mt-md-3 mt-lg-1">
+                            <h4 class="title black-color font-w-100"> No item added in cart </h4>
+                          </div>
+                        </div><!-- end of col-10 -->                  
+                      </div><!-- end of row -->  
+
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6 mt-5 mt-lg-0" *ngIf="!paymentval">
+                <div class="s-d-appoint-block-right border-radius6 box-shadow1 white-bg">
+                  <div class="px-3 py-3 text-left light-bg border-t-lr-6">
+                    <h5 class="title black-color font-w-100 text-uppercase font-16 mb-0"> payment details </h5>
+                  </div><!-- top heading -->
+  
+                  <div class="px-3 pt-4 pb-2 border-bottom">
+                    <div class="row mb-2">
+                      <div class="col-6 text-left">
+                        <p class="black-color font-w-100 font-18"> Price({{CartItem.total_item}} Item) </p>
+                      </div>
+                      <div class="col-6 text-right">
+                        <p class="black-color font-w-100 font-18"> $ {{CartItem.total_amount}} </p>
+                      </div>
+                    </div>
+                    <!-- <div class="row">
+                      <div class="col-6 text-left">
+                        <p class="black-color font-w-100 font-18"> Tax </p>
+                      </div>
+                      <div class="col-6 text-right">
+                        <p class="black-color font-w-100 font-18"> $ {{CartItem.tax}} </p>
+                      </div>
+                    </div> -->
+
+                    <div class="row">
+                      <div class="col-6 text-left">
+                        <p class="black-color font-w-100 font-18"> Tax 1 </p>
+                      </div>
+                      <div class="col-6 text-right">
+                        <p class="black-color font-w-100 font-18"> $ {{CartItem.tax1_rate}} </p>
+                      </div>
+                      <div class="col-6 text-left">
+                        <p class="black-color font-w-100 font-18"> Tax 2 </p>
+                      </div>
+                      <div class="col-6 text-right">
+                        <p class="black-color font-w-100 font-18"> $ {{CartItem.tax2_rate}} </p>
+                      </div>
+                    </div>
+
+                  </div><!-- end of Appointment Fees: -->
+  
+                  <div class="px-3 pt-4 pb-3 border-bottom">
+                    <div class="row mb-2">
+                      <div class="col-6 text-left">
+                        <p class="title black-color font-w-100 font-18 mb-0"> Amount Payable </p>
+                      </div>
+                      <div class="col-6 text-right">
+                        <p class="title black-color font-w-100 font-18 mb-0"> $ {{CartItem.grand_total}} </p>
+                      </div>
+                    </div>
+                  </div><!-- end of Amount Payable -->
+  
+                  <div class="px-3 py-5 text-center" *ngIf="CartItem.length != 0">
+                    <!-- <button data-toggle="modal" data-target="#clientCheckOut" type="button" class="btn btn-blue-grad px-4 w-50 text-uppercase mb-0 mb-md-5" (click)="paymentval = true"> checkout </button> -->
+
+                    <button type="button" class="btn btn-blue-grad px-4 w-50 text-uppercase mb-0 mb-md-5" (click)="paymentval = true"> checkout </button>
+                  </div><!-- end of button and view policy -->
+                </div>
+              </div><!-- end of col-md-6 -->
+  
+              <div class="col-12 col-lg-6 mt-5 mt-lg-0" *ngIf="paymentval">
+                <div class="client-buy-process border-radius6 box-shadow1 white-bg">
+                  <div class="p-3 text-left light-bg border-t-lr-6">
+                    <h5 class="title black-color font-w-100 text-uppercase font-16 mb-0"> credit card / debit card </h5>
+                  </div><!-- top heading -->
+  
+                  <div class="px-3 pt-4 pb-3 border-bottom">
+                    <div class="row mb-2">
+                      <div class="col-6 text-left">
+                        <p class="title black-color font-w-100 font-18 mb-0"> Amount Payable </p>
+                      </div>
+                      <div class="col-6 text-right">
+                        <p class="title black-color font-w-100 font-18 mb-0"> $ {{CartItem.grand_total}} </p>
+                      </div>
+                    </div>
+                  </div><!-- end of Amount Payable -->
+                  <!-- <div class="row">
+                    <div class="col-12 col-lg-6 mt-3 mt-lg-0">-->
+                    <div class="client-payment-input border-radius6 box-shadow1 white-bg p-4"> 
+        
+                        <div class="row">
+                          <div class="col-12 mb-3" *ngFor="let cardsave of customerData">
+                            <div class="client-card-img white-bg border-radius6 box-shadow1" *ngIf="cardsave.length != 0">
+                              <label class="select-card select-card-img select-card-cvv mb-2"> 
+                                <img src="assets/img/visa_card.png" *ngIf="cardsave.card_type== 'visa'" class="img-fluid payment_img">
+                                <img src="assets/img/master_card.png" *ngIf="cardsave.card_type== 'mc'" class="img-fluid payment_img">
+                               <img src="assets/img/american_express.png" *ngIf="cardsave.card_type== 'am'" class="img-fluid payment_img">
+                               <!--   <img src="assets/img/interac" *ngIf="cardsave.card_type== 'mc'" class="img-fluid payment_img">
+                                <img src="assets/img/amex.png" *ngIf="cardsave.card_type== 'mc'" class="img-fluid payment_img">
+                                <img src="assets/img/discover.png" *ngIf="cardsave.card_type== 'mc'" class="img-fluid payment_img"> -->
+        
+                                <p class="mb-0 font-12 dark-color mt-2">{{cardsave.number}} </p>
+                                <h5 class="mb-0 font-12 dark-color mt-2">Valid Till(MM/YYYY) </h5>
+                                <p class="mb-0 font-12 dark-color mt-2">{{cardsave.expiry_month}} / {{cardsave.expiry_year}}</p>
+                                <input type="radio" checked="checked" name="radio" [id]="cardsave.card_id" [value]="cardsave.card_id" [(ngModel)]="cardType" [ngModelOptions]="{standalone: true}" (change)="getCardType($event)">
+                                <span class="checkmark"></span>
+                              </label>                         
+                                
+                              <form [formGroup]="savedCard"  *ngIf="cardsave.checked == true && cardType == cardsave.card_id" >
+                              <div class="text-center d-flex">
+                                <input type="password" autocomplete="off" class="form-control w-25 ml-5" onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="CVV" pattern="\d{3,4}"  onKeyPress="if(this.value.length >=4) return false;" formControlName="cvv_no" [ngClass]="{ 'is-invalid': submitted && sf.cvv_no.errors }">
+                                <div *ngIf="submitted && sf.cvv_no.errors" class="invalid-feedback">
+                                    <div *ngIf="sf.cvv_no.errors.required">CVV is required</div>  
+                                    <div *ngIf="sf.cvv_no.errors.pattern">CVV is not valid</div> 
+                                 </div>  
+                                <button type="button" class="btn btn-blue-grad px-4 w-50 text-uppercase mb-0 mb-md-3 ml-5" (click)="generateToken(2)"> Pay </button>
+                              </div>
+                            </form>
+                            </div>
+                          </div><!-- end of Master Card --> 
+                          <div class="col-12 mb-3">
+                            <div class="white-bg border-radius6 box-shadow1">
+                              <label class="select-card"> New Card
+                                <input type="radio" checked="checked" name="radio" id="new" value="new" [(ngModel)]="cardType" [ngModelOptions]="{standalone: true}" (change)="getCardType($event)">
+                                <span class="checkmark"></span>
+                              </label>
+                            </div>
+                          </div><!-- end of New Card -->        
+                         
+                        </div> <!-- end of row -->
+                </div>
+                   
+                  <form [formGroup]="paymentCard" *ngIf="cardType == 'new'">
+                    <div class="row py-4 px-3">
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <p class="brand-color3 text-left font-14 mb-2"> Name On Card </p>
+                          <input type="text"  class="form-control" autocomplete="off" onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="Sophie Joe" formControlName="card_holder_name" [ngClass]="{ 'is-invalid': submitted && f.card_holder_name.errors }">
+                          <div *ngIf="submitted && f.card_holder_name.errors" class="invalid-feedback">
+                            <div *ngIf="f.card_holder_name.errors.required">Card Holder Name is required</div> 
+                            <div *ngIf="f.card_holder_name.errors.pattern">Card Holder Name is required</div>  
+                           </div>
+                        </div>
+                      </div><!-- First Name -->
+    
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group client-buy-input-cardno">
+                          <p class="brand-color3 text-left font-14 mb-2"> Card Number </p>
+                          <input type="text"  autocomplete="off" class="form-control" onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="4121 4411 3131 8554" pattern="\d{15,19}" onKeyPress="if(this.value.length >= 19) return false;" formControlName="card_number" [ngClass]="{ 'is-invalid': submitted && f.card_number.errors }">
+                          <!-- <img src="assets/img/ic_visacard.png" class="input-visa-img">  -->
+                          <div *ngIf="submitted && f.card_number.errors" class="invalid-feedback">
+                            <div *ngIf="f.card_number.errors.required">Card Number is required</div>  
+                            <div *ngIf="f.card_number.errors.pattern">Card Number is not valid</div>  
+
+                         </div>                   </div>
+                      </div><!-- Last Name -->
+    
+                      <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                        <div class="form-group">
+                          <p class="brand-color3 text-left font-14 mb-2"> Valid Till </p>
+                          <input type="text"  autocomplete="off" class="form-control"  placeholder="MM/YYYY" formControlName="expiry"  [ngClass]="{ 'is-invalid': submitted && f.expiry.errors }" minlength="7" maxlength="7" onKeyPress="if(this.value.length == 2) return this.value=this.value.replace(this.value, this.value+'/');"pattern="^\d{2}/\d{4}">
+                          <!-- <input type="number"  class="form-control"  placeholder="MM/YYYY" formControlName="expiry" pattern="\d{2}/\d{2}"  onKeyPress="if(this.value.length >=5) return false;" [ngClass]="{ 'is-invalid': submitted && f.expiry.errors }"> -->
+                          <div *ngIf="submitted && f.expiry.errors" class="invalid-feedback">
+                              <div *ngIf="f.expiry.errors.required">Valid Till is required</div>  
+                              <div *ngIf="f.expiry.errors.pattern">Valid Till is like MM/YY</div>  
+
+                           </div>
+                        </div>
+                      </div><!-- Email  onPaste="return false" -->
+    
+                      <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                        <div class="form-group">
+                          <p class="brand-color3 text-left font-14 mb-2"> CVV </p>
+                          <input type="password" autocomplete="off" class="form-control" onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="eg. 201" pattern="\d{3,4}"  onKeyPress="if(this.value.length >=4) return false;" formControlName="cvv_no" [ngClass]="{ 'is-invalid': submitted && f.cvv_no.errors }">
+                          <div *ngIf="submitted && f.cvv_no.errors" class="invalid-feedback">
+                              <div *ngIf="f.cvv_no.errors.required">CVV is required</div>  
+                              <div *ngIf="f.cvv_no.errors.pattern">CVV is not valid</div>  
+
+                           </div>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <input type="checkbox" (change)="Savecard($event)"> Save Card
+                      </div>
+                      <div class="w-100 py-5 text-center">
+                        <button type="button" class="btn btn-blue-grad px-4 w-50 text-uppercase mb-0 mb-md-5" (click)="generateToken(1)"> Pay </button>
+                      </div><!-- end of button and view policy -->                                 
+                      
+                    </div>
+                  </form>
+                </div>
+              </div><!-- end of col-md-6 -->
+          </div>          
+        <!-- End of My Studio Card Detials-Service Section -->
+
+      </div><!-- end of s-d-appoint-block-left -->
+    </div><!-- end of col-md-6 -->
+
+  
+  </div><!-- end of row -->          
+</div><!-- end of s-d-appoint-block -->  
+     
+      
+        <!-- CHECKOUT MODAL POPUP -->
+        <div class="modal fade" id="clientCheckOut" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-body border-radius6 box-shadow1 p-5 white-bg">
+                  <div class="border-radius6 box-shadow-blue blue-gradient py-5 px-4 text-center">
+                    <img src="assets/img/logo_white.png" class="img-fluid">
+                    <h4 class="title white-color text-uppercase my-4 font-w-600"> select checkout <br> option </h4>
+                    <button data-dismiss="modal"  type="button" class="btn btn-white2 text-uppercase w-100 mb-4" (click)="paymentval = true"> pay now </button>
+                    <button data-dismiss="modal" type="button" class="btn btn-white2 text-uppercase w-100" > pay on pick up </button>            
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- END OF CHECKOUT MODAL POPUP -->
+        </div>
+        <app-inner-footer></app-inner-footer>

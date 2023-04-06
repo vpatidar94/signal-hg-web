@@ -1,0 +1,94 @@
+
+.pricing-studio-cards {
+	border-top: 1px solid $brandcolor3;
+
+	ul {
+		margin: 0;
+		padding: 0;
+		margin: 0 auto;
+
+		li {
+			display: inline-block;
+			list-style: none;
+			text-decoration: none;
+			background-color: $white;
+			transition: all 0.6s;
+			border-radius: $borderradius6;
+			margin: 0px 8px;
+			padding: 0;
+			opacity: 0.5;
+
+			.pricing-card {
+				border: 1px solid $brandcolor3;
+				background-color: $white;
+
+				a {
+					border: 1px solid $brandcolor3;
+					background-color: $white;
+					border-radius: $borderradius4;
+					color: $black;
+					font-size: $font10;
+					padding: 10px 18px;
+				}
+
+				&:hover {
+					a {
+						border: 1px solid $brandcolor1;
+						background-color: $brandcolor1;
+						color: $white;
+					}
+				}
+			}
+
+			&:hover {
+				box-shadow: 0 13px 25px 0 rgba(14,133,66,.3);
+				transform: scale(1.1,1.1);
+				opacity: 1;
+			}
+		}
+
+		@media (max-width: 1024px) {
+			li {
+				margin-bottom: 30px;
+			}
+		}
+	}
+}	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

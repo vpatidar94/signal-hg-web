@@ -1,0 +1,102 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+<!-- Favourite Section -->
+<div class="favourite py-5 internal-studio">
+    <div class="studio-cards">
+      <div class="container">
+          <div class="col-12 pb-3">
+            <div class="section-heading">
+              <h5 class="title black-color font-w-100 text-uppercase font-16"> favorites </h5>
+            </div>
+          </div><!-- end of section-heading -->
+       
+          <div  infinite-scroll  [infiniteScrollDistance]="scrollDistance"  [infiniteScrollUpDistance]="scrollUpDistance"  [infiniteScrollThrottle]="throttle"  (scrolled)="onScroll()" alwaysCallback="true" *ngIf="FavDetail.length !=0"> 
+           <div class="row">
+              <div  class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 px-2" *ngFor="let Fav of FavDetail"  >
+            <div class="studio-position-heart">
+              <a href="Javascript:void(0);"  *ngIf="Fav.service_type == '1'" >
+               
+                <div class="studio-card-newcustom gradient-studio-overlay box-shadow1" (click) ="redirectUrl(Fav.business_id,'/detail')" >
+                  <div class="img-box" style="background-image: url({{Fav.logo}})">
+                  </div>
+
+                  <div class="studio-detail p-3">
+                    <div class="row mx-0 align-items-start">
+                      <div class="profile-image box-shadow1">
+                        <img src="{{Fav.logo}}" class="img-fluid">
+                      </div>
+                      <div class="studio-profile-detail flex-fill pl-4">
+                        <h5 class="nametitle classname-title mb-1">{{Fav.business_name}}</h5>
+                        <p class="brand-color3 paratitle mb-2" *ngIf="Fav.business_address.length <= 25">
+                          {{Fav.business_address }}</p>
+                        <p class="brand-color3 paratitle mb-2" *ngIf="Fav.business_address.length > 25">
+                          {{Fav.business_address  | ellipsis:25}}</p>
+                          <p class="brand-color3 paratitle mb-2">
+                            {{Fav.distance}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="studio-card-select">
+                  <i class="fas fa-heart brand-color2 font-22" 
+                  (click)="addFav(Fav.business_id,Fav.service_type)"></i>
+               
+                  
+                </div>
+              </a>
+
+                <a href="Javascript:void(0);"  *ngIf="Fav.service_type == '2'">
+               
+                    <div class="studio-card-newcustom gradient-studio-overlay box-shadow1" (click) ="redirectUrl(Fav.pass_id,'/pass-detail')">
+
+                      <div class="img-box" style="background-image: url(assets/img/logo_green_web.png)">
+                      </div>
+
+                      <div class="studio-detail pl-3 pr-3 pb-0 pt-3">
+                        <div class="row mx-0 align-items-start">
+                          <div class="profile-image box-shadow1">
+                            <img src="assets/img/logo_green_web.png" class="img-fluid">
+                          </div>
+                          <div class="studio-profile-detail flex-fill pl-4">
+                            <h5 class="nametitle classname-title mb-1">{{Fav.pass_name}}</h5>
+                            <p class="brand-color3 paratitle mb-1" >
+                              {{Fav.pass_type }}</p>                           
+                            <p class="brand-color3 paratitle">
+                              Date : {{Fav.start_date}}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="studio-card-select">
+                      <i class="fas fa-heart brand-color2 font-22" 
+                      (click)="addFav(Fav.pass_id,Fav.service_type)"></i>
+                    </div>
+                  </a>
+                
+                
+                
+                
+                
+              
+            
+            </div><!-- end of studio-position-heart -->
+          </div>
+          </div>
+          </div><!-- studio-card-1 -->
+          <div class="row  border-radius6 p-3" *ngIf="FavDetail.length == 0">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <p class="font-awesome black-color font-18 d-inline mx-2 "> Not available</p>
+            </div>
+            <div class="col-md-4"></div>
+          </div>
+      </div>
+    </div><!-- End of studio-cards -->
+  </div>          
+<!-- End of Favourite Section -->
+</div>
+<app-inner-footer></app-inner-footer>
+

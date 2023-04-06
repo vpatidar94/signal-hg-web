@@ -1,0 +1,22 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+    <section class="client-search-section">
+        <div class="container py-5">
+            <div class="row" *ngIf="StudioDetail.length != 0">
+                <div class="col-sm-6 col-md-3 custom-col20 py-3" *ngFor="let items of StudioDetail">
+                    <a href = "javascript:void(0)" (click) ="redirectUrl(items.business_id)">
+                    <div class="schedule-tab p-3">
+                        <div class="img-box mx-auto my-2">
+                            <img src="{{items.logo}}" class="img-fluid">
+                        </div>
+                        <h5 class="font-arialrouded text-center nametitle">{{items.business_name}}</h5>
+                        <!-- <p class="brand-color3 text-center font-14" style="word-break: break-all;">{{items.skills}}</p> -->
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+<app-inner-footer></app-inner-footer>

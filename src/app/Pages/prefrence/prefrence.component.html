@@ -1,0 +1,76 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+<!-- Profile Section -->
+<div class="client-refer mt-0 py-5 px-3 px-sm-0">
+    <div class="container">
+
+      <div class="row white-bg border-radius6 box-shadow1 mb-2">
+        <div class="col-12">
+          <div class="custom-controls-stacked d-block">
+            <label class="custom-control ios-switch text-right mb-0">
+              <p class="black-color font-w-400 font-18 d-inline-block float-left mb-0 mt-2"> App Notification </p>
+              <input type="checkbox" class="ios-switch-control-input" id="app_notification" (change)="changePreference($event,'app_notification')" [(ngModel)]="notifications.app_notification" >
+              <span class="ios-switch-control-indicator"></span>
+            </label>
+          </div>  
+        </div>
+      </div><!-- end of App Notification -->
+
+      <div class="row white-bg border-radius6 box-shadow1 mt-1 mb-2">
+        <div class="col-12">
+          <div class="custom-controls-stacked d-block">
+            <label class="custom-control ios-switch text-right mb-0">
+              <p class="black-color font-w-400 font-18 d-inline-block float-left mb-0 mt-2"> Alerts </p>
+              <input type="checkbox" class="ios-switch-control-input" id="alerts" (change)="changePreference($event,'alerts')" [(ngModel)]="notifications.alerts">
+              <span class="ios-switch-control-indicator"></span>
+            </label>
+          </div>  
+        </div>
+      </div><!-- end of Alerts -->
+
+      <div class="row white-bg border-radius6 box-shadow1 mt-1 mb-2">
+        <div class="col-12">
+          <div class="custom-controls-stacked d-block">
+            <label class="custom-control ios-switch text-right mb-0">
+              <p class="black-color font-w-400 font-18 d-inline-block float-left mb-0 mt-2"> Email </p>
+              <input type="checkbox" class="ios-switch-control-input" id="email" (change)="changePreference($event,'email')" [(ngModel)]="notifications.email">
+              <span class="ios-switch-control-indicator"></span>
+            </label>
+          </div>  
+        </div>
+      </div><!-- end of Email -->
+
+      <div class="row white-bg border-radius6 box-shadow1 mt-1 mb-2">
+        <div class="col-12">
+          <div class="custom-controls-stacked d-block">
+            <label class="custom-control ios-switch text-right mb-0">
+              <p class="black-color font-w-400 font-18 d-inline-block float-left mb-0 mt-2"> SMS </p>
+              <input type="checkbox" class="ios-switch-control-input" id="sms" (change)="changePreference($event,'sms')" [(ngModel)]="notifications.sms">
+              <span class="ios-switch-control-indicator"></span>
+            </label>
+          </div>  
+        </div>
+      </div><!-- end of SMS -->
+
+      <div class="row white-bg border-radius6 box-shadow1 mt-1 mb-2">
+        <div class="col-12">
+          <div class="custom-controls-stacked d-block">
+            <label class="custom-control ios-switch text-right mb-0">
+              <p class="black-color font-w-400 font-18 d-inline-block float-left mb-0 mt-2"> Phone Call </p>
+              <input type="checkbox" class="ios-switch-control-input" id="phonecall" (change)="changePreference($event,'phonecall')" [(ngModel)]="notifications.phonecall">
+              <span class="ios-switch-control-indicator"></span>
+            </label>
+          </div>  
+        </div>
+      </div><!-- end of Phone Call -->
+
+
+    </div><!-- end of container -->
+  </div>         
+<!-- End of Profile Section -->
+</div>
+<app-inner-footer></app-inner-footer>
+    

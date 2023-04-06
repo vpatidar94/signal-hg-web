@@ -1,0 +1,240 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+<!-- My Studio Card Detials-Service Section -->
+<div class="studio-details">
+    <div class="container">
+
+      <div class="studio-details-upper box-shadow1 white-bg mb-3">
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <div class="std-details-upper-left d-flex align-items-center justify-content-center" style="background-image:url({{businessDetail.business_img}});background-size: cover;background-position:center;min-height:406px">
+              <!-- <img src="{{businessDetail.business_img}}" class="img-fluid w-100"> -->
+              <!-- <div class="std-position-logo text-center">
+                <img src="assets/img/logo_white_web.png" class="img-fluid">
+              </div> -->
+            </div>
+          </div><!-- end of std-details-upper-left -->
+
+          <div class="col-12 col-lg-6">
+            <div class="std-details-upper-right text-center p-3">
+              <div class="">
+                <img src="{{businessDetail.logo}}" class="mb-4 log-img">
+                <h4 class="title dark-color mb-2"> {{businessDetail.business_name}} </h4>
+                <p class="brand-color3 font-12 mb-0" *ngIf="addresslength <= 40"> {{businessDetail.address}} </p>
+                <p class="brand-color3 font-12 mb-0"  *ngIf="addresslength > 40"> {{businessDetail.address | ellipsis:40}} </p>
+                <ul class="studio-contact-details my-4">
+                  <li class="ml-0"> <a  href="tel:{{businessDetail.business_phone}}" target="blank"> <img src="assets/img/ic_call_web.png"> <span> Call </span></a> </li>
+                  <li> <a href="http://maps.google.com/maps?q={{businessDetail.latitude}},{{businessDetail.longitude}},14z?hl=en@{{businessDetail.address}}"  target="blank" > <img src="assets/img/ic_direction_web.png"> <span> Directions </span></a> </li>
+                  <li> <a href="https://mail.google.com/mail/u/0/?view=cm&to={{businessDetail.email}}&:&bcc&cc&fs=1&tf=1" target="blank"> <img src="assets/img/ic_email_web.png"> <span> Email </span></a> </li>
+                  <li class="mr-0"> 
+                    <a href="Javascript:void(0);"  *ngIf="businessDetail.favourite == 0" (click)="addFav(businessDetail.business_id,1,1)"> <img src="assets/img/ic_unfavourite_web.png"> <span> Favorite </span></a>
+                    <a href="Javascript:void(0);" *ngIf="businessDetail.favourite == 1" (click)="addFav(businessDetail.business_id,0,1)"> <img src="assets/img/ic_favourite_web.png"> <span> Favorite </span></a>
+                   </li>
+                </ul>
+              
+                <ul class="studio-service-details">
+                  <li class="ml-md-0">
+                    <a href="Javascript:void(0);" routerLink='/classes'> <img src="assets/img/ic_class.png"> <span> Classes </span> </a> 
+                    </li>
+                  <li> 
+                    <a href="Javascript:void(0);"routerLink='/staff' > <img src="assets/img/ic_instructors.png"> <span> Instructors </span> </a>
+                   </li>
+                  <li> 
+                    <a href="Javascript:void(0);" routerLink='/services'> <img src="assets/img/ic_services.png"> <span> Services </span> </a> 
+                  </li>
+                  <li class="mr-md-0">
+                    <a href="Javascript:void(0);" routerLink='/workshops'> <img src="assets/img/ic_workshop.png"> <span> Workshops </span> </a> 
+                    </li>
+                </ul>
+              </div>
+            </div>
+          </div><!-- end of std-details-upper-right -->
+        </div><!-- end of row -->
+      </div><!-- end of studio-details-upper -->
+
+      <div class="pb-5">
+        <div class="row">
+          <div class="col-6 text-left">
+            <h4 class="title black-color text-uppercase"> Pass details </h4>
+          </div>
+          <div class="col-6 text-right mb-3">
+            <button type="button" class="btn btn-blue-grad px-2 text-uppercase" (click)="redirect()" >Back </button>
+          </div>
+
+        </div><!-- End of Heading -->
+       
+        <div class="s-d-appoint-block">
+          <div class="row">
+              <div class="col-12 col-lg-6 mt-3 mt-lg-0">
+                  <div class="home-inner-available border-radius6 box-shadow1 white-bg p-4">
+                    <!-- <owl-carousel-o [options]="eventDetail_Options" class="new-slider-logo"> 
+                        <ng-template carouselSlide   [id]="passDetail.pass_id"> -->
+                    <div class="mb-5" >
+
+                 
+                      
+                      <!-- end of purchase-blue-card -->
+                            <!-- <div class="available-card" >
+                                <div class="available-blue-card p-4">
+                                  <div class="text-left">
+                                    <h4 class="title white-color font-14">{{passDetail.pass_name}}  </h4>
+                                      <div class="row">
+                                        <div class="col-6 text-left pr-0">
+                                          <h5 class="title white-color font-14">{{passDetail.pass_type}}</h5>
+                                        </div>
+                                        <div class="col-6 text-right pr-0">
+                                          <h5 class="title white-color font-14">Valid For {{passDetail.pass_validity}}</h5>
+                                        </div>
+                                      </div>                                             
+                                  </div>
+                                  <div class="row mt-5">
+                                    <div class="col-8 text-left pr-0">
+                                      <p class="mb-0 white-color font-14">Date : {{passDetail.start_date_utc_new}}  </p>
+                                    </div>
+                                    <div class="col-4 text-right pl-0">
+                                      <p class="mb-0 white-color font-14"> {{passDetail.booking_pass_id}} </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              
+                              <div class="studio-card-select">
+                                <i class="fas fa-heart brand-color3 font-22" *ngIf="passDetail.favourite == 0" (click)="addFav(passDetail.pass_id,1)"></i>
+                                <i class="fas fa-heart brand-color2 font-22" *ngIf="passDetail.favourite == 1" (click)="addFav(passDetail.pass_id,0)"></i>
+            
+                              </div>
+                            </div> -->
+
+                            <div class="available-card">
+                              <div class="available-blue-card p-3 p-sm-4">
+            
+                                <div class="row mx-0 ">
+                                  <div class="pass-logo">
+                                    <img src="{{passDetail.business_logo}}" class="img-fluid">
+                                  </div>
+                                  <div class="flex-fill pr-4 pl-5 passTextwidth">
+                                    <h5 class="white-color font-14 mb-2 mt-0">{{passDetail.pass_name}}</h5>
+                                    <!-- <h5 class="white-color font-14 mb-3 mt-0" >{{passDetail.pass_type}}</h5> -->
+                                    <h5 class="white-color font-14 mb-2 mt-0">${{passDetail.amount}} <span class="font-12"> Plus Tax </span></h5>
+                                  </div>
+                                </div>
+                                <div class="row mt-5 align-items-end">
+                                  <!-- <div class="col-12 text-left pr-0" *ngIf="backurl == '/my-purchase'">
+                                    <p class="white-color paratitle" >Remaining Classes : {{passDetail.remaining_count}}</p>
+                                  </div> -->
+                                  <div class="col-8 text-left pr-0">   
+                                    <p class="mb-0 white-color paratitle" > Valid For {{passDetail.pass_validity}}</p>         
+                                    <p class="mb-0 white-color paratitle"> Start Date : {{passDetail.start_date_utc_new}} </p>
+                                    <!-- <p class="mb-0 white-color paratitle" *ngIf="backurl == '/my-purchase'"> Expiration Date : {{passDetail.end_date_utc_new}} </p> -->
+
+                                  </div>
+                                  <!-- <div class="col-4 text-right pl-0">
+                                    <div class="paraframe">
+
+                                    <p class="mb-0 white-color  paratitle"> {{passDetail.pass_type_name}}</p>
+                                    <p class="mb-0 white-color paratitle">Pass Id : {{passDetail.booking_pass_id}} </p>
+                                  </div></div> -->
+                                </div>
+                              </div>
+            
+                              <div class="studio-card-select">
+                                <i class="fas fa-heart brand-color3 font-22" *ngIf="passDetail.favourite == 0"
+                                  (click)="addFav(passDetail.pass_id,1,2)"></i>
+                                <i class="fas fa-heart brand-color2 font-22" *ngIf="passDetail.favourite == 1"
+                                  (click)="addFav(passDetail.pass_id,0,2)"></i>
+            
+                              </div>
+                            </div>
+
+                            <div class="row ml-2 mr-2 mt-2 d-block">
+                              <h5 class="title black-color text-uppercase">Description </h5>
+                                <p> {{passDetail.description}}</p>
+                              <!-- <div *ngIf="passDetail.is_recring == 1">
+                                <a href="javascript:void(0)" data-target="#busLocation" data-toggle="modal"  data-backdrop="static" data-keyboard="false" class="d-block  font-18 mb-0"> View Terms & Conditions </a>
+                                <input type="checkbox" class="mt-2" (change)="Terms($event)"> I accept the terms and conditions of this purchase
+                              </div> -->
+        
+                            </div>
+                            <!-- end of purchase-blue-card -->
+                    </div><!-- Card-3 -->
+                  <!-- </ng-template>                   
+                </owl-carousel-o>               -->
+            
+                  </div>
+                  <!-- end of home-inner-class -->
+                </div><!-- End of Available Passes -->
+                <div class="col-12 col-lg-6 mt-5 mt-lg-0" >
+                  <div class="s-d-appoint-block-right border-radius6 box-shadow1 white-bg">
+                    <div class="px-3 py-3 text-left light-bg border-t-lr-6">
+                      <h5 class="title black-color font-w-100 text-uppercase font-16 mb-0"> payment details </h5>
+                    </div><!-- top heading -->
+    
+                    <div class="px-3 pt-4 pb-2 border-bottom">
+                      <div class="row mb-2">
+                        <div class="col-6 text-left">
+                          <p class="black-color font-w-100 font-18"> Price({{PassCount}} Item) </p>
+                        </div>
+                        <div class="col-6 text-right">
+                          <p class="black-color font-w-100 font-18"> $ {{passDetail.amount}} </p>
+                        </div>
+                      </div>
+                      <!-- <div class="row">
+                        <div class="col-6 text-left">
+                          <p class="black-color font-w-100 font-18"> Tax </p>
+                        </div>
+                        <div class="col-6 text-right">
+                          <p class="black-color font-w-100 font-18"> $ {{passDetail.pass_tax_price}} </p>
+                        </div>
+                      </div> -->
+                      <div class="row">
+                      <div class="col-6 text-left">
+                        <p class="black-color font-w-100 font-18"> Tax 1 </p>
+                      </div>
+                      <div class="col-6 text-right">
+                        <p class="black-color font-w-100 font-18"> $ {{passDetail.tax1_rate}} </p>
+                      </div>
+                      <div class="col-6 text-left">
+                        <p class="black-color font-w-100 font-18"> Tax 2 </p>
+                      </div>
+                      <div class="col-6 text-right">
+                        <p class="black-color font-w-100 font-18"> $ {{passDetail.tax2_rate}} </p>
+                      </div>
+                    </div>
+                    </div><!-- end of Appointment Fees: -->
+    
+                    <div class="px-3 pt-4 pb-3 border-bottom">
+                      <div class="row mb-2">
+                        <div class="col-6 text-left">
+                          <p class="title black-color font-w-100 font-18 mb-0"> Amount Payable </p>
+                        </div>
+                        <div class="col-6 text-right">
+                          <p class="title black-color font-w-100 font-18 mb-0"> $ {{passDetail.pass_total_price}} </p>
+                        </div>
+                      </div>
+                    </div><!-- end of Amount Payable -->
+
+                    <!-- <div class="w-100 py-5 text-center">
+                      <button type="button" class="btn btn-blue-grad px-4 w-50 text-uppercase mb-0 mb-md-5" (click)="Back()"> Back </button>
+                    </div> -->
+                    <!-- end of button and view policy -->                                 
+  
+                      </div>
+                </div><!-- end of col-md-6 -->
+          </div><!-- end of row -->          
+        </div><!-- end of s-d-appoint-block -->   
+      </div><!-- end of s-d-appoint -->
+
+
+
+
+
+    </div><!-- end of container -->
+  </div>          
+<!-- End of My Studio Card Detials-Service Section -->
+
+
+<!-- END OF CHECKOUT MODAL POPUP -->
+</div>
+<app-inner-footer></app-inner-footer>

@@ -1,0 +1,85 @@
+<app-header></app-header>
+<div class="login-bg"> 
+<!-- Login Content Section -->
+<div class="">
+    <div class="d-flex align-items-center justify-content-center staff-login-height p-4 p-sm-0">
+      <div class="align-item-center text-center wow animated slideInDown">
+        <div class="login-box-owner white-bg box-shadow1 border-radius10 py-4 px-3">
+
+          <div class="login-header text-center px-5">
+            <h3 class="title dark-color mb-4"> Sign Up Now</h3>
+            <p class="brand-color3 font-18 px-4"> Please sign up to manage your business profile… </p>
+          </div><!-- end of login-header -->
+
+          <div class="logn-form mb-2">
+            <form  [formGroup]="userregister" (ngSubmit)="onregister()">
+              <div class="form-group">
+                <p class="brand-color3 text-left font-14 mb-2"> First Name </p>
+                <input type="text" class="form-control-1 w-100" placeholder="John"  [(ngModel)]="registerData.name"   formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    <div *ngIf="f.name.errors.required">First Name is required</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <p class="brand-color3 text-left font-14 mb-2"> Last Name </p>
+                <input type="text" class="form-control-1 w-100" placeholder="Smith"  [(ngModel)]="registerData.lastname"   formControlName="lastname" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }">
+                <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                    <div *ngIf="f.lastname.errors.required">Last Name is required</div>
+              </div>
+              </div>
+              <div class="form-group">
+                <p class="brand-color3 text-left font-14 mb-2"> Email </p>
+                <input type="email" class="form-control-1 w-100" placeholder=""  [(ngModel)]="registerData.email"   formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+              </div>
+              </div>
+              <div class="form-group">
+                <p class="brand-color3 text-left font-14 mb-2"> Country Code </p>
+                <select class="form-control-1 w-100" [(ngModel)]="registerData.country_code"   formControlName="country_code" [ngClass]="{ 'is-invalid': submitted && f.country_code.errors }"     >
+                  <option value=""></option>
+                  <option *ngFor ="let code of CountryList" value ="{{code.name}} ({{code.code}})">{{code.name}} ({{code.code}}) </option>
+                </select>
+                <div *ngIf="submitted && f.country_code.errors" class="invalid-feedback">
+                    <div *ngIf="f.country_code.errors.required">Country Code is required</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <p class="brand-color3 text-left font-14 mb-2"> Phone </p>
+                <!-- <input type="number" class="form-control-1 w-100 col-md-4" placeholder=""  [(ngModel)]="registerData.mobile"   onKeyPress="if(this.value.length >= 10) return false;"  formControlName="mobile" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }"> -->
+                <input type="number" class="form-control-1 w-100 " placeholder=""  [(ngModel)]="registerData.mobile"   onKeyPress="if(this.value.length >= 12) return false;"  formControlName="mobile" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }">
+                <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                    <div *ngIf="f.mobile.errors.required" class="erro_msg">Phone is required</div>
+                    <div *ngIf="f.mobile.errors.pattern" class="erro_msg">Phone number not valid</div>
+
+              </div></div>
+
+              <div class="form-group mt-3 mb-1">
+                <p class="brand-color3 text-left font-14 mb-2"> Password </p>
+                <input id="password-field" type="password" class="form-control-1 w-100" name="password"   [(ngModel)]="registerData.password"   formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                <span (click)="showHide()"><img src="assets/img/input_eye.png" class="fa fa-fw fa-eye field-icon toggle-password" toggle="#password-field"></span>
+
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.pattern">Password length must be  8 with at least one special character, one capital letter, one small letter and one number.</div>
+              </div>
+              </div>
+              <div class="py-3">
+                <button class="btn btn-blue-grad text-uppercase w-100" type="submit" [disabled]="registerSpinner"> <span class="spinner-grow spinner-grow-sm" *ngIf="registerSpinner" role="status" aria-hidden="true"></span> Next </button>
+              </div>
+              <div class="text-center">
+                <p class="font-18 brand-color3 mb-2"> Already a User? <span> <a routerLink="/staff-signin" class="brand-color2"> Login </a></span></p>
+              </div>
+              <div class="text-center">
+                 <a routerLink="/terms-conditions" class="brand-color2 font-14"> Terms & Conditions</a>
+              </div>
+            </form>
+          </div><!-- end of logn-form -->
+
+        </div><!-- end of login-box -->
+      </div>     
+    </div><!-- end of d-flex -->
+  </div>
+<!-- End of About Content Section -->
+</div>

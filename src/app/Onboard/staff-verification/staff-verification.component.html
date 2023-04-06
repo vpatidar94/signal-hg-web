@@ -1,0 +1,57 @@
+<app-header></app-header>
+<div class="login-bg"> 
+<!-- Login Content Section -->
+  <div class="">
+    <div class="d-flex align-items-center justify-content-center staff-login-height p-4 p-sm-0">
+      <div class="align-item-center text-center wow animated slideInDown">
+        <div class="login-box-owner white-bg box-shadow1 border-radius10 py-4 px-3">
+
+          <div class="login-header text-center px-5 mb-5">
+            <h3 class="title dark-color mb-4"> Verification </h3>
+            <p class="brand-color3 font-18"> Enter the OTP sent to your registered phone number </p>
+          </div><!-- end of login-header -->
+
+          <div class="logn-form mb-2">
+            <form [formGroup]="userVerify"  (ngSubmit)="otpVerification()">
+              <div class="form-group">
+                <p class="brand-color3 text-left font-14 mb-2"> Enter OTP </p>
+                <input type="text" class="form-control-1 w-100" placeholder="" formControlName="otpcode"  maxlength="4"  [ngClass]="{ 'is-invalid': submitted && f.otpcode.errors }">
+                <div *ngIf="submitted && f.otpcode.errors" class="invalid-feedback">
+                    <div *ngIf="f.otpcode.errors.required">OTP is required</div>
+                </div>
+              </div>
+              <div class="py-3">
+                <button  type="submit" class="btn btn-green-grad text-uppercase w-100" [disabled]="verifySpinner"> <span class="spinner-grow spinner-grow-sm" *ngIf="verifySpinner" role="status" aria-hidden="true"></span> verify </button>
+                <button data-target="#staff_forgotPopup" data-toggle="modal" type="button" id="sucess_btn"  data-backdrop="static" data-keyboard="false"> </button>
+
+              </div>
+              <div class="text-center">
+                <p class="font-18 brand-color3 mb-2"> Did not receive any OTP? <span> <a href="javascript:void(0)" class="brand-color2" (click)= "resendOtp()"> Resend </a></span></p>
+              </div>
+            </form>
+          </div><!-- end of logn-form -->
+
+        </div><!-- end of login-box -->
+      </div>     
+    </div><!-- end of d-flex -->
+  </div>
+<!-- End of About Content Section -->
+
+
+<!-- CHECKOUT MODAL POPUP -->
+<div class="modal fade" id="staff_forgotPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content w-75 mx-auto blue-gradient border-0">
+        <div class="modal-body border-radius6 box-shadow1 p-0">
+          <div class="border-radius6 box-shadow-blue blue-gradient p-4 text-center">
+            <img src="assets/img/logo_white.png" class="img-fluid mt-5 mb-3">
+            <h3 class="title white-color text-uppercase my-4 font-w-600"> Success </h3>
+            <p class="white-color my-4 font-w-100 px-4 line-height25 font-18"> Thank you for registering with Signal Health Group. </p>
+            <button routerLink = "/staff-signin"  type="button" class="btn btn-white3 text-uppercase w-100"  data-dismiss="modal" > Login </button>    
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- END OF CHECKOUT MODAL POPUP -->
+</div>

@@ -1,0 +1,56 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}"></ngx-loading>
+    <div class="activity-section py-5">
+        <div class="container">        
+            <div  class="mt-4">
+                <div class="row py-4 align-items-center" *ngIf="currentUrl=='/nutrition-detail'">
+                    <div class="col-md-12">
+                        <div class="add_new">
+                            <a href="javascript:void(0)" class="btn btn-blue-grad mr-3" routerLink="/nutrition" ><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> </a>
+                            <a href="javascript:void(0)" (click)="redirectUrl('','/add-diet')" class="btn btn_add"> Add New</a>
+                        </div>
+                    </div> 
+                </div>
+                <div class="row py-4 align-items-center" *ngIf="currentUrl=='/my-nutrition-detail'">
+                    <div class="col-md-12">
+                        <div class="add_new">
+                            <a href="javascript:void(0)" class="btn btn-blue-grad mr-3" routerLink="/my-nutrition" ><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> </a>
+                        </div>
+                    </div>                  
+                </div>
+
+                <div class="row mt-3" *ngIf="DietList.length != 0">
+                    <div class="col-md-4 mb-4" *ngFor="let items of DietList">
+                        <div class="breakfast-box box-shadow1 border-radius6 bg-white">
+                            <a class="d-flex align-items-center h-100" href="javascript:void(0)">
+                            <div class="left_box">
+                                <img [src]="items.img_url" class="img-fluid">
+                            </div>
+                            <div class="right_box pl-3">
+                                <h5 class="heading-titlenew mb-1"> {{items.diet_name}}</h5>
+                                <p class="brand-color3 font-w-400 font-14"> {{items.quantity}}</p>
+                                <a href="javascript:void(0)" *ngIf="currentUrl == '/my-nutrition-detail'" (click)="redirectUrl(items,'/nutrition-description')"><i class="fa fa-chevron-circle-right fa-2x" aria-hidden="true"></i> </a>
+                                <!-- <div class="add_new" *ngIf="currentUrl == '/nutrition-detail'">
+                                    <a href="javascript:void(0)" class="btn btn_add" *ngIf="items.status == 'Assign'" (click)="addCustomerMeal(items.id)">{{items.status}} </a>
+                                    <a href="javascript:void(0)"  *ngIf="items.status != 'Assign'">{{items.status}} </a>
+                                </div> -->
+                            </div>
+                            </a>
+                            <div class="topright_icon">
+                                <a class="delete_ic" href="javascript:void(0)"  *ngIf="currentUrl == '/nutrition-detail'" (click)="deleteMeal(items.meal_id)"><i class="fa fa-trash text-white" aria-hidden="true"></i> </a>
+                                <a class="edit_ic" href="javascript:void(0)"  *ngIf="currentUrl == '/nutrition-detail'" (click)="redirectUrl(items,'/update-diet')"><i class="fa fa-pencil-alt text-white" aria-hidden="true"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row  mt-3 " *ngIf="DietList.length == 0">
+                    <div class="text-center">
+                        <p class="font-awesome black-color font-18 d-inline mx-2 "> No Diet Available</p>
+                    </div>   
+                </div>
+            </div>
+        </div>
+    </div>   
+</div>
+<app-inner-footer></app-inner-footer>   

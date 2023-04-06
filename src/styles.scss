@@ -1,0 +1,147 @@
+
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$signalhg-primary: mat-palette($mat-indigo);
+$signalhg-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$signalhg-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$signalhg-theme: mat-light-theme($signalhg-primary, $signalhg-accent, $signalhg-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($signalhg-theme);
+
+
+
+
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.body-grey { 
+    min-height:100vh !important;
+}
+
+@import './node_modules/bootstrap/scss/bootstrap-grid.scss';
+@import './node_modules/bootstrap/scss/bootstrap-reboot.scss';
+@import './node_modules/bootstrap/scss/bootstrap.scss';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
+@import 'assets/css/font-awesome.min.css';
+@import 'assets/scss/style.scss';
+/* css modify by archita**/
+// .about-content-height, .faq-content-section , .client-refer {
+//     min-height: calc(100vh - 214px) !important;
+//     height:auto !important;
+// }
+
+.light-bg2 {
+    padding:20px;
+}
+/* 
+ */
+
+.service-button input[type="checkbox"] {
+    display: none;
+  }
+  
+  .service-button input[type="checkbox"] + label {
+    z-index: 8;
+    margin: 0 10px 10px 0;
+    position: relative;
+    color: #77787b;
+    text-shadow: 0 1px 0 rgba(255,255,255,.1);
+    font-weight: 600;
+    background-color: #f2f2f2;
+    border: 2px solid #ced4da;
+    cursor: pointer;
+    transition: all 200ms ease;
+    font-size: 14px;
+}
+
+
+.service-button input[type="checkbox"]:checked + label {
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0);
+    background-image: linear-gradient(270deg, rgb(13, 131, 64) 0%, rgb(117, 186, 129) 100%);
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(14, 133, 66);
+    border-image: initial;
+}
+  
+.service-button input[type="checkbox"] + label {
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+
+
+.covid-checks-button input[type="checkbox"] {
+  display: none;
+}
+
+.covid-checks-button input[type="checkbox"] + label {
+  z-index: 8;
+  margin: 0 10px 10px 0;
+  position: relative;
+  color: #77787b;
+  text-shadow: 0 1px 0 rgba(255,255,255,.1);
+  font-weight: 600;
+  background-color: #f2f2f2;
+  border: 2px solid #ced4da;
+  cursor: pointer;
+  transition: all 200ms ease;
+  font-size: 14px;
+}
+.covid-checks-button input[type="checkbox"]:checked + label {
+  color:red;
+  background-color:red;
+  background-image: unset;
+  border-width: 2px;
+  border-style: solid;
+  border-color: red;
+  border-image: initial;
+}
+  
+.covid-checks-button input[type="checkbox"] + label {
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+
+
+  .cdk-overlay-container 
+    {
+        z-index: 1200!important;
+    }
+
+   .invalid-feedback {
+     text-align: left;
+   } 
+
+   .form-control.is-invalid{
+     background-image: url();
+   }
+
+   .new-log-img {
+    height: 50px;
+    border-radius: 100%;
+    width: 50px;
+}

@@ -1,0 +1,173 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+  <div class="activity-section py-5">
+    <div class="container">
+      <div class="main_dietchart">
+        <form  [formGroup]="dietform">
+          <div class="row">     
+            <div class="col-md-12">
+              <h2  *ngIf="currentUrl=='/add-diet'"> ADD DIET CHART</h2>      
+              <h2  *ngIf="currentUrl=='/update-diet'"> UPDATE DIET CHART</h2>      
+
+                <!-- <div class="upload_box mb-3">
+                  <input #imageInput type="file" id="file1" name="image" accept="image/*" (change)="getUploadFileDetail($event)"  style="display:none" />                     
+                  <div class="userprofile_img box-shadow1">
+                    <img [src]="ProfileDetail.profile_img" *ngIf="!imgURL" class="img-fluid border-radius100 w-100"style="height: 200px" >
+                  <img [src]="imgURL"  *ngIf="imgURL"class="img-fluid border-radius100 w-100"style="height: 200px" >
+                  <a href="Javascript:void(0);" class="brand-color1 font-14 edit-profileimg box-shadow1" (click)="changeImage()"
+                  id="upfile1" style="cursor:pointer"> <i class="fas fa-camera"></i> </a>
+                </div>
+                </div> -->
+                  <div class="upload_box mb-5">
+                    <img [src]="dietDetail.img_url" *ngIf="!imgURL" class="img-fluid border-radius100 w-100 mb-3" style="height: 200px" >
+                    <img [src]="imgURL"  *ngIf="imgURL" class="img-fluid border-radius100 w-100 mb-3" style="height: 200px" >
+                  </div>
+                  <div class="upload_btn" (click)="changeImage()" >
+                    <a href="Javascript:void(0);" (click)="changeImage()" class="btn btn-blue-grad"> Upload Image</a>
+                  </div>
+                  <div class="form-group form-group-file pt-4 mb-0" (click)="changeImage()" style="cursor:pointer;">
+                    <input #imageInput type="file" id="file1" name="image" accept="image/*" (change)="getUploadFileDetail($event)"  style="display:none" />                     
+                  </div>                
+            </div>
+            
+            <div class="col-md-12 my-5">
+              <div class="diet_form">
+                <div class="form-row">
+                  <div class="col-12 col-sm-6 col-md-6 col-lg-6 mb-3 mb-sm-0">
+                    <label>Diet Name</label>
+                    <input type="text" class="form-control" placeholder="Diet Name" [(ngModel)]="dietDetail.diet_name"  formControlName="diet_name" [ngClass]="{ 'is-invalid': submitted && f.diet_name.errors }">
+                    <div *ngIf="submitted && f.diet_name.errors" class="invalid-feedback">
+                      <div *ngIf="f.diet_name.errors.required">Diet Name is required</div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6 col-md-6 col-lg-6 mb-3 mb-sm-0">
+                    <label>Days</label>
+                    <ng-multiselect-dropdown class= "multis days_bg bg-white"
+                    [data]="daysList"
+                    [(ngModel)]="selectedDays"
+                    [ngModelOptions]="{standalone: true}"
+                    [settings]="dropdownSettings"
+                    (ngModelChange)="changeDays()"   
+                  >
+                  </ng-multiselect-dropdown> 
+                    <!-- <select class="form-control" [(ngModel)]="dietDetail.week_day_id"  formControlName="days" [ngClass]="{ 'is-invalid': submitted && f.days.errors }">
+                      <option value="" selected>Select Days</option>
+                      <option *ngFor="let items of daysList" [value]="items.id">{{items.week_name}}</option>
+                    </select>
+                    <div *ngIf="submitted && f.days.errors" class="invalid-feedback">
+                      <div *ngIf="f.days.errors.required">Days is required</div>
+                    </div> -->
+                  </div>
+                  
+                </div>
+                <div class="form-row">
+                  <div class="col-12 col-sm-4 col-md-4 col-lg-4 mb-3 mb-sm-0">
+                    <label>Quantity</label>
+                    <input type="text" (keypress)="global.numberOnly($event)" class="form-control" placeholder="Quantity" [(ngModel)]="dietDetail.quantity"  formControlName="quantity" [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }">
+                    <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+                      <div *ngIf="f.quantity.errors.required">Quantity  is required</div>
+                    </div>
+                  </div>
+                  <!-- <div class="col-12 col-sm-4 col-md-4 col-lg-4 mb-3 mb-sm-0">
+                    <label>Age (years)</label>
+                    <input type="text" (keypress)="global.numberOnly($event)" class="form-control" placeholder="Age"[(ngModel)]="dietDetail.age"  formControlName="age" [ngClass]="{ 'is-invalid': submitted && f.age.errors }">
+                    <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
+                      <div *ngIf="f.age.errors.required">Age is required</div>
+                    </div>
+                  </div> -->
+                  <div class="col-12 col-sm-4 col-md-4 col-lg-4 mb-3 mb-sm-0">
+                    <label>Calories (gm)</label>
+                    <input type="text" (keypress)="global.numberOnly($event)" class="form-control" placeholder="Calories"[(ngModel)]="dietDetail.calories"  formControlName="calories" [ngClass]="{ 'is-invalid': submitted && f.calories.errors }">
+                    <div *ngIf="submitted && f.calories.errors" class="invalid-feedback">
+                      <div *ngIf="f.calories.errors.required">Calories is required</div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+                    <label>Carbs (gm)</label>
+                    <input type="text" (keypress)="global.numberOnly($event)"  class="form-control" placeholder="Carbs"[(ngModel)]="dietDetail.carbs"  formControlName="carbs" [ngClass]="{ 'is-invalid': submitted && f.carbs.errors }">
+                    <div *ngIf="submitted && f.carbs.errors" class="invalid-feedback">
+                      <div *ngIf="f.carbs.errors.required">Carbs is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <!-- <div class="col-12 col-sm-6 col-md-3 col-lg-3 mb-3 mb-md-0">
+                    <label>Carbs (gm)</label>
+                    <input type="text" (keypress)="global.numberOnly($event)"  class="form-control" placeholder="Carbs"[(ngModel)]="dietDetail.carbs"  formControlName="carbs" [ngClass]="{ 'is-invalid': submitted && f.carbs.errors }">
+                    <div *ngIf="submitted && f.carbs.errors" class="invalid-feedback">
+                      <div *ngIf="f.carbs.errors.required">Carbs is required</div>
+                    </div>
+                  </div> -->
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-3 mb-md-0">
+                    <label>Protein (gm)</label>
+                    <input type="text" (keypress)="global.numberOnly($event)" class="form-control" placeholder="Protein" [(ngModel)]="dietDetail.protien"  formControlName="protien" [ngClass]="{ 'is-invalid': submitted && f.protien.errors }">
+                    <div *ngIf="submitted && f.protien.errors" class="invalid-feedback">
+                      <div *ngIf="f.protien.errors.required">Protein is required</div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-4 mb-3 mb-sm-0">
+                    <label>Fat (gm)</label>
+                    <input type="text" (keypress)="global.numberOnly($event)" class="form-control" placeholder="Fat" [(ngModel)]="dietDetail.fat"  formControlName="fat" [ngClass]="{ 'is-invalid': submitted && f.fat.errors }">
+                    <div *ngIf="submitted && f.fat.errors" class="invalid-feedback">
+                      <div *ngIf="f.fat.errors.required">Fat is required</div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                    <label>Calcium (gm)</label>
+                    <input type="text" (keypress)="global.numberOnly($event)" class="form-control" placeholder="Calcium" [(ngModel)]="dietDetail.calcium"  formControlName="calcium" [ngClass]="{ 'is-invalid': submitted && f.calcium.errors }">
+                    <div *ngIf="submitted && f.calcium.errors" class="invalid-feedback">
+                      <div *ngIf="f.calcium.errors.required">Calcium is required</div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="form-row">
+                  <div class="col">
+                    <select class="form-control" [(ngModel)]="dietDetail."  formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                      <option>Category</option>
+                      <option>Category 1</option>
+                      <option>Category 2</option>
+                    </select>
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                      <div *ngIf="f.name.errors.required">First Name is required</div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <select class="form-control" [(ngModel)]="dietDetail."  formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                      <option>Sub Category</option>
+                      <option>Sub Category 1</option>
+                      <option>Sub Category 2</option>
+                    </select>
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                      <div *ngIf="f.name.errors.required">First Name is required</div>
+                    </div>
+                  </div>
+                </div> -->
+                <div class="form-row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label>Diet Description</label>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="6" placeholder="Diet Description" [(ngModel)]="dietDetail.description"  formControlName="description" [ngClass]="{ 'is-invalid': submitted && f.description.errors }"></textarea>
+                        <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                          <div *ngIf="f.description.errors.required">Description is required</div>
+                        </div>
+                    </div>  
+                  </div>
+                </div>  
+  
+                <div class="adddiet_btn">
+                  <a href="javascript:void(0)" class="btn btn-blue-grad mr-3" routerLink="/nutrition-detail" ><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> </a>
+                  <a href="javascript:void(0)" class="btn btn-blue-grad" (click)="submit()" *ngIf="currentUrl=='/add-diet'"> Add Diet</a>
+                  <a href="javascript:void(0)" class="btn btn-blue-grad" (click)="submit()" *ngIf="currentUrl=='/update-diet'"> Update Diet</a>
+                </div>
+              </div>
+            </div>  
+  
+          </div>
+        </form>
+        
+      </div><!-- end of home-staff -->
+    </div>
+  </div>
+</div>
+<app-inner-footer></app-inner-footer>

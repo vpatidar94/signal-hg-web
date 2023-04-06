@@ -1,0 +1,712 @@
+.section-search {
+	.has-search {
+		position: relative;
+	}
+
+	.has-search .form-control {
+	    background: $white;
+	    border: none;
+	    border-radius: 5px;
+	    height: calc(2.5em + 0.75rem + 2px);
+	    color: #71727e;
+	    text-align: left;
+	    padding-left: 20px;
+	}
+
+	.has-search .form-control-feedback {
+	    position: absolute;
+	    right: 16px;
+	    top: 6px;
+	    font-size: 20px;
+	    z-index: 2;
+	    display: block;
+	    line-height: 2.375rem;
+	    text-align: center;
+	    pointer-events: none;
+	    color: #aaa;
+	}
+}
+
+.activity-card-section {
+	.activity-card {
+
+		.activity-card-logo {
+			img {
+				width: 75%;
+				text-align: center;
+			}
+
+			@media (min-width: 768px) and (max-width: 992px) {
+				img {
+					width: 40% !important;
+				}
+			}
+		}
+
+		.activity-card-details {
+			ul {
+				margin: 0px;
+				padding: 0px;
+
+				li {
+					list-style: none;
+					text-decoration: none;
+					display: inline-block;
+					margin: 0px;
+					padding: 0px;
+
+					// &:first-child {
+					// 	width: 20%;
+					// 	text-align: left;
+
+					// 	img {
+					// 		width: 80%;
+					// 	}
+					// }
+				}
+			}
+		}
+
+		.card-green-box {
+			background-color: #9fd180;
+			border-top-left-radius: 6px;
+			border-bottom-left-radius: 6px;
+			padding: 7px 0px;
+			margin-right: 2px;
+			margin-left: 10px;
+		}
+
+		.card-grey-box {
+			background-color: $brandcolor3;
+			border-top-left-radius: 6px;
+			border-bottom-left-radius: 6px;
+			padding: 7px 0px;
+			margin-right: 2px;
+			margin-left: 10px;
+		}
+	}
+}
+
+@media (max-width: 992px) {
+	.activity-card-logo {
+		text-align: center;
+
+		img {
+			width: 50% !important;
+		}
+	}
+}
+
+@media (max-width: 440px) {
+	.activity-card-logo {
+		text-align: left;
+
+		img {
+			width:  80% !important;
+		}
+	}
+}
+
+.studio-padding-left {
+	padding-left: 390px;
+}
+
+.studio-cards {
+
+	.studio-overlay {
+		width: 100%;
+		height: 330px;
+		background-color: $white;
+		position: relative;
+
+		/*img {
+			border-top-left-radius: $borderradius6;
+			border-top-right-radius: $borderradius6;
+		}*/
+
+		&:before {
+			content: "";
+			height: 300px;
+			width: 100%;
+			position: absolute;
+			top: 0px;
+			background-repeat: no-repeat;
+			background-image: url('./assets/img/bg-gradient.png');
+			background-size: cover;
+		}
+
+		@media (max-width: 450px) {
+
+			&:before {
+				height: 332px;
+				background-size: cover;
+			}
+
+		}
+	}
+
+	.studio-card-content {
+		position: absolute;
+		bottom: 0px;
+
+		// img {
+		// 	width: 75%;
+		// 	margin: 0 auto;
+		// }
+
+		@media (max-width: 1024px) {
+			img {
+				width: 40%;
+				margin-left: unset;
+				margin-bottom: 15px;
+			}
+		}
+
+		@media (max-width: 450px) {
+			img {
+				width: 20%;
+			}
+		}
+	}
+
+	.studio-position-heart {
+		position: relative;
+
+		.studio-card-select {
+			height: 40px;
+			width: 40px;
+			border-radius: $borderradius6;
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			background-color: $white;
+			text-align: center;
+			padding-top: 10px;
+			cursor: pointer;
+		}
+	}
+
+	.owl-carousel {
+		.owl-nav {
+			display: none;
+		}
+		.owl-dots {
+			display: none;
+		}
+	}
+}
+
+@media (max-width: 1440px) {
+	.studio-padding-left {
+		padding-left: 140px;
+	}
+}
+
+@media (max-width: 1280px) {
+	.studio-padding-left {
+		padding-left: 70px;
+	}
+}
+
+@media (max-width: 1024px) {
+	.studio-padding-left {
+		padding-left: 30px;
+	}
+}
+
+@media (max-width: 480px) {
+	.studio-padding-left {
+		padding-left: 0px;
+	}
+}
+
+
+
+/************* Client Inner Page Css *****************/
+.activity-card-details {
+	ul.client-inner-align {
+		li {
+			vertical-align: middle;
+
+			&:last-child {
+				p {
+					margin-top: 15px;
+				}
+			}
+		}
+	}	
+}
+
+.client-home-inner {
+	.other-3 {
+		.owl-dots {
+			display: none;
+		}
+	}
+	.service-slider {
+		.owl-dots {
+			display: none;
+		}
+	}
+	.home-inner-available {
+		.available-slider {
+			.owl-dots {
+				display: none;
+			}
+		}		
+	}
+}
+
+.home-inner-service {
+	.inner-service-card {
+		img {
+			width: 25%;
+		}
+
+		@media (max-width: 768px) {
+			img {
+				width: 90px;
+			}
+		}
+
+		ul {
+			margin: 0;
+			padding: 0;
+
+			li {
+			    display: inline-block;
+			    color: #77787b;
+			    font-size: .875rem;
+			    position: relative;
+			    margin-left: 10px;
+			    line-height: 22px;
+
+			    &:before {
+				    content: " ";
+				    position: absolute;
+				    height: 5px;
+				    width: 5px;
+				    border-radius: 100%;
+				    background-color: #77787b;
+				    top: 8px;
+				    left: -10px;
+			    }
+			}
+		}
+	}
+}
+
+.home-inner-staff {
+	.staff-slider {
+
+		.inner-staff-card {
+			img {
+				width: 70%;
+			}
+		}
+
+		.owl-dots {
+			.owl-dot {
+				span {
+					width: 12px;
+				    height: 12px;
+				    margin: 5px 7px;
+				    background: #9cdff5;
+				    display: block;
+				    transition: all 900ms;
+				    border-radius: 30px;
+				}
+			}
+
+
+			.owl-dot.active {
+				span {
+					background: #1a96d3;
+				    height: 16px;
+				    width: 16px;
+				}
+			}
+		}
+	}
+}
+
+//.home-inner-available {
+	// .owl-carousel {
+		.available-card {
+			position: relative;
+
+			.available-blue-card {
+				background-image: url('./assets/img/blue_passes.png');
+				// background-color: $bluegradient;
+				background-size: 100% 100%;
+				background-repeat: no-repeat;
+				width: 100%;
+				border-radius: 6px;
+				.pass-logo{
+					@include circle(150);
+					// border-radius: 10px;
+					overflow: hidden;
+					@include flexcenter;
+					border: 1px solid $light;
+				}
+				h5{
+					font-size: 18px;
+				}
+			}
+
+			.available-green-card {
+				// background-image: url(./assets/img/pass_bg_green.png);
+				background-image: $greengradient;
+				background-size: 100% 100%;
+				background-repeat: no-repeat;
+				width: 100%;
+				border-radius: 6px;
+				.pass-logo{
+					@include circle(150);
+					// border-radius: 10px;
+					overflow: hidden;
+					@include flexcenter;
+					border: 1px solid $light;
+				}
+			}
+
+			.studio-card-select {
+				height: 40px;
+				width: 40px;
+				border-radius: 6px;
+				position: absolute;
+				top: 15px;
+				right: 18px;
+				background-color: #fff;
+				text-align: center;
+				padding-top: 10px;
+				cursor: pointer;
+			}
+		}
+	// }
+//}
+
+// .home-inner-available {
+// 	// .owl-carousel {
+// 		.available-card {
+// 			position: relative;
+
+// 			.available-blue-card {
+// 			    background-image: url(./assets/img/pass_bg_blue.png);
+// 			    background-size: 100% 100%;
+// 			    background-repeat: no-repeat;
+// 			    width: 100%;
+// 			    border-radius: 6px;
+// 			}
+
+// 			.available-green-card {
+// 			    background-image: url(./assets/img/pass_bg_green.png);
+// 			    background-size: 100% 100%;
+// 			    background-repeat: no-repeat;
+// 			    width: 100%;
+// 			    border-radius: 6px;
+// 			}
+
+// 			.studio-card-select {
+// 			    height: 40px;
+// 			    width: 40px;
+// 			    border-radius: 6px;
+// 			    position: absolute;
+// 			    top: 15px;
+// 			    right: 18px;
+// 			    background-color: #fff;
+// 			    text-align: center;
+// 			    padding-top: 10px;
+// 			    cursor: pointer;
+// 			}
+// 		}
+// 	// }
+// }
+
+.home-inner-product {
+	.owl-carousel {
+		.owl-nav {
+			display: none;
+		}
+		.owl-dots {
+			display: none;
+		}
+	}
+}
+/************* End of  Client Inner Page Css *****************/
+
+
+
+/************* Client Staff Page Css *************/
+.client-home-inner {
+	.home-staff-details {
+		.home-staff-detail-text {
+			text-align: left;
+
+			ul.home-staff-detail-contact {
+				margin: 0;
+				padding: 0;
+				text-align: right;
+
+				li {
+					display: inline-block;
+					list-style: none;
+					text-decoration: none;
+					margin-left: 15px;
+				}
+			}
+		}
+
+		@media (max-width: 450px) {
+			.home-staff-detail-text {
+				text-align: center;
+
+				ul.home-staff-detail-contact {
+					text-align: center;
+
+					li {
+						margin: 0px 10px;
+					}
+
+				}
+			}
+		}
+	}
+}
+/************* End of Client Staff Page Css *************/
+
+
+
+/************* Client Service Page Css *************/
+.home-service-offered {
+	.home-service-offered-btn {
+		text-align: right;
+	}
+
+	@media (max-width: 450px) {
+		.home-service-offered-btn {
+			text-align: center;
+		}		
+	}
+}
+/************* End of Client Service Page Css *************/
+
+
+/**************** My Studio Page Css ****************/
+.img-align {
+	text-align: center;
+}
+
+@media (max-width: 1024px) {
+	.img-align {
+		text-align: left;
+	}
+}
+
+
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+	.internal-studio {
+		.studio-cards {
+			.studio-card-content {
+				img {
+				    width: 40%;
+				    margin-left: unset;
+				    margin-bottom: 15px;
+				    float: left;
+				}
+			} 
+		} 
+	}
+}
+
+@media (min-width: 385px) and (max-width: 575px) {
+	.internal-studio {
+		.studio-cards {
+			.studio-overlay {
+			    height: 100%;
+    			min-height: 508px;
+
+			    &:before {
+			    	height: 100%;
+    				max-height: 507px;
+    				border-bottom-left-radius: 6px;
+    				border-bottom-right-radius: 6px;
+			    }
+
+			    .img-align {
+					img {
+						width: 20%;
+					}
+				}
+			} 
+		} 
+	}
+}
+/**************** End of My Studio Page Css ****************/
+
+.subinst-profileimg{
+	@include circle(40);
+	overflow: hidden;
+	@include flexcenter;
+	img
+	{ height:40px !important;
+	width:40px !important;
+}
+}
+
+.symptoms{
+	.checkboxtypebtn{
+		margin-right: 10px;
+		padding: 5px 0;
+	}
+}
+
+.activity-card-logo{
+	@include circle(45);
+	@include flexcenter;
+	overflow: hidden;
+	img{
+		width: auto!important;
+		max-width: 100%;
+	}
+}
+
+.activity-card-details{
+	p{
+		font-size: 15px!important;
+	}
+}
+.classname-title{
+	font-size: 15px!important;
+	font-weight: 500!important;
+	max-width: 114px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.paratitle{
+	font-size: 15px!important;
+	font-family: "Arial-Rounded";
+}
+
+.heading-titlenew{
+	font-size: 15px!important;
+	font-weight: 500!important;
+	// font-family: "Arial-Rounded";
+  }
+  .heading-titlenew1{
+	font-size: 20px!important;
+	font-weight: 500!important;
+	// font-family: "Arial-Rounded";
+  }
+  .class-detail-slot-box{
+	.profile-img{
+		@include circle(60);
+		overflow: hidden;
+		border-radius: 10px;
+		left: 0px;
+		position: absolute;
+		top: 12px;
+		img{
+			height:60px !important;
+			width: 60px !important;
+		}
+		@media (max-width: 575px){
+			@include circle(60);
+			overflow: hidden;
+			border-radius: 10px;
+			margin-right: 10px;
+			top: 0;
+			position: relative;
+		}
+	}
+  }
+
+  .product-detail-section-btn{
+	  .btn{
+		width: 100%;
+	  }
+  }
+
+
+  .detail-products {
+	  .productname{
+		max-width: 294px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	  }
+  }
+
+  .product-detail-section{
+	  position: relative;
+	  min-height: 255px;
+	  .product-detail-section-btn{
+		  position: absolute;
+		  bottom: 0;
+		  left: 0;
+		  width: 100%;
+	  }
+  }
+
+  .counter-box{
+	  width: 100%;
+	  height: 45px;
+	  border-radius: 5px;
+	  background: $greengradient;
+	  .functionplus,.functionminus{
+		width: 40px;
+		height: 45px;
+		background-color: transparent;
+		color: $white;
+	  }
+	  .functionplus{
+		border-top-left-radius: 5px;
+		border-bottom-left-radius: 5px;
+	  }
+	  .functionminus{
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+	  }
+	  .inputWidth{
+		  background: transparent;
+		  text-align: center;
+		  color: $white;
+		  font-weight: 600;
+	  }
+  }
+
+  
+.infotab{
+    background-color: transparent;
+    border: 0;
+    margin-left: 5px;
+    font-size: 18px;
+    &:focus, &:active{
+        outline: 0;
+        box-shadow: none;
+    }
+}
+
+.btn-danger
+{	&:hover{
+		border-color: red;
+color: red !important;
+background-color: #ffffff !important;
+background-image: none;
+box-shadow: 0 13px 25px 0 rgba(14, 133, 66, 0.3);
+	}
+}
+
+.description-box{
+	max-height: 225px;
+    overflow: auto;
+}
+
+.description-box1{
+	max-height: 170px;
+    overflow: auto;
+}
+

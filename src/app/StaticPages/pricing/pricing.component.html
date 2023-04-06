@@ -1,0 +1,92 @@
+<app-header></app-header>
+
+
+<!-- Pricing Content Section -->
+<section class="pricing-container">
+  <div class="">
+    <div class="py-5">
+      <div class="container">
+        <div class="pricing-studio text-center wow animated slideInLeft px-0 px-md-5 pb-4">
+          <h2 class="dark-color font-w-900 pb-3"> <a href="javascript:void(0)" style="cursor: text;"> Signal Health Group Wellness</a> </h2>
+          <p class="pb-3 brand-color3 font-20 line-height25 px-0 px-lg-5"> Our pricing is based on the size of your instructor. Request a demo of our solution or start an account for free and try it for 14 days. </p>
+          <a href="{{baseUrl}}studioadmin/choose-plan" class="btn btn-blue text-uppercase px-5 header-css"> Start 14 Days Free Trial </a>
+        </div><!-- end of pricing-studio -->
+
+        <div class="pricing-studio-cards pt-5 pb-0 pb-lg-5 mt-4 text-center wow animated zoomIn">
+          <ul>
+            <li *ngFor="let item of priceLIst" class="mt-4">
+              <!-- <div class="row">
+                <div class="col-md-3"  *ngFor="let item of priceLIst"> -->
+                  <div class="pricing-card text-center px-4 pt-4 pb-5 border-radius6 white-bg">
+                    <img src="assets/img/logo_green_small.png">
+                    <p class="black-color mt-3 font-w-600 font-20 mb-3"> {{item.plan_name}} </p>
+                    <h5 class="black-color mb-3 font-w-400"> ${{item.amount}}/Month* </h5>
+                    <h5 class="black-color mb-3 font-w-400"> * plus applicable taxes </h5>
+                    <a href="{{baseUrl}}studioadmin/choose-plan?plan={{item.plan_id}}" class="text-uppercase header-css"> sign up today </a>
+                  </div>
+                <!-- </div>
+              </div> -->
+             
+            </li>
+
+            <!-- <li>
+              <div class="pricing-card text-center px-4 pt-4 pb-5 border-radius6 white-bg">
+                <img src="assets/img/logo_green_small.png">
+                <p class="black-color mt-3 font-w-600 font-20 mb-3"> 2-5 Business <br> User </p>
+                <h5 class="black-color mb-3 font-w-400"> $75/Month </h5>
+                <a href="Javascript:void(0);" class="text-uppercase"> sign up today </a>
+              </div>
+            </li>
+
+            <li>
+              <div class="pricing-card text-center px-4 pt-4 pb-5 border-radius6 white-bg">
+                <img src="assets/img/logo_green_small.png">
+                <p class="black-color mt-3 font-w-600 font-20 mb-3"> 6-10 Business <br> User </p>
+                <h5 class="black-color mb-3 font-w-400"> $150/Month </h5>
+                <a href="Javascript:void(0);" class="text-uppercase"> sign up today </a>
+              </div>
+            </li>
+
+            <li>
+              <div class="pricing-card text-center px-4 pt-4 pb-5 border-radius6 white-bg">
+                <img src="assets/img/logo_green_small.png">
+                <p class="black-color mt-3 font-w-600 font-20 mb-3"> 11-20 Business <br> User </p>
+                <h5 class="black-color mb-3 font-w-400"> $200/Month </h5>
+                <a href="Javascript:void(0);" class="text-uppercase"> sign up today </a>
+              </div>
+            </li>
+
+            <li>
+              <div class="pricing-card text-center px-4 pt-4 pb-5 border-radius6 white-bg">
+                <img src="assets/img/logo_green_small.png">
+                <p class="black-color mt-3 font-w-600 font-20 mb-3"> 20+ Business <br> User </p>
+                <h5 class="black-color mb-3 font-w-400"> $250/Month </h5>
+                <a href="Javascript:void(0);" class="text-uppercase"> sign up today </a>
+              </div>
+            </li> -->
+          </ul>
+        </div>
+      </div><!-- end of container -->
+
+
+      <div class="pricing-payment pink-gradient mt-5 py-4 px-0 px-md-5">
+        <div class="container text-center wow animated slideInRight py-3">
+          <h2 class="white-color pb-3"><ins> Accepting Payments </ins> </h2>
+          <p class="pb-3 white-color font-20 font-w-100 line-height25 px-0 px-lg-5 pb-4"> 
+            The Signal Health Group App can help grow your business through a safe and convenient method for processing payments (debit and credit cards included). We offer competitive rates for existing or new businesses…contact us for details!          </p>
+        </div>
+      </div><!-- end of pricing-payment -->
+
+      <div class="container">
+        <div class="pricing-email text-center wow animated slideInUp mt-5 pt-2 px-0 px-md-5">
+          <h2 class="dark-color font-w-900 pb-1"><ins> Email and Social Marketing for Your Studio </ins> </h2>
+          <p class="brand-color3 font-20 line-height25 px-0 px-lg-5 mb-3"> 
+            Signal Health has partnered with Constant Contact <a class="header-css" href="https://signalhg.com/" target="_blank"> "https://signalhg.com/" </a>, a reputable online marketing firm, to help you effectively manage your marketing communications with your customer and instructor. We are offering new accounts a free 6 months trial... contact us for details!          </p>
+        </div><!-- end of container -->
+      </div><!-- end of pricing-email -->
+    </div>
+  </div><!-- end of background-before -->
+</section>
+<!-- End of Pricing Content Section -->
+
+<app-footer></app-footer>

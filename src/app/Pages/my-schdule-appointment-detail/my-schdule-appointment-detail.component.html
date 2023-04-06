@@ -1,0 +1,55 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+    <!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}"></ngx-loading> -->
+
+    <!-- My Studio Card Detials Section -->
+    <div class="studio-details client-home-inner">
+        <div class="container">
+            <app-sub-header></app-sub-header>
+<div class="home-staff">
+    <div class="white-bg border-radius6 box-shadow1 p-4 mt-5 scheduled-services">
+        <div class="row">
+            <div class="col-lg-4">
+                <h4 class="black-color font-w-400 font-18 mb-0 text-uppercase font-arialrouded">Services Offered</h4>
+                <div class="d-flex flex-wrap services-offered mt-3">
+                    <button class="btn btn-blue-grad">{{serviceList.category[0]}}</button>
+                </div>
+                <!-- <div class="form-group profile-gender mb-0 mt-3">
+                    <div class="service-button">
+                      <div class="row">
+                     <div class="col-12 col-lg-2" >
+                      <input type="checkbox" name="checkbox" id ="{{serviceList.category.id}}" [value] ="serviceList.category.id"  [(ngModel)]="serviceList.category" (change)="changeSelection()" >
+                      <label for="{{serviceList.category.id}}">{{serviceList.category.category_name}} </label>
+    </div>
+                    </div>
+                    </div>
+                  </div> -->
+            </div>
+            <div class="col-lg-8">
+                <h4 class="black-color font-w-400 font-18 mb-0 text-uppercase font-arialrouded">Other Details</h4>
+                <div class="border-radius6 bg-white box-shadow1 row p-3 mt-3">
+                    <div class="col border-right">
+                        <p class="font-w-500 font-arialrounded font-14 mb-1">Location Detail</p>
+                        <p class="font-arialrounded">{{serviceList.details.location_name}}</p>
+                    </div>
+                    <div class="col">
+                        <p class="font-w-500 font-arialrounded font-14 mb-1">Capacity</p>
+                        <p class="font-arialrounded">{{serviceList.details.capacity}} Persons</p>
+                    </div>
+                </div>
+                <button class="btn btn-green-grad mt-4" routerLink ="/my-schedule-appointment">View My Schedule</button>
+            </div>
+        </div> 
+    </div>
+</div><!-- end of home-staff -->
+<div class="d-flex justify-content-center schedule-foot-btns pt-4 pb-5">
+    <button class="btn btn-blue-grad text-uppercase">Cancel Class</button>
+    <button class="btn btn-green-grad ml-3 text-uppercase">Cancel Appointment</button>
+</div>
+</div><!-- end of container -->
+</div>
+<!-- End of My Studio Card Detials Section -->
+</div>
+
+
+<app-inner-footer></app-inner-footer>

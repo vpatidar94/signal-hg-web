@@ -1,0 +1,115 @@
+<app-inner-header></app-inner-header>
+
+<div class="body-grey">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}"></ngx-loading>
+
+<!-- My Studio Card Detials Section -->
+<div class="studio-details client-home-inner">
+    <div class="container">
+      <app-sub-header></app-sub-header>
+
+
+      <div class="home-service home-service-offered pb-5">
+       
+            <div class="section-heading p-3 text-left white-bg border-radius6 box-shadow1 mb-5" >
+              <div class="row">
+                <!-- <div class="col-5">
+                  <mat-calendar #calendar [(selected)]="currentDate" [(minDate)] = "minValue" (selectedChange)="getBookingSlot()"></mat-calendar>
+                </div>
+                <div class="col-5">
+
+                </div> -->
+                <div class="col-10">
+              <a href="Javascript:void(0);" class="black-color font-w-100 text-uppercase font-20">Select appointment date & time for the {{serviceName}} </a>
+              <!-- <div class="form-group profile-gender mb-0 mt-3">
+                <div class="profile-gender-button">
+                  <input type="radio" id="offeredone" checked="checked" name="radio">
+                  <label for="offeredone"> Body Wrap </label>
+
+                  <input type="radio" id="offeredtwo" checked="checked" name="radio">
+                  <label for="offeredtwo"> Foot Massage </label>
+
+                  <input type="radio" id="offeredthree" checked="checked" name="radio">
+                  <label for="offeredthree"> Strength Training & Toning   (click) </label>
+                </div>
+              </div> -->
+
+       
+
+            </div>
+            <div class="col-2 text-right">
+              <button type="button" class="btn btn-blue-grad px-2 text-uppercase" routerLink="/services-offered" >Back </button>
+            </div>
+          </div>
+          <!-- <div class="std-detail-select position-relative w-100 mt-4"  > -->
+            <div class="row mt-4">
+              <div class ="col-4" *ngIf="apicall">
+                <mat-calendar #calender [dateClass]="dateClass()" [(selected)]="currentDate" [(minDate)] = "minValue" [(maxDate)] = "maxval" (selectedChange)="getBookingSlot()"  >
+                </mat-calendar>
+              </div>
+            
+            <!-- <button class="colorchnage mr-2" (click)="decreaseDate()"><i class="fas fa-chevron-left"></i></button>
+            <mat-form-field>
+            <input matInput [matDatepicker]="passdate14" [min]="minValue" [(ngModel)]="currentDate"  name="currentDate"  style="color: black;" readonly (dateChange)="getBookingSlot()" (click)="passdate14.open()" (focus)="passdate14.open()"  >
+            <mat-datepicker-toggle matSuffix [for]="passdate14"  ></mat-datepicker-toggle>
+            <mat-datepicker  #passdate14  ></mat-datepicker>
+        </mat-form-field>
+        <button class="colorchnage ml-2" (click)="increaseDate()"><i class="fas fa-chevron-right"></i></button> -->
+
+<!-- 
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
+        </mat-form-field> -->
+        <!-- <button id="opencalender" mat-raised-button (click)="passdate14.open()" style="display: none;">Open</button> -->
+        <!-- <highlighted-dates [datesArray]="orangeDatesArray" ></highlighted-dates>    -->
+      </div>
+     
+            </div>
+          <div class ="row">  
+          <div class="col-12" *ngIf ="bookingDeatil.length !=0" >
+            <div class="section-heading p-3 text-left white-bg border-radius6 box-shadow1 mb-5">
+              <a href="Javascript:void(0);" class="black-color font-w-100 text-uppercase font-20"> choose time slot for appointment </a>
+              <div class="form-group profile-gender mb-2 mt-3 " *ngFor="let shift of bookingDeatil">
+                <div class="profile-gender-button">
+
+                <div  *ngFor="let item of shift.slot ; let i = index"  style="display:inline">
+                  <input type="radio" name="radio" id ="{{shift.shift_id}}{{i}}" value ="{{shift.shift_id}}{{i}}"  [(ngModel)]="item.isChecked" (change)="changeSelection(item,shift)" *ngIf="item.is_available != 1" >
+                  <input type="radio" name="radio" id ="{{shift.shift_id}}{{i}}" value ="{{shift.shift_id}}{{i}}"  [(ngModel)]="item.isChecked"  *ngIf="item.is_available == 1" readonly disabled>
+
+                  <label for="{{shift.shift_id}}{{i}}" *ngIf="item.is_available != 1" >{{item.start_time_new}} -  {{item.end_time_new}}  </label>
+                  <label for="{{shift.shift_id}}{{i}}" *ngIf="item.is_available == 1" style="background:dimgray;color:white" disabled= "true">{{item.start_time_new}} -  {{item.end_time_new}}  </label>
+
+      </div>
+    </div>
+              </div><!-- end of form-group -->
+              <div class="row">
+                <div class="col-10">
+        
+                </div> <div class="col-2">
+                  <button (click)="booking()" type="button" class="btn btn-blue-grad px-5 text-uppercase text-right"> Next </button>
+        
+                <!-- </div> <div class="col-4"> -->
+                  
+                </div>
+        
+              </div>
+              <!-- <button (click)="booking()" type="button" class="btn btn-blue-grad px-5 text-uppercase"> Next </button> -->
+            </div>
+          </div><!-- end of col-12 -->
+
+          <div class="col-12" *ngIf ="bookingDeatil.length ==0" >
+            <div class="text-center">
+              <p class="font-awesome black-color font-18 d-inline mx-2 "> No Slots Available</p>
+            </div>
+          </div>
+        </div><!-- end of Heading(service) -->
+      </div><!-- end of home-staff -->
+
+    </div><!-- end of container -->
+  </div>          
+<!-- End of My Studio Card Detials Section -->
+</div>
+<app-inner-footer></app-inner-footer>

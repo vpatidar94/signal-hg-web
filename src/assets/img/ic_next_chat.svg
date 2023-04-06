@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="19px" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>ic_next_chat</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Website-Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2-News-Feed-Customer" transform="translate(-1328.000000, -886.000000)">
+            <g id="2" transform="translate(834.000000, 318.000000)">
+                <g id="Group-18" transform="translate(21.000000, 552.000000)">
+                    <g id="ic_arrow_back" transform="translate(482.500000, 25.500000) scale(-1, 1) translate(-482.500000, -25.500000) translate(469.000000, 12.000000)">
+                        <g id="ic_next_chat">
+                            <polygon id="Shape" points="0 0 27 0 27 27 0 27"></polygon>
+                            <polygon fill="#2E3749" points="22.5 12.375 8.80875 12.375 15.0975 6.08625 13.5 4.5 4.5 13.5 13.5 22.5 15.08625 20.91375 8.80875 14.625 22.5 14.625"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

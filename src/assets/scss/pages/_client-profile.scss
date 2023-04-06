@@ -1,0 +1,177 @@
+
+
+
+
+
+
+
+
+
+
+
+.profile-details {
+    .profile-detail-image {
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            li {
+                display: inline-block;
+                text-decoration: none;
+                list-style: none;
+                margin-top: 5px;
+                padding: 0px;
+                &:last-child {
+                    margin-left: 35px;
+                }
+            }
+        }
+        .userprofile_img{
+            @include circle(200);
+            overflow: hidden;
+            @include flexcenter;
+            position: relative;
+        }
+        .edit-profileimg{
+            @include circle(50);
+            overflow: hidden;
+            @include flexcenter;
+            background-color: $light;
+            color: $brandcolor2;
+            font-weight: 600;
+            position: absolute;
+            bottom: 0;
+            font-size: 1.2rem;
+        }
+    }
+
+    .profile-detail-text {
+        text-align: left;
+    }
+
+    @media (max-width: 450px) {
+        .profile-detail-text {
+            text-align: center;
+        }        
+    }
+}
+
+.password-align {
+    text-align: right;
+}
+
+@media (max-width: 450px) {
+    .password-align {
+        text-align: left;
+    }
+}
+
+.profile-gender-button input[type="radio"] {
+  display: none;
+}
+
+.profile-gender-button input[type="radio"] + label {
+  z-index: 8;
+  margin: 0 10px 10px 0;
+  position: relative;
+  color: $brandcolor3;
+  text-shadow: 0 1px 0 rgba(255,255,255,.1);
+  font-weight: 600;
+  background-color: $light;
+  border: 2px solid #ced4da;
+  cursor: pointer;
+  transition: all 200ms ease;
+  font-size: 14px;
+}
+
+.profile-gender-button input[type="radio"]:checked + label {
+  color: $white;
+  background-color: $transparent;
+  background-image: $pinkgradient;
+  border: 2px solid $pinklight;
+}
+
+
+
+
+.profile-gender-button input[type="radio"] + label {
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+
+
+.covid-positive input[type="radio"]:checked + label {
+    color: $white;
+    background-color: red;
+    background-image: unset;
+    border: 2px solid red;
+  }
+
+/******** Modal Popup(Change Password) *********/
+.profile-change-password { 
+    position: relative;
+
+    .field-icon {
+        float: right;
+        margin-left: 0;
+        margin-top: 14px;
+        position: absolute;
+        z-index: 2;
+        right: 20px;
+        top: 24px;
+        color: $white;
+    }
+}
+
+.modal-bottom-content {
+    .form-group {
+        input {
+            color: $white;
+            border-bottom: 1px solid $white;
+
+            &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+              color: $white;
+            }
+            &::-moz-placeholder { /* Firefox 19+ */
+              color: $white;
+            }
+            &:-ms-input-placeholder { /* IE 10+ */
+              color: $white;
+            }
+            &:-moz-placeholder { /* Firefox 18- */
+              color: $white;
+            }
+        }
+    }
+
+    button.btn {
+        background-color: $white;
+        border: 2px solid $white;
+        color: $brandcolor1;
+
+        &:hover {
+            background-color: $transparent;
+            border: 2px solid $white;
+            color: $white;            
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

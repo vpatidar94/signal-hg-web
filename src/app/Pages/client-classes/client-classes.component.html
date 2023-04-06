@@ -1,0 +1,249 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+<!-- My Studio Card Detials Section -->
+<div class="studio-details">
+    <div class="container">
+      <app-sub-header></app-sub-header>
+      <div class="text-right mb-3">
+        <button type="button" class="btn btn-blue-grad px-2 text-uppercase" routerLink="/detail"  >Back </button>
+      </div>    
+      <div class="studio-details-lower pb-5">
+        <div class="row">
+          <div class="col-12">
+            <div class="white-bg border-radius6 box-shadow1 p-3">
+              <div class="row" >
+                <div class="col-12 col-md-6">
+                  <div class="pt-3" *ngIf="!CurrentVal">
+                    <button type="button" class="btn btn-blue-grad px-4 w-50 text-uppercase mb-0 mb-md-5" *ngIf="CurrentUrl == '/workshops'">Today's Workshops </button>
+                    <button type="button" class="btn btn-blue-grad px-4 w-50 text-uppercase mb-0 mb-md-5"  *ngIf="CurrentUrl == '/classes'">Today's Classes </button>
+                  </div>
+                  <div class="pt-3" *ngIf="CurrentVal">
+                  <button type="button" class="btn btn-blue-grad px-4 text-uppercase mb-0 mb-md-5" (click)="reset()" >Reset </button>
+                  </div>
+                </div><!-- end of col-md-4 -->
+                <div class="col-12 col-md-6 text-right">
+                  <div class="centered-cover w-100">
+                    <div class="flex-break">
+                      <div class="std-detail-select position-relative w-100">
+                        <button class="colorchnage mr-2" (click)="decreaseDate()" *ngIf="currentDate"><i class="fas fa-chevron-left"></i></button>
+
+                        <button class="colorchnage mr-2" *ngIf="!currentDate"><i class="fas fa-chevron-left"></i></button>
+                        <mat-form-field >
+                        <input matInput [matDatepicker]="passdate"[min]="minValue" [(ngModel)]="currentDate"  name="currentDate" (click)="passdate.open()" (focus)="passdate.open()"  style="color: black;" readonly (dateChange)="upcoming()" >
+                        <mat-datepicker-toggle matSuffix [for]="passdate" ></mat-datepicker-toggle>
+                        <mat-datepicker #passdate ></mat-datepicker>
+                    </mat-form-field>
+                    <button class="colorchnage ml-2" (click)="increaseDate()" *ngIf="currentDate"><i class="fas fa-chevron-right"></i></button>
+                    <button class="colorchnage ml-2" *ngIf="!currentDate"><i class="fas fa-chevron-right"></i></button>
+
+                      </div>
+                    </div><!-- end of flex-break -->
+                  </div><!-- end of centered-cover -->                  
+                </div><!-- end of col-md-4 --> 
+              
+                <!-- <div class="customDatepicker d-flex justify-content-center px-xl-5">
+                  <button class="datechnageBtn previousDate" (click)="decreaseDate()"><i class="fas fa-chevron-left"></i></button>
+                  <mat-form-field class="w-100">
+                      <input matInput [matDatepicker]="picker2" 
+                          (click)="picker2.open()" [(ngModel)]="currentDate"
+                          [ngModelOptions]="{standalone: true}" [min]="minValue"  (ngModelChange)="upcoming()" (focus)="picker2.open()" readonly>
+                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                      <mat-datepicker #picker2></mat-datepicker>
+                  </mat-form-field>
+                  <button class="datechnageBtn nextDate" (click)="increaseDate()"><i class="fas fa-chevron-right"></i></button>
+              </div> -->
+              </div> 
+              <div class="row"  *ngIf="!CurrentVal">
+                <div class="col-12 col-md-4">
+                  <div class="centered-cover w-100">
+                    <div class="flex-break">
+                      <div class="std-detail-select position-relative w-100">
+                        <select class="form form-control brand-color1 border-radius6" (change)="getval($event)">
+                          <option value="0" *ngIf="CurrentUrl == '/classes'"  > All Classes </option>
+                          <option value="1" *ngIf="CurrentUrl == '/classes'"> My Classes </option>
+                          <option value="0" *ngIf="CurrentUrl == '/workshops'" > All Workshops </option>
+                          <option value="1" *ngIf="CurrentUrl == '/workshops'"> My Workshops </option>
+                        </select>                    
+                      </div>
+                    </div><!-- end of flex-break -->
+                  </div><!-- end of centered-cover -->                  
+                </div><!-- end of col-md-4 -->               
+              </div> <!-- end of row -->
+
+              <div class="box all-class">
+                <div class="activity-card-section mt-4 pt-2"  *ngIf="ClassDetail.length != 0">
+                <div  infinite-scroll  [infiniteScrollDistance]="scrollDistance"  [infiniteScrollUpDistance]="scrollUpDistance"  [infiniteScrollThrottle]="throttle"  (scrolled)="onScroll()" alwaysCallback="true"> 
+
+                  <div class="row">
+                    <div class="col-12 col-md-4 mb-4" *ngFor ="let items of ClassDetail">
+                      <!-- <a href="Javascript:void(0);"  *ngIf="CurrentUrl == '/classes'"  (click) ="redirectUrl('/classes-detail',items.class_id,items.schedule_id,items.start_date_utc)"> -->
+                        <div class="activity-card box-shadow1 border-radius6 white-bg p-2" *ngIf="CurrentUrl == '/classes'">
+                          <div class="row">
+                            <div class="col-3 col-sm-3 col-md-12 col-lg-3">
+                              <a href="Javascript:void(0);"  (click) ="redirectUrl('/classes-detail',items.class_id,items.schedule_id,items.start_date_utc)">
+
+                              <div class="activity-card-logo">
+                                <img src="{{businessDetail.logo}}" class="box-shadow1 new-log-img">
+                              </div>
+                            </a>
+                            </div><!-- end of col-3 -->
+
+                            <div class="col-9 col-sm-9 col-md-12 col-lg-9 pl-0 pl-sm-0 pl-md-3 pl-lg-0">
+                              <a href="Javascript:void(0);"   (click) ="redirectUrl('/classes-detail',items.class_id,items.schedule_id,items.start_date_utc)">
+
+                              <div class="row">
+                                <div class="col-7 col-md-12 col-lg-7 mt-0 mt-md-4 mt-lg-0 pl-0 pl-sm-0 pl-md-3 pl-lg-0">
+                                  <div class="activity-card-details text-left">
+                                    <h5 class="classname-title black-color mb-0">{{items.class_name}}  </h5>
+                                    <ul  *ngIf="items.instructor_details[0]" class="d-flex align-items-center py-2">
+                                      <li> <div class="subinst-profileimg"><img src="{{items.instructor_details[0].profile_img}}" class="img-fluid"> </div></li>
+                                      <li> <h5 class="black-color mb-0 classname-title pl-2">{{items.instructor_details[0].name}} {{items.instructor_details[0].lastname}} </h5> </li>
+                                    </ul>
+
+                                  </div>
+                                </div><!-- end of col-7 -->
+                                <div class="col-5 col-md-12 col-lg-5 pr-1">
+                                  <div class="text-right pt-1">
+                                    <p class="black-color font-w-100  mr-1 mb-1 paratitle">{{items.start_date_utc_new}} </p>
+                                    <div class="card-green-box text-center">
+                                      <p class="white-color mb-0 paratitle"> {{items.capacity_used}} / {{items.total_capacity}}</p>
+                                    </div>
+                                  </div>
+                                </div><!-- end of col-5 -->
+                              </div><!-- end of row -->
+                            </a>
+                              <div class="row pt-3">
+                                <p class="black-color font-w-100 paratitle mb-0">Location :
+                                </p>
+                                <h5 class="heading-titlenew ml-2 mb-0 black-color" *ngIf="items.location_url"><a href="{{items.location_url}}" target="_blank">{{items.location}}</a></h5>
+                                <h5 class="heading-titlenew ml-2 mb-0 black-color" *ngIf="!items.location_url">{{items.location}}</h5>
+
+                                <!-- <h5 class="heading-titlenew ml-2 mb-0 black-color">{{items.location}}</h5> -->
+                              </div>
+                              <a href="Javascript:void(0);"   (click) ="redirectUrl('/classes-detail',items.class_id,items.schedule_id,items.start_date_utc)">
+
+                              <div class="row pt-2">                              
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 px-0 border-right">
+                                  <div class="text-left">
+                                    <p class="paratitle black-color mb-0"> Start Time </p>
+                                    <h5 class="classname-title black-color mb-0"> {{items.from_time_utc_new}} </h5>
+                                  </div>
+                                </div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 d-flex justify-content-end">
+                                  <div class="text-left">
+                                    <p class="paratitle black-color mb-0"> Duration </p>
+                                    <h5 class="classname-title black-color mb-0"> {{items.duration}} </h5>                        
+                                  </div>
+                                </div>
+                              </div>
+                            </a>
+                              <!-- end of row -->
+                            </div><!-- end of col-9 -->
+                          </div><!-- end of row -->
+                        </div><!-- end of activity-card -->
+                      <!-- </a> -->
+                      <!-- <a href="Javascript:void(0);" *ngIf="CurrentUrl == '/workshops'" (click) ="redirectUrl('/workshops-detail',items.workshop_id,items.id,items.start_date_utc)"> -->
+                        <div class="activity-card box-shadow1 border-radius6 white-bg p-2" *ngIf="CurrentUrl == '/workshops'">
+                          <div class="row">
+                            <div class="col-3 col-sm-3 col-md-12 col-lg-3">
+                              <a href="Javascript:void(0);" (click) ="redirectUrl('/workshops-detail',items.workshop_id,items.id,items.start_date_utc)">
+
+                              <div class="activity-card-logo">
+                                <img src="{{businessDetail.logo}}" class="box-shadow1 new-log-img">
+                              </div>
+                            </a>
+                            </div><!-- end of col-3 -->
+
+                            <div class="col-9 col-sm-9 col-md-12 col-lg-9 pl-0 pl-sm-0 pl-md-3 pl-lg-0">
+                              <a href="Javascript:void(0);" (click) ="redirectUrl('/workshops-detail',items.workshop_id,items.id,items.start_date_utc)">
+
+                              <div class="row">
+                                <div class="col-7 col-md-12 col-lg-7 mt-0 mt-md-4 mt-lg-0 pl-0 pl-sm-0 pl-md-3 pl-lg-0">
+                                  <div class="activity-card-details text-left">
+                                    <h5 class="classname-title black-color mb-0">{{items.workshop_name}}  </h5>
+                                    <ul  class="d-flex align-items-center py-2">
+                                      <li> <h5>Amount : {{items.workshop_price}} </h5> </li>
+                                      
+                                    </ul>
+                                    <!-- <ul  *ngIf="items.instructor_details[0]" class="d-flex align-items-center py-2">
+                                      <li> <div class="subinst-profileimg"><img src="{{items.instructor_details[0].profile_img}}" class="img-fluid"> </div></li>
+                                      <li> <h5 class="black-color mb-0 classname-title pl-2">{{items.instructor_details[0].name}} {{items.instructor_details[0].lastname}} </h5> </li>
+                                    </ul> -->
+
+                                  </div>
+                                </div><!-- end of col-7 -->
+                                <div class="col-5 col-md-12 col-lg-5 pr-1">
+                                  <div class="text-right pt-1">
+                                    <p class="black-color font-w-100 font-14 mr-1 mb-1 paratitle">{{items.start_date_utc_new}} </p>
+                                    <div class="card-green-box text-center">
+                                      <p class="white-color mb-0 paratitle"> {{items.capacity_used}} / {{items.total_capacity}}</p>
+                                    </div>
+                                  </div>
+                                </div><!-- end of col-5 -->
+                              </div><!-- end of row -->
+                            </a>
+                              <div class="row pt-3">
+                                <p class="black-color font-w-100 paratitle mb-0">Location :
+                                </p>
+
+                                <h5 class="heading-titlenew ml-2 mb-0 black-color" *ngIf="items.location"><a *ngIf="!items.location_url">{{items.location}}</a>
+                                  <a *ngIf="items.location_url" href="{{items.location_url}}" target="_blank">{{items.location}}</a>
+                                </h5>
+                                <h5 class="heading-titlenew ml-2 mb-0 black-color" *ngIf="items.address"><a href="{{items.address}}" target="blank">Other</a></h5>
+
+                                <!-- <h5 class="heading-titlenew ml-2 mb-0 black-color" *ngIf="items.location_url"><a href="{{items.location_url}}" target="_blank">{{items.location}}</a></h5>
+                                <h5 class="heading-titlenew ml-2 mb-0 black-color" *ngIf="!items.location_url">{{items.location}}</h5> -->
+
+                                <!-- <h5 class="heading-titlenew ml-2 mb-0 black-color" *ngIf="items.location">{{items.location}}</h5>
+                                <h5 class="heading-titlenew ml-2 mb-0 black-color" *ngIf="items.address"><a href="{{items.address}}" target="blank">{{items.address}}</a></h5> -->
+
+                              </div>
+                              <a href="Javascript:void(0);" (click) ="redirectUrl('/workshops-detail',items.workshop_id,items.id,items.start_date_utc)">
+
+                              <div class="row pt-2">
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 px-0 border-right">
+                                  <div class="text-left">
+                                    <p class="paratitle black-color mb-0"> Start Time </p>
+                                    <h5 class="classname-title black-color mb-0"> {{items.from_time_utc_new}} </h5>
+                                  </div>
+                                </div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 d-flex justify-content-end">
+                                  <div class="text-left">
+                                    <p class="paratitle black-color mb-0"> End Time </p>
+                                    <h5 class="classname-title black-color mb-0"> {{items.end_time_utc_new}} </h5>                        
+                                  </div>
+                                </div>
+                              </div>
+                            </a>
+                              <!-- end of row -->
+                            </div><!-- end of col-9 -->
+                          </div><!-- end of row -->
+                        </div><!-- end of activity-card -->
+                      <!-- </a> -->
+                    </div><!-- end of col-4 -->
+
+                  </div><!-- end of row -->
+                  </div>
+                </div><!-- end of activity-card-section -->
+                <div class="activity-card-section mt-4 pt-2" *ngIf="ClassDetail.length == 0">
+                  <div class="text-center">
+                    <p class="font-awesome black-color font-18 d-inline mx-2 "  *ngIf="CurrentUrl == '/workshops'"> No Workshops Are scheduled</p>
+                    <p class="font-awesome black-color font-18 d-inline mx-2 "  *ngIf="CurrentUrl == '/classes'"> No Classes Are scheduled</p>
+
+                  </div>
+                  
+                  
+                                  </div>
+              </div> <!-- end of my-classes -->
+      </div><!-- end of studio-details-lower -->
+    </div><!-- end of container -->
+  </div>          
+<!-- End of My Studio Card Detials Section -->
+
+</div>
+</div>
+</div>
+<app-inner-footer></app-inner-footer>

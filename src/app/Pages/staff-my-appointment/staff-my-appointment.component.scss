@@ -1,0 +1,64 @@
+.class-detail-slot .detail-head .class-img{
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+
+.font-arialround{
+    font-family: "Arial-Rounded";
+}
+
+.appointment-slot-box .profile-img{
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.appointment-slot-box .nametitle{
+    max-width: 114px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.appointment-slot-box .subtitle{
+    max-width: 118px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.filtermodal .modalclose{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #000;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.appointment-slot-box .subimg-circle{
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.modalclose{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* .addfilter-modal .profile-gender label{
+    background-color: #fff;
+    border: 2px solid #fff;
+} */
+
+.addfilter-modal .profile-gender-button input[type=radio]+label{
+    background-color: #fff;
+    border: 2px solid #fff;
+}

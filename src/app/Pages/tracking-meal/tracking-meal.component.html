@@ -1,0 +1,40 @@
+
+<!-- <div class="video-listdetails mb-5 pt-5">
+    <div class="container pb-5">
+        <div class="row"> -->
+            <div class="mb-5 pt-5">
+            <div class="container pb-5">
+                <div class="row">
+<div class="col-12 col-sm-6 col-md-4 col-lg-4" *ngFor="let items of videoList">
+    <div class="video_box embed-responsive embed-responsive-16by9">
+        <div class="video-wrap" *ngIf="items.self_upload == '1'">
+          <div class="embed-responsive embed-responsive-16by9 video-fluid">
+    <video [id]="items.id" class="video-js vjs-default-skin" width="256" height="auto" controls preload="none"
+		[poster]="items.thumbnail"
+		>
+		<source [src]="items.url" type='video/mp4' />
+		<!-- <source src="https://vjs.zencdn.net/v/oceans.webm" type='video/webm' /> -->
+	</video>
+</div>                    
+</div>
+<div class="video-play-btn" *ngIf="items.self_upload == '1'">
+  <!-- <img class="mt-0 img-fluid" src="assets/img/play.png" alt="play-button" [id]="'playImg'+items.id" (click)="playvideo(items.id)">
+  <img class="mt-0 img-fluid" src="assets/img/pause.png" alt="play-button" [id]="'pushImg'+items.id" style="display: none;" (click)="pushvideo(items.id)"> -->
+</div>
+<div class="videofull_box" *ngIf="items.self_upload == '0'">
+  <iframe class="responsive-iframe" [src]="items.url | vimeoUrl" width="256" height="auto" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+</div>
+<div class="video_text p-3">
+  <div class="d-flex justify-content-between">
+    <h3> {{items.name}}</h3>
+    <!-- <a href="javascript:void(0)" class="text-right" (click)="removeWorkoutVideo(items.id)" *ngIf="currentUrl == '/my-library-detail'" ><i class="fa fa-trash ml-1" aria-hidden="true"></i></a> -->
+
+    <!-- <small> {{items.duration}} hours ago</small> -->
+  </div>
+  <p> {{items.description}} </p>
+
+</div>    
+</div>  
+    </div></div></div></div>
+<!-- </div></div></div> -->
+

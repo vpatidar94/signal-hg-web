@@ -1,0 +1,133 @@
+<app-header></app-header>
+<div class="login-bg"> 
+
+<!-- Login Content Section -->
+<div class="">
+    <div class="d-flex align-items-center justify-content-center staff-register-height p-4 p-sm-0">
+      <div class="align-item-center text-center wow animated slideInDown">
+        <div class="staff-login-box-owner white-bg box-shadow1 border-radius10 py-4 px-3">
+
+          <div class="login-header text-center px-5">
+            <h3 class="title dark-color mb-4"> Other Details </h3>
+          </div><!-- end of login-header -->
+
+          <div class="logn-form mb-2">
+            <form [formGroup]="userregister1">
+                <div class="form-group profile-gender mb-2">
+                  <p class="brand-color3 text-left font-14 mb-2"> Gender </p>
+                  <div class="profile-gender-button2 text-left">
+                    <input type='radio' id='male' [(ngModel)]="gender" value="male"  [ngModelOptions]="{standalone: true}"  name='radio' (change)="getGender($event)" >
+
+                    <label for='male'>Male</label>
+  
+                    <input type='radio' id='female'  [(ngModel)]="gender"  value="female" [ngModelOptions]="{standalone: true}"    name='radio' (change)="getGender($event)" >
+
+                    <label for='female'>Female</label>
+                    <input type='radio' id='other' [(ngModel)]="gender" value="other" [ngModelOptions]="{standalone: true}"    name='radio' (change)="getGender($event)" >
+                    <label for='other'>Other</label>
+                  </div><!-- end of profile-gender-button -->
+                </div><!-- Gender -->  
+                        
+                <div class="form-group">
+                  <p class="brand-color3 text-left font-14 mb-2"> DOB </p>
+                  <mat-form-field  appearance="outline" style="width:100%;margin:0;padding:0;">
+                      <input matInput [matDatepicker]="passdate1"  [max]="maxDate"   [(ngModel)]="otherData.date_of_birth" formControlName="date_of_birth"  [value]="otherData.date_of_birth" style="color: black;" readonly >
+                      <mat-datepicker-toggle matSuffix [for]="passdate1"></mat-datepicker-toggle>
+                      <mat-datepicker #passdate1></mat-datepicker>
+                  </mat-form-field>
+                   <div *ngIf="submitted && !otherData.date_of_birth"  class="invalid-feedback">
+                      <div *ngIf="!otherData.date_of_birth">Date of Birth is required</div>  
+                   </div>
+                  <!-- <input type="" class="form-control-1 w-100" placeholder="DOB"  [(ngModel)]="otherData.date_of_birth" formControlName="date_of_birth" [ngClass]="{ 'is-invalid': submitted && f.date_of_birth.errors }">
+                  <div *ngIf="submitted && f.date_of_birth.errors" class="invalid-feedback">
+                      <div *ngIf="f.date_of_birth.errors.required">Date of Birth is required</div>
+                  </div> -->
+                </div>
+                <div class="form-group">
+                  <p class="brand-color3 text-left font-14 mb-2"> Address </p>
+                  <input type="text" class="form-control-1 w-100" autocomplete="off" ngx-google-places-autocomplete  (onAddressChange)="handleAddressChange($event)"  [(ngModel)]="otherData.address" formControlName="address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }">
+                  <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                      <div *ngIf="f.address.errors.required">Address is required</div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <p class="brand-color3 text-left font-14 mb-2"> Apartment, Street (optional) </p>
+                  <input type="text" class="form-control-1 w-100" placeholder=""  [(ngModel)]="otherData.street" formControlName="street" [ngClass]="{ 'is-invalid': submitted && f.street.errors }">
+                </div>
+                <div class="form-group">
+                  <p class="brand-color3 text-left font-14 mb-2"> Country </p>
+                  <input type="text" class="form-control-1 w-100" placeholder=""    [(ngModel)]="otherData.country" formControlName="country" [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
+                  <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+                      <div *ngIf="f.country.errors.required">Country is required</div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <p class="brand-color3 text-left font-14 mb-2"> State/Province </p>
+                  <input type="text" class="form-control-1 w-100" placeholder=""   [(ngModel)]="otherData.state" formControlName="state" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
+                  <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                      <div *ngIf="f.state.errors.required">State is required</div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <p class="brand-color3 text-left font-14 mb-2"> City </p>
+                  <input type="text" class="form-control-1 w-100" placeholder=""   [(ngModel)]="otherData.city" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+                  <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                      <div *ngIf="f.city.errors.required">City is required</div>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <p class="brand-color3 text-left font-14 mb-2"> Referred BY</p>
+                  <input type="text" class="form-control-1 w-100" placeholder=""   [(ngModel)]="otherData.referred_by" formControlName="referred_by" [ngClass]="{ 'is-invalid': submitted && f.referred_by.errors }">
+                  <div *ngIf="submitted && f.referred_by.errors" class="invalid-feedback">
+                      <div *ngIf="f.referred_by.errors.required"> Referred BY is required</div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <p class="brand-color3 text-left font-14 mb-2"> Emergency Contact Person </p>
+                  <input type="text" class="form-control-1 w-100" placeholder=""   [(ngModel)]="otherData.emergency_contact_person" formControlName="emergency_contact_person" [ngClass]="{ 'is-invalid': submitted && f.emergency_contact_person.errors }">
+                  <div *ngIf="submitted && f.emergency_contact_person.errors" class="invalid-feedback">
+                      <div *ngIf="f.emergency_contact_person.errors.required">Emergency Contact Person is required</div>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <p class="brand-color3 text-left font-14 mb-2">Emergency Country Code </p>
+                  <select class="form-control-1 w-100" placeholder="John"  [(ngModel)]="otherData.emergency_country_code"   formControlName="emergency_country_code" [ngClass]="{ 'is-invalid': submitted && f.emergency_country_code.errors }"  >
+                    <option value=""></option>
+                    <option *ngFor ="let code of CountryList" value ="{{code.name}} ({{code.code}})">{{code.name}}  ({{code.code}}) </option>
+                  </select>
+                  <div *ngIf="submitted && f.emergency_country_code.errors" class="invalid-feedback">
+                      <div *ngIf="f.emergency_country_code.errors.required">Please Select Country Code</div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <p class="brand-color3 text-left font-14 mb-2"> Emergency Contact Number </p>
+                  <input type="number" class="form-control-1 w-100" placeholder="" onKeyPress="if(this.value.length >= 12) return false;"   [(ngModel)]="otherData.emergency_contact_no" formControlName="emergency_contact_no" [ngClass]="{ 'is-invalid': submitted && f.emergency_contact_no.errors }">
+                  <div *ngIf="submitted && f.emergency_contact_no.errors" class="invalid-feedback">
+                      <div *ngIf="f.emergency_contact_no.errors.required">Emergency Contact Number is required</div>
+                      <div *ngIf="f.emergency_contact_no.errors.pattern">Emergency Contact Number not valid</div>
+
+                  </div>
+                </div>
+              <div class="py-3">
+                <button type="button" class="btn btn-blue-grad text-uppercase w-100"  [disabled]="register1Spinner" (click)="onregister1()"> <span class="spinner-grow spinner-grow-sm" *ngIf="register1Spinner" role="status" aria-hidden="true"></span> Next </button>
+                <button  type="button" class="btn btn-pink-grad text-uppercase w-100 mt-2" (click)="currentDetail()"> Back </button>
+
+              </div>
+              <div class="text-center">
+                 <a routerLink="/terms-conditions" class="brand-color1 font-14"> Terms & Conditions </a>
+              </div>
+            </form>
+          </div><!-- end of logn-form -->
+
+        </div><!-- end of login-box -->
+      </div>     
+    </div><!-- end of d-flex -->
+  </div>
+<!-- End of About Content Section -->
+</div>

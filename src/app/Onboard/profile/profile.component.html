@@ -1,0 +1,375 @@
+<app-inner-header></app-inner-header>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+<div class="body-grey">
+<!-- Profile Section -->
+<div class="profile-section py-5">
+        <div class="container">
+          <div class="white-bg p-4 p-md-5 border-radius6 box-shadow1">
+          <form [formGroup]="userProfile">
+            <div class="row">
+              <div class="col-12 pb-4">
+                <div class="profile-details">
+                  <div class="row align-items-center">
+                    <div class="col-12 col-md-3">
+                      <div class="profile-detail-image ">
+                        <input #imageInput type="file" id="file1" name="image" accept="image/*" (change)="getUploadFileDetail($event)"  style="display:none" />                     
+                        <div class="userprofile_img box-shadow1"><img [src]="ProfileDetail.profile_img" *ngIf="!imgURL" class="img-fluid border-radius100 w-100"style="height: 200px" >
+                        <img [src]="imgURL"  *ngIf="imgURL"class="img-fluid border-radius100  w-100"style="height: 200px" >
+                        <a href="Javascript:void(0);" class="brand-color1 font-14 edit-profileimg box-shadow1" (click)="changeImage()"
+                        id="upfile1" style="cursor:pointer"> <i class="fas fa-camera"></i> </a>
+
+                      </div>
+                        <!-- <image-cropper
+                        [imageChangedEvent]="imageChangedEvent"
+                        [maintainAspectRatio]="true"
+                        [aspectRatio]="4 / 3"
+                        format="png"
+                        (imageCropped)="imageCropped($event)"
+                        (imageLoaded)="imageLoaded()"
+                        (cropperReady)="cropperReady()"
+                        (loadImageFailed)="loadImageFailed()"
+                    ></image-cropper> -->
+                        <!-- <ul class="text-center">
+                          <li> <a href="Javascript:void(0);" class="brand-color1 font-14"  (click)="changeImage()" id="upfile1" style="cursor:pointer"> Change </a> </li>
+                        </ul>   -->
+
+                      </div>
+                    </div>
+                                           
+                    <div class="col-12 col-md-6">
+                      <div class="profile-detail-text">
+                        <h2 class="title dark-color font-24 mb-2 text-capitalize">{{ProfileDetail.name}} {{ProfileDetail.lastname}}</h2>
+                        <p class="brand-color3"> {{ProfileDetail.email}}</p>
+                        <!-- <p class="brand-color3"> {{ProfileDetail.mobile}}</p> -->
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-3">
+                      <button class="btn btn-blue-grad text-uppercase w-100" data-toggle="modal" data-target="#profileChange"  data-backdrop="static" data-keyboard="false">Switch User</button>
+
+                    </div>
+                  </div>
+                </div>    
+              </div>
+    
+              <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1">First Name </p>
+                  <input  type="text" class="form-control text-capitalize" [(ngModel)]="ProfileDetail.name"   placeholder="Enter your name"  formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                  <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    <div *ngIf="f.name.errors.required">First Name is required</div>
+                  </div>
+              </div>
+              </div>
+              <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1">Last Name </p>
+                  <input id="" type="text" name="lastname" class="form-control text-capitalize" [(ngModel)]="ProfileDetail.lastname"   placeholder="Enter your name" formControlName="lastname" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }">
+                  <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                    <div *ngIf="f.lastname.errors.required">Last Name is required</div>
+                  </div>
+                </div>
+              </div>
+              <!-- Name -->
+    
+              <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1"> Email </p>
+                  <input id="" type="email" name="email" class="form-control" [(ngModel)]="ProfileDetail.email"  formControlName="email" style="background-color: white;" placeholder="Enter your e-mail" readonly>
+                </div>
+              </div>
+              <!-- Email -->
+      <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1"> Phone </p>
+                    <input id="" type="text" name="mobile1" class="form-control" [(ngModel)]="ProfileDetail.mobile1" formControlName="mobile1"  style="background-color: white;"  placeholder="Enter your phone no." readonly>
+                </div>
+              </div>
+              <!-- Phone -->
+              <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1"> DOB </p>
+                  <mat-form-field style="width:100%;margin:0;padding:0;">
+                      <input matInput [matDatepicker]="passdate2"  [max]="maxDate"  [(ngModel)]="ProfileDetail.date_of_birth" formControlName="date_of_birth" [value]="ProfileDetail.date_of_birth"  style="color: black;" readonly >
+                      <mat-datepicker-toggle matSuffix [for]="passdate2"></mat-datepicker-toggle>
+                      <mat-datepicker #passdate2></mat-datepicker>
+                  </mat-form-field>
+                  <div *ngIf="submitted && !ProfileDetail.date_of_birth"  class="invalid-feedback">
+                    <div *ngIf="!ProfileDetail.date_of_birth">Date of Birth is required</div>  
+                 </div>
+                </div>
+              </div><!-- DOB -->
+    
+              <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1"> Address </p>
+                  <input id="" name="address" class="form-control" [(ngModel)]="ProfileDetail.address"  autocomplete="off" placeholder="Enter your address"  ngx-google-places-autocomplete  (onAddressChange)="handleAddressChange($event)" formControlName="address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }">
+                  <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                    <div *ngIf="f.address.errors.required">Address is required</div>
+                  </div>
+                </div>
+              </div><!-- Address -->
+    
+              <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1"> Country </p>
+                  <input id="" name="country" class="form-control" [(ngModel)]="ProfileDetail.country"  placeholder="Enter your country" formControlName="country" [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
+                  <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+                    <div *ngIf="f.country.errors.required">Country is required</div>
+                  </div>
+                </div>
+              </div><!-- Country -->
+    
+              <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1"> State/Province </p>
+                  <input id="" name="state" class="form-control" [(ngModel)]="ProfileDetail.state"   placeholder="Enter your state/province" formControlName="state" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
+                  <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                    <div *ngIf="f.state.errors.required">State is required</div>
+                  </div>
+                </div>
+              </div><!-- State/Province -->
+    
+              <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1"> City </p>
+                  <input id="" name="city" class="form-control" [(ngModel)]="ProfileDetail.city"  placeholder="Enter your city" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+                  <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                    <div *ngIf="f.city.errors.required">City is required</div>
+                  </div>
+                </div>
+              </div><!-- City -->         
+               
+              <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1"> Emergency Contact Person </p>
+                  <input id="" name="emergency_contact_person" class="form-control" [(ngModel)]="ProfileDetail.emergency_contact_person"  placeholder="Enter name of your emergency contact person" formControlName="emergency_contact_person" [ngClass]="{ 'is-invalid': submitted && f.emergency_contact_person.errors }">
+                  <div *ngIf="submitted && f.emergency_contact_person.errors" class="invalid-feedback">
+                    <div *ngIf="f.emergency_contact_person.errors.required">Emergency Contact Person is required</div>
+                  </div>
+                </div>
+              </div><!-- Emergency Contact Person -->
+              <div class="col-12 col-sm-6 mt-2 mt-md-3" >
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1"> Emergency Country Code </p>
+                  <select class="form-control select-class"  [(ngModel)]="ProfileDetail.emergency_country_code"   name="emergency_country_code" formControlName="emergency_country_code" [ngClass]="{ 'is-invalid': submitted && f.emergency_country_code.errors }" required>
+                    <option value=" "></option>
+                    <option *ngFor ="let code of CountryList" value ="{{code.name}} ({{code.code}})">{{code.name}}  ({{code.code}}) </option>
+                  </select>
+                  <div *ngIf="submitted && f.emergency_country_code.errors" class="invalid-feedback">
+                    <div *ngIf="f.emergency_country_code.errors.required">Emergency Country Code is required</div>
+                </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 mt-2 mt-md-3" >
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1"> Emergency Contact Number </p>
+                  <input id="" type="number" name="emergency_contact_no" class="form-control"  onKeyPress="if(this.value.length >= 12) return false;"    [(ngModel)]="ProfileDetail.emergency_contact_no" placeholder="Enter number of your emergency contact person"formControlName="emergency_contact_no" [ngClass]="{ 'is-invalid': submitted && f.emergency_contact_no.errors }">
+                  <div *ngIf="submitted && f.emergency_contact_no.errors" class="invalid-feedback">
+                    <div *ngIf="f.emergency_contact_no.errors.required"> Emergency Contact Number is required</div>
+                  </div>
+                </div>
+              </div><!-- Emergency Contact Number -->
+    
+              <div class="col-12 col-sm-8 mt-2 mt-md-3">
+                <div class="form-group profile-gender mb-0">
+                  <p class="brand-color3 text-left font-14 mb-3"> Gender </p>
+                  <div class="profile-gender-button">
+                    <input type='radio' id='male' value="male" name='radio' [ngModelOptions]="{standalone: true}" [(ngModel)]="gender"   (change)="getGender($event)">
+                    <label for='male'>Male</label>
+    
+                    <input type='radio' id='female' value="female"  name='radio' [ngModelOptions]="{standalone: true}" [(ngModel)]="gender"   (change)="getGender($event)">
+                    <label for='female'>Female</label>
+    
+                    <input type='radio' id='other' value="other" name='radio' [ngModelOptions]="{standalone: true}" [(ngModel)]="gender"   (change)="getGender($event)">
+                    <label for='other'>Other</label>
+                  </div><!-- end of profile-gender-button -->
+                </div>
+              </div><!-- Gender -->
+    
+              <div class="col-12 col-sm-4 mt-2 mt-sm-4 mt-md-4 mt-lg-5 pt-0 pt-sm-4  password-align">
+                <a href="Javascript:void(0);" id="changepass" data-toggle="modal" data-target="#profileChangepass"  data-backdrop="static" data-keyboard="false" class="brand-color1 font-14"> Change Password? </a>
+              </div><!-- Change Password -->
+              <div class="col-12 col-sm-4 mt-2 mt-md-3"></div>
+              <div class="col-12 col-sm-4 mt-2 mt-md-3">
+                <button  type="submit" class="btn btn-blue-grad text-uppercase w-100" (click)="updateProfile()"   [disabled]="profileSpinner"> <span class="spinner-grow spinner-grow-sm" *ngIf="profileSpinner" role="status" aria-hidden="true"></span>  Update </button>
+              </div>
+              <div class="col-12 col-sm-4 mt-2 mt-md-3"></div>
+            </div><!-- end of Input fields -->
+
+          </form>
+          </div>
+        </div><!-- end of container -->
+      </div>         
+    <!-- End of Profile Section -->
+
+
+</div>
+    <app-inner-footer></app-inner-footer>
+<!-- Modal Popup (Change - Password ) -->
+<div class="modal fade" id="profileChangepass" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+          
+      <div class="modal-body white-bg box-shadow1 border-radius6 p-4 p-md-5">
+         
+        <div class="modal-logo text-center pb-3 pb-sm-5">
+          <img src="assets/img/logo_green_small.png">
+        </div>
+
+        <div class="modal-bottom-content blue-gradient border-radius6 py-3 py-sm-5 px-2">
+        <form  [formGroup]="userpassword" >
+          <div class="form-group profile-change-password">
+            <p class="text-white text-left font-14 mb-0 ml-3"> Old Password </p>
+            <input id="password-field" type="password" class="form-control" name="password" value="4KgTNk34%^%110"    formControlName="old_password" [ngClass]="{ 'is-invalid': submitted && pf.old_password.errors }">
+            <span  (click)="showHide()" toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password brand-color3"></span>
+            <div *ngIf="submitted && pf.old_password.errors" class="invalid-feedback">
+                  <div *ngIf="pf.old_password.errors.required">Old Password is required</div>
+                  <div *ngIf="pf.old_password.errors.pattern">Old Password length must be  8 with at least one special character, one capital letter, one small letter and one number.</div>
+            </div>
+          </div><!-- Old Password -->
+
+          <div class="form-group">
+            <input id="" type="password" value="" class="form-control white" placeholder="New Password"  formControlName="new_password" [ngClass]="{ 'is-invalid': submitted && pf.new_password.errors }" >
+            <div *ngIf="submitted && pf.new_password.errors" class="invalid-feedback">
+                  <div *ngIf="pf.new_password.errors.required">New Password is required</div>
+                  <div *ngIf="pf.new_password.errors.pattern">New Password length must be  8 with at least one special character, one capital letter, one small letter and one number.</div>
+            </div>
+          </div><!-- New Password -->
+
+          <div class="form-group">
+            <input id="" type="password" value="" class="form-control white" placeholder="Confirm Password"  formControlName="password" [ngClass]="{ 'is-invalid': submitted && pf.password.errors }">
+            <div *ngIf="submitted && pf.password.errors" class="invalid-feedback">
+                  <div *ngIf="pf.password.errors.required">Confirm Password is required</div>
+                  <div *ngIf="pf.password.errors.pattern">Confirm Password length must be  8 with at least one special character, one capital letter, one small letter and one number.</div>
+            </div>
+          </div><!-- Confirm Password -->
+
+          <div class="form-group px-3 pt-0 pt-sm-4 mb-0 mb-sm-2">
+            <button type="button" class="btn text-uppercase w-100 mt-3" [disabled]="changepasswordSpinner"  (click)="changePassword()"> <span class="spinner-grow spinner-grow-sm" *ngIf="changepasswordSpinner" role="status" aria-hidden="true" ></span>  update </button>
+            <button type="button" data-dismiss="modal"  id="btn_close"  class="btn text-uppercase w-100 mt-3" data-backdrop="static" data-keyboard="false" (click)="closeModal()"> close </button>
+
+          </div>
+      </form>
+
+        </div><!-- modal-bottom-content -->
+
+      </div><!-- end of modal-body -->
+
+    </div>
+  </div>
+</div>
+<!-- End of Modal Popup (Change - Password ) -->
+
+<!-- Modal Popup (Change - user Profile ) -->
+<div class="modal fade" id="profileChange" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div >
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"> <img src="assets/img/ic_close.png" class="img-fluid"> </span>
+        </button>
+      </div>      
+      <div class="modal-body white-bg box-shadow1 border-radius6 p-2 p-md-5">
+         
+        <div class="modal-logo text-center pb-sm-2">
+          <div class="row">
+            <div class="col-12">
+
+    <div class="row">
+        <div class="col-12" >
+            <div class="class-detail-slot-box box-shadow1 border-radius6 p-3 bg-white">
+                <div class="row"  data-dismiss="modal" (click)="changeUserProfile(parentDetail.id)">
+                    <div class="col-3">
+                        <div class="profile-img box-shadow1">
+                            <img src="{{parentDetail.profile_img}}" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <h5 class="brand-color3 heading-titlenew mb-1">{{parentDetail.name}}
+                            {{parentDetail.lastname}}</h5>
+                        <ul class="d-flex">
+                            <li class="flex-fill">
+                                <p class="black-color paratitle font-w-400 font-14">{{parentDetail.email}}
+                                    </p>
+                            </li>
+                        </ul>
+                        <div>
+                            <div class="d-flex align-items-center">
+                        </div>
+  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  </div>
+  
+  
+  </div>
+        </div>
+
+        <div class="modal-bottom-content blue-gradient border-radius6 py-3 py-sm-2 px-2">
+          <div class="row">
+            <div class="col-12">
+  
+  <div *ngIf="memberDetail.length != 0">
+    <div class="row ">
+        <div class="col-md-12 mb-2" *ngFor="let items of memberDetail">
+            <div class="class-detail-slot-box box-shadow1 border-radius6 p-3 bg-white" data-dismiss="modal" (click)="changeUserProfile(items.id)">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="profile-img box-shadow1">
+                            <img src="{{items.image}}" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <h5 class="brand-color3 heading-titlenew mb-1">{{items.member_name}}
+                            </h5>
+                        <!-- <ul class="d-flex">
+                            <li class="flex-fill">
+                                <p class="black-color paratitle font-w-400 font-14">{{items.email}}</p>
+                            </li>
+                        </ul> -->
+                        <div>
+                            <div class="d-flex align-items-center">
+                            <!-- <p class="brand-color3 font-15 font-w-500 mb-1"
+                                    >Status : {{items.attendance_status}}</p> -->
+                                    <!-- <button class="btn btn-green-grad"
+                                    >{{items.attendance_status}}</button> -->
+                        </div>
+  
+                           <!-- <div *ngIf = "items.covid_info == '1'">
+                              <button type="button" class="btn btn-success p-2 text-uppercase mb-2 infobtn" data-toggle="modal" data-target="#Infocovid19" *ngIf="items.covid_status == 0" (click)="getCovidInfo(items.id)"><i class="fas fa-info-circle"></i></button>
+                              <button type="button" class="btn btn-danger p-2 text-uppercase mb-2 infobtn" data-toggle="modal" data-target="#Infocovid19" *ngIf="items.covid_status == 1" (click)="getCovidInfo(items.id)"><i class="fas fa-info-circle"></i></button>
+                            </div>  
+                                       -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  </div>
+        <div  class="row" *ngIf="memberDetail.length == 0" >
+            <div class="text-center">
+                <p class="font-awesome black-color font-18 d-inline mx-2 "> No Member Available</p>
+              </div> 
+        </div>
+  
+  </div>
+  
+  
+  </div>
+
+        </div><!-- modal-bottom-content -->
+
+      </div><!-- end of modal-body -->
+
+    </div>
+  </div>
+</div>
+<!-- End of Modal Popup (Change - userprofile ) -->
+
+
+

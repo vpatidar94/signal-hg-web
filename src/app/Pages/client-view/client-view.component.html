@@ -1,0 +1,155 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}"></ngx-loading>
+
+    <section class="client-search-section">
+        <div class="container py-5">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                        aria-controls="home" aria-selected="true" (click)="ClientList();">Existing Client</a>
+                </li>
+                <li class="nav-item px-3">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                        aria-controls="profile" aria-selected="false">New Client</a>
+                </li>
+                <li class="nav-item">
+                    <div class="form=group searchbar">
+                        <input type="text" class="form-control" onkeyup="this.value=this.value.replace(/^\s+/g, '')" [(ngModel)]="search_text" (change)="ClientList()">
+                        <button (click)="ClientList()"><i class="fas fa-search"></i></button>
+                    </div>
+                </li>
+           </ul>
+            <div class="tab-content bg-white border-radius6 p-3 mt-4" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row">
+                        <div class="col-11"></div>
+                        <div class="col-1">
+                            <button  (click)="reset()" class="btn btn-green">Reset</button>
+                        </div>
+                    </div>                
+
+                    <div class="row" *ngIf="clientDetail.length != 0">
+                        <div class="col-lg-4 py-3" *ngFor = "let items of clientDetail">
+                            <a routerLink="/schedule-appointment" *ngIf="currentUrl == '/clientview'">
+                            <div class="client-slot-box d-flex align-items-center" >
+                                <div class="client-img">
+                                    <img src="{{items.profile_img}}" class="img-fluid">
+                                </div>
+                                <div class="client-detail pl-2">
+                                    <p class="black-color font-14 font-w-600 mb-0 d-flex"><span class="nametitle d-block">{{items.name}} {{items.lastname}}</span> <span
+                                        class="ml-2 brand-color3 font-w-500">{{items.age}}, {{items.gender}}</span></p>
+                                     <span class="brand-color3 font-w-500 mt-2 d-block">{{items.email}}</span>
+                                </div>
+                            </div>
+                            </a>
+                            <div class="client-slot-box d-flex align-items-center" *ngIf="currentUrl == '/client-view'">
+                                    <div class="client-img">
+                                        <img src="{{items.profile_img}}" class="img-fluid">
+                                    </div>
+                                    <div class="client-detail pl-2">
+                                        <p class="black-color font-14 font-w-600 mb-0 d-flex"><span class="nametitle d-block">{{items.name}} {{items.lastname}}</span> <span
+                                            class="ml-2 brand-color3 font-w-500">{{items.age}}, {{items.gender}}</span></p>
+                                         <span class="brand-color3 font-w-500 mt-2 d-block">{{items.email}}</span>
+                                    </div>
+                                </div>
+                        </div>                     
+                    </div>
+                    <div class="row" *ngIf="clientDetail.length == 0">
+                        <div class="col-4"></div>
+                        <div class="col-4">
+                            <p class="font-awesome black-color font-18 d-inline mx-2"> No Customers Available</p>
+                        </div>
+                        <div class="col-4"></div>
+                    </div>
+                </div>
+            <div class="tab-pane fade add-newclient" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <form [formGroup]="addnewClient" (ngSubmit)="onAddclient()"> 
+                        <div class="row">
+                        
+                            <div class="col-md-6 form-group py-3">
+                                <label>First Name</label>
+                                <input type="text" class="form-control-1 w-100" placeholder="John" onkeyup="this.value=this.value.replace(/^\s+/g, '')"  formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                    <div *ngIf="f.name.errors.required">First Name is required</div>
+                                    <div *ngIf="f.name.errors.pattern">First Name is required</div>
+
+                                </div>                            
+                            </div>
+                            <div class="col-md-6 form-group py-3">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control-1 w-100" placeholder="Smith" onkeyup="this.value=this.value.replace(/^\s+/g, '')"  formControlName="lastname" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }">
+                                <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                                    <div *ngIf="f.lastname.errors.required">Last Name is required</div>
+                                    <div *ngIf="f.lastname.errors.pattern">Last Name is required</div>
+
+                              </div>                            
+                            </div>
+                            <div class="col-md-6 form-group py-3">
+                                <label>Email</label>
+                                <input type="email" class="form-control-1 w-100" placeholder=""  onkeyup="this.value=this.value.replace(/^\s+/g, '')"  formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                    <div *ngIf="f.email.errors.required">Email is required</div>
+                                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                              </div>
+                                            </div>
+                                            <div class="col-md-6 form-group py-3">
+                                                <label>Country Code</label>
+                                                <select class="form-control-1 w-100" formControlName="country_code" [ngClass]="{ 'is-invalid': submitted && f.country_code.errors }"   [(ngModel)]="country_code">
+                                                    <option value=""></option>
+                                                    <option *ngFor ="let code of CountryList" value ="{{code.name}} ({{code.code}})">{{code.name}} ({{code.code}}) </option>
+                                                  </select>
+                                                  <div *ngIf="submitted && f.country_code.errors" class="invalid-feedback">
+                                                      <div *ngIf="f.country_code.errors.required">Country Code is required</div>
+                                                  </div>                            </div>
+                            <div class="col-md-6 form-group py-3">
+                                <label>Phone</label>
+                                <input type="number" class="form-control-1 w-100 " placeholder="" onkeyup="this.value=this.value.replace(/^\s+/g, '')" onKeyPress="if(this.value.length >= 12) return false;"  formControlName="mobile" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }">
+                                <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                                    <div *ngIf="f.mobile.errors.required" class="erro_msg">Phone is required</div>
+                                    <div *ngIf="f.mobile.errors.pattern" class="erro_msg">Phone number not valid</div>
+                                </div>
+                            </div>
+                        
+                        
+                            <div class="col-md-6 form-group py-3">
+                                <label>DOB</label>
+                                <mat-form-field  appearance="outline" style="width:100%;margin:0;padding:0;">
+                                    <input matInput [matDatepicker]="passdate"  [max]="maxDate" [(ngModel)]="dob"  formControlName="date_of_birth" style="color: black;" readonly >
+                                    <mat-datepicker-toggle matSuffix [for]="passdate"></mat-datepicker-toggle>
+                                    <mat-datepicker #passdate style="margin:0;padding:0;"></mat-datepicker>
+                                </mat-form-field>
+                                 <div *ngIf="submitted && !dob" class="invalid-feedback">
+                                    <div *ngIf="!dob">Date of Birth is required</div>  
+                                 </div>
+                            </div>
+
+                            <div class="col-md-6 form-group py-3">
+                                <div class="form-group profile-gender mb-2">
+                                    <p class="brand-color3 text-left font-14 mb-2"> Gender </p>
+                                    <div class="profile-gender-button2 text-left">
+                                      <input type='radio' id='male' value="male"   [(ngModel)]="gender"    name='radio' [ngModelOptions]="{standalone: true}" (change)="getGender($event)" >
+                                      <label for='male'>Male</label>
+                    
+                                      <input type='radio' id='female' value="female"  [(ngModel)]="gender"    name='radio' [ngModelOptions]="{standalone: true}" (change)="getGender($event)" >
+                    
+                                      <label for='female'>Female</label>
+                    
+                                      <input type='radio' id='other' value="other"  [(ngModel)]="gender"    name='radio'  [ngModelOptions]="{standalone: true}" (change)="getGender($event)" >
+                    
+                                      <label for='other'>Other</label>
+                                    </div><!-- end of profile-gender-button -->
+                                  </div><!-- Gender --> 
+                            </div>
+
+                        </div>
+                        <button class="btn btn-blue-grad text-uppercase d-block mx-auto" type="submit" data-toggle="modal" data-target="#successModal">Add Client</button>
+                    </form>
+            </div>
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+            </div>
+        </div>
+    </section>
+
+</div>
+<app-inner-footer></app-inner-footer>

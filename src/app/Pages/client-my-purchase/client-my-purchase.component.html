@@ -1,0 +1,481 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+<!-- My Studio Card Detials Section -->
+<div class="studio-details">
+    <div class="container">
+    <app-sub-header></app-sub-header>
+
+
+      <div class="studio-details-lower pb-5">
+        <div class="row mt-3">                   
+          <div class="col-sm-4 col-lg-8">
+            <h4 class="black-color font-w-400 font-18 mb-0 text-uppercase font-arialrouded">My Purchases </h4>
+          </div>
+          <div class="col-md-4 col-sm-6 text-right mb-3">
+            <button type="button" class="btn btn-blue-grad px-2 text-uppercase" (click)="reset()" >Back </button>
+          </div>  
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="white-bg border-radius6 box-shadow1 p-3">
+              <div class="centered-cover">
+                <div class="flex-break">
+                  <!-- <h4 class="black-color font-w-400 font-18 mb-0 text-uppercase">My Purchases </h4> -->
+                  <div class="box my-purchase">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="my-purchase-top-right">
+                          <div class="my-purchase-right-buttons">
+                            <div id="exTab1" class="">                             
+                              <ul class="nav nav-pills" role="tablist">
+                                <li class="nav-item">
+                                  <a class="nav-link active" data-toggle="pill" href="#all"  (click)="puchaseList('',1)">All</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link " data-toggle="pill" href="#products"  (click)="puchaseList('2',1)">Products</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" data-toggle="pill" href="#passes" (click)="puchaseList('1',1)">Passes</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" data-toggle="pill" href="#services" (click)="puchaseList('3',1)">Services</a>
+                                </li>
+                              </ul>
+                              <div class="tab-content">
+
+                                <div class="tab-pane active" id="all">
+                                  <div  infinite-scroll  [infiniteScrollDistance]="scrollDistance"  [infiniteScrollUpDistance]="scrollUpDistance"  [infiniteScrollThrottle]="throttle"  (scrolled)="onScroll()" alwaysCallback="true"> 
+
+                                  <div class="row std-detail-purchase pt-0 pt-md-4 mt-2 mb-3" *ngIf="purchaseDetail.length != 0 ">
+
+                                    <div class="col-12 col-md-6 mb-3" *ngFor="let items of purchaseDetail">
+                                    <!-- <div class="row"> -->
+                                    
+<!--                                     
+                                      <div class="col-12">
+                                        <div class="section-heading pb-4 text-left">
+                                          <a href="Javascript:void(0);" class="black-color font-w-100 font-14"> </a>
+                                        </div>
+                                      </div> -->
+                                      <!-- end of col-12(Heading) -->
+                                      <div  *ngIf="items.service_id">
+                                        <!-- <a routerLink="/purchased-service"> -->
+                                          <div class="std-purchase-card box-shadow1 border-radius6 white-bg px-2 py-3">
+                                            <div class="row"  style="height:239px">
+                                              <div class="col-3 col-md-12 col-lg-3">
+                                                <div class="text-center">
+                                                  <img src="{{businessDetail.logo}}" class="box-shadow1 border-radius50 border-radius100 mb-4 mb-lg-0">
+                                                </div>
+                                              </div>
+
+                                              <div class="col-9 col-md-12 col-lg-9 pl-0 pl-md-3 pl-lg-0">
+                                                <div class="std-purchase-card-details">
+                                                  <h5 class="title black-color mb-0"> {{items.service_name}} </h5>
+                                                  <!-- <ul>
+                                                    <li> {{items.service_category}} </li>
+                                                  </ul> -->
+                                                  <p class="brand-color3 font-12 my-2">Booking For: {{items.Name}} </p>
+                                                  <p class="brand-color3 font-12 my-2">Amount: $ {{items.amount}} </p>
+                                                  <p class="brand-color3 font-12 my-2">Purchase Date: {{items.purchase_date_new}} </p>
+                                                  <p class="brand-color3 font-12 my-2">Booking Time: {{items.start_time_new}} - {{items.end_time_new}}</p>
+                                                  <p class="brand-color3 font-12 my-2">Duration: {{items.duration}} Min.</p>
+                                                  <p class="brand-color3 font-12 my-2">Location: {{items.location_name}} , {{items.location_address }} </p>
+
+                                                </div>
+                                              </div>
+                                            </div><!-- end of row -->
+                                          </div><!-- end of std-purchase-card -->
+                                        <!-- </a> -->
+                                      </div><!-- end of col-md-4 -->
+
+                                      <div class="std-purchase-bottom" *ngIf="items.pass_id">
+                                        <a href="Javascript:void(0);"  (click) ="redirectUrl(items.pass_id,items.user_booking_id,'/pass-detail',items.pass_status_text)">
+                                          <div class="purchase-blue-card p-3 p-sm-4">                    
+                                          <div class="row mx-0">
+                                            <div class="pass-logo">
+                                              <img src="{{items.business_logo}}" class="img-fluid">
+                                            </div>
+                                            <div class="flex-fill pr-4 pl-5 passTextwidth">
+                                              <h5 class="white-color font-14 mb-2 mt-0 ">{{items.pass_name}}</h5>
+                                              <h5 class="white-color font-14 mb-3 mt-0 text-capitalize">Member: {{userDetail.name}} {{userDetail.lastname}}</h5>
+                                              <h5 class="white-color font-14 mb-2 mt-0 ">${{items.amount}} <span class="font-12"> Plus Tax </span></h5>
+                                            </div>
+                                          </div>
+                                          <div class="row mt-3 align-items-end">
+                                            <!-- <div class="col-12 text-left pr-0">
+                                              <p class="white-color paratitle">Remaining Classes : 4</p>
+                                            </div> -->
+                                           
+                                            <div class="col-6 text-left pr-0" > 
+                                              <p class="mb-0 white-color paratitle" *ngIf="items.pass_type_category == 'PunchCard'"> Remaining Classes : {{items.remaining_count}} of {{items.total_count}} </p>
+                                              <p class="mb-0 white-color paratitle" *ngIf="items.pass_type_category == 'TimeFrame' || items.pass_type_category == 'Other' || items.pass_type_category == 'Recurring Membership'"> Remaining Days : {{items.remaining_count}} of {{items.total_count}}</p>
+                                              <p class="mb-0 white-color paratitle"> Start Date : {{items.start_date_new}} </p>
+                                              <!-- <p class="mb-0 white-color paratitle"> Expiration Date : {{items.end_date_new}} </p>   -->
+                                              <p class="mb-0 white-color paratitle" *ngIf="items.pass_mark == 'no expiration'">No Expiration </p>              
+
+                                              <p class="mb-0 white-color paratitle" *ngIf="items.pass_mark == ''"> Expiration Date : {{items.end_date_new}} </p>              
+              
+                                            </div>
+                                            <div class="col-6 text-right pl-0">
+                                              <p class="mb-0 white-color paratitle"> {{items.pass_status_text}}</p>
+
+                                              <div class="">
+
+                                              <!-- <p class="mb-0 white-color  paratitle"> {{items.pass_type_name}}</p>        -->
+                                              <!-- <p class="mb-0 white-color paratitle">Pass Id : {{items.booking_pass_id}} </p> -->
+                                            </div></div>
+                                          </div>
+                                        </div>
+                                      </a>
+                                        <div class="studio-card-select">
+                                          <i class="fas fa-heart brand-color3 font-22" *ngIf="items.favourite == 0"
+                                            (click)="addFav(items.pass_id,1)"></i>
+                                          <i class="fas fa-heart brand-color2 font-22" *ngIf="items.favourite == 1"
+                                            (click)="addFav(items.pass_id,0)"></i>
+                      
+                                        </div>
+                                      </div>
+                                   
+
+                                      <div  *ngIf="items.product_id">
+                                        <a href="Javascript:void(0);"  (click) ="redirectUrl1( items.product_id,'/product')">
+                                          <div class="white-bg border-radius6 box-shadow1 p-4">
+                                            <div class="row" style="height:194px">
+                                              <div class="col-4 pr-0">
+                                                <div class="border-radius6 box-shadow1 p-3">
+                                                  <img src="{{items.product_images[0].image_name}}" class="img-fluid w-10">
+                                                </div>
+  
+                                              </div><!-- end of col-4 -->
+                                              <div class="col-8">
+                                                <div class="">
+                                                  <h5 class="title black-color mb-0"> {{items.product_name}} </h5>
+                                                  <!-- <p class="brand-color3 font-12 my-2"  *ngIf="items.product_description.length <= 40" >{{items.product_description}}</p>
+                                                  <p class="brand-color3 font-12 my-2"  *ngIf="items.product_description.length > 40" >{{items.product_description | ellipsis : 40}}</p> -->
+                                               
+                                                 
+                                                </div>
+                                              </div><!-- end of col-8 -->
+                                              
+                                            </div><!-- end of row -->
+                                            <div class="row">
+                                              <div class="col-6 text-left pr-0">
+                                                <p class="brand-color3 font-12 my-2" >Quantity : {{items.quantity}}</p>
+                                              </div>
+                                              <div class="col-6 text-right pl-0">
+                                                <p class="brand-color3 font-12 my-2">Amount : $ {{items.product_price}} </p>
+                                              </div>
+                                              <div class="col-6 text-left pr-0">
+                                                <p class="brand-color3 font-12 my-2" >Purchase Date : {{items.purchase_date_new}}</p>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </a>
+                                      </div><!-- end of New Rollin yoga -->
+                                    <!-- </div> -->
+                                    </div><!-- end of row -->
+                                    </div>
+                                  </div><!-- end of std-detail-purchase -->
+                                  <div class="row" *ngIf="purchaseDetail.length == '0'">
+                                    <div class="col-4">
+
+                                    </div>
+                                    <div class="col-4">
+                                      <div class="text-center">
+                                        <p class="font-awesome black-color font-18 d-inline mx-2 "> No Item Purchased</p>
+                                      </div>
+                                    </div>
+                                    <div class="col-4">
+                                      
+                                    </div>
+                                 
+                                  </div>
+                                </div><!-- End of ALL -->
+                                <div class="tab-pane pt-0 pt-md-4 mt-2 mb-3" id="services">
+                                  <div class="std-detail-purchase pt-0 pt-md-4 mt-2 mb-3">
+                                    <div  infinite-scroll  [infiniteScrollDistance]="scrollDistance"  [infiniteScrollUpDistance]="scrollUpDistance"  [infiniteScrollThrottle]="throttle"  (scrolled)="onScroll()" alwaysCallback="true"> 
+
+                                    <div class="row" *ngIf="ServiceDetail.length != '0'">
+
+                                      <div class="col-12 col-md-4 mt-3 mb-2" *ngFor="let serv of ServiceDetail">
+                                        <!-- <a routerLink="/purchased-service"> -->
+                                          <div class="std-purchase-card box-shadow1 border-radius6 white-bg px-2 py-3">
+                                            <div class="row ">
+                                              <div class="col-3 col-md-12 col-lg-3">
+                                                <div class="text-center">
+                                                  <img src="{{businessDetail.logo}}" class="box-shadow1 border-radius50 border-radius100 mb-4 mb-lg-0">
+                                                </div>
+                                              </div>
+
+                                              <div class="col-9 col-md-12 col-lg-9 pl-0 pl-md-3 pl-lg-0">
+                                                <div class="std-purchase-card-details">
+                                                  <h5 class="title black-color mb-0"> {{serv.service_name}} </h5>
+                                                  <!-- <ul>
+                                                    <li> {{serv.service_category}} </li>
+                                                  </ul> -->
+                                                  <p class="brand-color3 font-12 my-2">Booking For: {{serv.Name}} </p>
+                                                  <p class="brand-color3 font-12 my-2">Amount: $ {{serv.amount}} </p>
+                                                  <p class="brand-color3 font-12 my-2">Purchase Date: {{serv.purchase_date_new}} </p>
+                                                  <p class="brand-color3 font-12 my-2">Booking Time: {{serv.start_time_new}} - {{serv.end_time_new}}</p>
+                                                  <p class="brand-color3 font-12 my-2">Duration: {{serv.duration}} Min.</p>
+                                                  <p class="brand-color3 font-12 my-2">Location: {{serv.location_name}} </p>                                                </div>
+                                              </div>
+                                            </div><!-- end of row -->
+                                          </div><!-- end of std-purchase-card -->
+                                        <!-- </a> -->
+                                      </div><!-- end of col-md-4 -->
+                                      </div>
+                                    </div> <!-- end of row --> 
+                                    <div class="row" *ngIf="ServiceDetail.length == '0'">
+                                      <div class="col-4">
+
+                                      </div>
+                                      <div class="col-4">
+                                        <div class="text-center">
+                                          <p class="font-awesome black-color font-18 d-inline mx-2 "> No Service Purchased</p>
+                                        </div>
+                                      </div>
+                                      <div class="col-4">
+                                        
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div><!-- End of SERVICES -->
+
+                                <div class="tab-pane pt-0 pt-md-4 mt-2 mb-3" id="passes">
+                                  <div  infinite-scroll  [infiniteScrollDistance]="scrollDistance"  [infiniteScrollUpDistance]="scrollUpDistance"  [infiniteScrollThrottle]="throttle"  (scrolled)="onScroll()" alwaysCallback="true"> 
+
+                                  <div class="row" *ngIf="PassDetail.length != '0'">
+
+                                    <!-- <div class="col-12 col-md-6 std-purchase-bottom" *ngFor="let pas of PassDetail" >
+                                      <a href="Javascript:void(0);"  (click) ="redirectUrl(pas.pass_id,'/pass-detail')">
+                                        <div class="purchase-blue-card p-3">
+                                          <div class="text-left">
+                                            <h4 class="title white-color font-14">{{pas.pass_name}}  </h4>
+                                            <div class="row">
+                                              <div class="col-6 text-left pr-0">
+                                                <h5 class="title white-color font-14">{{pas.pass_type}}</h5>
+                                              </div>
+                                              <div class="col-6 text-right pl-0">
+                                                <h5 class="title white-color font-14">Valid For {{pas.pass_validity}}</h5>
+                                              </div>
+                                            </div>                                               
+                                          </div>
+                                          <div class="row mt-5">
+                                            <div class="col-8 text-left pr-0">
+                                              <p class="mb-0 white-color font-14">Date : {{pas.start_date_new}}   </p>
+                                            </div>
+                                            <div class="col-4 text-right pl-0">
+                                              <p class="mb-0 white-color font-14">
+                                                $ {{pas.amount}}  
+                                              </p>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </a> 
+                                      <div class="studio-card-select">
+                                        <i class="fas fa-heart brand-color3 font-22"  *ngIf="pas.favourite == 0" (click)="addFav(pas.pass_id,1)"></i>
+                                        <i class="fas fa-heart brand-color2 font-22" *ngIf="pas.favourite == 1" (click)="addFav(pas.pass_id,0)"></i>
+
+                                      </div>
+                                    </div> -->
+                                    <div class="col-12 std-purchase-bottom mt-4">
+                                    <p class="black-color font-w-100 text-uppercase font-20"> Active Passes </p>
+                                  </div>
+                                    <div class="col-12 col-md-6 std-purchase-bottom mt-4" *ngFor="let pas of activePassDetail">
+                                      <a href="Javascript:void(0);"  (click) ="redirectUrl(pas.pass_id,pas.user_booking_id,'/pass-detail',pas.pass_status_text)">
+                                        <div class="purchase-blue-card p-3 p-sm-4">                    
+                                        <div class="row mx-0 ">
+                                          <div class="pass-logo">
+                                            <img src="{{pas.business_logo}}" class="img-fluid">
+                                          </div>
+                                          <div class="flex-fill pr-4 pl-5 passTextwidth">
+                                            <h5 class="white-color font-14 mb-2 mt-0 ">{{pas.pass_name}}</h5>
+                                            <h5 class="white-color font-14 mb-3 mt-0 text-capitalize">Member: {{userDetail.name}} {{userDetail.lastname}}</h5>
+                                            <h5 class="white-color font-14 mb-2 mt-0 ">${{pas.amount}}  <span class="font-12"> Plus Tax </span></h5>
+                                          </div>
+                                        </div>
+                                        <div class="row mt-3 align-items-end">
+                                          <!-- <div class="col-12 text-left pr-0">
+                                            <p class="white-color paratitle">Remaining Classes : 4</p>
+                                          </div> -->
+                                          <div class="col-6 text-left pr-0" >                    
+                                            <p class="mb-0 white-color paratitle" *ngIf="pas.pass_type_category == 'PunchCard'"> Remaining Classes : {{pas.remaining_count}} of {{pas.total_count}} </p>
+                                            <p class="mb-0 white-color paratitle" *ngIf="pas.pass_type_category == 'TimeFrame' || pas.pass_type_category == 'Other'  || pas.pass_type_category == 'Recurring Membership' "> Remaining Days : {{pas.remaining_count}} of {{pas.total_count}}</p>
+                                            <!-- <p class="mb-0 white-color paratitle"> Remaining Days : {{pas.remaining_count}} of {{pas.total_count}}</p> -->
+                                            <p class="mb-0 white-color paratitle"> Start Date : {{pas.start_date_new}} </p>
+                                            <p class="mb-0 white-color paratitle" *ngIf="pas.pass_mark == 'no expiration'">No Expiration </p>              
+
+                                            <p class="mb-0 white-color paratitle" *ngIf="pas.pass_mark == ''"> Expiration Date : {{pas.end_date_new}} </p>              
+                                          </div>
+                                          <!-- <div class="col-6 text-right pl-0">
+                                            <div class="paraframe">
+
+                                            <p class="mb-0 white-color  paratitle"> {{pas.pass_type_name}}</p>       
+                                            <p class="mb-0 white-color paratitle"> {{pas.pass_status_text}}</p>
+                                            <p class="mb-0 white-color paratitle">Pass Id : {{pas.booking_pass_id}} </p>
+                                          </div></div> -->
+                                        </div>
+                                      </div>
+                                    </a>
+                                      <div class="studio-card-select">
+                                        <i class="fas fa-heart brand-color3 font-22" *ngIf="pas.favourite == 0"
+                                          (click)="addFav(pas.pass_id,1)"></i>
+                                        <i class="fas fa-heart brand-color2 font-22" *ngIf="pas.favourite == 1"
+                                          (click)="addFav(pas.pass_id,0)"></i>
+                    
+                                      </div>
+                                    </div>
+                                    <div class="col-12 std-purchase-bottom mt-4">
+                                    <p class="black-color font-w-100 text-uppercase font-20"> Expired Passes </p>
+                                    </div>
+                                    <div class="col-12 col-md-6 std-purchase-bottom mt-4" *ngFor="let pas of expirePassDetail">
+                                      <a href="Javascript:void(0);"  (click) ="redirectUrl(pas.pass_id,pas.user_booking_id,'/pass-detail',pas.pass_status_text)">
+                                        <div class="purchase-blue-card p-3 p-sm-4">                    
+                                        <div class="row mx-0 ">
+                                          <div class="pass-logo">
+                                            <img src="{{pas.business_logo}}" class="img-fluid">
+                                          </div>
+                                          <div class="flex-fill pr-4 pl-5 passTextwidth">
+                                            <h5 class="white-color font-14 mb-2 mt-0 ">{{pas.pass_name}}</h5>
+                                            <h5 class="white-color font-14 mb-3 mt-0 text-capitalize">Member: {{userDetail.name}} {{userDetail.lastname}}</h5>
+                                            <h5 class="white-color font-14 mb-2 mt-0 ">${{pas.amount}}  <span class="font-12"> Plus Tax </span></h5>
+                                          </div>
+                                        </div>
+                                        <div class="row mt-3 align-items-end">
+                                          <!-- <div class="col-12 text-left pr-0">
+                                            <p class="white-color paratitle">Remaining Classes : 4</p>
+                                          </div> -->
+                                          <div class="col-6 text-left pr-0" >                    
+                                            <p class="mb-0 white-color paratitle" *ngIf="pas.pass_type_category == 'PunchCard'"> Remaining Classes : {{pas.remaining_count}} of {{pas.total_count}} </p>
+                                            <p class="mb-0 white-color paratitle" *ngIf="pas.pass_type_category == 'TimeFrame' || pas.pass_type_category == 'Other'  || pas.pass_type_category == 'Recurring Membership' "> Remaining Days : {{pas.remaining_count}} of {{pas.total_count}}</p>
+                                            <!-- <p class="mb-0 white-color paratitle"> Remaining Days : {{pas.remaining_count}} of {{pas.total_count}}</p> -->
+                                            <p class="mb-0 white-color paratitle"> Start Date : {{pas.start_date_new}} </p>
+                                            <p class="mb-0 white-color paratitle" *ngIf="pas.pass_mark == 'no expiration'">No Expiration </p>              
+
+                                            <p class="mb-0 white-color paratitle" *ngIf="pas.pass_mark == ''"> Expiration Date : {{pas.end_date_new}} </p>              
+                                          </div>
+                                          <!-- <div class="col-6 text-right pl-0">
+                                            <div class="paraframe">
+
+                                            <p class="mb-0 white-color  paratitle"> {{pas.pass_type_name}}</p>       
+                                            <p class="mb-0 white-color paratitle"> {{pas.pass_status_text}}</p>
+                                            <p class="mb-0 white-color paratitle">Pass Id : {{pas.booking_pass_id}} </p>
+                                          </div></div> -->
+                                        </div>
+                                      </div>
+                                    </a>
+                                      <div class="studio-card-select">
+                                        <i class="fas fa-heart brand-color3 font-22" *ngIf="pas.favourite == 0"
+                                          (click)="addFav(pas.pass_id,1)"></i>
+                                        <i class="fas fa-heart brand-color2 font-22" *ngIf="pas.favourite == 1"
+                                          (click)="addFav(pas.pass_id,0)"></i>
+                    
+                                      </div>
+                                    </div>
+                                    </div>
+                                    <!-- end of purchase-blue-card -->
+                                  </div><!-- end of row -->
+                                  <div class="row" *ngIf="PassDetail.length == '0'">
+                                    <div class="col-4">
+
+                                    </div>
+                                    <div class="col-4">
+                                      <div class="text-center">
+                                        <p class="font-awesome black-color font-18 d-inline mx-2 "> No Pass Purchased</p>
+                                      </div>
+                                    </div>
+                                    <div class="col-4">
+                                      
+                                    </div>
+                                   
+                                  </div>
+                                </div><!-- End of PASSES -->
+
+                                <div class="tab-pane  pt-0 pt-md-4 mt-2 mb-3 " id="products">
+                                  <div  infinite-scroll  [infiniteScrollDistance]="scrollDistance"  [infiniteScrollUpDistance]="scrollUpDistance"  [infiniteScrollThrottle]="throttle"  (scrolled)="onScroll()" alwaysCallback="true"> 
+
+                                  <div class="row" *ngIf="ProductDetail.length != '0'">
+
+                                    <div class="col-12 col-md-6 mb-4" *ngFor="let prod of ProductDetail">
+                                      <a href="Javascript:void(0);"  (click) ="redirectUrl1( prod.product_id,'/product')">
+                                        <div class="white-bg border-radius6 box-shadow1 p-4" style="min-height: 245px">
+                                          <div class="row">
+                                            <div class="col-4 pr-0">
+                                              <div class="border-radius6 box-shadow1 p-3">
+                                                <img src="{{prod.product_images[0].image_name}}" class="img-fluid w-10">
+                                              </div>
+
+                                            </div><!-- end of col-4 -->
+                                            <div class="col-8">
+                                              <div class="">
+                                                <h5 class="title black-color mb-0"> {{prod.product_name}} </h5>
+                                                <!-- <p class="brand-color3 font-12 my-2"  *ngIf="prod.product_description.length <= 40" >{{prod.product_description}}</p>
+                                                <p class="brand-color3 font-12 my-2"  *ngIf="prod.product_description.length > 40" >{{prod.product_description | ellipsis : 40}}</p> -->
+                                                <div class="row">
+                                                  <div class="col-6 text-left pr-0">
+                                                    <p class="brand-color3 font-12 my-2" >Quantity : {{prod.quantity}}</p>
+
+                                                  </div>
+                                                  <div class="col-6 text-right pl-0">
+                                                    <p class="brand-color3 font-12 my-2">Amount : $ {{prod.product_price}} </p>
+
+                                                  </div>
+                                                  <div class="col-6 text-left pr-0">
+                                                    <p class="brand-color3 font-12 my-2">Purchase Date : {{prod.purchase_date_new}} </p>
+
+                                                  </div>
+                                                </div>
+                                               
+                                              </div>
+                                            </div><!-- end of col-8 -->
+                                          </div><!-- end of row -->
+                                        </div>
+                                      </a>
+                                    </div><!-- end of New Rollin yoga -->
+                                    </div>
+                                  </div><!-- end of row -->
+                                  <div class="row" *ngIf="ProductDetail.length == '0'">
+                                    <div class="col-4">
+
+                                    </div>
+                                    <div class="col-4">
+                                      <div class="text-center">
+                                        <p class="font-awesome black-color font-18 d-inline mx-2 "> No Product Purchased</p>
+                                      </div>
+                                    </div>
+                                    <div class="col-4">
+                                      
+                                    </div>
+                                   
+                                  </div>
+                                </div><!-- End of PRODUCTS -->                                 
+                              </div>
+                              <!-- </div> -->
+                              <!-- <div class="tab-content clearfix" *ngIf="purchaseDetail.length == 0 && purchaseProduct == 0"> 
+
+                                <div class="text-center">
+                                  <p class="font-awesome black-color font-18 d-inline mx-2 "> No Record Found</p>
+                                </div>
+                              </div> -->
+                            </div>
+                          </div><!-- end of my-purchase-right-buttons -->
+                        </div><!-- end of my-purchase-top-right -->
+                      </div><!-- end of col-12 -->
+                    </div><!-- end of row -->
+                  </div> <!-- end of my-purchase -->
+                </div><!-- end of flex-break -->
+              </div><!-- end of centered-cover -->
+            </div>
+
+          </div>
+        </div><!-- end of row -->        
+      </div><!-- end of studio-details-lower -->
+    </div><!-- end of container -->
+  </div>          
+<!-- End of My Studio Card Detials Section -->
+
+</div>
+<app-inner-footer></app-inner-footer>

@@ -1,0 +1,245 @@
+<app-inner-header></app-inner-header>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}"></ngx-loading>
+<div class="body-grey">
+  <!-- Activity Section -->
+  <div class="activity-section py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6 px-2">
+          <div class="section-heading pt-3">
+            <h5 class="title black-color font-w-100 text-uppercase font-16"> Find a studio </h5>
+          </div>
+        </div><!-- end of col-6 -->
+        <div class="col-12 col-md-5 px-2">
+          <div class="section-search">
+            <div class="form-group has-search pl-0 pl-md-3">
+              <a href="Javascript:void(0);">
+                <!-- <button type="submit" > -->
+                <!-- <img src="magnifying_glass.png" alt="Search" (click)="searchHome()" class="form-control-feedback"  /> -->
+                <span class="fas fa-search form-control-feedback" (click)="searchHome()"
+                  style="bottom:7px;top: unset;pointer-events: initial;"></span>
+                <!-- </button>  -->
+              </a>
+              <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText"
+                (change)="searchHome()">
+            </div>
+
+          </div>
+        </div><!-- end of col-6 -->
+        <div class="col-12 col-md-1">
+          <a href="Javascript:void(0);" data-toggle="modal" data-target="#addFilter"> <img
+              src="assets/img/ic_filter.png" class="img-fluid box-shadow1"  style="height: 48px;
+              width: 56px;"></a>
+        </div>
+
+      </div><!-- end of Heading and Search box -->
+    </div> <!-- end of container -->
+  </div>
+  <!-- End of Activity Section -->
+
+
+  <!-- Find Studio & Zumba -->
+  <div class="col-12 px-2">
+  </div><!-- end of col-12 -->
+  <div *ngIf="dashboardDetail.length != 0">
+    <div class="activity-section pb-5" *ngFor="let dashDetail of dashboardDetail">
+      <div class="container">
+        <!-- <h5 class="title black-color font-w-100 text-uppercase font-16"> find a studi  o </h5> -->
+
+        <div class="row">
+          <div class="col-6 pl-2">
+            <div class="section-heading pt-2 pb-4 text-left">
+              <a href="Javascript:void(0);" (click)="redirecrUrl1(dashDetail)" class="black-color heading-titlenew1">
+                {{dashDetail.category_name}} </a>
+            </div>
+          </div><!-- end of col-6 -->
+          <div class="col-6 pr-2">
+            <div class="section-heading pt-2 pb-3 text-right pr-4">
+              <a href="Javascript:void(0);" (click)="redirecrUrl1(dashDetail)" class="brand-color3 font-w-100 font-14">
+                View All </a>
+            </div>
+          </div><!-- end of col-6 -->
+        </div><!-- end of row -->
+      </div><!-- end of container -->
+      <div class="container-fluid">
+        <div class="studio-cards studio-padding-left" *ngIf="dashDetail.business.length >=3">
+          <owl-carousel-o [options]="eventDetail_Options" class="new-slider-logo">
+            <ng-template carouselSlide *ngFor="let dashsubDetail of dashDetail.business"
+              [id]="dashsubDetail.business_id">
+              <div class="studio-position-heart">
+                <div class="studio-card-newcustom gradient-studio-overlay box-shadow1"
+                  (click)="redirectUrl(dashsubDetail.business_id)">
+                  <div class="img-box" style="background-image: url({{dashsubDetail.business_img}})">
+                  </div>
+                  <div class="studio-detail p-3">
+                    <div class="row mx-0 align-items-start">
+                      <div class="profile-image box-shadow1">
+                        <img src="{{dashsubDetail.logo}}" class="img-fluid">
+                      </div>
+                      <div class="studio-profile-detail flex-fill pl-4">
+                        <h5 class="nametitle classname-title mb-1">{{dashsubDetail.business_name}}</h5>
+                        <p class="brand-color3 paratitle mb-2" *ngIf="dashsubDetail.address.length <= 25">
+                          {{dashsubDetail.address }}</p>
+                        <p class="brand-color3 paratitle mb-2" *ngIf="dashsubDetail.address.length > 25">
+                          {{dashsubDetail.address  | ellipsis:25}}</p>
+                        <p class="paratitle"><i class="fas fa-map-marker-alt mr-2 mb-0"></i>
+                          {{dashsubDetail.distance}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="studio-card-select">
+                  <i class="fas fa-heart brand-color3 font-22" *ngIf="dashsubDetail.favourite == 0"
+                    (click)="addFav(dashsubDetail.business_id,1)"></i>
+                  <i class="fas fa-heart brand-color2 font-22" *ngIf="dashsubDetail.favourite == 1"
+                    (click)="addFav(dashsubDetail.business_id,0)"></i>
+                </div>
+              </div><!-- Card-5 -->
+
+
+            </ng-template>
+          </owl-carousel-o>
+        </div><!-- studio-cards -->
+
+        <div class="studio-cards studio-padding-left" *ngIf="dashDetail.business.length < 3">
+          <div class="row">
+            <div class="col-12 col-lg-3 mb-2 px-2" *ngFor="let dashsubDetail of dashDetail.business">
+              <div class="studio-position-heart">
+                <div class="studio-card-newcustom gradient-studio-overlay box-shadow1"
+                  (click)="redirectUrl(dashsubDetail.business_id)">
+                  <div class="img-box" style="background-image: url({{dashsubDetail.business_img}})">
+                  </div>
+                  <div class="studio-detail p-3">
+                    <div class="row mx-0 align-items-start">
+                      <div class="profile-image box-shadow1">
+                        <img src="{{dashsubDetail.logo}}" class="img-fluid">
+                      </div>
+                      <div class="studio-profile-detail flex-fill pl-4">
+                        <h5 class="nametitle classname-title mb-1">{{dashsubDetail.business_name}}</h5>
+                        <p class="brand-color3 paratitle mb-2" *ngIf="dashsubDetail.address.length <= 25">
+                          {{dashsubDetail.address }}</p>
+                        <p class="brand-color3 paratitle mb-2" *ngIf="dashsubDetail.address.length > 25">
+                          {{dashsubDetail.address  | ellipsis:25}}</p>
+                        <p class="paratitle"><i class="fas fa-map-marker-alt mr-2 mb-0"></i>
+                          {{dashsubDetail.distance}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="studio-card-select">
+                  <i class="fas fa-heart brand-color3 font-22" *ngIf="dashsubDetail.favourite == 0"
+                    (click)="addFav(dashsubDetail.business_id,1)"></i>
+                  <i class="fas fa-heart brand-color2 font-22" *ngIf="dashsubDetail.favourite == 1"
+                    (click)="addFav(dashsubDetail.business_id,0)"></i>
+                </div>
+              </div><!-- Card-5 -->
+
+            </div>
+          </div>
+
+
+
+        </div><!-- studio-cards -->
+      </div> <!-- end of container-fluid -->
+
+    </div>
+  </div>
+
+  <div class="row  border-radius6 p-3" *ngIf="dashboardDetail.length == 0">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <p class="font-awesome black-color font-18 d-inline mx-2 "> No Studio available</p>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+
+  <!-- End of Find Studio & Zumba -->
+  <!-- Modal Popup (Change - Password ) -->
+  <div class="modal fade" id="addFilter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+
+        <div class="modal-body light-bg box-shadow1 border-radius6 px-4 pb-4 px-md-5 pb-md-5">
+          <div class="mb-5">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true"> <img src="assets/img/ic_close.png" class="img-fluid"> </span>
+            </button>
+          </div>
+
+          <div class="form-group relative mt-5">
+            <h5 class="title black-color"> Find your studio </h5>
+            <i class="fas fa-chevron-down"></i>
+            <select class="form-control-1 white-color" [(ngModel)]="categoryText" (change)="getCategories()">
+              <!-- <option selected="" value=""> Select the category </option> -->
+              <option *ngFor="let cd of categoryList" value="{{cd.id}}"> {{cd.category_name}} </option>
+            </select>
+          </div><!-- Find youe studio -->
+
+          <div class="form-group show-business mb-0 pt-3 mt-md-3">
+
+
+
+
+
+
+
+            <h5 class="title black-color"> Show business having </h5>
+            <div class="service-button">
+              <div *ngFor="let item of subcategoryList" style="display:inline">
+                <input type="checkbox" name="checkbox" id="{{item.id}}" [value]="item.id" [(ngModel)]="item.isChecked"
+                  (change)="changeSelection()">
+                <label for="{{item.id}}">{{item.category_name}} </label>
+              </div>
+            </div>
+            <!-- <div class="mb-4">
+            <ng-multiselect-dropdown
+            [placeholder]="'Select Business category'"
+            [data]="subcategoryList"
+            [(ngModel)]="subcategoryText"
+            [settings]="dropdownSettings"           
+          >
+          </ng-multiselect-dropdown>       
+        
+          </div>   -->
+          </div><!-- Show business having -->
+
+          <div class="form-group mb-0 pt-3 mt-md-3">
+            <div class="custom-controls-stacked d-block">
+              <label class="custom-control ios-switch text-right mb-0">
+                <h5 class="title black-color d-inline float-left"> Distance in KM </h5>
+
+                <!-- <input type="checkbox" [(ngModel)]="settingObj.userNameSwitch" #userNameSwitch="ngModel" name="userNameSwitch" (change)="changeUsernameStatus(settingObj.userNameSwitch)"  class="ios-switch-control-input">
+              <span class="ios-switch-control-indicator"></span> -->
+
+
+                <input type="checkbox" class="ios-switch-control-input" (change)="getValue($event)">
+                <span class="ios-switch-control-indicator"></span>
+              </label>
+              <div>
+                <ng5-slider [(value)]="sliderhighValue" [options]="slideroptions" disabled *ngIf="distanceMode == true">
+                </ng5-slider>
+                <div class="distance-result" *ngIf="distanceMode == true">
+                  <h5 class="black-color d-inline">Distance range: {{slidervalue}} Km - {{sliderhighValue}} km</h5>
+                </div>
+              </div>
+
+
+            </div>
+          </div><!-- Show business having -->
+
+
+          <div class="form-group px-3">
+            <button type="button" data-dismiss="modal" class="btn btn-blue-grad text-uppercase w-100 mt-3"
+              (click)="filterHome()"> Apply filter </button>
+          </div>
+
+        </div><!-- end of modal-body -->
+
+      </div>
+    </div>
+  </div>
+  <!-- End of Modal Popup (Change - Password ) -->
+</div>
+
+<app-inner-footer></app-inner-footer>

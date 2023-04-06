@@ -1,0 +1,62 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+
+<!-- My Studio Card Detials Section -->
+<div class="studio-details product-page pb-5">
+    <div class="container">
+      <app-sub-header></app-sub-header>
+      <div class="text-right mb-3">
+        <button type="button" class="btn btn-blue-grad px-2 text-uppercase" routerLink="/customer-detail" >Back </button>
+      </div>
+      <div class="row">
+        <div class="col-10">
+          <div class="section-heading">
+            <h5 class="title black-color font-w-100 text-uppercase font-16"> product image </h5>
+          </div>
+        </div><!-- end of col-12 -->
+        <div class="col-2 text-right">
+          <button routerLink="/customer-detail" class="btn btn-blue-grad mb-4 text-uppercase font-w-600 d-block ml-auto"> Back </button>
+
+        </div>
+        <div class="col-12 col-md-3" *ngFor="let images of ProductDetail.product_images">
+          <div class="border-radius6 box-shadow1 white-bg p-3" >
+            <img src="{{images.image_name}}" class="img-fluid w-100" style="height: 221px;">
+          </div>
+        </div>
+      </div><!-- end of Product image and Heading -->
+    </div><!-- end of container -->
+
+
+    <div class="container-fluid studio-padding-left py-5 product-detail-similar">
+      <div class="row px-3">
+        <div class="col-12 col-lg-5 respon-product">
+          <h4 class="title black-color font-w-100 font-16"> Product Detail </h4>
+          <div class="product-detail-section white-bg border-radius6 box-shadow1 pt-3 mx-0">
+            <div class="row px-3">
+              <div class="col-8 text-left">
+                <h5 class="heading-titlenew black-color font-w-100 font-16">{{ProductDetail.product_name}} </h5>
+              </div>
+              <div class="col-4 text-right">
+                <button type="button" class="btn btn-green-grad px-4">$ {{ProductDetail.product_price}} </button>
+              </div>
+            </div> <!-- end of row --> 
+
+            <div class="text-left pb-5 px-3">
+              <p class="black-color font-w-100 paratitle mb-2"> Product details </p>
+              <p class="brand-color3 text-justify paratitle pb-3">{{ProductDetail.product_description}} 
+              </p>
+            </div> 
+
+        </div>        
+        </div><!-- end of col-md-5 -->
+       
+      </div><!-- end of row -->
+    </div><!-- end of container-fluid -->
+  </div>          
+<!-- End of My Studio Card Detials Section -->
+</div>
+<app-inner-footer></app-inner-footer>
+

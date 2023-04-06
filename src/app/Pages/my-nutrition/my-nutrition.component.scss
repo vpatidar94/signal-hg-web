@@ -1,0 +1,13 @@
+.active {
+    opacity: 1;
+    transition: all .35s;
+    background-color: #248EA8;
+    border-radius: 6px 6px 0 0;
+    box-shadow: none;
+    .card-title {
+        color: #ffffff;
+    };
+    .weeks_day.active .card-title {
+        color: #FFF;
+    }
+}

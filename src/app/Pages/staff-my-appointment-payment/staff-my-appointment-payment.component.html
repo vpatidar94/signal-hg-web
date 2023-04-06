@@ -1,0 +1,276 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}"></ngx-loading>
+
+<!-- My Studio Card Detials-Service Section -->
+<div class="studio-details">
+    <div class="container">
+
+      <app-sub-header></app-sub-header>
+
+
+      <div class="s-d-appoint pb-5">
+
+        <div class="s-d-appoint-block">
+          <div class="row">
+            <div class="col-12 col-lg-6 mt-3 mt-lg-0">
+              <div class="s-d-appoint-block-left border-radius6 box-shadow1 white-bg">
+
+                <div class="px-3 pt-3 border-bottom">
+                  <div class="row">
+                    <div class="col-8 col-md-6">
+                      <h5 class="title black-color font-w-100 text-uppercase font-16 mb-3 pb-2"> customer details </h5>
+                    </div>
+                    <!-- <div class="col-4 col-md-6 text-right">
+                      <a href="Javascript:void(0);" class="brand-color1 font-14 font-w-600"> Change </a>
+                    </div> -->
+                  </div><!-- end of heading -->
+                  <div calss="row">
+                    <div class="form-group profile-gender mb-0 mt-3" >
+                      <div class="profile-gender-button" *ngIf="userInfo.role_id == 4">
+                        <input type="radio" id="self" name="radio" value="self" [ngModelOptions]="{standalone: true}" [(ngModel)]="bookingFor"   (change)="getBookingFor($event)">
+                        <label for="self"> Self </label>
+      
+                        <input type="radio" id="family" name="radio" value="family" [ngModelOptions]="{standalone: true}" [(ngModel)]="bookingFor"   (change)="getBookingFor($event)" (click)="getMemberList()">
+                        <label for="family"> Family </label>
+      
+                        <!-- <input type="radio" id="guest" name="radio">
+                        <label for="guest"> Guest </label> -->
+                      </div><!-- end of profile-gender-button -->
+                    </div><!-- end of form-group -->
+                  </div>
+                  <div class="row" *ngIf="bookingFor == 'self'">
+                    <div class="col-6 col-md-5 text-left mb-2">
+                      <p class="black-color font-w-100 font-14 mb-0"> Name </p>
+                      <p class="black-color font-w-100 font-18"> {{customerDetail.name}} {{customerDetail.lastname}} </p>                      
+                    </div><!-- end of col-3 -->
+
+                    <div class="col-6 col-md-3 text-left mb-2 pl-2 pl-md-0">
+                      <p class="black-color font-w-100 font-14 mb-0"> Gender </p>
+                      <p class="black-color font-w-100 font-18"> {{customerDetail.gender}} </p>                      
+                    </div><!-- end of col-3 -->
+
+                    <div class="col-6 col-md-3 text-left mb-2">
+                      <p class="black-color font-w-100 font-14 mb-0"> Age </p>
+                      <p class="black-color font-w-100 font-18"> {{customerDetail.age}} years </p>                      
+                    </div><!-- end of col-3 -->
+                  </div><!-- end of row -->
+                  <div *ngIf="bookingFor == 'family'">
+                    <div class ="row" *ngIf ="memberDetail.length == 0">
+                      <div class="text-center">
+                        <p class="font-awesome black-color font-18 d-inline mx-2 "> No Members Available</p>
+    
+                      </div>
+                    </div>
+                    <div *ngIf ="memberDetail.length != 0" >
+                      <div class="table-responsive mt-2">
+                        <table class="table">
+                          <tbody>
+                            <tr>
+                              <th>
+                                
+                              </th>
+                              <th>
+                               Name
+                            </th>
+                            <th>
+                              Gender
+                          </th>
+                            <th>
+                                Age
+                            </th>
+                            </tr>
+                          </tbody>
+                      
+                          <tr *ngFor="let members of memberDetail">
+                            <td>
+                              <input type="radio" checked="checked" name="radio1" [value]="members.memeber_id" [(ngModel)]="family_id" [ngModelOptions]="{standalone: true}" (change)="familydetail(members.memeber_id)">
+                            </td>
+                        <td>
+                          {{members.member_name}}
+                        </td>
+                        <td>
+                          {{members.gender}}
+                          </td>
+                        <td>
+                          {{members.age}} years 
+                        </td>
+                        
+                          </tr>
+                        </table>
+                      </div>
+
+                 
+                     
+                    </div>
+
+                  
+                  </div><!-- end of row -->
+                
+                </div><!-- Customer details -->
+
+                <div class="px-3 pt-3 border-bottom">
+                  <div class="row">
+                    <div class="col-8 col-md-6">
+                      <h5 class="title black-color font-w-100 text-uppercase font-16 mb-3 pb-2"> Appointments details </h5>
+                    </div>
+                    <div class="col-4 col-md-6 text-right">
+                      <a routerLink="/book-appointment" class="brand-color1 font-14 font-w-600"> Change </a>
+                    </div>
+                  </div><!-- end of heading -->
+                  <div class="row">                   
+                    <div class="col-6  text-left mb-2">
+                      <p class="black-color font-w-100 font-14 mb-0"> Instructor </p>
+                      <p class="black-color font-w-100 font-18"> {{completeBookingDetail.instrutor_name}} {{completeBookingDetail.instrutor_lastname}} </p>                      
+                    </div><!-- end of col-3 -->
+
+
+                    <div class="col-6  text-left mb-2">
+                      <p class="black-color font-w-100 font-14 mb-0"> Duration </p>
+                      <p class="black-color font-w-100 font-18">{{completeBookingDetail.duration}} Min. </p>                      
+                    </div><!-- end of col-3 -->
+
+                    <!-- <div class="col-6 col-md-6 text-left mb-2">
+                      <p class="black-color font-w-100 font-14 mb-0"> Skills </p>
+                      <p class="black-color font-w-100 font-18"> {{completeBookingDetail.skills}}  </p>                      
+                    </div> -->
+                    <!-- end of col-3 -->
+
+                    <div class="col-6  text-left mb-2">
+                      <p class="black-color font-w-100 font-14 mb-0"> Date </p>
+                      <p class="black-color font-w-100 font-18"> {{completeBookingDetail.Converted_date}} </p>                      
+                    </div><!-- end of col-3 -->
+                    <div class="col-6  text-left mb-2">
+                      <p class="black-color font-w-100 font-14 mb-0"> Time </p>
+                      <p class="black-color font-w-100 font-18"> {{completeBookingDetail.from_time}} - {{completeBookingDetail.to_time}} </p>                      
+                    </div><!-- end of col-3 -->
+
+                   
+
+                  </div><!-- end of row -->
+                </div><!-- Appointments details -->
+
+                <div class="px-3 pt-3 border-bottom">
+                  <div class="row">
+                    <div class="col-12 text-left mb-2">
+                      <h5 class="title black-color font-w-100 text-uppercase font-16 mb-3 pb-2"> service details </h5>
+                      <p class="black-color font-w-100 font-14 mb-0"> Service Name :  </p>
+                      <p class="black-color font-w-100 font-18"> {{completeBookingDetail.service_name}} </p>            
+                    </div><!-- end of col-3 -->
+                    <div class="col-12 text-left mb-2">
+                      <p class="black-color font-w-100 font-14 mb-0"> Location </p> 
+                      <p class="black-color font-w-100 font-18" *ngIf="completeBookingDetail.location_url"><a href="{{completeBookingDetail.location_url}}" target="_blank" title="{{completeBookingDetail.location_url}}"> {{completeBookingDetail.service_location}} </a> </p>            
+                      <p class="black-color font-w-100 font-18" *ngIf="!completeBookingDetail.location_url"> {{completeBookingDetail.service_location}}  </p>            
+                      
+                      <p class="black-color font-w-100 font-14 mb-0"> Web Link </p>
+                      <p class="black-color font-w-100 font-18" *ngIf="completeBookingDetail.web_link"><a href="{{completeBookingDetail.web_link}}" target="_blank"><i class="fa fa-link" aria-hidden="true" title="{{completeBookingDetail.web_link}}"></i>
+                      </a></p>            
+
+                      <p class="black-color font-w-100 font-18" *ngIf="!completeBookingDetail.web_link"> N/A</p>            
+
+                    </div><!-- end of col-3 -->
+
+                  </div><!-- end of row -->
+                </div><!-- Appointments details -->   
+
+                <!-- <div class="px-3 pt-3 border-bottom">
+                  <div class="row">
+                    <div class="col-12 text-left mb-2">
+                      <h5 class="title black-color font-w-100 text-uppercase font-16 mb-3 pb-2"> service details </h5>
+                      <p class="black-color font-w-100 font-14 mb-0"> Type </p>
+                      <p class="black-color font-w-100 font-18"> Spa, Foot Massage, Royal Thai Massage, Sore Spa </p>            
+                    </div>
+                  </div>
+                </div> -->
+                <!-- Appointments details -->             
+              </div><!-- end of s-d-appoint-block-left -->
+            </div><!-- end of col-md-6 -->
+
+            <div class="col-12 col-lg-6 mt-5 mt-lg-0" >
+              <div class="s-d-appoint-block-right border-radius6 box-shadow1 white-bg">
+                <div class="px-3 py-3 text-left light-bg border-t-lr-6">
+                  <h5 class="title black-color font-w-100 text-uppercase font-16 mb-0"> payment details </h5>
+                </div><!-- top heading -->
+
+                <div class="px-3 pt-4 pb-2 border-bottom">
+                  <div class="row mb-2">
+                    <div class="col-6 text-left">
+                      <p class="black-color font-w-100 font-18"> Appointment Fees: </p>
+                    </div>
+                    <div class="col-6 text-right">
+                      <p class="black-color font-w-100 font-18"> $ {{completeBookingDetail.service_charge}}  </p>
+                    </div>
+                  </div>
+                  <!-- <div class="row">
+                    <div class="col-6 text-left">
+                      <p class="black-color font-w-100 font-18"> Tax </p>
+                    </div>
+                    <div class="col-6 text-right">
+                      <p class="black-color font-w-100 font-18"> $ {{completeBookingDetail.service_tax}}  </p>
+                    </div>
+                  </div> -->
+
+                        <div class="row">
+                      <div class="col-6 text-left">
+                        <p class="black-color font-w-100 font-18"> Tax 1 </p>
+                      </div>
+                      <div class="col-6 text-right">
+                        <p class="black-color font-w-100 font-18"> $ {{completeBookingDetail.tax1_rate}} </p>
+                      </div>
+                      <div class="col-6 text-left">
+                        <p class="black-color font-w-100 font-18"> Tax 2 </p>
+                      </div>
+                      <div class="col-6 text-right">
+                        <p class="black-color font-w-100 font-18"> $ {{completeBookingDetail.tax2_rate}} </p>
+                      </div>
+                    </div>
+                </div><!-- end of Appointment Fees: -->
+
+                <div class="px-3 pt-4 pb-3 border-bottom">
+                  <div class="row mb-2">
+                    <div class="col-6 text-left">
+                      <p class="black-color font-w-100 font-18 mb-0"> Amount Payable </p>
+                    </div>
+                    <div class="col-6 text-right">
+                      <p class="black-color font-w-100 font-18 mb-0"> $ {{completeBookingDetail.totalAmount}}  </p>
+                    </div>
+                  </div>
+                </div><!-- end of Amount Payable -->
+
+                <div class="px-3 py-4 text-center">
+                  <button type="button" class="btn btn-blue-grad w-75 text-uppercase mb-4" (click)="confirmbooking()"> Confirm Booking </button>
+                  <a routerLink="/services" class="d-block red-color font-18 mb-0">  <button type="button" class="btn btn-blue-grad w-75 text-uppercase mb-4"> Cancel </button></a>
+                  <a href="javascript:void(0)" data-target="#busLocation" data-toggle="modal"  data-backdrop="static" data-keyboard="false" class="d-block  font-18 mb-0"> View Cancellation Policy </a>
+
+                </div><!-- end of button and view policy -->
+              </div>
+            </div><!-- end of col-md-6 -->
+
+          </div><!-- end of row -->          
+        </div><!-- end of s-d-appoint-block -->   
+      </div><!-- end of s-d-appoint -->
+
+    </div><!-- end of container -->
+  </div>          
+<!-- End of My Studio Card Detials-Service Section -->
+
+<app-inner-footer></app-inner-footer>
+<!-- CHECKOUT MODAL POPUP -->
+<div class="modal fade" id="busLocation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <button type="button" class="close text-right mr-2" data-dismiss="modal" aria-label="Close" >
+        <span aria-hidden="true">&times;</span>
+      </button>  
+      <div class="modal-body border-radius6 box-shadow1 p-3 light-bg">
+        <div class="text-center">
+         
+          <h4 class="title black-color text-uppercase"> cancel policy </h4>
+        </div>
+        <p>  {{completeBookingDetail.cancel_policy}} </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END OF CHECKOUT MODAL POPUP -->
+</div>

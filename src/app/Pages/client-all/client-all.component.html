@@ -1,0 +1,82 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+<!-- My Studio Card Detials Section -->
+<div class="studio-details client-home-inner">
+    <div class="container">
+      <app-sub-header></app-sub-header>
+
+
+      <div class="home-staff pb-2">
+        <div class="row">
+          <div class="col-12 col-md-11">
+            <div class="section-heading pt-2 pb-4 text-left">
+              <a href="Javascript:void(0);" class="black-color font-w-100 text-uppercase font-20"> Customers </a>
+            </div>
+          </div><!-- end of col-12 -->
+          <div class="col-12 col-md-4 d-none">
+            <div class="section-search">
+              <div class="form-group has-search pl-0 pl-md-3" > 
+                <a href="Javascript:void(0);" >
+                     <span class="fas fa-search form-control-feedback" (click)="ClientList()"  style="bottom:7px;top: unset;pointer-events: initial;"></span>
+                 </a>                
+                <input type="text" class="form-control" placeholder="Search" onkeyup="this.value=this.value.replace(/^\s+/g, '')" [(ngModel)]="search_text" (change)="ClientList()">
+              </div>
+
+            </div>
+          </div>
+          <div class="col-12 col-md-1 d-none">
+            <button type="button" class="btn btn-blue-grad px-2 text-uppercase mb-0 mb-md-5" (click)="reset()" >Reset </button>
+          </div>
+          <div class="col-12 col-md-1">
+            <button type="button" class="btn btn-blue-grad px-2 text-uppercase mb-0 mb-md-5" routerLink="/studio-detail">Back </button>
+        </div> 
+        </div>
+
+        <div class="row staff-studio-details" *ngIf="clientDetail.length != 0">
+          <div class="col-md-6 col-lg-4 py-3" *ngFor="let items of clientDetail">
+              <div class="appointment-slot-box box-shadow1 border-radius6 p-3 bg-white">
+                <!-- <a href="Javascript:void(0);" (click) ="redirectUrl(items.id)" > -->
+                  <div class="row p-2">
+                      <div class="col-2 px-1">
+                          <div class="profile-img box-shadow1">
+                              <img src="{{items.profile_img}}" class="img-fluid">
+                          </div>
+                      </div>
+                      <div class="col-10">
+                          <div class="row">
+                              <div class="col-9 px-1">
+                                  <p class="black-color font-14 font-w-600 mb-0 d-flex">
+                                    <span class="nametitle d-block text-capitalize">{{items.name}} </span> 
+                                  </p>
+                                  <p>  
+                                    <span class="ml-2 brand-color3 font-w-500">{{items.gender}}</span>
+                                  </p>
+                              </div>
+                              <div class="col-3 px-1">  
+                                <span class="mr-2 d-none"> <a  href="tel:'+'{{items.country_code}}{{items.mobile}}" target="blank" > <img src="assets/img/ic_call_web.png"> </a> </span>  
+                                <span class="mr-2 d-none"> <a href="https://mail.google.com/mail/u/0/?view=cm&to={{items.email}}&:&bcc&cc&fs=1&tf=1" target="blank"> <img src="assets/img/ic_email_web.png"> </a> </span>
+                                <span class="mr-2 text-right"> <a href="javascript:void(0)" (click)="redirectUrl(items.id)"> <i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
+                                </a> </span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                <!-- </a> -->
+              </div>
+          </div>
+        </div>
+<div class="home-staff-details white-bg box-shadow1 border-radius6 px-3 py-4 mb-4" *ngIf="clientDetail.length == 0">
+    <div class="text-center">
+        <p class="font-awesome black-color font-18 d-inline mx-2 "> No Customers Available</p>
+      </div>
+</div>
+
+      </div><!-- end of home-staff -->
+    </div><!-- end of container -->
+  </div>          
+<!-- End of My Studio Card Detials Section -->
+</div>
+<app-inner-footer></app-inner-footer>
+

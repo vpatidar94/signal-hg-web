@@ -1,0 +1,108 @@
+
+ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+        list-style: none;
+        text-decoration: none;
+    }
+}
+
+.form-control {
+    background: transparent;
+    border-radius: 0px;
+    height: 3rem;
+    color: $dark;
+    text-align: left;
+    font-size: .875rem;
+    letter-spacing: 0px;
+    line-height: 1.25rem;
+    border-bottom: 1px solid $brandcolor1;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+
+    &:active {
+        color: $dark;
+        background-color: transparent;
+        outline: 0;
+        border-bottom: 1px solid $brandcolor1;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        box-shadow: 0 2px 5px 3px rgba(43,147,172,.2);
+    }
+
+    &:focus {
+        color: $dark;
+        background-color: transparent;
+        outline: 0;
+        border-bottom: 1px solid $brandcolor1;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        box-shadow: 0 2px 5px 3px rgba(43,147,172,.2);
+    }
+}
+
+
+
+.form-control-1 {
+    background-color: transparent;
+    border-radius: $borderradius6;
+    height: 2.6rem;
+    color: $dark;
+    text-align: left;
+    font-size: .875rem;
+    letter-spacing: 0px;
+    line-height: 1.25rem;
+    border: 2px solid $light;
+    padding-left: 10px;
+
+    &:active {
+        color: $dark;
+        background-color: transparent;
+        outline: 0;
+        border: 2px solid $light;
+        box-shadow: 0 2px 5px 0 rgba(14,133,66,0.20);
+    }
+
+    &:focus {
+        color: $dark;
+        background-color: transparent;
+        outline: 0;
+        border: 2px solid $light;
+        box-shadow: 0 2px 5px 0 rgba(14,133,66,0.20);
+    }
+}
+
+
+.box-l-thmb {
+    img {
+        width: 100%;
+        display: block;
+        background: $white;
+        box-shadow: 0 2px 10px 0 rgba(112,145,251,0.38);
+        border-radius: 5px;
+    }
+}
+
+.box-r-content {
+    ul {
+        li {
+            padding: 5px 0;
+            font-size: $font15;
+            strong {
+                font-size: $font17;
+                color: $brandcolor1;
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .form-control {
+        height: 2.6rem;
+    }
+}

@@ -1,0 +1,79 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+
+<!-- Studio Found Section -->
+<div class="favourite py-5 internal-studio">
+  <div class="studio-cards">
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col-6">
+          <div class="section-heading mt-3">
+            <h5 class="title black-color font-w-100 text-uppercase font-16"> {{SearchDetail.total_count}} Studios Found </h5>
+          </div>
+        </div><!-- end of section-heading -->
+
+        <div class="col-6">
+          <div class="text-right">
+            <button type="button" class="btn btn-blue-grad px-4 text-uppercase mb-0 ml-2" routerLink="/home"  >Back </button>
+          </div>
+        </div><!-- end of col-6 -->
+      </div>
+
+      <div class="row" *ngIf="SearchDetail.length != 0">
+
+        <!-- <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-4">
+        <owl-carousel-o [options]="eventDetail_Options" class="new-slider-logo"> 
+          <ng-template carouselSlide *ngFor="let result of SearchDetail"  [id]="result.business_id"> -->
+    <div class="col-12 col-lg-3 mb-2 px-2" *ngFor="let result of SearchDetail">
+      <div class="studio-position-heart">
+        <div class="studio-card-newcustom gradient-studio-overlay box-shadow1"
+          (click)="redirectUrl(result.business_id)">
+          <div class="img-box" style="background-image: url({{result.logo}})">
+          </div>
+          <div class="studio-detail p-3">
+            <div class="row mx-0 align-items-start">
+              <div class="profile-image box-shadow1">
+                <img src="{{result.logo}}" class="img-fluid">
+              </div>
+              <div class="studio-profile-detail flex-fill pl-4">
+                <h5 class="nametitle classname-title mb-1">{{result.business_name}}</h5>
+                <p class="brand-color3 paratitle mb-2" *ngIf="result.address.length <= 25">
+                  {{result.address }}</p>
+                <p class="brand-color3 paratitle mb-2" *ngIf="result.address.length > 25">
+                  {{result.address  | ellipsis:25}}</p>
+                <p class="paratitle"><i class="fas fa-map-marker-alt mr-2 mb-0"></i>
+                  {{result.distance}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="studio-card-select">
+          <i class="fas fa-heart brand-color3 font-22" *ngIf="result.favourite == 0"
+            (click)="addFav(result.business_id,1)"></i>
+          <i class="fas fa-heart brand-color2 font-22" *ngIf="result.favourite == 1"
+            (click)="addFav(result.business_id,0)"></i>
+        </div>
+      </div>
+
+    </div>
+
+        </div><!-- end  of row -->
+      <div class="row" *ngIf="SearchDetail.length == 0">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" >
+          <div class="text-center mt-1 mt-md-3 mt-lg-1">
+            <h4 class="title black-color font-w-100"> Studio Not Found </h4>
+          </div>
+        </div>
+
+      </div>
+      </div>  
+      </div>
+    </div><!-- End of studio-cards -->
+  <!-- </div>           -->
+<!-- End of Favourite Section -->       
+
+</div>
+<app-inner-footer></app-inner-footer>
+

@@ -1,0 +1,83 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}"></ngx-loading>
+
+    <!-- My Studio Card Detials Section -->
+    <div class="studio-details client-home-inner">
+        <div class="container">
+            <app-sub-header></app-sub-header>
+
+
+            <div class="home-staff pb-5">
+                <div class="bg-white border-radius6 box-shadow1 p-4 mt-3 client-detail-wrp">
+                    <h4 class="font-w-400 font-18 mb-3 font-arialrouded text-danger">Appointment Cancelled</h4>
+                    <div class="row border-bottom py-3">
+                        <div class="col-lg-4 border-right">
+                            <h4 class="black-color font-w-400 font-18 mb-0 font-arialrouded">Customer Details</h4>
+                            <div class="row mt-3">
+                                <div class="col-5">
+                                    <p class="font-w-600 font-arialrounded font-14 mb-1 brand-color3">Name</p>
+                                        <p class="font-arialrounded font-18"> {{booking_Detail.user_info.name}}  {{booking_Detail.user_info.lastname}}</p>
+                                </div>
+                                <div class="col">
+                                    <p class="font-w-600 font-arialrounded font-14 mb-1 brand-color3">Gender</p>
+                                        <p class="font-arialrounded font-18">{{booking_Detail.user_info.gender}}</p>
+                                </div>
+                                <div class="col">
+                                    <p class="font-w-600 font-arialrounded font-14 mb-1 brand-color3">Age</p>
+                                    <p class="font-arialrounded font-18">{{booking_Detail.user_info.age}} Years</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <h4 class="black-color font-w-400 font-18 mb-0 font-arialrouded">Appointment Details</h4>
+                            <div class="row mt-4">
+                                <div class="col">
+                                    <p class="font-w-600 font-arialrounded font-14 mb-1 brand-color3">Id</p>
+                                    <p class="font-arialrounded font-18">781552</p>
+                                </div>
+                                <div class="col">
+                                    <p class="font-w-600 font-arialrounded font-14 mb-1 brand-color3">Time</p>
+                                    <p class="font-arialrounded font-18">{{booking_Detail.start_time_new}} - {{booking_Detail.end_time_new}}</p>
+                                </div>
+                                <div class="col">
+                                    <p class="font-w-600 font-arialrounded font-14 mb-1 brand-color3">Date</p>
+                                    <p class="font-arialrounded font-18">{{booking_Detail.slot_date_new}} </p>
+                                </div>
+                                <div class="col">
+                                    <p class="font-w-600 font-arialrounded font-14 mb-1 brand-color3">Instructor</p>
+                                    <p class="font-arialrounded font-18">{{booking_Detail.instructor_name}} </p>
+                                </div>
+                                <div class="col">
+                                    <p class="font-w-600 font-arialrounded font-14 mb-1 brand-color3">Duration</p>
+                                    <p class="font-arialrounded font-18">1 Hour</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="font-w-600 font-arialrounded font-14 brand-color3 my-4">Service Detail</p>
+                    <div class="row align-items-end border-bottom pb-4">
+                        <div class="col-md-3 border-right">
+                            <p class="font-w-600 font-arialrounded font-14 mb-1 brand-color3">Type</p>
+                            <p class="font-arialrounded font-18">Spa Massage</p>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <p class="font-w-600 font-arialrounded font-14 mb-1 brand-color3">Payment Details</p>
+                            <p class="font-w-600 font-arialrounded font-14 mb-1 brand-color3 d-flex">Cancellation Fee <span class="ml-auto d-block">$25.33</span></p>
+                            <p class="font-w-600 font-arialrounded font-14 pb-2 brand-color3 d-flex border-bottom">Tax <span class="ml-auto d-block">$00.77</span></p>
+                            <p class="font-w-600 font-arialrounded font-14 mt-1 brand-color3 d-flex">Total <span class="ml-auto d-block black-color">$26.77</span></p>
+                        </div>
+                    </div>
+
+                    <a href="javascript:void(0)" class="mt-4 d-block mx-auto text-center blue-color">View Policy</a>
+
+                </div>
+
+            </div><!-- end of home-staff -->
+        </div><!-- end of container -->
+    </div>
+    <!-- End of My Studio Card Detials Section -->
+</div>
+
+<app-inner-footer></app-inner-footer>

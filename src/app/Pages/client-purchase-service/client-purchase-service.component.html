@@ -1,0 +1,181 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+
+<!-- My Studio Card Detials-Service Section -->
+<div class="studio-details">
+    <div class="container">
+        <app-sub-header></app-sub-header>
+      <div class="studio-details-service pb-5">
+        <div class="row">
+          <div class="col-12">
+            <div class="white-bg border-radius6 box-shadow1 p-3">
+
+              <div class="row">
+                <div class="col-12">
+                  <div class="s-t-search">
+                    <div class="section-search">
+                      <div class="form-group has-search pl-0 pl-md-3">
+                        <span class="fas fa-search form-control-feedback" (click)="serviceList()"  style="bottom:7px;top: unset;pointer-events: initial;"></span>
+                        <input type="text" class="form-control" placeholder="Search" onkeyup="this.value=this.value.replace(/^\s+/g, '')" [(ngModel)]="search_text" (change)="serviceList()">
+
+                      </div>
+                    </div><!-- end of section-search -->
+                  </div> <!-- end of s-t-search -->                    
+                </div><!-- end of col-12 -->
+              </div> <!-- end of row(SEARCH) -->
+
+              <div class="my-purchase-service-buttons">
+                <div id="exTab1" class=""> 
+                  <ul class="nav nav-pills">
+                    <li class="active"> <a href="#serAll" class="btn" data-toggle="tab"> All </a> </li>
+                    <li> <a href="#serRecurring" class="btn" data-toggle="tab"> Recurring </a> </li>
+                    <li> <a href="#serCompleted" class="btn" data-toggle="tab"> Completed </a> </li>
+                  </ul>
+
+                  <div class="tab-content clearfix mt-4 mt-md-0 pt-2 pt-md-0 pb-4">
+                    <div class="tab-pane active mt-0 mt-md-3 " id="serAll">
+                      <div class="row">
+                        <div class="col-12 col-md-4">
+                          <a href="client-s-d-service-all.html">
+                            <div class="service-btn-cards white-bg box-shadow1 border-radius6 p-3">
+                              <div class="row">
+                                <div class="col-3 col-md-12 col-lg-3">
+                                  <div class="service-btn-card-left text-center">
+                                    <img src="assets/img/img_1.png" class="img-fluid">
+                                  </div>
+                                </div><!-- end of col-3 -->
+
+                                <div class="col-9 col-md-12 col-lg-9 pl-0 pl-md-2 pl-lg-0">
+                                  <div class="service-btn-card-right">
+                                    <div class="row pt-2">
+                                      <div class="col-7 text-left">
+                                        <p class="black-color font-w-100 font-14 mb-1"> Brandon Scheider </p>
+                                      </div>
+                                      <div class="col-5 text-right">
+                                        <p class="black-color font-w-100 font-14 mb-1"> 08 Feb 2019 </p>
+                                      </div>
+                                    </div><!-- end of row(Name & Date) -->
+
+                                    <div class="row pt-0 pt-md-3 pt-lg-0">
+                                      <div class="col-7 pl-0 pl-md-2 pl-lg-0 text-left">
+                                        <img src="assets/img/zumba_logo_small.png" class="d-inline img-fluid w-25 ml-2 ml-md-0 ml-lg-2"> 
+                                        <p class="d-inline black-color font-w-100 font-14 mb-0"> Spa Parlour </p>
+                                      </div>
+                                      <div class="col-5 text-right pt-1">
+                                        <p class="black-color font-w-100 font-14 mt-2 mt-md-0 mt-lg-2 mb-0"> ID:774512 </p>
+                                      </div>
+                                    </div><!-- end of row(Name & Date) -->
+                                  </div>
+                                </div><!-- end of col-9 -->
+                              </div><!-- end of row -->
+                            </div><!-- end of service-btn-cards -->
+                          </a>
+                        </div><!-- end of col-md-4 -->
+                      </div><!-- end of row -->
+                    </div><!-- End of SERVICE - ALL -->
+
+                    <div class="tab-pane" id="serRecurring">
+                      <div class="row">
+                        <div class="col-12 col-md-4">
+                          <a href="client-s-d-service-recurring.html">
+                            <div class="service-btn-cards white-bg box-shadow1 border-radius6 p-3">
+                              <div class="row">
+                                <div class="col-3 col-md-12 col-lg-3">
+                                  <div class="service-btn-card-left text-center">
+                                    <img src="assets/img/img_2.png" class="img-fluid">
+                                  </div>
+                                </div><!-- end of col-3 -->
+
+                                <div class="col-9 col-md-12 col-lg-9 pl-0 pl-md-2 pl-lg-0">
+                                  <div class="service-btn-card-right">
+                                    <div class="row pt-2">
+                                      <div class="col-7 text-left">
+                                        <p class="black-color font-w-100 font-14 mb-1"> Carl Oliver </p>
+                                      </div>
+                                      <div class="col-5 text-right">
+                                        <p class="black-color font-w-100 font-14 mb-1"> 12 Feb 2019 </p>
+                                      </div>
+                                    </div><!-- end of row(Name & Date) -->
+
+                                    <div class="row pt-0 pt-md-3 pt-lg-0">
+                                      <div class="col-7 pl-0 pl-md-2 pl-lg-0 text-left">
+                                        <img src="assets/img/zumba_logo_small.png" class="d-inline img-fluid w-25 ml-2 ml-md-0 ml-lg-2"> 
+                                        <p class="d-inline black-color font-w-100 font-14 mb-0"> Spa Parlour </p>
+                                      </div>
+                                      <div class="col-5 text-right pt-1">
+                                        <p class="black-color font-w-100 font-14 mt-2 mt-md-0 mt-lg-2 mb-0"> ID:4475886 </p>
+                                      </div>
+                                    </div><!-- end of row(Name & Date) -->
+                                  </div>
+                                </div><!-- end of col-9 -->
+                              </div><!-- end of row -->
+                            </div><!-- end of service-btn-cards -->
+                          </a>
+                        </div><!-- end of col-md-4 -->                    
+                      </div><!-- end of row -->
+                    </div><!-- End of SERVICE - RECURRING -->
+
+                    <div class="tab-pane" id="serCompleted">
+                      <div class="row">
+                        <div class="col-12 col-md-4">
+                          <a href="client-s-d-service-complete.html">
+                            <div class="service-btn-cards white-bg box-shadow1 border-radius6 p-3">
+                              <div class="row">
+                                <div class="col-3 col-md-12 col-lg-3">
+                                  <div class="service-btn-card-left text-center">
+                                    <img src="assets/img/img_4.png" class="img-fluid">
+                                  </div>
+                                </div><!-- end of col-3 -->
+
+                                <div class="col-9 col-md-12 col-lg-9 pl-0 pl-md-2 pl-lg-0">
+                                  <div class="service-btn-card-right">
+                                    <div class="row pt-2">
+                                      <div class="col-7 text-left">
+                                        <p class="black-color font-w-100 font-14 mb-1"> Sarah Jefferson </p>
+                                      </div>
+                                      <div class="col-5 text-right">
+                                        <p class="black-color font-w-100 font-14 mb-1"> 14 Feb 2019 </p>
+                                      </div>
+                                    </div><!-- end of row(Name & Date) -->
+
+                                    <div class="row pt-0 pt-md-3 pt-lg-0">
+                                      <div class="col-7 pl-0 pl-md-2 pl-lg-0 text-left">
+                                        <img src="assets/img/zumba_logo_small.png" class="d-inline img-fluid w-25 ml-2 ml-md-0 ml-lg-2"> 
+                                        <p class="d-inline black-color font-w-100 font-14 mb-0"> Spa Parlour </p>
+                                      </div>
+                                      <div class="col-5 text-right pt-1">
+                                        <p class="black-color font-w-100 font-14 mt-2 mt-md-0 mt-lg-2 mb-0"> ID:881245 </p>
+                                      </div>
+                                    </div><!-- end of row(Name & Date) -->
+
+                                    <div class="row pt-0 pt-md-3 pt-lg-0">
+                                      <div class="col-12 text-right pt-1">
+                                        <p class="black-color font-w-100 font-14 mt-2 mt-md-0 mt-lg-2 mb-0"> Amount Paid: $ 560.10 </p>
+                                      </div>
+                                    </div><!-- end of row(Name & Date) -->
+                                  </div>
+                                </div><!-- end of col-9 -->
+                              </div><!-- end of row -->
+                            </div><!-- end of service-btn-cards -->
+                          </a>
+                        </div><!-- end of col-md-4 -->
+                      </div><!-- end of row -->
+                    </div><!-- End of SERVICE - COMPLETED -->
+                  </div><!-- end of tab-content -->
+                </div>
+              </div><!-- end of my-purchase-service-buttons -->
+
+          </div>
+        </div>
+
+        </div><!-- end of row -->        
+      </div><!-- end of studio-details-service -->
+
+    </div><!-- end of container -->
+  </div>          
+<!-- End of My Studio Card Detials-Service Section -->
+
+</div>
+<app-inner-footer></app-inner-footer>

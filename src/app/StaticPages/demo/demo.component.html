@@ -1,0 +1,96 @@
+<app-header></app-header>
+
+<!-- Demo Content Section -->
+<div class="">
+  <div class="">
+    <div class="container">
+      <div class="text-center wow animated slideInLeft mt-5 pt-2">
+        <div class="demo-top-section">
+          <h2 class="dark-color font-w-900 pb-4"> Demo </h2>
+          <p class="pb-3 brand-color3 font-16 line-height25 font-w-500 px-0 px-md-5"> Take a look at<a href="javascript:void(0)" style="cursor: text;"> Signal Health Group Wellness</a> for yourself. Click on the video below to see a pre-recorded demo. If you like what you see, start your  <a href="{{baseUrl}}studioadmin/choose-plan"> <span class="text-uppercase black-color font-w-900 header-css"> 14 Days Free Trial</span></a> </p>
+          <div class="demo-video mb-4">
+            <img src="assets/img/demo_img.png" class="img-fluid">
+            <div class="demo-video-btn">
+              <i class="fas fa-play-circle white-color font-36"></i>
+            </div>
+          </div>
+        </div><!-- end of demo-top-section -->
+
+        <div class="demo-bottom-section">
+          <h2 class="dark-color font-w-900 pb-4 pt-4 pt-lg-5"> Request A Personal Demo </h2>
+          <p class="pb-3 brand-color3 font-16 line-height25 font-w-500 px-0 px-md-5"> If you would like a personal walk-through of the software, we would like to schedule a time that works for you. Fill in your information and we will get in touch to step up a time that works. </p>
+          <form  [formGroup]="demoForm" (ngSubmit)="SendMessage()">
+          <div class="row pb-5">
+
+            <div class="col-12 col-sm-6">
+              <div class="form-group pr-0 pr-md-5">
+                <p class="black-color text-left font-18 font-w-900 mb-0 ml-2 pl-1"> First Name </p>
+                <input  class="form-control" onkeyup="this.value=this.value.replace(/^\s+/g, '')"  formControlName="first_name" [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }">
+                <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+                    <div *ngIf="f.first_name.errors.required">First Name is required</div>
+                    <div *ngIf="f.first_name.errors.pattern">First Name is required</div>
+              </div>               </div>
+            </div><!-- First Name -->
+
+            <div class="col-12 col-sm-6">
+              <div class="form-group pl-0 pl-md-5">
+                <p class="black-color text-left font-18 font-w-900 mb-0 ml-2 pl-1"> Last Name </p>
+                <input  class="form-control" onkeyup="this.value=this.value.replace(/^\s+/g, '')"  formControlName="last_name" [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }">
+                <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+                    <div *ngIf="f.last_name.errors.required">Last Name is required</div>
+                    <div *ngIf="f.last_name.errors.pattern">Last Name is required</div>
+              </div>               </div>
+            </div><!-- Last Name -->
+
+            <div class="col-12 col-sm-6 mt-2 mt-md-3">
+              <div class="form-group pr-0 pr-md-5">
+                <p class="black-color text-left font-18 font-w-900 mb-0 ml-2 pl-1"> Email </p>
+                <input type="email" class="form-control"  onkeyup="this.value=this.value.replace(/^\s+/g, '')"  formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+              </div>               </div>
+            </div><!-- Email -->
+
+            <div class="col-12 col-sm-6 mt-2 mt-md-3">
+              <div class="form-group pl-0 pl-md-5">
+                <p class="black-color text-left font-18 font-w-900 mb-0 ml-2 pl-1"> Business Name </p>
+                <input  class="form-control" onkeyup="this.value=this.value.replace(/^\s+/g, '')"  formControlName="business_name" [ngClass]="{ 'is-invalid': submitted && f.business_name.errors }">
+                <div *ngIf="submitted && f.business_name.errors" class="invalid-feedback">
+                    <div *ngIf="f.business_name.errors.required">Business Name is required</div>
+                    <div *ngIf="f.business_name.errors.pattern">Business Name is required</div>
+              </div>               </div>
+            </div><!-- Business Name -->
+
+            <div class="col-12 col-sm-6 mt-2 mt-md-3">
+              <div class="form-group pr-0 pr-md-5">
+                <p class="black-color text-left font-18 font-w-900 mb-0 ml-2 pl-1"> Phone No. </p>
+                <input type="number" class="form-control" onkeyup="this.value=this.value.replace(/^\s+/g, '')" onKeyPress="if(this.value.length >= 12) return false;" formControlName="phone" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
+                <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                    <div *ngIf="f.phone.errors.required">Phone is required</div>
+                    <div *ngIf="f.phone.errors.pattern">Phone number not valid</div>
+                  </div>               </div>
+            </div><!-- Phone No. -->
+
+            <div class="col-12 mt-2 mt-md-3">
+              <div class="form-group">
+                <p class="black-color text-left font-18 font-w-900 mb-0 ml-2 pl-1"> Comments </p>
+                <input  class="form-control" onkeyup="this.value=this.value.replace(/^\s+/g, '')" formControlName="comment" [ngClass]="{ 'is-invalid': submitted && f.comment.errors }">
+                <div *ngIf="submitted && f.comment.errors" class="invalid-feedback">
+                    <div *ngIf="f.comment.errors.required">Comment is required</div>
+                    <div *ngIf="f.comment.errors.pattern">Comment is required</div>
+              </div>               </div>
+            </div><!-- Comments -->
+            <div class="col-12 text-center mt-2 mt-md-3">
+              <button class="btn btn-blue text-uppercase px-5"  type="submit" [disabled]="demoSpinner"> <span class="spinner-grow spinner-grow-sm" *ngIf="demoSpinner" role="status" aria-hidden="true"></span> send </button>
+            </div><!-- Button -->
+          </div><!-- end of Input fields(Name, Phone, Email, Message and Button) -->
+        </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End of Demo Content Section -->
+<app-footer></app-footer>

@@ -1,0 +1,910 @@
+<div *ngIf="loginInfo">
+    <app-inner-header></app-inner-header>
+  </div>
+  <div *ngIf="!loginInfo">
+    <app-header></app-header>
+  </div>
+  <div class="container-fluid" id="grad1">
+    <div class="row justify-content-center mt-0">
+       <div class="col-11 col-sm-9 col-md-8 col-lg-8 text-center p-0 mt-3 mb-2">
+          <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+             <h2><strong>Registration</strong></h2>
+             <div class="row">
+                <div class="col-md-12 mx-0">
+                   <div id="msform">
+                      <!-- progressbar -->
+                      <ul id="progressbar">
+                         <li class="active" id="account"><strong>Step 1</strong></li>
+                         <li id="personal"><strong>Step 2</strong></li>
+                         <li id="payment"><strong>Step 3</strong></li>
+                         <li id="confirm"><strong>Step 4</strong></li>
+                         <li id="confirm"><strong>Step 5</strong></li>
+                         <li id="confirm"><strong>Step 6</strong></li>
+                         <li id="confirm"><strong>Step 7</strong></li>
+                         <li id="confirm"><strong>Step 8</strong></li>
+                         <li id="confirm"><strong>Step 9</strong></li>
+                         <li id="confirm"><strong>Step 10</strong></li>
+                      </ul> <!-- fieldsets -->
+                      <fieldset>
+                         <div class="form-card">
+                            <h4 class="fs-title mb-4"> Please select what you will be using our web for:</h4>                                
+                            <div class="m_bottom" *ngFor="let category of categoryList">
+                                <input type="radio" name="radio" class="form-check-input" name="radio" [value]="category.id" [id]="category.id" (change)="getCategoryID($event)">
+                                <h3 class="font-weight-bold">{{category.category_name}}</h3>
+                                <div class="clearfix mb-3"  *ngIf="category.status == true">
+                                    <div class="form-check form-check-inline" *ngFor="let subcategory of category.sub_category_child">
+                                        <input type="radio" class="form-check-input"  [id]="subcategory.id" name="radio1"   [value]="subcategory.id"  (change)="getsubCategoryID($event)" /><label for="subcategory.id" class="form-check-label">{{subcategory.category_name}}</label>
+                                    </div>
+                                </div>
+                                <div class="clearfix mb-3"  *ngIf="category.status == false">
+                                    <div class="form-check form-check-inline" *ngFor="let subcategory of category.sub_category_child">
+                                        <input type="radio" class="form-check-input"  [id]="subcategory.id" name="radio1"   [value]="subcategory.id"  disabled /><label for="subcategory.id" class="form-check-label">{{subcategory.category_name}}</label>
+                                    </div>
+                                </div>
+                            </div> 
+                         </div> 
+                         <input type="button" name="next" class="next action-button" value="Next Step" (click)="currentStep = 1;nextprev()"/>
+                      </fieldset>
+                      <fieldset>
+                         <div class="form-card">                            
+                            <h4 class="fs-title mb-4">Please complete our <strong > Consent &amp; Liabilities Waiver Form:</strong></h4>
+                               <h3  class="font-weight-bold">Consent and liability waiver release form</h3>
+                               <form class="form-inline">
+                                   <p>
+                                       I <input type="text" id="" class="form-control"> (Parent or Guardian if customer is under 18 years old) on behalf of
+                                       <input type="text" id="" class="form-control"> (minor or child under 18) of <input type="text" id="" class="form-control"> (City) of
+                                       <input type="text" id="" class="form-control"> (State) hereby affirm that | am entering a course of instruction in physical fitness and performance training. By enrolling in this course | certify
+                                       that | am cognizant of all of the inherent dangers of physical fitness and therapy, and the basic safety rules for activities connected herewith.
+                                   </p>
+                                   <p>| understand and agree that neither the class nor its owners, operators, agents, or instructors,</p>
+                                   <p>
+                                       including but not limited to <input type="text" id="" class="form-control"> and/or , <input type="text" id="" class="form-control"> may be held liable in any way for
+                                       any occurrence in connection with my physical fitness and performance, which may result in injury, death, or damages to me or my family, heirs, or assignees. |further acknowledge and forever release
+                                       <input type="text" id="" class="form-control"> and/or <input type="text" id="" class="form-control"> in connection directly or indirectly with my physical fitness,
+                                       training and therapy as result of <input type="text" id="" class="form-control"> and/or <input type="text" id="" class="form-control"> own negligence, which may
+                                       result in injury, death or damages to me or my family, heirs, or assignees.
+                                   </p>
+                                   <p>
+                                       In consideration of being allowed to enroll in this course | hereby personally assume all risks connected with the course, and | further release the instructors, program, agents, and operators, including but not limited to the
+                                       persons mentioned for any injury or damage which may be incurred by me while | am enrolled in the fitness or performance course, including all risks connected therewith, whether foreseen or unforeseen; and further to save and
+                                       hold harmless the program and persons from any claim by me, or my family, estate, heirs, or assignees, arising out of my enrollment and participation in this course.
+                                   </p>
+                                   <p>
+                                       I further state that | am of lawful age and legally competent to sign this aforementioned release; that | understand that the terms herein is contractual and not a mere recital; and that | have signed this document as my own
+                                       free act.
+                                   </p>
+                                   <p>
+                                       | have fully informed myself of the contents of this aforementioned and release by reading it before I sign it, | have been advised to submit, at my own expense and time, to a medical examination to ensure myself, and assume my
+                                       own responsibility of physical fitness and capability to perform under the normal conditions of the fitness and therapy program, and am physically fit as tested by a medical examination. | also understand that the owner reserves
+                                       the right of membership.
+                                   </p>
+                                   <p>
+                                       IN WITNESS WHEREOF, | have executed this aforementioned and release at (location) <input type="text" id="" class="form-control"> on (Date)
+                                       <input type="text" id="" class="form-control"> , 20 <input type="text" id="" class="form-control">.
+                                   </p>
+                                   <div class="btn_input pt-3 w-100">
+                                       <input type="text" id="" class="form-control">
+                                       <div class="dropdown">
+                                           <button  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-blue dropdown-toggle">Font</button>
+                                           <div  aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+                                            <a class="dropdown-item" *ngFor="let item of fontList" href="javascript:void(0)">{{item.font_name}}</a>
+                                           </div>
+                                       </div>
+                                       <input type="text" id="" class="form-control">
+                                       <div  class="dropdown">
+                                           <button  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-blue dropdown-toggle">Font</button>
+                                           <div  aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+                                            <a class="dropdown-item" *ngFor="let item of fontList" href="javascript:void(0)">{{item.font_name}}</a>
+                                        </div>
+                                       </div>
+                                   </div>
+                                   <div class="sign w-100">
+                                     <p><span  class="font-italic mr-5"> Authorized Signature</span><span  class="font-italic client_sign"> Client</span></p>
+                                   </div>  
+                               </form>
+                            
+                         </div> <input type="button" name="previous" class="previous action-button-previous"
+                            value="Previous" /> <input type="button" name="next" class="next action-button"
+                            value="Next Step" />
+                      </fieldset>
+                      <fieldset>
+                         <div class="form-card">
+                            <h4 class="fs-title mb-4"> Please complete our <strong> Online Training Consent Form:</strong></h4>
+                            <h3  class="font-weight-bold"> Training Consent form</h3>
+                            <form class="form-inline">
+                               <p class="mb-4">
+                                   Name: <input type="text" id="" class="form-control"> Phone: <input type="text" id="" class="form-control"> Full Address:
+                                   <input type="text" id="" class="form-control">
+                               </p>
+                               <h3 class="mb-1">General Statement of program objectives and procedures:</h3>
+                               <p>
+                                   I understand that this personal training program may include exercises to build the cardiorespiratory system (heart and lungs), the musculoskeletal system, (which involves muscular endurance, strength and overall flexibility), and
+                                   to improve body composition (increasing muscle and bone and decreasing body fat). Exercise includes aerobic activities, such as walking, running, bicycle riding, rowing machine, group aerobics, swimming and other aerobic activities,
+                                   weight lifting using dumbbells, machines and other equipment to improve muscular strength and endurance, as well as flexibility exercises to improve joint range of motion.
+                               </p>
+                               <h3 class="mb-1">Description of potential risks:</h3>
+                               <p>
+                                   I understand that the reaction of the heart, lung, blood vessels as well as other systems to exercise cannot always be predicted with accuracy. | know there is a risk of certain abnormal changes occurring during the following
+                                   exercise, which include abnormalities of blood pressure or heart attacks as well as other side effects. Use of weight lifting equipment, and engaging in heavy body calisthenics may lead to musculoskeletal strains, pain and injury if
+                                   adequate warm-up, gradual progression, and safety procedures are not consistently followed. | understand that SIGNAL HEALTH GROUP and LESLIE DOUGLAS shall not be liable for any damages arising from personal injuries sustained by
+                                   CUSTOMER while and during and/or from a personal training program does so at his/her own risk. CUSTOMER assumes full responsibilities for any injuries or damages which may occur during and/or after training.
+                               </p>
+                               <p> hereby fully and forever release and discharge the personal trainer (seller), its assigns and agents rom all claims, demands, damages, rights of action, present and future therein.</p>
+                               <p>
+                                   understand and warrant, release and agree that | am in good physical condition and that | have no disability, impairment or ailment preventing me from engaging in active or passive exercise that will be detrimental to heart, safety,
+                                   or comfort, or physical condition if | engage or participate (other than those items fully discussed on the health history form).
+                               </p>
+                               <p> state that | have had a recent physical check-up and have my personal physician's permission to engage in aerobic and/or anaerobic conditioning.</p>
+                               <h3 class="mb-1">Description of potential benefits:</h3>
+                               <p>
+                                   understand that a program of regular exercise for the heart, lungs, muscles and joints has many benefits associated with it. These may include a decrease in body fat, improvement in blood fats and blood pressure, improvement in
+                                   physiological function and decrease in heart disease.
+                               </p>
+                               <div class="clearfix mb-3">
+                                   <div class="form-check form-check-inline mr-0">
+                                       <input type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input">
+                                       <label for="inlineCheckbox1" class="form-check-label texted-transform pl-2"> I have read the foregoing information and understand it. Any questions, which may have occurred, have been answered to my satisfaction.</label>
+                                   </div>
+                               </div>
+                               <div  class="btn_input pt-3">
+                                   <input type="text" id="" class="form-control">
+                                   <div class="dropdown">
+                                       <button type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-blue dropdown-toggle">Font</button>
+                                       <div  aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+                                            <a class="dropdown-item" *ngFor="let item of fontList" href="javascript:void(0)">{{item.font_name}}</a>
+                                       </div>
+                                   </div>
+                                   <input type="text" id="" class="form-control">
+                                   <div class="dropdown">
+                                       <button type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-blue dropdown-toggle">Font</button>
+                                       <div  aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+                                            <a class="dropdown-item" *ngFor="let item of fontList" href="javascript:void(0)">{{item.font_name}}</a>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="sign w-100">
+                                  <p ><span  class="font-italic mr-5"> Authorized Signature</span><span  class="font-italic client_sign"> Client</span></p>
+                               </div>   
+                            </form>                              
+                         </div> <input type="button" name="previous" class="previous action-button-previous"
+                         value="Previous" /> <input type="button" name="next" class="next action-button"
+                         value="Next Step" />
+                      </fieldset>
+
+                      <fieldset>
+                         <div class="form-card">
+                            <h4 class="fs-title mb-4"> Please complete our <strong> Physical Activity Readiness Questionnaire:</strong></h4>
+                            <h3 class="font-weight-bold"> Par-Q &amp; You</h3>
+                            <h3 class="font-weight-bold"> Physical Activity Readiness Questionaire</h3>
+                            <form class="form-inline">
+                               <p>
+                                   Regular physical activity is fun and healthy, and increasingly more people are starting to become more active every day. Being more active is very safe for most people. However, some people should check with their doctor before they
+                                   start becoming much more physically active.
+                               </p>
+                               <p>
+                                   If you are planning to become much more physically active than you are now, start by answering the seven questions in the box below. If you are between the ages of 15 and 69, the PAR-Q will tell you if you should check with your
+                                   doctor before you start. If you are over 69 years of age, and you are not used to being very active, check with your doctor.
+                               </p>
+                               <p>
+                                   Common sense is your best guide when you answer these questions. Please read the questions carefully and answer each one honestly: Check <strong > YES</strong> or <strong > NO</strong>.
+                               </p>
+                               <p class="font-weight-bold mb-0">Yes No</p>
+                               <div class="clearfix mb-3">
+                                   <div class="form-check form-check-inline justify-content-start mb-3">
+                                       <input type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input"><input  type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input mx-2">
+                                       <label for="inlineCheckbox1" class="form-check-label"> Has your doctor ever said that you have a heart condition and that you should only do physical activity recommended by a doctor?</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline justify-content-start mb-3">
+                                       <input type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input"><input  type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input mx-2">
+                                       <label for="inlineCheckbox1" class="form-check-label"> Do you feel pain in your chest when you do physical activity?</label>
+                                   </div>
+                                   <div class="form-check form-check-inline justify-content-start mb-3">
+                                       <input type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input"><input  type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input mx-2">
+                                       <label for="inlineCheckbox1" class="form-check-label"> In the past month, have you had chest pain when you were not doing physical activity?</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline justify-content-start mb-3">
+                                       <input type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input"><input  type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input mx-2">
+                                       <label for="inlineCheckbox1" class="form-check-label"> Do you lose your balance because of dizziness or do you ever lose consciousness?</label>
+                                   </div>
+                                   <div class="form-check form-check-inline justify-content-start mb-3">
+                                       <input type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input" /><input  type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input mx-2">
+                                       <label for="inlineCheckbox1" class="form-check-label"> Do you have a bone or joint problem (for example, back, knee or hip) that could be made worse by a change in your physical activity?</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline justify-content-start mb-3">
+                                       <input type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input"><input  type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input mx-2">
+                                       <label for="inlineCheckbox1" class="form-check-label"> Is your doctor currently prescribing drugs (for example, water pills) for your blood pressure or heart condition?</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline justify-content-start mb-3">
+                                       <input type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input"><input  type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input mx-2">
+                                       <label for="inlineCheckbox1" class="form-check-label"> Do you know of any other reason why you should not do physical activity?</label>
+                                   </div>
+                               </div>
+                               <h4  class="mb-1 font-weight-bold">If you answered YES to one or more questions:</h4>
+                               <p>
+                                   Talk with your doctor by phone or in person BEFORE you start becoming much more physically active. <br>
+                                   You may be able to do any activity you want - as long as you start slowly and build up gradually.
+                               </p>
+                               <p>Or, you may need to restrict your activities to those which are safe for you. Talk with your doctor about the kinds of activities you wish to participate in and follow his/her advice.</p>
+                               <p>Find out which programs are safe and helpful for you.</p>
+                               <h4 class="mb-1 font-weight-bold">If you answered NO honestly to all PAR-Q questions, you can be reasonably sure that you can:</h4>
+                               <p>
+                                   Start becoming much more physically active - begin slowly and build up gradually. This is the safest and easiest way to go. Take part in a fitness appraisal - this is an excellent way to determine your basic fitness so that you can
+                                   plan the best way for you to live actively. It is also highly recommended that you have your blood pressure evaluated. If your reading is over 144/94, talk with your doctor before you start becoming much more physically active.
+                               </p>
+                               <div class="box_shadow mb-3">
+                                   <p>
+                                       If you are not feeling well because of a temporary illness such as a cold or a fever - wait until you feel better; or if you are or may be pregnant - talk to your doctor before you start becoming more active.
+                                   </p>
+                                   <p class="mb-0">
+                                       <strong> Please note:</strong> If your health changes so that you then answer "YES" to any of the above questions, tell your fitness or health professional. Ask whether you should change your physical
+                                       activity plan.
+                                   </p>
+                               </div>
+                               <p>
+                                   <strong > Informed Use of the PAR-Q:</strong> Signal Health Group and Leslie Douglas assumes no liability for persons who undertake physical activity, and if in doubt after completing this questionnaire,
+                                   consult your doctor prior to physical activity.
+                               </p>
+                               <div class="clearfix mb-3">
+                                   <div  class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input">
+                                       <label for="inlineCheckbox1" class="form-check-label texted-transform font-italic pl-2">I have read, understood and completed this questionnaire. Any questions | had were answered to my full satisfaction.</label>
+                                   </div>
+                               </div>
+                               <div  class="btn_input pt-3">
+                                   <input type="text" id="" class="form-control" /><input  type="text" id="" class="form-control">
+                                   <div class="dropdown">
+                                       <button  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-blue dropdown-toggle">Font</button>
+                                       <div  aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+                                            <a class="dropdown-item" *ngFor="let item of fontList" href="javascript:void(0)">{{item.font_name}}</a>
+                                       </div>
+                                   </div>
+                                   <input type="text" id="" class="form-control" />
+                               </div>
+                               <div class="sign w-100">
+                                   <p><span class="font-italic mr-5"> Authorized Signature</span><span  class="font-italic client_sign pl-5"> Client</span></p>
+                               </div>    
+                               <div  class="text-center m-auto font-italic">
+                                   <p class="mb-3">
+                                       This physical activity clearance is valid for a maximum of 12 months from the date it is completed and becomes invalid if your condition changes so that you would answer YES to any of the seven questions.
+                                   </p>
+                                   <a href="https://signalhealthgroup.com/wp-content/uploads/2021/03/Medical-Release-Form.pdf" download class="btn btn-blue"> Medical Release Form Download</a>
+                               </div>
+                           </form>                            
+                            
+                         </div> <input type="button" name="previous" class="previous action-button-previous"
+                         value="Previous" /> <input type="button" name="next" class="next action-button"
+                         value="Next Step" />
+                      </fieldset>
+                      
+                      <fieldset>
+                         <div class="form-card">
+                            <h4 class="fs-title mb-4"> Please complete our <strong _ngcontent-vvr-c206=""> Personal Training New Customer Agreement:</strong></h4>
+                            <h3 class="font-weight-bold"> PERSONAL TRAINER FITNESS AGREEMENTS</h3>
+                            <form class="form-inline">
+                               <p class="mb-4">Name: <input  type="text" id="" class="form-control"> Date: <input type="text" id="" class="form-control"></p>
+                               <h3 class="mb-1">PERSONAL TRAINER FITNESS AGREEMENTS</h3>
+                               <p>
+                                   I have volunteered to participate in a programme of physical exercise under the instruction of any Signal Health Wellness Personal Trainer. Training may include, but is not limited to, weight and/or resistance training,
+                                   cardiovascular training, and floor mat exercises.
+                               </p>
+                               <p> Signal Health Wellness Personal Trainer agrees to instruct, assist and train me.</p>
+                               <p>
+                                   I realise that a large portion of my success will be based on my commitment to follow instruction, changing my lifestyle, and my attitude towards the fitness programme. Unfortunately Signal Health Wellness Personal Trainer cannot
+                                   guarantee results, but my willingness to work hard will improve the opportunity of success.
+                               </p>
+                               <div class="w-100">
+                                  <h3 class="mb-1"> Late / no-show / cancellation agreement</h3>
+                               </div>
+                               <p> <strong> Our main goal is to provide the best possible service to our customers.</strong></p>
+                               <p> Signal Health Wellness Personal Trainer works on an appointment based schedule to allow you the time required for your personal training session.</p>
+                               <p>
+                                   Sessions will generally be 30 minutes. Please be on time for your appointments. If you are late for a session it will still end at the scheduled time. If you are more than 10 minutes late for a session, it will be considered a
+                                   no-show and you will be required to pay the fee for the session.
+                               </p>
+                               <p>
+                                   Due to this schedule it is important that you give us sufficient notice when you need to cancel an appointment. This means a cancellation should be made at least 12 hours before the scheduled appointment. Failure to cancel a
+                                   training session within this time will result in you being charged for the session. Should you wish to reschedule an appointment, a minimum of 12 hours notice is required.
+                               </p>
+                               <p>We will do our best to accommodate this.</p>
+                               <p>
+                                   We understand that emergencies happen. We provide every customer with one free short-notice cancellation. You will not be charged for your first cancellation with less than 12 hour notice.<br>
+                                   Subsequent short-notice cancellations will be charged for the session. The free short-notice cancellation only applies if we are notified prior to the session start time. No-shows are not eligible for the free cancellation.
+                               </p>
+                               <div class="box_shadow mb-3">
+                                   <p class="mb-0"><strong >Refund Agreement</strong></p>
+                                   <p> If you are not satisfied with our services, we will be happy to refund services <strong > not performed</strong>. I have read the above policy and agree to its terms.</p>
+                                   <p class="mb-0"><strong >Payment Agreement</strong></p>
+                                   <p class="mb-0">Sessions will be pre-paid one session <strong > in advance</strong>. Single sessions are good for 90 days from the original date of purchase.</p>
+                               </div>
+                               <div class="clearfix mb-3">
+                                   <div  class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input">
+                                       <label for="inlineCheckbox1" class="form-check-label texted-transform font-italic"> I have read, understood and completed this questionnaire. Any questions | had were answered to my full satisfaction.</label>
+                                   </div>
+                               </div>
+                               <div class="btn_input pt-3">
+                                   <input type="text" id="" class="form-control">
+                                   <div  class="dropdown">
+                                       <button  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-blue dropdown-toggle">Font</button>
+                                       <div  aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+                                            <a class="dropdown-item" *ngFor="let item of fontList" href="javascript:void(0)">{{item.font_name}}</a>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="sign w-100">
+                                  <p><span class="font-italic"> Signature</span></p>
+                               </div>   
+                           </form>                             
+                            
+                         </div> <input type="button" name="previous" class="previous action-button-previous"
+                         value="Previous" /> <input type="button" name="next" class="next action-button"
+                         value="Next Step" />
+                      </fieldset>
+
+                      <fieldset>
+                         <div class="form-card">
+                            <h4 class="fs-title mb-4"> Please complete our <strong _ngcontent-llv-c206=""> Lifestyle Questionnaire:</strong></h4>
+                            <h3 class="font-weight-bold"> LIFESTYLE QUESTIONNAIRE</h3>
+                            <form class="">
+                               <p class="mb-4">Name: <input  type="text" id="" class="w-80"></p>
+                              <div class="form-row">
+                                  <div class="form-group col-md-6">
+                                       <label  for="inputEmail4" class="font-weight-bold">1. Occupation</label><input  type="text" id="" placeholder="" class="form-control step_formcontrol">
+                                  </div>
+                                  <div  class="form-group col-md-6">
+                                      <label for="inputPassword4" class="font-weight-bold">2. How many hours on average do you work each week?</label>
+                                      <input type="text" id="" placeholder="" class="form-control step_formcontrol" />
+                                  </div>
+                              </div>
+                               <div  class="checkbox_field clearfix mb-3">
+                                   <h4 class="mb-2 font-weight-bold">3. How do you spend the majority of your time at work?</h4>
+                                   <div class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input" />
+                                       <label for="inlineCheckbox1" class="form-check-label">Tired and find it difficult to pull yourself out of bed</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input" />
+                                       <label for="inlineCheckbox2" class="form-check-label">Refreshed and ready to start the day</label>
+                                   </div>
+                               </div>
+                               <div  class="checkbox_field clearfix mb-3">
+                                   <h4 class="mb-2 font-weight-bold">4. When you wake up are you:</h4>
+                                   <div class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input"><label for="inlineCheckbox1" class="form-check-label">Standing</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input"><label for="inlineCheckbox2" class="form-check-label">Sitting</label>
+                                   </div>
+                                   <div class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox3" value="option3" class="form-check-input"><label for="inlineCheckbox3" class="form-check-label">Driving</label>
+                                   </div>
+                                   <div class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox3" value="option4" class="form-check-input"><label for="inlineCheckbox3" class="form-check-label">Active</label>
+                                   </div>
+                               </div>
+                               <div class="checkbox_field clearfix mb-3">
+                                   <h4 class="mb-2 font-weight-bold">5. Would you characterise your life as:</h4>
+                                   <div class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input"><label for="inlineCheckbox1" class="form-check-label">Highly stressful</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input"><label for="inlineCheckbox2" class="form-check-label">Moderately stressful</label>
+                                   </div>
+                                   <div class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox3" value="option3" class="form-check-input"><label for="inlineCheckbox3" class="form-check-label">Low in stress</label>
+                                   </div>
+                               </div>
+                               <div  class="checkbox_field clearfix mb-3">
+                                   <h4 class="mb-2 font-weight-bold">6. How would you consider your current body weight?</h4>
+                                   <div class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input"><label for="inlineCheckbox1" class="form-check-label">Underweight</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input"><label for="inlineCheckbox2" class="form-check-label">Ideal</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox3" value="option3" class="form-check-input"><label for="inlineCheckbox3" class="form-check-label">Bit overweight</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox3" value="option4" class="form-check-input"><label for="inlineCheckbox3" class="form-check-label">Very overweight</label>
+                                   </div>
+                               </div>
+                               <div  class="checkbox_field clearfix mb-3">
+                                   <h4 class="mb-2 font-weight-bold">7. What does your typical day look like?</h4>
+                                   <div class="row">
+                                       <div class="form-group col-md-6">
+                                           <label for="exampleFormControlSelect1">Time you wake up:</label>
+                                           <select id="exampleFormControlSelect1" class="form-control step_selectcontrol">
+                                               <option >1</option>
+                                               <option >2</option>
+                                               <option >3</option>
+                                               <option >4</option>
+                                               <option >5</option>
+                                           </select>
+                                       </div>
+                                       <div class="form-group col-md-6">
+                                           <label for="exampleFormControlSelect1">Work times:</label>
+                                           <select id="exampleFormControlSelect1" class="form-control step_selectcontrol">
+                                               <option >1</option>
+                                               <option >2</option>
+                                               <option >3</option>
+                                               <option >4</option>
+                                               <option >5</option>
+                                           </select>
+                                       </div>
+                                   </div>
+                                   <div class="row">
+                                       <div class="form-group col-md-6">
+                                           <label for="exampleFormControlSelect1">Evening activities:</label><input  type="text" id="" placeholder="" class="form-control step_formcontrol" />
+                                       </div>
+                                       <div  class="form-group col-md-6">
+                                           <label for="exampleFormControlSelect1">Time you go to bed:</label>
+                                           <select id="exampleFormControlSelect1" class="form-control step_selectcontrol">
+                                               <option >1</option>
+                                               <option >2</option>
+                                               <option >3</option>
+                                               <option >4</option>
+                                               <option >5</option>
+                                           </select>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="checkbox_field clearfix mb-3">
+                                   <h4 class="mb-2 font-weight-bold">8. How would you describe your current activity level:</h4>
+                                   <div class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input"><label for="inlineCheckbox1" class="form-check-label">Sedentary</label>
+                                   </div>
+                                   <div class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input"><label for="inlineCheckbox2" class="form-check-label">Moderately active</label>
+                                   </div>
+                                   <div class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox3" value="option3" class="form-check-input"><label for="inlineCheckbox3" class="form-check-label">active</label>
+                                   </div>
+                                   <div class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox3" value="option4" class="form-check-input"><label for="inlineCheckbox3" class="form-check-label">Highly active</label>
+                                   </div>
+                               </div>
+                               <div  class="checkbox_field clearfix mb-3">
+                                   <h4 class="mb-2 font-weight-bold">9. How would you rate your present level of fitness?</h4>
+                                   <div class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input"><label for="inlineCheckbox1" class="form-check-label">Unfit</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input"><label for="inlineCheckbox2" class="form-check-label">Moderately fit</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox3" value="option3" class="form-check-input"><label for="inlineCheckbox3" class="form-check-label">Trained</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox3" value="option4" class="form-check-input"><label for="inlineCheckbox3" class="form-check-label">Highly trained</label>
+                                   </div>
+                               </div>
+                               <div class="checkbox_field clearfix mb-3">
+                                   <h4 class="mb-2 font-weight-bold">10. Have you ever had a personal training session?</h4>
+                                   <div class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input"><label  for="inlineCheckbox1" class="form-check-label">YES</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input"><label  for="inlineCheckbox2" class="form-check-label">NO</label>
+                                   </div>
+                               </div>
+                               <div class="checkbox_field clearfix mb-3">
+                                   <h4  class="mb-2 font-weight-bold">11. Do you currently exercise?</h4>
+                                   <div class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input"><label  for="inlineCheckbox1" class="form-check-label">YES</label>
+                                   </div>
+                                   <div class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input"><label  for="inlineCheckbox2" class="form-check-label">NO</label>
+                                   </div>
+                               </div>
+                               <div  class="checkbox_field clearfix mb-3">
+                                   <span class="mr-5"><strong > If none:</strong> any previous regular exercise?</span>
+                                   <div class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input"><label  for="inlineCheckbox1" class="form-check-label">YES</label>
+                                   </div>
+                                   <div class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input"><label  for="inlineCheckbox2" class="form-check-label">NO</label>
+                                   </div>
+                               </div>
+                               <p  class="font-italic blue_color">If you currently do NOT exercise, skip the following questions and go to question 19.</p>
+                               <div class="checkbox_field clearfix mb-3">
+                                   <h4 class="mb-2 font-weight-bold">12. How long have you been training/exercising?</h4>
+                                   <div  class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input"><label for="inlineCheckbox1" class="form-check-label">A few weeks</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input"><label for="inlineCheckbox2" class="form-check-label">A few months</label>
+                                   </div>
+                                   <div class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox3" value="option3" class="form-check-input"><label for="inlineCheckbox3" class="form-check-label">Around a year</label>
+                                   </div>
+                                   <div class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox3" value="option4" class="form-check-input"><label for="inlineCheckbox3" class="form-check-label">Over a year</label>
+                                   </div>
+                               </div>
+                               <div class="checkbox_field clearfix mb-3">
+                                   <h4  class="mb-2 font-weight-bold">13. How often do you train?</h4>
+                                   <div class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input"><label for="inlineCheckbox1" class="form-check-label">Once a week</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input"><label for="inlineCheckbox2" class="form-check-label">2x week</label>
+                                   </div>
+                                   <div class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox3" value="option3" class="form-check-input"><label for="inlineCheckbox3" class="form-check-label">3x week</label>
+                                   </div>
+                                   <div class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox3" value="option4" class="form-check-input"><label for="inlineCheckbox3" class="form-check-label">4x week</label>
+                                   </div>
+                                   <div class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox3" value="option4" class="form-check-input"><label for="inlineCheckbox3" class="form-check-label">5x week</label>
+                                   </div>
+                                   <div class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox3" value="option4" class="form-check-input"><label for="inlineCheckbox3" class="form-check-label">6x week</label>
+                                   </div>
+                                   <div class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox3" value="option4" class="form-check-input"><label for="inlineCheckbox3" class="form-check-label">Every day</label>
+                                   </div>
+                               </div>
+                               <div class="form-group">
+                                   <label  for="exampleFormControlTextarea1" class="mb-2 font-weight-bold">14. What type of exercise do you do?</label>
+                                   <textarea  id="exampleFormControlTextarea1" rows="3" class="form-control step_formcontrol h-50"></textarea>
+                               </div>
+                               <div  class="checkbox_field clearfix mb-3">
+                                   <h4 class="mb-2 font-weight-bold">15. How long is each training session?</h4>
+                                   <div  class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input" /><label  for="inlineCheckbox1" class="form-check-label">1/2 hour</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input" /><label for="inlineCheckbox2" class="form-check-label">1 hour</label>
+                                   </div>
+                                   <div class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox3" value="option3" class="form-check-input" /><label  or="inlineCheckbox3" class="form-check-label"> 1.5 hour</label>
+                                   </div>
+                                   <div class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox3" value="option4" class="form-check-input" /><label for="inlineCheckbox3" class="form-check-label">2 hours</label>
+                                   </div>
+                                   <div class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox3" value="option4" class="form-check-input" /><label for="inlineCheckbox3" class="form-check-label">Longer</label>
+                                   </div>
+                               </div>
+                               <div class="checkbox_field clearfix mb-3">
+                                   <h4 class="mb-2 font-weight-bold">16. Where do you exercise?</h4>
+                                   <div  class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input" /><label for="inlineCheckbox1" class="form-check-label">Gym</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input" /><label for="inlineCheckbox2" class="form-check-label">Home</label>
+                                   </div>
+                                   <div class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox3" value="option3" class="form-check-input" /><label for="inlineCheckbox3" class="form-check-label">Swimming pool</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox3" value="option4" class="form-check-input" /><label for="inlineCheckbox3" class="form-check-label">Other</label>
+                                   </div>
+                               </div>
+                               <div class="checkbox_field clearfix mb-3">
+                                   <h4 class="mb-2 font-weight-bold">17. What time of day do you normally train?</h4>
+                                   <div class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input" /><label for="inlineCheckbox1" class="form-check-label">Morning</label>
+                                   </div>
+                                   <div class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input" /><label for="inlineCheckbox2" class="form-check-label">Afternoon</label>
+                                   </div>
+                                   <div class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox3" value="option3" class="form-check-input" /><label for="inlineCheckbox3" class="form-check-label">Evening</label>
+                                   </div>
+                               </div>
+                               <div  class="row">
+                                   <div class="form-group col-md-6">
+                                       <label  for="exampleFormControlTextarea1" class="mb-2 font-weight-bold">18. Do you participate in any particular sports?</label>
+                                       <textarea  id="exampleFormControlTextarea1" rows="3" class="form-control step_formcontrol h-50"></textarea>
+                                   </div>
+                                   <div class="form-group col-md-6">
+                                       <label  for="exampleFormControlTextarea1" class="mb-2 font-weight-bold">19. What fitness equipment do you have access to?</label>
+                                       <textarea  id="exampleFormControlTextarea1" rows="3" class="form-control step_formcontrol h-50"></textarea>
+                                   </div>
+                               </div>
+                               <div  class="checkbox_field clearfix mb-3">
+                                   <h4  class="mb-2 font-weight-bold">20. How much time will you have to exercise each week?</h4>
+                                   <div  class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input" /><label for="inlineCheckbox1" class="form-check-label">1 hour</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input" /><label for="inlineCheckbox2" class="form-check-label">2 hour</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox3" value="option3" class="form-check-input" /><label for="inlineCheckbox3" class="form-check-label">3 hour</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox3" value="option3" class="form-check-input" /><label for="inlineCheckbox3" class="form-check-label">4 hour</label>
+                                   </div>
+                                   <div  class="input-group w-25 mb-3">
+                                       <select  id="inputGroupSelect02" class="custom-select step_selectcontrol selectcontrol_more">
+                                           <option selected="">More</option>
+                                           <option value="1" ng-reflect-value="1">One</option>
+                                           <option value="2" ng-reflect-value="2">Two</option>
+                                           <option value="3" ng-reflect-value="3">Three</option>
+                                       </select>
+                                   </div>
+                               </div>
+                               <div  class="form-row">
+                                   <div  class="form-group col-md-6">
+                                       <label for="inputEmail4" class="font-weight-bold">21. What did/do you like the least about exercise?</label>
+                                       <input  type="text" id="" placeholder="" class="form-control step_formcontrol" />
+                                   </div>
+                                   <div class="form-group col-md-6">
+                                       <label for="inputPassword4" class="font-weight-bold">22. What did/do you like about exercise?</label><input type="text" id="" placeholder="" class="form-control step_formcontrol" />
+                                   </div>
+                               </div>
+                               <div  class="form-group">
+                                   <label for="exampleFormControlSelect1" class="font-weight-bold">23. How many meals do you eat each day?</label>
+                                   <select id="exampleFormControlSelect1" class="form-control step_selectcontrol">
+                                       <option >1</option>
+                                       <option >2</option>
+                                       <option >3</option>
+                                       <option >4</option>
+                                       <option >5</option>
+                                   </select>
+                               </div>
+                               <div  class="form-group">
+                                   <label  for="exampleFormControlTextarea1" class="mb-2 font-weight-bold">
+                                       24. Do you ever skip meals?, if so which ones and how regularly?
+                                       <div  class="form-check form-check-inline">
+                                           <input  type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input" /><label  for="inlineCheckbox1" class="form-check-label">YES</label>
+                                       </div>
+                                       <div  class="form-check form-check-inline">
+                                           <input  type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input" /><label  for="inlineCheckbox2" class="form-check-label">NO</label>
+                                       </div>
+                                   </label>
+                                   <textarea  id="exampleFormControlTextarea1" rows="3" class="form-control step_formcontrol h-50"></textarea>
+                               </div>
+                               <div  class="checkbox_field clearfix mb-3">
+                                   <h4  class="checkbox_field mb-2 font-weight-bold">25. What time of the day do you usually eat your meals?</h4>
+                                   <div  class="row">
+                                       <div  class="form-group col-md-4">
+                                           <label  for="exampleFormControlSelect1">Breakfast</label><input  type="text" id="" placeholder="" class="form-control step_formcontrol" />
+                                       </div>
+                                       <div  class="form-group col-md-4">
+                                           <label  for="exampleFormControlSelect1">Lunch</label><input type="text" id="" placeholder="" class="form-control step_formcontrol" />
+                                       </div>
+                                       <div  class="form-group col-md-4">
+                                           <label  for="exampleFormControlSelect1">Evening</label><input type="text" id="" placeholder="" class="form-control step_formcontrol" />
+                                       </div>
+                                   </div>
+                                   <div  class="row">
+                                       <div  class="form-group col-md-4">
+                                           <label  for="exampleFormControlSelect1">Snack</label><input type="text" id="" placeholder="" class="form-control step_formcontrol" />
+                                       </div>
+                                       <div  class="form-group col-md-4">
+                                           <label  for="exampleFormControlSelect1">Snack</label><input type="text" id="" placeholder="" class="form-control step_formcontrol" />
+                                       </div>
+                                       <div  class="form-group col-md-4">
+                                           <label  for="exampleFormControlSelect1">Supper</label><input type="text" id="" placeholder="" class="form-control step_formcontrol" />
+                                       </div>
+                                   </div>
+                               </div>
+                               <div  class="checkbox_field clearfix mb-3">
+                                   <h4  class="mb-2 font-weight-bold">26. How big would you say your meals were?</h4>
+                                   <div  class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input"><label for="inlineCheckbox1" class="form-check-label">Small</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input"><label for="inlineCheckbox2" class="form-check-label">Medium</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox3" value="option3" class="form-check-input"><label for="inlineCheckbox3" class="form-check-label">Large</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox3" value="option4" class="form-check-input"><label for="inlineCheckbox3" class="form-check-label">Extra Large</label>
+                                   </div>
+                               </div>
+                               <div  class="checkbox_field clearfix mb-3">
+                                   <h4  class="checkbox_field mb-2 font-weight-bold">27. Do you ever get hungry between meals?</h4>
+                                   <div  class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input"><label for="inlineCheckbox1" class="form-check-label">NO</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input"><label for="inlineCheckbox2" class="form-check-label">Some</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox3" value="option3" class="form-check-input"><label for="inlineCheckbox3" class="form-check-label">YES</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox3" value="option4" class="form-check-input"><label for="inlineCheckbox3" class="form-check-label">Extreme</label>
+                                   </div>
+                               </div>
+                               <div  class="form-group">
+                                   <label  for="inputEmail4" class="font-weight-bold">28. Do you take any supplements?</label><input  type="text" id="" placeholder="e.g. vitamins" class="form-control step_formcontrol" />
+                               </div>
+                               <div  class="clearfix mb-3">
+                                   <span  class="mr-5"><strong > 29. Are you currently on a diet?</strong></span>
+                                   <div  class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input"><label  for="inlineCheckbox1" class="form-check-label">YES</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input"><label  for="inlineCheckbox2" class="form-check-label">NO</label>
+                                   </div>
+                               </div>
+                               <div  class="checkbox_field clearfix mb-3">
+                                   <h4 class="mb-2 font-weight-bold">30. How would you rate your current eating habits?</h4>
+                                   <div class="form-check form-check-inline">
+                                       <input  type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input"><label for="inlineCheckbox1" class="form-check-label">Poor</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input"><label for="inlineCheckbox2" class="form-check-label">Average</label>
+                                   </div>
+                                   <div  class="form-check form-check-inline">
+                                       <input type="checkbox" id="inlineCheckbox3" value="option3" class="form-check-input"><label for="inlineCheckbox3" class="form-check-label">Good</label>
+                                   </div>
+                               </div>
+                               <div  class="checkbox_field clearfix mb-3">
+                                   <h4 class="mb-2 font-weight-bold">31. On average, how many portions of fruit and vegetables do you eat per day?</h4>
+                                   <div class="row">
+                                       <div class="form-group col-md-6">
+                                           <label  for="exampleFormControlSelect1">Fruit</label><input type="text" id="" placeholder="" class="form-control step_formcontrol" />
+                                       </div>
+                                       <div  class="form-group col-md-6">
+                                           <label for="exampleFormControlSelect1">Vegetables</label><input type="text" id="" placeholder="" class="form-control step_formcontrol" />
+                                       </div>
+                                   </div>
+                               </div>
+                               <div  class="form-group">
+                                   <label for="inputEmail4" class="font-weight-bold">32. If you snack or have any weaknesses, what do you generally tend to eat/drink?</label>
+                                   <input type="text" id="" placeholder="" class="form-control step_formcontrol">
+                               </div>
+                               <div  class="form-group">
+                                   <label for="inputEmail4"><strong > 33. How many alcoholic units do you drink per week?</strong> (1 unit = wine 1 glass, beer 1/2 pint)</label>
+                                   <input type="text" id="" placeholder="" class="form-control step_formcontrol">
+                               </div>
+                               <div  class="form-group">
+                                   <label for="inputEmail4"><strong > 34. How much water do you drink each day?</strong> (glasses/litres)</label>
+                                   <input type="text" id="" placeholder="" class="form-control step_formcontrol">
+                               </div>
+                           </form>                              
+                            
+                         </div> <input type="button" name="previous" class="previous action-button-previous"
+                         value="Previous" /> <input type="button" name="next" class="next action-button"
+                         value="Next Step" />
+                      </fieldset>
+
+                      <fieldset>
+                         <div class="form-card">
+                            <h4 class="fs-title mb-4"> <strong> Please select user type:</strong></h4>
+                            <div class="clearfix mb-4">
+                               <div class="form-check form-check-inline">
+                                   <input type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input"><label for="inlineCheckbox1" class="form-check-label"> New User</label>
+                               </div>
+                               <div class="form-check form-check-inline">
+                                   <input type="checkbox" id="inlineCheckbox2" value="option2" class="form-check-input"><label for="inlineCheckbox2" class="form-check-label"> SHG’s Employee</label>
+                               </div>
+                               <div class="form-check form-check-inline">
+                                   <input type="checkbox" id="inlineCheckbox3" value="option3" class="form-check-input"><label for="inlineCheckbox3" class="form-check-label"> Employee’s Family Member</label>
+                               </div>
+                           </div>
+                           <div class="box_shadow mb-3">
+                               <ul class="content_list">
+                                  <li><span> New User:</span> $99/month with 7 days Trial</li>
+                                  <li><span> SHG’s Employee:</span> FREE</li>
+                                  <li><span> Employee’s Family Member:</span> $49.50</li>
+                               </ul>
+                           </div>
+                            
+                         </div> <input type="button" name="previous" class="previous action-button-previous"
+                         value="Previous" /> <input type="button" name="next" class="next action-button"
+                         value="Next Step" />
+                      </fieldset>
+
+                      <fieldset>
+                         <div class="form-card">
+                            <!-- <h4 class="fs-title mb-4"> step 8</h4> -->
+                            <ul class="content_list">
+                               <li><span> Name:</span> Juliet</li>
+                               <li><span> User Type:</span> New User</li>
+                               <li><span> Phone:</span> 000.000.0000</li>
+                               <li><span> Address:</span> Lorem Ipsum is simply dummy text of the printing and typesetting industry</li>
+                               <li><span> Purpose:</span><strong> Fitness</strong> - Personalized Training</li>
+                           </ul>
+                           <div class="row">
+                               <div class="col-md-9">
+                                  <div class="box_shadow my-3">
+                                     <ul class="content_list">
+                                           <li><span> Membership fee:</span> $25 / month</li>
+                                           <li><span> Personalized Training fee:</span> $297 /3 months</li>
+                                     </ul>
+                                  </div>
+                               </div>
+                               <div class="col-md-3">
+                                  <div role="group" aria-label="Basic example" class="btn-group-vertical mt-3 w-50">
+                                     <button type="button" class="btn btn-blue">TOTAL</button><button type="button" class="btn btn-blue font-weight-bold">$322</button>
+                                  </div>
+                               </div>
+                           </div>
+                           <div class="clearfix my-3">
+                               <div class="form-check form-check-inline">
+                                  <input type="checkbox" id="inlineCheckbox1" value="option1" class="form-check-input">
+                                  <label for="inlineCheckbox1" class="form-check-label texted-transform font-italic"> I have read, understand and agree to the Signal Health Group <u class="blue_color"> Terms and Conditions.</u></label>
+                               </div>
+                           </div>
+                           <div class="m-auto font-italic">
+                            <p class="mb-3"> Your card will be charged automatically after your 7 days trial period. Please contact us before your 7 days trial period is up to cancel if you do not wish to continue.</p>
+                           </div>                                                      
+                            
+                         </div>
+                         <input type="button" name="previous" class="previous action-button-previous"
+                            value="Previous" /> <input type="button" name="next" class="next action-button"
+                            value="Next Step" /> 
+                      </fieldset>
+
+                      <fieldset>
+                         <div class="form-card">
+                            <div class="custom-control custom-radio mb-3">
+                               <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input custom-input">
+                               <label for="customRadio1" class="custom-control-label custom-label"> Credit Card / Debit Card</label>
+                            </div>
+                            <h4 class="fs-title mb-4"> Pay securely using your credit card.</h4>
+                            <div class="form-group">
+                               <label for="inputEmail4">Name on Card</label>
+                               <input type="text" id="" placeholder="Daniel Hecker" class="form-control step_formcontrol">
+                            </div>
+                            <div class="form-group">
+                               <label for="cc-number" class="control-label">Card number</label>
+                               <input
+                                   _ngcontent-llv-c206=""
+                                   id="cc-number"
+                                   name="cc-number"
+                                   type="tel"
+                                   value=""
+                                   data-val="true"
+                                   data-val-required="Please enter the card number"
+                                   data-val-cc-number="Please enter a valid card number"
+                                   autocomplete="cc-number"
+                                   class="form-control step_formcontrol cc-number identified visa"
+                               >
+                               <span data-valmsg-for="cc-number" data-valmsg-replace="true" class="help-block"></span>
+                           </div>
+                           <div class="form-row">
+                               <div class="form-group col-md-6">
+                                  <label for="inputEmail4">Valid Trough</label><input type="text" id="" placeholder="MM / DD" class="form-control step_formcontrol">
+                               </div>
+                               <div class="form-group col-md-6">
+                                  <label for="inputPassword4">CVV</label><input _ngcontent-llv-c206="" type="text" id="" placeholder="eg. 201" class="form-control step_formcontrol">
+                               </div>
+                            </div>                          
+                            
+                         </div> 
+                         <input type="button" name="previous" class="previous action-button-previous"
+                            value="Previous"> 
+                            <input type="button" name="make_payment" class="next action-button"
+                            value="Submit">
+                      </fieldset>
+
+                      <fieldset>
+                         <div class="form-card">
+                            <!-- step 10 -->
+                            <h2 class="fs-title text-center">Success !</h2> <br><br>
+                            <div class="row justify-content-center">
+                               <div class="col-3"> <img src="assets/img/okv2.png"
+                                     class="fit-image"> </div>
+                            </div> <br><br>
+                            <div class="row justify-content-center">
+                               <div class="col-7 text-center">
+                                  <h5>You Have Successfully Signed Up</h5>
+                               </div>
+                            </div>
+                         </div>
+                      </fieldset>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+
+  <div *ngIf="loginInfo">
+    <app-inner-footer></app-inner-footer>
+  </div>
+  <div *ngIf="!loginInfo">
+    <app-footer></app-footer>
+  </div>

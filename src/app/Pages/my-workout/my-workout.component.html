@@ -1,0 +1,76 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}"></ngx-loading>
+    <div class="activity-section py-5">
+        <div class="container"> 
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <div class="adddiet_btn d-flex">
+                            <a href="javascript:void(0)" *ngIf="currentUrl=='/my-library'" class="btn btn-blue-grad mr-3" routerLink="/studio-detail" ><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> </a>
+                            <h4 class="text-uppercase"> Manual Activity</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="row" *ngIf="workoutList.length != 0">
+                        <div class="col-12 col-sm-4 col-md-4" *ngFor="let items of workoutList">
+                            <div class="meal_box text-center" [ngClass]="items.icon_class">
+                                <img [src]="items.image_url" class="img-fluid">
+                                <p class="mt-3"> {{items.name}}</p>
+                                <div class="icon_right">
+                                    <a href="javascript:void(0)"class="" (click)="redirect(items.id)"> <i class="fa fa-chevron-circle-right fa-2x" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-12 col-sm-4 col-md-3">
+                            <div class="meal_box bg-pinklight text-center">
+                                <img src="assets/img/ic-cycling.png" class="img-fluid">
+                                <p class="mt-3"> Cycling</p>
+                                <div class="icon_right">
+                                    <a href="javascript:void(0)"class="" (click)="redirect('1')"> <i class="fa fa-chevron-circle-right fa-2x" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 col-md-3">
+                            <div class="meal_box bg-bluelight text-center">
+                                <img src="assets/img/ic-fooddiet.png" class="img-fluid">
+                                <p class="mt-3"> Food Diet</p>
+                                <div class="icon_right">
+                                    <a href="javascript:void(0)"class="" (click)="redirect('1')"> <i class="fa fa-chevron-circle-right fa-2x" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 col-md-3">
+                            <div class="meal_box bg-darkblue text-center">
+                                <img src="assets/img/ic-dumbbells.png" class="img-fluid">
+                                <p class="mt-3"> Dumbbells</p>
+                                <div class="icon_right">
+                                    <a href="javascript:void(0)"class="" (click)="redirect('1')"> <i class="fa fa-chevron-circle-right fa-2x" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4 col-md-3">
+                            <div class="meal_box bg-bluelightextra text-center">
+                                <img src="assets/img/ic-running.png" class="img-fluid">
+                                <p class="mt-3"> Running</p>
+                                <div class="icon_right">
+                                    <a href="javascript:void(0)"class="" (click)="redirect('1')"> <i class="fa fa-chevron-circle-right fa-2x" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>     -->
+
+                    </div>
+                    <div class="row" *ngIf="workoutList.length == 0">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 text-center">
+                          <p class="font-awesome black-color font-18 d-inline mx-2 "> {{msg}}</p>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>   
+</div>
+<app-inner-footer></app-inner-footer>   

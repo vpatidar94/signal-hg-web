@@ -1,0 +1,291 @@
+.client-searchbar{
+    .form-control{
+        border-radius: 5px!important;
+        color: $brandlight!important;
+        &:focus,&:hover{
+            background-color: transparent;
+        }
+    }
+    .btn{
+        height: 50px;
+        width: 50px;
+        border: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .input-group{
+        position: relative;
+    }
+}
+
+.product-modal{
+    .closemodal{
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        font-weight: 500;
+        font-size: 1.3rem;
+        z-index: 1;
+    }
+}
+
+.cartlist{
+    .productimg{
+        max-width: 100px;
+    }
+}
+
+.rightproduct-desc{
+    background-color: #f2f3f5;
+    border-radius: 5px;
+    min-height: 200px;
+    .list-group{
+        padding: 0;
+        background-color: transparent;
+        .list-group-item{
+            padding: 23px 15px;
+            background-color: transparent;
+            border: 0;
+            border-bottom:1px solid rgba(0, 0, 0, 0.125);
+            font-size: 1.2rem;
+        }
+    }
+}
+
+.showicons {
+    position: relative;
+    .actionbtns{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba($color: #000000, $alpha: 0.1);
+        @include flexcenter;
+        top: 0;
+        left: 0;
+        display: none;
+        opacity: 0;
+        transition: 0.3s ease opacity;
+        border-radius: 5px;
+        button{
+            @include circle(50);
+            @include flexcenter;
+            background: rgba($color: $white, $alpha: 0.9);
+            color: $white;
+            color: $dark;
+            margin: 0 10px;
+            transform: scale(0,0);
+            transition: 0.3s ease transform;
+        }
+    }
+    &:hover{
+        .actionbtns{
+            -ms-display: flexbox;
+            display: flex;
+            opacity: 1;
+            button{
+                transform: scale(1,1);
+            }
+        }
+    }
+}
+
+.user-profile-img{
+    @include circle(130);
+    overflow: hidden;
+    @include box-shadow($shadowgreenlight);
+    @include flexcenter;
+}
+
+.productHeight{
+    height:195px;
+    overflow:hidden;
+}
+
+.radiotype-btn{
+    position: relative;
+    min-width: 150px;
+    label{
+      position: absolute;
+      border-radius: 10px;
+      padding: 10px 15px;
+      background: $white;
+      width: 100%;
+      top: 0;
+      left: 0;
+      text-align: center;
+      @include box-shadow($shadowgreenlight);
+    }
+    .customradio {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 45px;
+      opacity: 0;
+      @media (max-width: 991.9px){
+        height: 118px;
+      }
+    }
+    .customradio:checked ~ label {
+      color: $white;
+      background: $btngradient;
+    }
+  }
+
+  .colorchnage{
+    background-color: white;
+}
+
+.passTextwidth{
+    max-width: 65%;
+}
+
+.modalwidth{
+    .modal-dialog {
+        @media(min-width:992px) {
+            max-width: 700px;
+        }
+    }
+}
+
+.owl-theme .owl-nav{
+    .owl-prev, .owl-next{
+      background: $brandblue!important;
+      padding: 4px 15px!important;
+      &:hover{
+        background: $brandblue!important;
+        color: $white;
+      }
+    }
+  }
+
+//   .modal-body{
+//     .owl-stage ,.owl-item{
+//         width:100% !important;
+//     }
+//   }
+ 
+
+  .img-height{
+    height:60px;
+    width:60px;
+    border-radius: 100%;
+    overflow:hidden;
+    img{
+        height:60px;
+    }
+}
+
+
+.buttonWidth{
+    .button {width: 40%;}
+}
+
+.cart-logo{
+	@include circle(55);
+	@include flexcenter;
+	overflow: hidden;
+	img{
+		width: auto!important;
+		max-width: 100%;
+    }
+    
+
+
+}
+
+/*************** 05-11-20 ***************/
+.mat-button-wrapper svg {
+    font-size: 24px !important;
+}
+.mat-form-field-infix input {
+    font-size: 16px;
+    padding-left: 10px;
+    color: #333 !important;
+}
+
+/*************** 11-11-20 ***************/
+
+
+.mat-form-field-infix{
+    min-width:350px !important;
+    width:350px !important;
+}
+
+/*************** 19-11-20  for class & workshop detail***************/
+
+.fixed-hight{
+    min-height: 280px;
+}  
+
+.img-height{
+    height:60px;
+    width:60px;
+    border-radius: 100%;
+    overflow:hidden;
+    img{
+        height:60px;
+    }
+}
+
+.infobtn{
+    height: 45px;
+    margin-left: 10px;
+}
+
+.modalwidth{
+
+    .modal-dialog {
+        @media(min-width:992px) {
+            max-width: 700px;
+        }
+    }
+}
+
+.client-detail .nametitle1 {
+    max-width: 170px;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*************** 21-12-20  for header profile icon***************/
+
+
+.header-profile-menu {
+    p{
+        height:20px;
+        width:20px;
+        border-radius: 100%;
+        // overflow:hidden;
+        background-color:green;
+        color: white;
+    }
+    img{
+        @include circle(30);
+    }
+    // span {
+    //     margin-left: 10px;
+    //     color: $white;
+    // }
+}
+
+/*************** 4-1-21  for new pass UI  ***************/
+
+
+// .classname-title{
+//     max-width: 114px;
+//     overflow: hidden;
+//     white-space: nowrap;
+//     text-overflow: ellipsis;
+// }
+.paraframe{
+    background-color: #77787B;
+    // background-color: #0000001c;
+    display: inline-block;
+    padding: 5px 15px;
+    margin-right: -15px;
+    p {
+        font-weight: bold;
+    }
+}

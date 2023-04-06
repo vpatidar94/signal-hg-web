@@ -1,0 +1,30 @@
+<div *ngIf="loginInfo">
+    <app-inner-header></app-inner-header>
+  </div>
+  <div *ngIf="!loginInfo">
+    <app-header></app-header>
+  </div>
+  <!-- Terms & Conditions Content Section -->
+  <section class="">
+    <div class="">
+      <div class="py-4 mt-2">
+        <div class="container">
+          <div class="text-left wow animated slideInLeft">
+            <!-- <h2 class="new-title dark-color font-w-900 pb-2 mb-0 text-center"> Signal Health Group Inc. </h2>
+            <h5 class="new-title dark-color font-w-900 pb-4 text-center"> Terms and Conditions </h5>
+            <p class="pb-3 brand-color3 font-20 line-height25 text-justify"> The following terms and conditions (the “Terms and Conditions”) govern the use of the on demand offering (the “Service”) developed, operated and maintained by Signal Health Group Inc. (“SignalHG”). Any use of the Service by an individual or entity (each, a “Customer”) is subject to the terms and conditions contained herein. </p> -->
+            <div innerHtml = "{{Description}}"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End of Terms & Conditions Content Section -->
+  
+  <div *ngIf="loginInfo">
+    <app-inner-footer></app-inner-footer>
+  </div>
+  <div *ngIf="!loginInfo">
+    <app-footer></app-footer>
+  </div>
+  

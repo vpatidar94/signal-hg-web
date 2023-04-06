@@ -1,0 +1,149 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+<!-- Favourite Section -->
+<div class="py-5 client-family">
+    <div class="studio-cards">
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col-6">
+            <div class="section-heading mt-3 mt-md-0">
+              <h5 class="title black-color font-w-100 text-uppercase font-16"> My Family </h5>
+            </div>
+          </div><!-- end of section-heading -->
+
+          <div class="col-6">
+            <div class="text-right">
+              <button data-toggle="modal" data-target="#addFamily"  data-backdrop="static" data-keyboard="false" class="btn btn-blue-grad px-3"> Add Member </button>
+            </div>
+          </div><!-- end of col-6 -->
+        </div>
+
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-4 mb-2" *ngFor="let fam of memberDetail">
+            <div class="white-bg border-radius6 box-shadow1 p-4">
+              <div class="row">
+                <div class="col-3 pr-0 class-detail-slot-box">
+                  <div class="profile-img box-shadow1">
+                    <img src="{{fam.image}}" class="img-fluid">
+                  </div>
+                </div><!-- end of col-4 -->
+                <div class="col-7">
+                  <div class="new-trash-cls">
+                    <h5 class="title black-color mb-0"> {{fam.member_name}} </h5>
+                    <!-- <p class="brand-color3 font-12  mb-0 line-height18"> {{fam.email}} </p> -->
+                    <p class="brand-color3 font-12  mb-0 line-height18"> {{fam.relation}} </p>
+                    <p class="brand-color3 font-12 mb-0 line-height18"> {{fam.new_dob}} </p>
+                  </div>
+                </div><!-- end of col-8 -->
+                <div class="col-2">
+                  <!-- <button class="d-inline-block border-radius6" (click)="update(fam)" > <a href="Javascript:void(0);" > <i class="fas fa-pencil-alt"></i> </a> </button>
+                  <button type="button" data-toggle="modal" data-target="#addFamily"   id="btn_close"  class="btn text-uppercase w-100 mt-3" data-backdrop="static" data-keyboard="false" style="display:none"> </button>
+                  <span class="delete d-inline-block border-radius6" (click)="deleteMembers(fam.memeber_id)"> <a href="Javascript:void(0);" > <i class="fas fa-trash-alt"></i> </a> </span> -->
+                </div>
+              </div><!-- end of row -->
+            </div>
+          </div><!-- Family-card-1 -->
+
+      
+        </div><!-- end  of row -->
+
+      </div>
+    </div><!-- End of studio-cards -->
+  </div>   
+  
+<!-- Modal Popup (Change - Password ) -->
+<div class="modal fade" id="addFamily" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"  >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body white-bg box-shadow1 border-radius6 px-4 pb-4 px-md-5 pb-md-5">
+       
+     
+        <div class="modal-logo text-center pb-3 pb-sm-2 mb-2">
+          <input #imageInput type="file" id="file1" name="image" accept="image/*" (change)="getUploadFileDetail($event)"  style="display:none" />                     
+          <img src="assets/img/logo_white.png" *ngIf="!imgURL" class="img-fluid m-0">
+          <img [src]="imgURL"  *ngIf="imgURL" class="img-fluid m-0">
+
+          <a href="Javascript:void(0);">
+            <div class="logo-camera box-shadow1 text-center pt-2">
+              <i class="fas fa-camera brand-color2 font-18"  (click)="changeImage()"></i>
+            </div>
+          </a>
+        </div>
+
+        <div class="modal-bottom-content blue-gradient border-radius6 py-3 py-sm-2 px-2">
+          <form  [formGroup]="MembersForm" >
+
+          <div class="form-group profile-change-password">
+            <p class="text-white text-left font-14 mb-0 ml-3"> Full Name </p>
+            <input type="text" class="form-control" [(ngModel)]="memberDetail1.member_name"   formControlName="fullname" [ngClass]="{ 'is-invalid': submitted && f.fullname.errors }">
+            <div *ngIf="submitted && f.fullname.errors" class="invalid-feedback">
+                <div *ngIf="f.fullname.errors.required">Full Name  is required</div>
+            </div>
+          </div><!-- Current Password -->
+
+          <!-- <div class="form-group profile-change-password">
+            <p class="text-white text-left font-14 mb-0 ml-3"> Email </p>
+            <input type="text" class="form-control" [(ngModel)]="memberDetail1.email"  formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email  is required</div>
+            </div>
+          </div> -->
+          <!-- Current Password -->
+          <div class="form-group">
+            <p class="text-white text-left font-14 mb-0 ml-3"> DOB </p>
+            <mat-form-field style="width:100%;margin:0;padding:0;" >
+              <input matInput [matDatepicker]="passdate3" [(ngModel)]="memberDetail1.dob"  [max]="maxDate" formControlName="dob" name="DOB" [value]="memberDetail1.dob"  style="color: white !important;" readonly >
+              <mat-datepicker-toggle matSuffix [for]="passdate3"></mat-datepicker-toggle>
+              <mat-datepicker #passdate3></mat-datepicker>
+          </mat-form-field>
+          <div *ngIf="submitted && !memberDetail1.dob" class="invalid-feedback">
+            <div *ngIf="!memberDetail1.dob">Date of Birth is required</div>  
+         </div>
+            <!-- <input id="" type="text" value="" class="form-control white" placeholder="DOB"> -->
+          </div><!-- New Password -->
+
+          <div class="form-group relative">
+            <p class="text-white text-left font-14 mb-0 ml-3"> Gender  <i class="fas fa-chevron-down"></i></p> 
+            <select class="form-control white-color" [(ngModel)]="memberDetail1.gender"  formControlName="gender" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+              <option  value ="" > </option>
+              <option  value = "male">Male</option>
+              <option  value = "female">Female</option>
+              <option  value = "other">Other</option>
+            </select>
+            <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                <div *ngIf="f.gender.errors.required">Gender  is required</div>
+            </div>
+          </div>
+
+          <div class="form-group relative">
+            <p class="text-white text-left font-14 mb-0 ml-3"> Relation with me <i class="fas fa-chevron-down"></i></p>
+            <select class="form-control white-color" [(ngModel)]="memberDetail1.relation"  formControlName="relative_id" [ngClass]="{ 'is-invalid': submitted && f.relative_id.errors }" (change)="getRElation($event)" >
+              <option value=""> </option>              
+              <option *ngFor="let rl of Relations" value="{{rl.realtion_name}}"> {{rl.realtion_name}}</option>
+            </select>
+            <div *ngIf="submitted && f.relative_id.errors" class="invalid-feedback">              
+              <div *ngIf="f.relative_id.errors.required">Please Select Relation</div>
+          </div>
+          </div><!-- Confirm Password -->
+
+          <div class="form-group px-3 pt-0 pt-sm-2 mb-0 mb-sm-2 d-flex">
+            <button type="button" class="btn text-uppercase  ml-5" *ngIf="!memberDetail1.memeber_id"  (click)="addMembers()" [disabled]="MemberSpinner"> <span class="spinner-grow spinner-grow-sm" *ngIf="MemberSpinner" role="status" aria-hidden="true"></span> Save </button>
+            <button type="button" class="btn text-uppercase  ml-5" *ngIf="memberDetail1.memeber_id" (click)="updateMembers()" [disabled]="MemberSpinner"> <span class="spinner-grow spinner-grow-sm" *ngIf="MemberSpinner" role="status" aria-hidden="true"></span> Update </button>
+            <button type="button" data-dismiss="modal"  id="btn_close1"  class="btn text-uppercase ml-5" data-backdrop="static" data-keyboard="false" (click)="closeModal()" > close </button>
+
+          </div>
+          </form>
+        </div><!-- modal-bottom-content -->
+      </div><!-- end of modal-body -->
+
+    </div>
+  </div>
+</div>
+<!-- End of Modal Popup (Change - Password ) -->  
+<!-- End of Favourite Section -->
+</div>
+<app-inner-footer></app-inner-footer>

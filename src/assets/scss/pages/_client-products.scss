@@ -1,0 +1,189 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/********** Client Products Page *************/
+.product-page {
+	.studio-padding-left {
+		.respon-product {
+			.product-detail-section {
+				margin: 0px 15px 0px 15px;
+
+
+				.product-detail-section-btn {
+					a.new-blue {
+						border-top-left-radius: 0px;
+						border-top-right-radius: 0px;
+						border-bottom-left-radius: 6px;
+						border-bottom-right-radius: 0px;
+						width: 100%;
+						font-size: $font18;
+					}
+					a.new-green {
+						border-top-left-radius: 0px;
+						border-top-right-radius: 0px;
+						border-bottom-left-radius: 0px;
+						border-bottom-right-radius: 6px;
+						width: 100%;
+						font-size: $font18;
+					}
+				}
+			}
+
+			@media (max-width: 1440px) {
+				.product-detail-section {
+					margin: 0px 15px 0px 25px;
+				}
+			}
+
+			@media (max-width: 1280px) {
+				.product-detail-section {
+					margin: 0px 15px 0px 15px;					
+				}
+			}
+
+			@media (max-width: 1024px) {
+				.product-detail-section {
+					margin: 0px 15px 0px 15px;					
+				}
+			}
+
+			@media (max-width: 768px) {
+				.product-detail-section {
+					margin: 0px 25px 0px 10px;					
+				}
+			}
+
+			@media (max-width: 450px) {
+				.product-detail-section {
+					margin: 0px 0px 0px -7px;					
+				}
+			}
+		}
+	}
+	
+
+	@media (max-width: 450px) {
+		.studio-padding-left {
+		    padding-left: 22px;
+		}
+	}
+
+
+	.client-similar-products {
+		.owl-carousel {
+			.owl-nav {
+				display: none;
+			}
+			.owl-dots {
+				display: none;
+			}
+		}	
+	}
+}
+/********** End of Client Products Page *************/
+
+
+
+
+/********** Client-product-buy-pay Page **************/
+.client-buy-input {
+	input.inputWidth {
+		width: 4%;
+	}
+	@media (max-width: 1440px) {
+		input.inputWidth {
+			width: 5%;
+		}
+	}
+	@media (max-width: 768px) {
+		input.inputWidth {
+			width: 4%;
+		}
+	}
+	@media (max-width: 450px) {
+		input.inputWidth {
+			width: 8%;
+		}
+	}
+}
+
+.client-buy-process {
+	.client-buy-input-cardno {
+		position: relative;
+
+		img.input-visa-img {
+			position: absolute;
+			bottom: 14px;
+			right: 15px;
+		}
+	}
+}
+/********** End of Client-product-buy-pay Page **************/
+
+
+
+
+/*********** Extra ************/
+.new-trash-cls {
+	span.delete {
+		float: right;
+		padding: 5px; 
+		border: 2px solid $light;
+
+		a {
+			i.fas {
+				font-size: $font18;
+				color: $brandcolor2;
+			}
+		}
+	}
+
+	@media (max-width: 450px) {
+		span.delete {
+			padding: 3px; 
+			
+			a {
+				i.fas {
+					font-size: $font14;
+					color: $brandcolor2;
+				}
+			}
+		}
+	}
+}
+/*********** Extra ************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

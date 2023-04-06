@@ -1,0 +1,107 @@
+<div *ngIf="loginInfo">
+    <app-inner-header></app-inner-header>
+  </div>
+  <div *ngIf="!loginInfo">
+    <app-header></app-header>
+  </div>
+  
+  <!-- FAQ Content Section -->
+  <section class="faq-content-section">
+    <div class="background-before">
+      <div class="py-4 mt-2">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 text-left">
+              <h2 class="new-title dark-color font-w-900 pb-4"> FAQ </h2>
+            </div>
+  
+            <div class="col-12">
+              <div id="accordion" class="myaccordion">
+                <div class="card" *ngFor="let items of FaqList ;let i= index">
+                  <div class="card-header" [id]="'heading'+i">
+                    <h2 class="mb-0">
+                      <a  class="d-flex align-items-center justify-content-between w-100 font-22 black-color" data-toggle="collapse" [href]="'#collapse'+i" aria-expanded="true" [attr.aria-controls]="'collapse'+i">
+                        {{items.question}}
+                        <div class="clearfix bshadow0 pbs">
+                          <span class="icon-bottom-ic"></span>
+                        </div>
+                      </a>
+                    </h2>
+                  </div>
+                  <div [id]="'collapse'+i" class="collapse" [ngClass]="i == 0 ? 'show':''" [attr.aria-labelledby]="'heading'+i" data-parent="#accordion">
+                    <div class="card-body">
+                      <p>{{items.answer}} </p>
+                    </div>
+                  </div>
+                </div>
+  
+                <!-- <div class="card">
+                  <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                      <button class="d-flex align-items-center justify-content-between w-100 font-22 collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Lorem ipsum dolor sit amet, consecte.
+                        <div class="clearfix bshadow0 pbs">
+                          <span class="icon-bottom-ic"></span>
+                        </div>
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages. </p>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="card">
+                  <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                      <button class="d-flex align-items-center justify-content-between w-100 font-22 collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Donec facilisis tortor ut au.
+                        <div class="clearfix bshadow0 pbs">
+                          <span class="icon-bottom-ic"></span>
+                        </div>
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages. </p>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="card">
+                  <div class="card-header" id="headingFour">
+                    <h2 class="mb-0">
+                      <button class="d-flex align-items-center justify-content-between w-100 font-22 collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        In hac habitasse platea dictumst...
+                        <div class="clearfix bshadow0 pbs">
+                          <span class="icon-bottom-ic"></span>
+                        </div>
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                    <div class="card-body">
+                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages. </p>
+                    </div>
+                  </div>
+                </div> -->
+              </div><!-- end of myaccordion -->
+            </div><!-- end of col-12 -->
+          </div><!-- end of row -->
+        </div><!-- end of container -->
+      </div>
+    </div>
+  </section>
+  <!-- End of FAQ Content Section -->
+      <!-- End of FAQ Content Section -->
+  
+  
+      <div *ngIf="loginInfo">
+        <app-inner-footer></app-inner-footer>
+      </div>
+      <div *ngIf="!loginInfo">
+        <app-footer></app-footer>
+      </div>

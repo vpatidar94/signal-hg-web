@@ -1,0 +1,76 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}"></ngx-loading>
+    <div class="description-section py-5">
+        <div class="container"> 
+            <div class="add_new">
+                <a href="javascript:void(0)" class="btn btn-blue-grad mr-3" routerLink="/my-nutrition-detail" ><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> </a>
+            </div>       
+            <div class="row mt-3">
+                <div class="col-12 col-md-12 border-radius10">
+                    <img class="w-100 img-fluid border-radius10"  [src]="dietDetail.img_url" style="height:280px">
+                </div>
+            </div>        
+            <div class="row mt-5">  
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h5 class="title black-color font-w-100 text-uppercase font-16">{{dietDetail.diet_name}} </h5>
+                      </div>
+                    <div class="section-heading">
+                      <h5 class="title black-color font-w-100 text-uppercase font-16">Diet Description </h5>
+                    </div>
+                    <div class="bg-white border-radius10 p-3">
+                        <p> {{dietDetail.description}}</p>
+                    </div>
+                </div>
+            </div><!-- end of section-heading -->
+            <div class="row mt-4 "> 
+                <div class="col-6 col-sm-6 col-md-6">
+                    <div class="section-heading">
+                        <h5 class="title black-color font-w-100 text-uppercase font-16">Nutritional Info </h5>
+                    </div>
+                    <div class="bg-white border-radius10 p-3">
+                        <ul class="nutritional_detail list-group list-group-flush">
+                            <li class="list-group-item">Quantity <span> {{dietDetail.quantity}}</span></li>
+                            <!-- <li class="list-group-item">Age <span> {{dietDetail.age}}</span></li> -->
+                            <li class="list-group-item">Calories <span> {{dietDetail.calories}} gm</span></li>
+                            <li class="list-group-item">Carbs <span> {{dietDetail.carbs}} gm</span></li>
+                            <li class="list-group-item">Protein <span> {{dietDetail.protien}} gm</span></li>
+                            <li class="list-group-item">Fat <span> {{dietDetail.fat}} gm</span></li>
+                            <li class="list-group-item">Calcium <span> {{dietDetail.calcium}} gm</span></li>
+                        </ul>
+                    </div>
+                </div> 
+                <div class="col-12 col-sm-6 col-md-6">
+                    <div class="section-heading">
+                        <h5 class="title black-color font-w-100 text-uppercase font-16">Days Info </h5>
+                    </div>
+                    <div class="bg-white border-radius10 p-3"  style="height:300px">
+                        <p *ngFor="let items of dietDetail.weeks"> {{items.week_name}}</p>
+                        <!-- <hr> -->
+                    </div>
+                </div>
+               
+            </div>            
+            <div class="row d-none">
+                <div class="col-12 col-sm-6 col-md-6 mt-4">
+                    <div class="section-heading">
+                        <h5 class="title black-color font-w-100 text-uppercase font-16">Nutritional Info </h5>
+                    </div>
+                    <div class="bg-white border-radius10 p-3">
+                        <ul class="nutritional_detail list-group list-group-flush">
+                            <li class="list-group-item">Quantity <span> {{dietDetail.quantity}}</span></li>
+                            <li class="list-group-item">Calories <span> {{dietDetail.calories}} gm</span></li>
+                            <li class="list-group-item">Carbs <span> {{dietDetail.carbs}} gm</span></li>
+                            <li class="list-group-item">Protein <span> {{dietDetail.protien}} gm</span></li>
+                            <li class="list-group-item">Fat <span> {{dietDetail.fat}} gm</span></li>
+                            <li class="list-group-item">Calcium <span> {{dietDetail.calcium}} gm</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>    
+
+        </div>
+    </div>   
+</div>
+<app-inner-footer></app-inner-footer>  

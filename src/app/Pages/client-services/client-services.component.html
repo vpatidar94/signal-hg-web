@@ -1,0 +1,127 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+<!-- My Studio Card Detials Section -->
+<div class="studio-details client-home-inner">
+    <div class="container">
+      <app-sub-header></app-sub-header>
+
+
+      <div class="home-service home-inner-service pb-5">
+        <div class="row">
+
+          <div class="col-12 mt-2 mt-md-3"  *ngIf="userdetail.role_id == 4">
+            <div class="form-group">
+              <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1">Choose Customer  </p>
+              <div class="row mb-4 mt-1 ml-1 d-block">
+                <div class="ng-autocomplete" >
+                  <ng-autocomplete 
+                    [data]="customerList"
+                    [searchKeyword]="keyword"
+                    (selected)='selectEvent($event)'
+                    (inputChanged)='getcustomerlist($event)'
+                    (inputFocused)='onFocused($event)'
+                    [itemTemplate]="itemTemplate"
+                    [notFoundTemplate]="notFoundTemplate"
+                    (inputCleared)= 'clear()'>                                 
+                  </ng-autocomplete>
+                  
+                  <ng-template #itemTemplate let-item>
+                  <a [innerHTML]="item.name"></a>
+                  </ng-template>
+                  
+                  <ng-template #notFoundTemplate let-notFound>
+                  <div [innerHTML]="notFound"></div>
+                  </ng-template>
+                  </div>
+
+                <!-- <div class="col-6 mt-5">
+                  <div class="formgroup searchbar">
+                    <input type="text" class="form-control" onkeyup="this.value=this.value.replace(/^\s+/g, '')" [(ngModel)]="searchVal" (change)="getcustomerlist()">
+                    <button (click)="getcustomerlist()"><i class="fas fa-search"></i></button>
+                </div>
+                </div> -->
+               
+  <!-- <mat-form-field>
+    <input matInput placeholder="Search" aria-label="true" [matAutocomplete]="auto" [(ngModel)]="searchVal" (change)="getcustomerlist()">
+    <mat-autocomplete #auto="matAutocomplete" >
+      <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+      <ng-container *ngIf="!isLoading">
+        <mat-option *ngFor="let items of customerList" [value]="items.name" (onSelect)="getId(items.id)">
+          <div class="d-flex"> <div class="subinst-profileimg"> <img src="{{items.profile_img}}" class="img-fluid"></div>   <b class="ml-5"> {{items.name}}</b>  </div> 
+          
+          
+         
+        </mat-option>
+      </ng-container>
+    </mat-autocomplete>
+  </mat-form-field>  *ngIf="customerList.length != 0" -->
+          <!-- <div class="col-6 mt-2" >
+                          <ng-multiselect-dropdown class= "multis"
+                        
+                          [data]="customerList"
+                          [(ngModel)]="searchData"
+                          [ngModelOptions]="{standalone: true}"
+                          [settings]="dropdownSettings"
+                          (ngModelChange)="selectCutomer()"   style="color:black"         
+                        >
+                        </ng-multiselect-dropdown> 
+          </div>    -->
+            </div>
+          </div>
+          </div>
+          <div class="col-12">
+            <div class="section-heading pt-2 pb-4 text-left">
+              <a href="Javascript:void(0);" class="black-color font-w-100 text-uppercase font-20"> service </a>
+            </div>
+          </div><!-- end of col-12 -->
+        </div><!-- end of Heading(service) -->
+        <div  infinite-scroll  [infiniteScrollDistance]="scrollDistance"  [infiniteScrollUpDistance]="scrollUpDistance"  [infiniteScrollThrottle]="throttle"  (scrolled)="onScroll()" alwaysCallback="true"> 
+        <div class="row" *ngIf="serviceDetail.length != 0">          
+          <div class="col-12 col-md-4 col-lg-3 mb-4" *ngFor="let serve of serviceDetail" >
+            <a  href="Javascript:void(0);" (click) ="redirectUrl('/services-offered',serve.id)">
+              <div class="inner-service-card box-shadow1 border-radius6 white-bg text-center px-3 px-sm-1 py-3">
+                <div class="row">
+                  <div class="col-12 mb-4 mb-lg-0">
+                    <div class="text-center">
+                      <img src="{{businessDetail.logo}}" class="img-fluid mx-auto">
+                    </div>
+                  </div><!-- end of image -->
+                  <div class="col-12">
+                    <div class="std-purchase-card-details mt-2">
+                      <h5 class="title black-color">{{serve.service_name}}  </h5>
+                      <h5 class="black-color">{{serve.service_category}}  </h5>
+                    </div>
+                  </div>
+
+                    <div class= "col-12">
+                      <p class="black-color">Service Charge : {{serve.amount}}  </p>
+                    </div>
+                    <div class= "col-12">
+                      <p class="black-color">Service Duration : {{serve.duration}} Min.  </p>
+
+
+                      <!-- <ul>
+                       <li *ngFor="let list of serve.service_category"> {{list}} </li>
+                       <li>{{serve.service_category}}  </li>
+                      </ul> -->
+                  </div>
+                </div><!-- end of row -->
+              </div><!-- end of std-purchase-card -->
+            </a>            
+          </div><!-- end of col --> 
+        </div><!-- end of row -->
+        </div>
+        <div *ngIf="serviceDetail.length ==0">
+          <div class="text-center">
+            <p class="font-awesome black-color font-18 d-inline mx-2 "> No Services Are scheduled</p>
+          </div>
+        </div>
+      </div><!-- end of home-staff -->
+    </div><!-- end of container -->
+  </div>          
+<!-- End of My Studio Card Detials Section -->
+</div>
+<app-inner-footer></app-inner-footer>

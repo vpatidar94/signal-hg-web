@@ -1,0 +1,98 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}"></ngx-loading>
+
+  <!-- My Studio Card Detials-Service Section -->
+  <div class="client-payment">
+    <div class="container">
+
+      <div class="py-5">
+        <div class="row">
+          <div class="col-12 text-left" *ngIf="CurrentUrl == '/my-payout'">
+            <h4 class="title black-color text-uppercase"> My Payout </h4>
+          </div>
+          <div class="col-12 text-left" *ngIf="CurrentUrl == '/my-transaction'">
+            <h4 class="title black-color text-uppercase"> My Transactions </h4>
+          </div>
+        </div><!-- End of Heading -->
+
+      <div class="row" *ngIf="CurrentUrl == '/my-transaction'">
+        <div class="col-12 col-lg-12 mt-5 mt-lg-0 px-0">
+            <div class="client-buy-process border-radius6 box-shadow1 white-bg" *ngIf="TransactionDetail.length != 0">
+              <div  infinite-scroll  [infiniteScrollDistance]="scrollDistance"  [infiniteScrollUpDistance]="scrollUpDistance"  [infiniteScrollThrottle]="throttle"  (scrolled)="onScroll()" alwaysCallback="true"> 
+  
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <th>Transaction Id</th>                           
+                  <th>Payment Mode</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <!-- <th>Payment For  </th> -->
+                  <th>Refrence Id</th>   
+                </thead>
+                <tr *ngFor="let items of TransactionDetail">
+                  <td *ngIf="items.trx_id">{{items.trx_id}}</td>
+                  <td *ngIf="!items.trx_id"> -- </td>
+                  <td *ngIf="items.payment_method">{{items.payment_method}}</td>
+                  <td *ngIf="!items.payment_method"> -- </td>
+                  <td >{{items.transaction_date_new}} , {{items.time}}</td>
+                  <td>{{items.amount}}</td>
+                  <!-- <td class="text-capitalize">{{items.name}} {{items.lastname}}</td>                 -->
+                  <td *ngIf="items.reference_payment_id">{{items.reference_payment_id}}</td>
+                  <td *ngIf="!items.reference_payment_id"> -- </td>
+
+                </tr>
+              </table>
+            </div>
+            </div>
+          </div>
+          <div class="client-buy-process border-radius6" *ngIf="TransactionDetail.length == 0">
+            <h3 class="text-center">No Transaction Found</h3>
+          </div>
+          </div>
+        </div><!-- end of s-d-appoint -->
+
+        <div class="row" *ngIf="CurrentUrl == '/my-payout'">
+            <div class="col-12 col-lg-12 mt-5 mt-lg-0 px-0">
+                <div class="client-buy-process border-radius6 box-shadow1 white-bg" *ngIf="TransactionDetail.length != 0">
+                  <div  infinite-scroll  [infiniteScrollDistance]="scrollDistance"  [infiniteScrollUpDistance]="scrollUpDistance"  [infiniteScrollThrottle]="throttle"  (scrolled)="onScroll()" alwaysCallback="true"> 
+      
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <th>Payment For  </th>
+                      <th>Refrence Id</th>                
+                      <th>Payment Mode</th>
+                      <th>Transaction Id</th>
+                      <th>Date</th>
+                      <th>Amount</th>
+                    </thead>
+                    <tr *ngFor="let items of TransactionDetail">
+                      <td class="text-capitalize">{{items.name}} {{items.lastname}}</td>                
+                      <td *ngIf="items.reference_payment_id">{{items.reference_payment_id}}</td>
+                      <td *ngIf="!items.reference_payment_id"> -- </td>
+                      <td *ngIf="items.payment_mode">{{items.payment_mode}}</td>
+                      <td *ngIf="!items.payment_mode"> -- </td>
+                      <td *ngIf="items.trx_id">{{items.trx_id}}</td>
+                      <td *ngIf="!items.trx_id"> -- </td>
+                      <td >{{items.transaction_date_new}}</td>
+      
+                      <td>{{items.amount}}</td>
+                    </tr>
+                  </table>
+                </div>
+                </div>
+              </div>
+              <div class="client-buy-process border-radius6" *ngIf="TransactionDetail.length == 0">
+                <h3 class="text-center">No Transaction Found</h3>
+              </div>
+              </div>
+            </div><!-- end of s-d-appoint -->
+  
+      </div><!-- end of container -->
+    </div>
+    <!-- End of My Studio Card Detials-Service Section -->
+  </div>
+  <app-inner-footer></app-inner-footer>

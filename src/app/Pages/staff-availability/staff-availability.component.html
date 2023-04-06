@@ -1,0 +1,116 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}"></ngx-loading>
+
+    <!-- My Studio Card Detials Section -->
+    <div class="studio-details client-home-inner">
+        <div class="container">
+            <app-sub-header></app-sub-header>
+
+
+            <div class="home-staff pb-5">
+                <div class="row staff-studio-details client-refer">
+                    <div class="col-md-6">
+                        <div class="tabbox box-shadow1 border-radius6 px-4 py-3 d-flex align-items-center bg-white">
+                            <h4 class="black-color font-w-400 font-18 mb-0 text-uppercase">Availability</h4>
+                            <div class="custom-controls-stacked ml-auto">
+                                <label class="custom-control ios-switch text-right mb-0">
+                                    <input type="checkbox" class="ios-switch-control-input" id="AvailableList.availability_status" (change)="changeAvailability($event)" [(ngModel)]="AvailableList.availability_status">
+                                    <span class="ios-switch-control-indicator"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <button type="button" class="btn btn-blue-grad px-2 text-uppercase mb-0 mb-md-5" routerLink="/studio-detail">Back </button>
+                    </div> 
+                </div>
+
+                <div class="white-bg border-radius6 box-shadow1 p-4 mt-5 available-slots" *ngIf="AvailableList.availability_status">
+                    <!-- <div class="text-center d-flex align-items-center justify-content-center">
+                        <i class="fas fa-caret-left green-color"></i>
+                        <h4 class="font-w-600 black-color calender-head font-arialround mx-2">April 2020</h4>
+                        <i class="fas fa-caret-right green-color"></i>
+                    </div> -->
+                    <div class="row client-refer mt-4">                   
+
+                        <div class="col-md-6 col-lg-4 py-4" *ngFor="let items of AvailableList.week_data; let i = index">
+                            <div class="availibility-slot">
+                                <div class="head d-flex align-items-center  border-bottom pb-2">
+                                    <h6 class="title black-color font-w-500">{{items.week_name}}</h6>
+                                    <div class="custom-controls-stacked ml-auto">
+                                        <label class="custom-control ios-switch text-right mb-0">
+                                            <input type="checkbox" class="ios-switch-control-input" [id]="items.week_name" (change)="changeStatus1($event,items,'')" [(ngModel)]="items.day_status1">
+                                            <span class="ios-switch-control-indicator"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row mt-4" *ngFor="let subitem of items.time_slot">
+                                    <div class="col pr-0">
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Start Time</mat-label>
+                                            <input matInput  [value]="subitem.time_slote_from_new" readonly>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col pr-0">
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>End Time</mat-label>
+                                            <input matInput  [value]="subitem.time_slote_to_new" readonly>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="custom-controls-stacked ml-auto">
+                                            <label class="custom-control ios-switch text-right mb-0">
+                                                <input type="checkbox" class="ios-switch-control-input" id="{{subitem.id}}{{i}}" (change)="changeStatus1($event,items,subitem.id)" [(ngModel)]="subitem.time_slot_status1">
+                                                <span class="ios-switch-control-indicator"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- col-md-6 -->
+                    </div>
+
+                
+
+
+
+
+
+                    <button class="btn btn-blue-grad text-uppercase d-block mx-auto" type="button" data-toggle="modal" data-target="#successModal" *ngIf="AvailableList.availability_status">Save</button>
+                </div>
+
+            </div><!-- end of home-staff -->
+        </div><!-- end of container -->
+    </div>
+    <!-- End of My Studio Card Detials Section -->
+</div>
+
+<!-- modal -->
+
+<!-- Modal Popup (Change - Password ) -->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+            
+        <div class="modal-body white-bg box-shadow1 border-radius6 p-4 p-md-5">
+           
+          <!-- <div class="modal-logo text-center pb-3 pb-sm-5">
+            <img src="assets/img/logo_green_small.png">
+          </div> -->
+  
+          <div class="modal-bottom-content blue-gradient border-radius6 py-3 py-sm-5 px-4">
+            <img src="assets/img/logo_white_web.png" class="img-fluid d-block mx-auto">
+            <p class="text-white font-16 text-center my-4">Are you sure you want to Save changes.</p>
+            <button class="btn btn-white2 d-block mx-auto w-100" (click)= "SaveChanges()" data-dismiss="modal" type="button">Proceed</button>
+            <button class="btn btn-white2 mx-auto w-100 mt-4" data-dismiss="modal" type="button">Cancel</button>
+
+          </div><!-- modal-bottom-content -->
+  
+        </div><!-- end of modal-body -->
+  
+      </div>
+    </div>
+  </div>
+
+<app-inner-footer></app-inner-footer>

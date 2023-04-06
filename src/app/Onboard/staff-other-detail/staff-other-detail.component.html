@@ -1,0 +1,126 @@
+<app-header></app-header>
+<div class="login-bg"> 
+<!-- Login Content Section -->
+<div class="">
+    <div class="d-flex align-items-center justify-content-center staff-register-height p-4 p-sm-0">
+      <div class="align-item-center text-center wow animated slideInDown">
+        <div class="staff-login-box-owner white-bg box-shadow1 border-radius10 py-4 px-3">
+
+          <div class="login-header text-center px-5">
+            <h3 class="title dark-color mb-4"> Other Details </h3>
+          </div><!-- end of login-header -->
+
+          <div class="logn-form mb-2">
+            <form [formGroup]="userregister1">
+              <div class="form-group profile-gender mb-2">
+                <p class="brand-color3 text-left font-14 mb-2"> Gender </p>
+                <div class="profile-gender-button2 text-left">
+                  <input type='radio' id='male' value="male"   [(ngModel)]="gender"    name='radio' [ngModelOptions]="{standalone: true}" (change)="getGender($event)" >
+                  <label for='male'>Male</label>
+
+                  <input type='radio' id='female' value="female"  [(ngModel)]="gender"    name='radio'  [ngModelOptions]="{standalone: true}" (change)="getGender($event)" >
+
+                  <label for='female'>Female</label>
+
+                  <input type='radio' id='other' value="other"  [(ngModel)]="gender"    name='radio' [ngModelOptions]="{standalone: true}" (change)="getGender($event)" >
+
+                  <label for='other'>Other</label>
+                </div><!-- end of profile-gender-button -->
+              </div><!-- Gender -->  
+                      
+              <div class="form-group">
+                <p class="brand-color3 text-left font-14 mb-2"> DOB </p>
+                <mat-form-field  appearance="outline" style="width:100%;margin:0;padding:0;">
+                    <input matInput [matDatepicker]="passdate"  [max]="maxDate"  [value]="otherData.date_of_birth" [(ngModel)]="otherData.date_of_birth" formControlName="date_of_birth" style="color: black;" readonly >
+                    <mat-datepicker-toggle matSuffix [for]="passdate"></mat-datepicker-toggle>
+                    <mat-datepicker #passdate style="margin:0;padding:0;"></mat-datepicker>
+                </mat-form-field>
+                 <div *ngIf="submitted && !otherData.date_of_birth" class="invalid-feedback">
+                    <div *ngIf="!otherData.date_of_birth">Date of Birth is required</div>  
+                 </div>
+              </div>
+              <div class="form-group">
+                <p class="brand-color3 text-left font-14 mb-2"> Address </p>
+                <input type="text" class="form-control-1 w-100" autocomplete="off"  ngx-google-places-autocomplete  (onAddressChange)="handleAddressChange($event)" [(ngModel)]="otherData.address" formControlName="address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }">
+                <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                    <div *ngIf="f.address.errors.required">Address is required</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <p class="brand-color3 text-left font-14 mb-2"> Apartment, Street (optional) </p>
+                <input type="text" class="form-control-1 w-100" placeholder=""  [(ngModel)]="otherData.street" formControlName="street" [ngClass]="{ 'is-invalid': submitted && f.street.errors }">
+              </div>
+              <div class="form-group">
+                <p class="brand-color3 text-left font-14 mb-2"> Country </p>
+                <input type="text" class="form-control-1 w-100" placeholder=""  [(ngModel)]="otherData.country" formControlName="country" [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
+                <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+                    <div *ngIf="f.country.errors.required">Country is required</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <p class="brand-color3 text-left font-14 mb-2"> State/Province </p>
+                <input type="text" class="form-control-1 w-100" placeholder="" [(ngModel)]="otherData.state" formControlName="state" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
+                <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                    <div *ngIf="f.state.errors.required">State is required</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <p class="brand-color3 text-left font-14 mb-2"> City </p>
+                <input type="text" class="form-control-1 w-100" placeholder=""   [(ngModel)]="otherData.city" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+                <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                    <div *ngIf="f.city.errors.required">City is required</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <p class="brand-color3 text-left font-14 mb-2"> Experience </p>
+                <input type="number"  onKeyPress="if(this.value.length >= 5) return false;" class="form-control-1 w-100" placeholder=""  [(ngModel)]="otherData.experience" formControlName="experience" [ngClass]="{ 'is-invalid': submitted && f.experience.errors }">
+                <div *ngIf="submitted && f.experience.errors" class="invalid-feedback">
+                    <div *ngIf="f.experience.errors.required">Experience is required</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <p class="brand-color3 text-left font-14 mb-2"> Skills </p>
+                  <div class="mb-4">
+            <ng-multiselect-dropdown
+            [placeholder]="'Select Skills'"
+            [data]="skillList"
+            [(ngModel)]="subcategoryText"
+            [ngModelOptions]="{standalone: true}"
+            [settings]="dropdownSettings"
+            [ngClass]="{ 'is-invalid': submitted && selected }"
+            (ngModelChange)="changeskill()"           
+          >
+          </ng-multiselect-dropdown>       
+          <div *ngIf="submitted && selected" class="invalid-feedback">
+            <div *ngIf="selected">Skill is required</div>
+        </div>
+          </div>  
+              </div>
+              <div class="form-group">
+                <p class="brand-color3 text-left font-14 mb-2"> Write something about yourself </p>
+                <input type="text" class="form-control-1 w-100" placeholder=""  [(ngModel)]="otherData.about" formControlName="about" [ngClass]="{ 'is-invalid': submitted && f.about.errors }">
+                <div *ngIf="submitted && f.about.errors" class="invalid-feedback">
+                    <div *ngIf="f.about.errors.required">about yourself is required</div>
+                </div>
+              </div>
+              <div class="py-3">
+                <button  class="btn btn-pink-grad text-uppercase w-100" type="button"  (click)="onregister1()"   [disabled]="register1Spinner"> <span class="spinner-grow spinner-grow-sm" *ngIf="register1Spinner" role="status" aria-hidden="true"></span>Next </button>
+                <button  type="button" class="btn btn-blue-grad text-uppercase w-100 mt-2" (click)="currentDetail()"> Back </button>
+              </div>
+              <div class="text-center">
+                 <a routerLink="/terms-conditions" class="brand-color2 font-14"> Terms & Conditions </a>
+
+
+
+
+              </div>
+            </form>
+          </div><!-- end of logn-form -->
+
+        </div><!-- end of login-box -->
+      </div>     
+    </div><!-- end of d-flex -->
+  </div>
+<!-- End of About Content Section -->
+</div>

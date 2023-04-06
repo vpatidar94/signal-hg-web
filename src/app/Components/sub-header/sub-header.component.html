@@ -1,0 +1,75 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+<div class="studio-details-upper box-shadow1 white-bg mb-3">
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <div class="std-details-upper-left d-flex align-items-center justify-content-center" style="background-image:url({{businessDetail.business_img}});background-size: cover;background-position:center;min-height:406px">
+              <!-- /* <img src="{{businessDetail.business_img}}" class="img-fluid w-100"> */ -->
+
+              <!-- <div class="std-position-logo text-center">
+                <img src="assets/img/logo_white_web.png" class="img-fluid">
+              </div> -->
+            </div>
+          </div><!-- end of std-details-upper-left -->
+
+          <div class="col-12 col-lg-6">
+            <div class="std-details-upper-right text-center p-3">
+              <div class="">
+                <img src="{{businessDetail.logo}}" class="mb-4 log-img">
+                <h4 class="title dark-color mb-2"> {{businessDetail.business_name}} </h4>
+                <p class="brand-color3 font-12 mb-0" *ngIf="businessDetail.address.length <= 40"> {{businessDetail.address}} </p>
+                <p class="brand-color3 font-12 mb-0"  *ngIf="businessDetail.address.length > 40"> {{businessDetail.address | ellipsis:40}} </p>
+                <ul class="studio-contact-details my-4">
+                  <li class="ml-0"> <a routerLink="/detail"> <img src="assets/img/ic_home_web.png"> <span> Home </span></a> </li>
+
+                  <li> <a href="tel:{{businessDetail.business_phone}}" target="blank"> <img src="assets/img/ic_call_web.png"> <span> Call </span></a> </li>
+                  <li><a href="http://maps.google.com/maps?q={{businessDetail.latitude}},{{businessDetail.longitude}},14z?hl=en@{{businessDetail.address}}"  target="blank" >
+                     <!-- <a href="Javascript:void(0);" (click)="getAddress(businessDetail.latitude,businessDetail.longitude)">  -->
+                       
+                      <img src="assets/img/ic_direction_web.png">  <span> Directions </span></a> </li>
+                  <!-- <button id="googlemaplc" style="display:none">
+                    <a href="https://www.google.com/maps/@{{businessDetail.latitude}},{{businessDetail.longitude}},14z?hl=en"  target="blank" ></a>
+                  </button> -->
+                  <li> <a href="https://mail.google.com/mail/u/0/?view=cm&to={{businessDetail.email}}&:&bcc&cc&fs=1&tf=1" target="blank"> <img src="assets/img/ic_email_web.png"> <span> Email </span></a> </li>
+                  <li class="mr-0"> 
+                    
+                    <a href="Javascript:void(0);"  *ngIf="businessDetail.favourite == 0" (click)="addFav(businessDetail.business_id,1)"> <img src="assets/img/ic_unfavourite_web.png"> <span> Favorite </span></a>
+                    <a href="Javascript:void(0);" *ngIf="businessDetail.favourite == 1" (click)="addFav(businessDetail.business_id,0)"> <img src="assets/img/ic_favourite_web.png"> <span> Favorite </span></a>
+                   </li>
+                </ul>
+                <ul class="studio-service-details" *ngIf="userDetail.role_id == 3">
+                  <li class="ml-md-0">
+                    <a href="Javascript:void(0);" routerLink="/classes"> <img src="assets/img/ic_class.png"> <span> Classes </span> </a> 
+                    </li>
+                  <li > 
+                    <a href="Javascript:void(0);"routerLink="/staff"  > <img src="assets/img/ic_instructors.png"> <span> Instructors </span> </a>
+                   </li>
+                  <li> 
+                    <a href="Javascript:void(0);" routerLink="/services"> <img src="assets/img/ic_services.png"> <span> Services </span> </a> 
+                  </li>
+                  <li class="mr-md-0" *ngIf="businessDetail.video_access == '1'">
+                    <a href="Javascript:void(0);" routerLink="/videos"> <img src="assets/img/video.png"> <span> Videos </span> </a> 
+                  </li>
+                  <!-- <li class="mr-md-0">
+                    <a href="Javascript:void(0);" routerLink="/workshops"> <img src="assets/img/ic_workshop.png"> <span> Workshops </span> </a> 
+                    </li> -->
+                </ul>
+                <ul class="studio-service-details" *ngIf="userDetail.role_id == 4" >
+                  <li class="ml-md-0">
+                    <a href="Javascript:void(0);" routerLink="/classess"> <img src="assets/img/ic_class.png"> <span> Classes </span> </a> 
+                    </li>
+                  <li> 
+                    <a href="Javascript:void(0);" routerLink="/appointment"> <img src="assets/img/ic_appointment.png"> <span> Appointment </span> </a> 
+                  </li>
+                  <li class="mr-md-0" *ngIf="businessDetail.video_access == '1'">
+                    <a href="Javascript:void(0);" routerLink="/my-videos"> <img src="assets/img/video.png"> <span> Videos </span> </a> 
+                  </li>
+                  <!-- <li class="mr-md-0">
+                    <a href="Javascript:void(0);" routerLink="/workshopss"> <img src="assets/img/ic_workshop.png"> <span> Workshops </span> </a> 
+                    </li> -->
+                </ul>
+              </div>
+            </div>
+          </div><!-- end of std-details-upper-right -->
+        </div><!-- end of row -->
+</div><!-- end of studio-details-upper -->

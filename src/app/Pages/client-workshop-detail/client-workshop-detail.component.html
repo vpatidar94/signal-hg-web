@@ -1,0 +1,682 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+<!-- My Studio Card Detials Section -->
+<div class="studio-details client-home-inner">
+    <div class="container">
+      <app-sub-header></app-sub-header>
+      <div class ="row  mb-3 d-flex">
+        <div class="col-6">
+          <div class="formgroup searchbar" *ngIf="View == 2 && currentUrl =='/workshop-detail' ">
+            <input type="text" class="form-control" onkeyup="this.value=this.value.replace(/^\s+/g, '')" [(ngModel)]="search_text" (change)="ClientList()">
+            <button (click)="ClientList()"><i class="fas fa-search"></i></button>
+        </div>
+        </div>
+        <div class="col-6 text-right ">
+          <button type="button" class="btn btn-pink-grad px-2 text-uppercase" *ngIf="View == 1 && currentUrl =='/workshop-detail'" (click)="View = 2" >Add Customer </button>
+          <button type="button" class="btn btn-blue-grad px-2 text-uppercase ml-2" (click)="back()" >Back </button>
+        </div>
+      </div>
+   
+    </div><!-- end of container -->
+  <div *ngIf="View == 1 || View == 3">
+    <div class="client-class-inner mb-4">
+      <div class="container">
+
+
+        <div class="row" >
+          <div class ="col-12 mb-4" *ngIf="View == 3">
+            <p class="black-color font-w-100 text-uppercase font-20"> booking Detail for Customer </p>
+
+          <div class="activity-card box-shadow1 border-radius6 white-bg p-2">
+            <div class="client-slot-box d-flex " >
+                <div class="client-img">
+                    <img src="{{selectedClientInfo.profile_img}}" class="img-fluid">
+                </div>
+                <div class="row client-detail pl-3">
+                    <div class="col-12">
+                        <p class="black-color  mb-0 d-flex">
+                            <span class="nametitle1 mr-5 ml-5">Name : {{selectedClientInfo.name}} {{selectedClientInfo.lastname}}</span> 
+                            <span class="nametitle1  mr-5">Email : {{selectedClientInfo.email}}</span>
+                            <span class="nametitle1  ml-5 mr-5">Phone No : {{selectedClientInfo.country_code}} {{selectedClientInfo.mobile}}</span>
+                            <span class="nametitle1 mr-5">Age : {{selectedClientInfo.age}} </span>
+                            <span class="nametitle1 ">Gender : {{selectedClientInfo.gender}}</span>
+                          </p>
+                    </div>
+                </div>
+            </div>
+      </div>
+          <!-- <div class ="col-12 mb-4" *ngIf="View == 3">
+            <p class="black-color font-w-100 text-uppercase font-20"> booking Detail for C    <section class="client-search-section">
+ </p>
+
+              <p class="nametitle d-block">{{selectedClientInfo.name}} {{selectedClientInfo.lastname}}</p> 
+              <p class="brand-color3 font-w-500 mt-2 d-block">{{selectedClientInfo.email}}</p>
+              <p class="brand-color3 font-w-500 mt-2 d-block">{{selectedClientInfo.country_code}} {{selectedClientInfo.mobile}}</p> -->
+
+
+          </div>
+          <div class="col-12 col-md-4 mb-4">
+            <p class="black-color font-w-100 text-uppercase font-20"> workshop </p>
+            <div class="white-bg box-shadow1 border-radius6 p-3 mt-3 text-center fixed-hight">
+              <div class="row">
+                <div class="col-2 mb-3 ">
+                  <img src="{{businessDetail.logo}}" class="new-log-img"> 
+                </div >
+                <div class="col-10 text-left mb-3"> 
+                  <p class="black-color font-w-100 text-uppercase font-20 ml-2 ">{{ClassData.workshop_name}}  </p>
+                </div>
+                <!-- <div class ="col-12">
+              <ul class="text-left mb-3">
+                <li class="d-inline-block"> <img src="{{businessDetail.logo}}" class="new-log-img"> </li>
+                <li class="d-inline-block"> <p class="black-color font-w-100 text-uppercase font-20 ml-2">{{ClassData.workshop_name}}  </p> </li>
+              </ul>
+            </div> -->
+          </div>
+        </div>
+          </div><!-- end of col-md-4 -->
+
+          <div class="col-12 col-md-4 mb-4">
+            <p class="black-color font-w-100 text-uppercase font-20"> other details </p>
+            <div class="white-bg box-shadow1 border-radius6 p-3 mt-3 fixed-hight">
+                <div class="row ">
+                    <div class="col-6 col-md-6">
+                      <div class="text-left">
+                        <p class="font-14 black-color mb-0"> Date </p>
+                        <h5 class="title black-color mb-0">{{ClassData.start_date_utc_new}}  </h5>
+                      </div>
+                    </div>
+                    <div class="col-6 col-md-6 border-left">
+                      <div class="text-left">
+                        <p class="font-14 black-color mb-0"> Capacity </p>
+                        <h5 class="title black-color mb-0">  {{ClassData.capacity_used}} / {{ClassData.total_capacity}}  </h5>                             
+                      </div>
+                      
+                    </div>
+                  </div><!-- end of row -->
+                <div class="row mt-3">
+                    <div class="col-6 col-md-6">
+                      <div class="text-left">
+                        <p class="font-14 black-color mb-0"> Start time </p>
+                        <h5 class="title black-color mb-0">{{ClassData.from_time_new}}</h5>
+                      </div>
+                    </div>
+                    <div class="col-6 col-md-6 border-left">
+                      <div class="text-left">
+                        <p class="font-14 black-color mb-0"> End Time</p>
+                        <h5 class="title black-color mb-0">{{ClassData.to_time_new}}  </h5>
+                      </div>
+                    </div>
+                  </div><!-- end of row -->
+                
+              
+              <div class="row mt-3">
+                <div class="col-6 col-md-6">
+                  <div class="text-left">
+                    <p class="font-14 black-color mb-0">Location </p>
+                    <!-- <h5 class="title black-color mb-0" *ngIf="ClassData.location_url"><a href="{{ClassData.location_url}}" target="_blank">{{ClassData.location}}</a></h5>
+                    <h5 class="title black-color mb-0" *ngIf="!ClassData.location_url">{{ClassData.location}}</h5> -->
+
+                    <h5 class="heading-titlenew mb-0 black-color" *ngIf="ClassData.location"><a *ngIf="!ClassData.location_url">{{ClassData.location}}</a>
+                      <a *ngIf="ClassData.location_url" href="{{ClassData.location_url}}" target="_blank" title="{{ClassData.location_url}}">{{ClassData.location}}</a>
+                    </h5>
+                    <h5 class="heading-titlenew mb-0 black-color" *ngIf="ClassData.address"><a href="{{ClassData.address}}" target="blank">Other</a></h5>
+
+                    <!-- <h5 class="title black-color mb-0" *ngIf="ClassData.location">{{ClassData.location}}  </h5>   
+                    <h5 class="title black-color mb-0" *ngIf="ClassData.address">{{ClassData.address}}  </h5>                         -->
+                     
+                  </div>
+                </div>
+              </div><!-- end of row -->
+
+              <div class="row mt-3" >
+                <div class="col-12 col-md-12">
+                  <div class="text-left">
+                    <p class="font-14 black-color mb-0"> Web Link </p>
+                    <h5 class="title black-color mb-0" *ngIf="ClassData.web_link"> <a href="{{ClassData.web_link}}" target="_blank"><i class="fa fa-link" aria-hidden="true" title="{{ClassData.web_link}}"></i>
+                    </a> </h5>                             
+                    <h5 class="title black-color mb-0" *ngIf="!ClassData.web_link">N/A </h5>    
+                  </div>
+                </div>
+              </div><!-- end of row -->
+            </div>
+          </div><!-- end of col-md-4 -->
+
+          <div class="col-12 col-md-4 mb-4">
+            <p class="black-color font-w-100 text-uppercase font-20"> description </p>
+            <div class="white-bg box-shadow1 border-radius6 p-3 mt-3 text-left fixed-hight description-box">
+              <p class="font-14 black-color mb-0"> Description </p>
+              <p class="brand-color3 font-12 mb-2">{{ClassData.workshop_description}} </p>
+            </div>
+          </div><!-- end of col-md-4 -->
+        </div>
+      </div>
+    </div>
+
+   
+    <div class="mb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="white-bg box-shadow1 border-radius6 p-4">
+              <div class="row">
+                <div class="col-6">
+                  <div class="section-heading pt-2 pb-4 text-left">
+                    <p class="black-color font-w-100 text-uppercase font-20">  instructors </p>
+                  </div>
+                </div><!-- end of col-6 -->
+
+                <div class="col-6">
+                  <div class="section-heading pt-2 pb-3 text-right">
+                    <!-- <a routerLink="/staff" class="brand-color3 font-w-100 font-14"> View ALL </a> -->
+                  </div>
+                </div><!-- end of col-6 -->
+              </div><!-- end of row -->
+            
+              <div class="row">
+                <div class="col-12 col-md-3 mb-4" *ngFor ="let itemss of instrustorData">
+                    <div class="activity-card box-shadow1 border-radius6 white-bg p-4">
+                      <div class="col-12 mt-0 mt-md-4 mt-lg-0">
+                        <div class="activity-card-details text-left">                             
+
+                          <a href="Javascript:void(0);"  (click) ="redirectUrl(itemss.instructor_id,'/instructor-detail','')">
+                            <div class="text-center">
+                              <div class="img-height box-shadow1 mx-auto">
+                                <img src="{{itemss.instructor_profile_img}}" class="img-fluid">
+                              </div>
+                              <p class="black-color font-w-100 font-16 mt-3 mb-2">{{itemss.instructor_name}}  {{itemss.instructor_lastname}} </p>
+                            </div>
+                          </a>
+                        </div>
+                      </div><!-- end of col-7 -->                  
+                    </div><!-- end of activity-card -->
+                  </div></div>
+            </div>
+          </div>
+        </div>          
+      </div>
+    </div>
+    <div class="mb-5" >
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+
+<div *ngIf="CustomerDetail.length != 0">
+  <div class="row py-4">
+      <div class="col-8">
+          <h5 class="title black-color font-w-500 text-uppercase font-16 mb-0"> User Details </h5>
+      </div>
+      
+  </div>
+
+  <div class="row  mt-3">
+      <div class="col-md-4 mb-4" *ngFor="let items of CustomerDetail">
+          <div class="class-detail-slot-box box-shadow1 border-radius6 p-3 bg-white">
+              <div class="row">
+                  <div class="col-3">
+                      <div class="profile-img box-shadow1">
+                          <img src="{{items.profile_img}}" class="img-fluid">
+                      </div>
+                  </div>
+                  <div class="col-9">
+                      <h5 class="brand-color3 heading-titlenew mb-1">{{items.name}}
+                          {{items.lastname}}</h5>
+                      <ul class="d-flex">
+                          <li class="flex-fill">
+                              <p class="black-color paratitle font-w-400 font-14">{{items.Age}},
+                                  {{items.gender}}</p>
+                          </li>
+                      </ul>
+                      <div>
+                          <div class="d-flex align-items-center">
+                          <!-- <p class="brand-color3 font-15 font-w-500 mb-1"
+                                  >Status : {{items.attendance_status}}</p> -->
+                                  <!-- <button class="btn btn-green-grad"
+                                  >{{items.attendance_status}}</button> -->
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+      <div  class="row" *ngIf="CustomerDetail.length == 0" >
+          <div class="text-center">
+              <p class="font-awesome black-color font-18 d-inline mx-2 "> No User Available</p>
+            </div> 
+      </div>
+
+</div>
+
+
+</div></div></div>
+
+<div class="container pb-5 d-flex">
+  
+  <div class="col-6 col-lg-6 mt-5 mt-lg-0" >
+    <div class="s-d-appoint-block-right border-radius6 box-shadow1 white-bg">
+      <div class="px-3 py-3 text-left light-bg border-t-lr-6">
+        <h5 class="title black-color font-w-100 text-uppercase font-16 mb-0"> payment details </h5>
+      </div><!-- top heading -->
+
+      <div class="px-3 pt-4 pb-2 border-bottom">
+        <div class="row mb-2">
+          <div class="col-6 text-left">
+            <p class="black-color font-w-100 font-18"> Workshop Fees </p>
+          </div>
+          <div class="col-6 text-right">
+            <p class="black-color font-w-100 font-18"> $ {{ClassData.workshop_price}} </p>
+          </div>
+        </div>
+        <!-- <div class="row">
+          <div class="col-6 text-left">
+            <p class="black-color font-w-100 font-18"> Tax </p>
+          </div>
+          <div class="col-6 text-right">
+            <p class="black-color font-w-100 font-18"> $ {{ClassData.workshop_tax_price}} </p>
+          </div>
+        </div> -->
+              <div class="row">
+                      <div class="col-6 text-left">
+                        <p class="black-color font-w-100 font-18"> Tax 1 </p>
+                      </div>
+                      <div class="col-6 text-right">
+                        <p class="black-color font-w-100 font-18"> $ {{ClassData.tax1_rate}} </p>
+                      </div>
+                      <div class="col-6 text-left">
+                        <p class="black-color font-w-100 font-18"> Tax 2 </p>
+                      </div>
+                      <div class="col-6 text-right">
+                        <p class="black-color font-w-100 font-18"> $ {{ClassData.tax2_rate}} </p>
+                      </div>
+                    </div>
+      </div><!-- end of Appointment Fees: -->
+
+      <div class="px-3 pt-4 pb-3 border-bottom">
+        <div class="row mb-2">
+          <div class="col-6 text-left">
+            <p class="title black-color font-w-100 font-18 mb-0"> Amount Payable </p>
+          </div>
+          <div class="col-6 text-right">
+            <p class="title black-color font-w-100 font-18 mb-0"> $ {{ClassData.workshop_total_price}} </p>
+          </div>
+        </div>
+      </div><!-- end of Amount Payable -->
+      <div  *ngIf="currentUrl == '/workshops-detail'">
+      <div class="px-3 py-3 text-center" *ngIf="!paymentval && ClassData.is_purchase == 0">
+        <button  type="button" class="btn btn-blue-grad px-4 w-50 text-uppercase mb-0 mb-md-5 mt-2" (click)="paymentval = true"> checkout </button>
+      </div><!--  data-toggle="modal" data-target="#clientCheckOut" end of button and view policy -->
+      </div>
+
+     
+        <div class="px-3 py-3 text-center" *ngIf="currentUrl == '/workshop-detail' && View == 3">
+          <button  type="button" class="btn btn-blue-grad px-4 w-50 text-uppercase mb-0 mb-md-5 mt-2" (click)="instructorpayment = true"> checkout </button>
+        </div><!--  data-toggle="modal" data-target="#clientCheckOut" end of button and view policy -->
+    </div>
+  </div><!-- end of col-md-6 -->
+  <div class="col-6 col-lg-6 mt-5 mt-lg-0" *ngIf="instructorpayment">
+    <div class="s-d-appoint-block-right border-radius6 box-shadow1 white-bg">
+      <div class="px-3 py-3 text-left light-bg border-t-lr-6">
+        <h5 class="title black-color font-w-100 text-uppercase font-16 mb-0"> credit card / debit card</h5>
+      </div><!-- top heading -->
+  <div class="mt-4 ml-3" *ngIf="instructorpayment">
+    <p class="brand-color3 font-14 mb-2">Payment Mode</p>                  
+    <div class="d-flex flex-wrap" >
+      <div class="radiotype-btn">
+          <input type="radio" class="customradio" id="1" value="cash" name="paymentMethod"  [(ngModel)]="paymentMode" [ngModelOptions]="{standalone: true}" (change)="getpaymentMode($event)">
+          <label>Cash/Check</label>
+      </div>
+      <div class="radiotype-btn ml-3">
+          <input type="radio" class="customradio" id="3" value="card" name="paymentMethod"  [(ngModel)]="paymentMode" [ngModelOptions]="{standalone: true}" (change)="getpaymentMode($event)">
+          <label>Card</label>
+      </div>
+  </div>
+
+  <!-- <p class="brand-color3 font-14 mb-2" *ngIf="paymentMode == '3'">Card Type</p> 
+      <div class="d-flex flex-wrap" >
+      <div class="radiotype-btn">
+          <input type="radio" class="customradio1" id="1" value="gift_card" name="cardMethod"  [(ngModel)]="cardMethod" [ngModelOptions]="{standalone: true}" (change)="getcardMode($event)">
+          <label>Gift Card</label>
+      </div>
+      <div class="radiotype-btn ml-3">
+          <input type="radio" class="customradio1" id="2" value="debit_card" name="cardMethod"  [(ngModel)]="cardMethod" [ngModelOptions]="{standalone: true}" (change)="getcardMode($event)">
+          <label>Debit Card</label>
+      </div>
+        <div class="radiotype-btn ml-3">
+          <input type="radio" class="customradio1" id="3" value="credit_card" name="cardMethod"  [(ngModel)]="cardMethod" [ngModelOptions]="{standalone: true}" (change)="getcardMode($event)">
+          <label>Credit Card</label>
+      </div>
+  </div>
+  <div *ngIf ="cardMethod !='gift_card'" >
+    
+  <select>
+    <option value="">Select Card type</option>
+    <option value="visa"> Visa Card</option>
+    <option value="master"> Master Card</option>
+    <option value="amex"> Amex</option>
+    <option value="am"> American Express</option>
+    <option value=" interac">  Interac </option>
+    <option value="discover"> Discover </option>
+  </select>
+</div> -->
+    
+  
+  </div><!-- Gender -->  
+  <div class="card-details" *ngIf="paymentMode == '3'">
+
+    <div class="client-payment-input border-radius6 box-shadow1 white-bg p-4"> 
+      <div class="row">
+        <div class="col-12 mb-3" *ngFor="let cardsave of customerData">
+          <div class="client-card-img white-bg border-radius6 box-shadow1" *ngIf="cardsave.length != 0">
+            <label class="select-card select-card-img select-card-cvv mb-2"> 
+              <img src="assets/img/visa_card.png" *ngIf="cardsave.card_type== 'visa'" class="img-fluid payment_img">
+              <img src="assets/img/master_card.png" *ngIf="cardsave.card_type== 'mc'" class="img-fluid payment_img">
+             <img src="assets/img/american_express.png" *ngIf="cardsave.card_type== 'am'" class="img-fluid payment_img">
+             <!--   <img src="assets/img/interac" *ngIf="cardsave.card_type== 'mc'" class="img-fluid payment_img">
+              <img src="assets/img/amex.png" *ngIf="cardsave.card_type== 'mc'" class="img-fluid payment_img">
+              <img src="assets/img/discover.png" *ngIf="cardsave.card_type== 'mc'" class="img-fluid payment_img"> -->
+
+              <p class="mb-0 font-12 dark-color mt-2">{{cardsave.number}} </p>
+              <h5 class="mb-0 font-12 dark-color mt-2">Valid Till(MM/YYYY) </h5>
+              <p class="mb-0 font-12 dark-color mt-2">{{cardsave.expiry_month}} / {{cardsave.expiry_year}}</p>
+              <input type="radio" checked="checked" name="radio1" [id]="cardsave.card_id" [value]="cardsave.card_id" [(ngModel)]="cardType" [ngModelOptions]="{standalone: true}" (change)="getCardType($event)">
+              <span class="checkmark"></span>
+            </label>                         
+              
+            <form  *ngIf="cardsave.checked == true && cardType == cardsave.card_id" >
+            <div class="text-center d-flex">
+              <input type="password" autocomplete="off" class="form-control w-25 ml-5 " onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="CVV" pattern="\d{3,4}"  onKeyPress="if(this.value.length >=4) return false;" formControlName="cvv_no" [ngClass]="{ 'is-invalid': submitted && sf.cvv_no.errors }">
+              <div *ngIf="submitted && sf.cvv_no.errors" class="invalid-feedback">
+                  <div *ngIf="sf.cvv_no.errors.required">CVV is required</div>  
+                  <div *ngIf="sf.cvv_no.errors.pattern">CVV is not valid</div> 
+               </div>  
+              <button type="button" class="btn btn-blue-grad px-4 w-50 text-uppercase mb-0 mb-md-3 ml-5" (click)="generateToken(2)"> Pay </button>
+            </div>
+          </form>
+          </div>
+        </div><!-- end of Master Card --> 
+        <div class="col-12 mb-3">
+          <div class="white-bg border-radius6 box-shadow1">
+            <label class="select-card"> New Card
+              <input type="radio" checked="checked" name="radio1" id="new" value="new" [(ngModel)]="cardType" [ngModelOptions]="{standalone: true}" (change)="getCardType($event)">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div><!-- end of New Card -->        
+       
+      </div> <!-- end of row -->
+</div>
+      <!-- <h5 class="payment-head p-3 font-arialrouded text-capitalize">Debit/Credit Card Details</h5> -->
+      <form [formGroup]="paymentCard" *ngIf="cardType == 'new'" >
+        <div class="row py-4 px-3">
+          <div class="col-12 col-sm-6">
+            <div class="form-group">
+              <p class="brand-color3 text-left font-14 mb-2"> Name On Card </p>
+              <input type="text"  class="form-control" autocomplete="off" onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="Sophie Joe" formControlName="card_holder_name" [ngClass]="{ 'is-invalid': submitted && f.card_holder_name.errors }">
+              <div *ngIf="submitted && f.card_holder_name.errors" class="invalid-feedback">
+                <div *ngIf="f.card_holder_name.errors.required">Card Holder Name is required</div> 
+                <div *ngIf="f.card_holder_name.errors.pattern">Card Holder Name is required</div>  
+               </div>
+            </div>
+          </div><!-- First Name -->
+
+          <div class="col-12 col-sm-6">
+            <div class="form-group client-buy-input-cardno">
+              <p class="brand-color3 text-left font-14 mb-2"> Card Number </p>
+              <input type="text"  autocomplete="off" class="form-control" onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="4121 4411 3131 8554" pattern="\d{15,19}" onKeyPress="if(this.value.length >= 19) return false;" formControlName="card_number" [ngClass]="{ 'is-invalid': submitted && f.card_number.errors }">
+              <!-- <img src="assets/img/ic_visacard.png" class="input-visa-img">  -->
+              <div *ngIf="submitted && f.card_number.errors" class="invalid-feedback">
+                <div *ngIf="f.card_number.errors.required">Card Number is required</div>  
+                <div *ngIf="f.card_number.errors.pattern">Card Number is not valid</div>  
+
+             </div>                   </div>
+          </div><!-- Last Name -->
+
+          <div class="col-12 col-sm-6 mt-2 mt-md-3">
+            <div class="form-group">
+              <p class="brand-color3 text-left font-14 mb-2"> Valid Till </p>
+              <input type="text"  autocomplete="off" class="form-control"  placeholder="MM/YYYY" formControlName="expiry"  [ngClass]="{ 'is-invalid': submitted && f.expiry.errors }" minlength="7" maxlength="7" onKeyPress="if(this.value.length == 2) return this.value=this.value.replace(this.value, this.value+'/');"pattern="^\d{2}/\d{4}">
+              <!-- <input type="number"  class="form-control"  placeholder="MM/YYYY" formControlName="expiry" pattern="\d{2}/\d{2}"  onKeyPress="if(this.value.length >=5) return false;" [ngClass]="{ 'is-invalid': submitted && f.expiry.errors }"> -->
+              <div *ngIf="submitted && f.expiry.errors" class="invalid-feedback">
+                  <div *ngIf="f.expiry.errors.required">Valid Till is required</div>  
+                  <div *ngIf="f.expiry.errors.pattern">Valid Till is like MM/YY</div>  
+
+               </div>
+            </div>
+          </div><!-- Email  onPaste="return false" -->
+
+          <div class="col-12 col-sm-6 mt-2 mt-md-3">
+            <div class="form-group">
+              <p class="brand-color3 text-left font-14 mb-2"> CVV </p>
+              <input type="password" autocomplete="off" class="form-control" onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="eg. 201" pattern="\d{3,4}"  onKeyPress="if(this.value.length >=4) return false;" formControlName="cvv_no" [ngClass]="{ 'is-invalid': submitted && f.cvv_no.errors }">
+              <div *ngIf="submitted && f.cvv_no.errors" class="invalid-feedback">
+                  <div *ngIf="f.cvv_no.errors.required">CVV is required</div>  
+                  <div *ngIf="f.cvv_no.errors.pattern">CVV is not valid</div>  
+
+               </div>
+            </div>
+          </div>
+          <!-- <div class="col-12">
+            <input type="checkbox" (change)="Savecard($event)"> Save Card
+          </div>
+           -->
+          <!-- end of button and view policy -->                                 
+          <div class="w-100 py-5 text-center">
+            <button type="button" class="btn btn-blue-grad px-4 w-50 text-uppercase mb-0 mb-md-5" (click)="generateToken(1)"> Pay </button>
+          </div>
+        </div>
+      </form>
+  </div>
+
+  <div class="card-details" *ngIf="paymentMode == '1'">
+    <!-- <h5 class="payment-head p-3 font-arialrouded text-capitalize">Cash Details</h5> -->
+  <form [formGroup]="ReferenceDetail">
+    <div class="d-flex flex-wrap py-3">
+      <div class="col-md-12 form-group">
+        <label>Transaction Number</label>
+        <input type="text" class="form-control" formControlName="referenceid" [ngClass]="{ 'is-invalid': submitted && rf.referenceid.errors }">
+        <div *ngIf="submitted && f.referenceid.errors" class="invalid-feedback">
+            <div *ngIf="rf.referenceid.errors.required">Transaction  Number</div>  
+            <!-- <div *ngIf="f.referenceid.errors.pattern">Reference Number</div>   -->
+
+         </div>
+    </div>
+    <div class="col-md-12 form-group">
+        <label>Notes</label>
+        <input type="text" class="form-control" formControlName="payment_note" [ngClass]="{ 'is-invalid': submitted && rf.payment_note.errors }">
+        <!-- <div *ngIf="submitted && f.cvv_no.errors" class="invalid-feedback">
+            <div *ngIf="f.cvv_no.errors.required">CVV is required</div>  
+            <div *ngIf="f.cvv_no.errors.pattern">CVV is not valid</div>  
+         </div> -->
+    </div>
+    </div>
+    <div class="px-3 py-2 text-center" >
+      <button type="button" class="btn btn-blue-grad px-4 w-50 text-uppercase" (click)="PayAtStudio()"> Proceed to pay </button>
+    </div><!-- end of button and view policy -->
+    </form>
+
+    </div>
+</div></div>
+
+
+
+
+  <div class="col-6 col-lg-6 mt- mt-lg-0" *ngIf="paymentval">
+    <div class="client-buy-process border-radius6 box-shadow1 white-bg">
+      <div class="p-3 text-left light-bg border-t-lr-6">
+        <h5 class="title black-color font-w-100 text-uppercase font-16 mb-0"> credit card / debit card </h5>
+      </div><!-- top heading -->
+
+      <div class="px-3 pt-4 pb-3 border-bottom">
+        <div class="row mb-2">
+          <div class="col-6 text-left">
+            <p class="title black-color font-w-100 font-18 mb-0"> Amount Payable </p>
+          </div>
+          <div class="col-6 text-right">
+            <p class="title black-color font-w-100 font-18 mb-0"> $ {{ClassData.workshop_total_price}} </p>
+          </div>
+        </div>
+      </div><!-- end of Amount Payable -->
+
+    
+      <div class="client-payment-input border-radius6 box-shadow1 white-bg p-4"> 
+
+        <div class="row">
+          <div class="col-12 mb-3" *ngFor="let cardsave of customerData">
+            <div class="client-card-img white-bg border-radius6 box-shadow1" *ngIf= "cardsave.length != 0 && currentUrl == '/workshops-detail'">
+              <label class="select-card select-card-img select-card-cvv mb-2"> 
+                <img src="assets/img/visa_card.png" *ngIf="cardsave.card_type== 'visa'" class="img-fluid payment_img">
+                <img src="assets/img/master_card.png" *ngIf="cardsave.card_type== 'mc'" class="img-fluid payment_img">
+               <img src="assets/img/american_express.png" *ngIf="cardsave.card_type== 'am'" class="img-fluid payment_img">
+               <!--   <img src="assets/img/interac" *ngIf="cardsave.card_type== 'mc'" class="img-fluid payment_img">
+                <img src="assets/img/amex.png" *ngIf="cardsave.card_type== 'mc'" class="img-fluid payment_img">
+                <img src="assets/img/discover.png" *ngIf="cardsave.card_type== 'mc'" class="img-fluid payment_img"> -->
+
+                <p class="mb-0 font-12 dark-color mt-2">{{cardsave.number}} </p>
+                <h5 class="mb-0 font-12 dark-color mt-2">Valid Till(MM/YYYY) </h5>
+                <p class="mb-0 font-12 dark-color mt-2">{{cardsave.expiry_month}} / {{cardsave.expiry_year}}</p>
+                <input type="radio" checked="checked" name="radio" [id]="cardsave.card_id" [value]="cardsave.card_id" [(ngModel)]="cardType" [ngModelOptions]="{standalone: true}" (change)="getCardType($event)">
+                <span class="checkmark"></span>
+              </label>
+              
+              <form [formGroup]="savedCard" *ngIf="cardsave.checked == true && cardType == cardsave.card_id" >
+              <div class="text-center d-flex">
+                <!-- <input type="password" name="" placeholder="CVV" class="form-control w-25">  -->
+                <!-- <input type="password" autocomplete="off" class="form-control w-25" onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="CVV" pattern="\d{3,4}"  onKeyPress="if(this.value.length >=4) return false;" formControlName="cvv_no" [ngClass]="{ 'is-invalid': submitted && sf.cvv_no.errors }">
+                <div *ngIf="submitted && sf.cvv_no.errors" class="invalid-feedback">
+                    <div *ngIf="sf.cvv_no.errors.required">CVV is required</div>  
+                    <div *ngIf="sf.cvv_no.errors.pattern">CVV is not valid</div> 
+                 </div>   -->
+                 <input type="password" autocomplete="off" class="form-control w-25 ml-5" onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="CVV" pattern="\d{3,4}"  onKeyPress="if(this.value.length >=4) return false;" formControlName="cvv_no" [ngClass]="{ 'is-invalid': submitted && sf.cvv_no.errors }">
+                 <div *ngIf="submitted && sf.cvv_no.errors" class="invalid-feedback">
+                     <div *ngIf="sf.cvv_no.errors.required">CVV is required</div>  
+                     <div *ngIf="sf.cvv_no.errors.pattern">CVV is not valid</div> 
+                  </div>  
+                 <button type="button" class="btn btn-blue-grad px-4 w-50 text-uppercase mb-0 mb-md-3 ml-5" (click)="generateToken(2)"> Pay </button>
+
+              </div>
+            </form>
+            </div>
+          </div><!-- end of Master Card --> 
+          <div class="col-12 mb-3">
+            <div class="white-bg border-radius6 box-shadow1">
+              <label class="select-card"> New Card
+                <input type="radio" checked="checked" name="radio" id="new" value="new" [(ngModel)]="cardType" [ngModelOptions]="{standalone: true}" (change)="getCardType($event)">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </div><!-- end of New Card -->        
+         
+        </div> <!-- end of row -->
+</div>
+   
+  <form [formGroup]="paymentCard" *ngIf="cardType == 'new'">
+     
+        <div class="row py-4 px-3">
+          <div class="col-12 col-sm-6">
+            <div class="form-group">
+              <p class="brand-color3 text-left font-14 mb-2"> Name On Card </p>
+              <input type="text"  class="form-control" autocomplete="off" onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="Sophie Joe" formControlName="card_holder_name" [ngClass]="{ 'is-invalid': submitted && f.card_holder_name.errors }">
+              <div *ngIf="submitted && f.card_holder_name.errors" class="invalid-feedback">
+                <div *ngIf="f.card_holder_name.errors.required">Card Holder Name is required</div> 
+                <div *ngIf="f.card_holder_name.errors.pattern">Card Holder Name is required</div>  
+               </div>
+            </div>
+          </div><!-- First Name -->
+
+          <div class="col-12 col-sm-6">
+            <div class="form-group client-buy-input-cardno">
+              <p class="brand-color3 text-left font-14 mb-2"> Card Number </p>
+              <input type="text"  class="form-control" autocomplete="off" onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="4121 4411 3131 8554" pattern="\d{15,19}" onKeyPress="if(this.value.length >= 19) return false;" formControlName="card_number" [ngClass]="{ 'is-invalid': submitted && f.card_number.errors }">
+              <!-- <img src="assets/img/ic_visacard.png" class="input-visa-img">  -->
+              <div *ngIf="submitted && f.card_number.errors" class="invalid-feedback">
+                <div *ngIf="f.card_number.errors.required">Card Number is required</div>  
+                <div *ngIf="f.card_number.errors.pattern">Card Number is not valid</div>  
+
+             </div>                   </div>
+          </div><!-- Last Name -->
+
+          <div class="col-12 col-sm-6 mt-2 mt-md-3">
+            <div class="form-group">
+              <p class="brand-color3 text-left font-14 mb-2"> Valid Till </p>
+              <input type="text"  class="form-control" autocomplete="off" placeholder="MM/YYYY" formControlName="expiry"  [ngClass]="{ 'is-invalid': submitted && f.expiry.errors }" minlength="7" maxlength="7" onKeyPress="if(this.value.length == 2) return this.value=this.value.replace(this.value, this.value+'/');"pattern="^\d{2}/\d{4}">
+              <!-- <input type="number"  class="form-control"  placeholder="MM/YYYY" formControlName="expiry" pattern="\d{2}/\d{2}"  onKeyPress="if(this.value.length >=5) return false;" [ngClass]="{ 'is-invalid': submitted && f.expiry.errors }"> -->
+              <div *ngIf="submitted && f.expiry.errors" class="invalid-feedback">
+                  <div *ngIf="f.expiry.errors.required">Valid Till is required</div>  
+                  <div *ngIf="f.expiry.errors.pattern">Valid Till is like MM/YY</div>  
+
+               </div>
+            </div>
+          </div><!-- Email -->
+
+          <div class="col-12 col-sm-6 mt-2 mt-md-3">
+            <div class="form-group">
+              <p class="brand-color3 text-left font-14 mb-2"> CVV </p>
+              <input type="password" class="form-control" autocomplete="off" onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="eg. 201" pattern="\d{3,4}"  onKeyPress="if(this.value.length >=4) return false;" formControlName="cvv_no" [ngClass]="{ 'is-invalid': submitted && f.cvv_no.errors }">
+              <div *ngIf="submitted && f.cvv_no.errors" class="invalid-feedback">
+                  <div *ngIf="f.cvv_no.errors.required">CVV is required</div>  
+                  <div *ngIf="f.cvv_no.errors.pattern">CVV is not valid</div>  
+
+               </div>
+            </div>
+          </div>
+          <div class="col-12" *ngIf="currentUrl == '/workshops-detail'">
+            <input type="checkbox" (change)="Savecard($event)"> Save Card
+          </div>
+        <div class="w-100 py-5 text-center">
+          <button type="button" class="btn btn-blue-grad px-4 w-50 text-uppercase mb-0 mb-md-5" (click)="generateToken(1)"> Pay </button>
+        </div><!-- end of button and view policy -->                                 
+        
+      </div>
+      </form>
+    </div>
+  </div><!-- end of col-md-6 -->
+
+  </div>
+  </div>
+
+  <div *ngIf="View == 2">
+    <div class="container">
+    <div class="col-12 mb-4 mt-4">
+      <div class="white-bg box-shadow1 border-radius6 p-3 mt-3 text-center fixed-hight">
+        <div class="row">
+          <div class ="col-12">
+  <div class="row" *ngIf="clientDetail.length != 0">
+    <div class="col-lg-4 py-3 " *ngFor = "let items of clientDetail">
+<div class="activity-card box-shadow1 border-radius6 white-bg p-2">
+        <div class="client-slot-box d-flex " >
+            <div class="client-img">
+                <img src="{{items.profile_img}}" class="img-fluid">
+            </div>
+            <div class="row client-detail pl-3">
+                <div class="col-12">
+                    <p class="black-color font-14 font-w-600 mb-0 d-flex">
+                        <span class="nametitle d-block">{{items.name}} {{items.lastname}}</span> </p>
+                        <span class="brand-color3 font-w-500 mt-2 d-block">{{items.email}}</span>
+                        <span class="brand-color3 font-w-500 mt-2 d-block">{{items.country_code}} {{items.mobile}}</span>
+                        <button (click)="booking(items)" class="btn btn-blue mt-2" *ngIf="items.is_purchase == '0'">Purchase</button>
+                </div>
+            </div>
+        </div>
+  </div>
+    </div>                     
+</div>
+<div class="row" *ngIf="clientDetail.length == 0">
+    <div class="col-5"></div>
+    <div class="col-2">
+        <p class="font-awesome black-color font-18 d-inline mx-2"> No Customer Available</p>
+    </div>
+    <div class="col-5"></div>
+</div>
+  </div>
+<!-- End of My Studio Card Detials Section -->
+</div>
+</div></div></div></div>
+</div>
+<app-inner-footer></app-inner-footer>
+
+
+

@@ -1,0 +1,97 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}"></ngx-loading>
+    <div class="activity-section py-5">
+        <div class="container">
+            <div class="row mt-4" *ngIf="currentUrl == '/nutrition'">
+                <div class="col-12 pb-3">
+                    <div class="add_new">
+                        <a href="javascript:void(0)" routerLink="/client" class="btn btn_add"> Back</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4" *ngIf="currentUrl == '/my-nutrition'">
+                <div class="col-12 pb-3">
+                    <div class="section-heading">
+                      <h5 class="title black-color font-w-100 text-uppercase font-16">Week Plan </h5>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">   
+                        <div class="col-2" *ngFor="let items of daysList">
+                            <div class="weeks_day box-shadow1 white-bg radius8" [class.active] = "mactiveClass == items.id" (click)="getDay(items.id)">
+                                <a href="javascript:void(0)" class="card-title">{{items.week_name}}</a>
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+
+            <!-- <div class="row">
+                <div class="col-1">
+                     <div class="cal_days">
+                         <a href="#"> Mon</a>
+                     </div>
+                </div>
+                <div class="col-1">
+                    <div class="cal_days">
+                        <a href="#"> Tue</a>
+                    </div>
+                </div>
+                <div class="col-1">
+                     <div class="cal_days">
+                         <a href="#"> Wed</a>
+                     </div>
+                </div>
+                <div class="col-1">
+                    <div class="cal_days">
+                        <a href="#"> Thus</a>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="cal_days">
+                        <a href="#"> Fri</a>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="cal_days">
+                        <a href="#"> Sat</a>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="cal_days">
+                        <a href="#"> Sun</a>
+                    </div>
+                </div>    
+            </div> -->
+
+            <div class="mt-3">
+                <div class="row" *ngIf="DietList.length != 0">
+                    <div class="col-md-4 mb-4" *ngFor="let items of DietList">                        
+                        <div class="class-detail-slot-box box-shadow1 border-radius6 p-3 clearfix bg-white">                            
+                            <a href="javascript:void(0)" (click)="redirectUrl(items.id)">
+                                <div class="float-left">
+                                    <div class="profile-img box-shadow1">
+                                        <img src="{{items.img_url}}" class="img-fluid">
+                                    </div>                                
+                                </div>
+                                <div class="ml-5">
+                                    <h5 class="brand-color3 heading-titlenew mb-1">{{items.name}}</h5>
+                                    <p class="black-color paratitle font-w-400 font-14">{{items.description}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="DietList.length == 0">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4 text-center">
+                      <p class="font-awesome black-color font-18 d-inline mx-2 "> {{msg}}</p>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div>
+        </div>
+    </div>   
+</div>
+<app-inner-footer></app-inner-footer>   

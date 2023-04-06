@@ -1,0 +1,155 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+    <!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}"></ngx-loading> -->
+
+    <!-- My Studio Card Detials Section -->
+    <div class="studio-details client-home-inner">
+        <div class="container">
+            <app-sub-header></app-sub-header>
+
+            <div class="home-staff pb-5">         
+
+                <div class="white-bg border-radius6 box-shadow1 p-4 mt-5 available-slots">
+                    <!-- <div class="text-center d-flex align-items-center justify-content-center">
+                        <i class="fas fa-caret-left green-color"></i>
+                        <h4 class="font-w-600 black-color calender-head font-arialround mx-2">April 2020</h4>
+                        <i class="fas fa-caret-right green-color"></i>
+                    </div> -->
+                    <div class="row client-refer mt-4" *ngIf="AvailableList.length != 0">                   
+
+                        <div class="col-md-6 col-lg-4 py-4" *ngFor="let items of AvailableList.details; let i = index">
+                            <div class="availibility-slot">
+                                <div class="head d-flex align-items-center  border-bottom pb-2">
+                                    <h6 class="title black-color font-w-500">{{items.week_name}}</h6>
+                                    <div class="custom-controls-stacked ml-auto">
+                                        <label class="custom-control ios-switch text-right mb-0">
+                                            <input type="checkbox" class="ios-switch-control-input" [id]="items.week_name" (change)="changeStatus1($event,items,'')" [(ngModel)]="items.day_status1">
+                                            <span class="ios-switch-control-indicator"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row mt-4" *ngFor="let subitem of items.time_slot">
+                                    <div class="col pr-0">
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Start Time</mat-label>
+                                            <input matInput  [value]="subitem.time_slote_from_new" readonly>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col pr-0">
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>End Time</mat-label>
+                                            <input matInput  [value]="subitem.time_slote_to_new" readonly>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="custom-controls-stacked ml-auto">
+                                            <label class="custom-control ios-switch text-right mb-0">
+                                                <input type="checkbox" class="ios-switch-control-input" id="{{subitem.id}}{{i}}" (change)="changeStatus1($event,items,subitem.id)" [(ngModel)]="subitem.time_slot_status1">
+                                                <span class="ios-switch-control-indicator"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- col-md-6 -->
+                    </div>
+                <div class="row client-refer mt-4" *ngIf="AvailableList.length == 0">   
+                    <div class ="col-4">
+
+                    </div> 
+                    <div class ="col-4">
+                        <div class="text-center">
+                            <p class="font-awesome black-color font-18 d-inline mx-2 ">  No Class Available</p>
+        
+                          </div>  
+                    </div>
+                    <div class ="col-4">
+                        
+                    </div>               
+                  
+                </div>
+
+            </div><!-- end of home-staff -->
+            <!-- <div class="home-staff pb-5">
+                <div class="row staff-studio-details client-refer">
+                    <div class="col-sm-6 col-md-3 custom-col20 py-3">
+                    <div class="schedule-tab p-3">
+                        <div class="img-box mx-auto my-2">
+                            <img src="assets/img/pic_2.png" class="img-fluid">
+                        </div>
+                        <h5 class="font-arialrouded text-center nametitle">Jungle Mayur Jim</h5>
+                        <p class="brand-color3 text-center font-14">Recine, Wacorsin Acrobaties Hammock Kids Lyora</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 custom-col20 py-3">
+                    <div class="schedule-tab p-3">
+                        <div class="img-box mx-auto my-2">
+                            <img src="assets/img/pic_2.png" class="img-fluid">
+                        </div>
+                        <h5 class="font-arialrouded text-center nametitle">Jungle Mayur Jim</h5>
+                        <p class="brand-color3 text-center font-14">Recine, Wacorsin Acrobaties Hammock Kids Lyora</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 custom-col20 py-3">
+                    <div class="schedule-tab p-3">
+                        <div class="img-box mx-auto my-2">
+                            <img src="assets/img/pic_2.png" class="img-fluid">
+                        </div>
+                        <h5 class="font-arialrouded text-center nametitle">Jungle Mayur Jim</h5>
+                        <p class="brand-color3 text-center font-14">Recine, Wacorsin Acrobaties Hammock Kids Lyora</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 custom-col20 py-3">
+                    <div class="schedule-tab p-3">
+                        <div class="img-box mx-auto my-2">
+                            <img src="assets/img/pic_2.png" class="img-fluid">
+                        </div>
+                        <h5 class="font-arialrouded text-center nametitle">Jungle Mayur Jim</h5>
+                        <p class="brand-color3 text-center font-14">Recine, Wacorsin Acrobaties Hammock Kids Lyora</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 custom-col20 py-3">
+                    <div class="schedule-tab p-3">
+                        <div class="img-box mx-auto my-2">
+                            <img src="assets/img/pic_2.png" class="img-fluid">
+                        </div>
+                        <h5 class="font-arialrouded text-center nametitle">Jungle Mayur Jim</h5>
+                        <p class="brand-color3 text-center font-14">Recine, Wacorsin Acrobaties Hammock Kids Lyora</p>
+                    </div>
+                </div>
+                </div>
+            </div> -->
+            <!-- end of home-staff -->
+        </div><!-- end of container -->
+    </div>
+    <!-- End of My Studio Card Detials Section -->
+</div>
+
+<!-- modal -->
+
+<!-- Modal Popup (Change - Password ) -->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+            
+        <div class="modal-body white-bg box-shadow1 border-radius6 p-4 p-md-5">
+           
+          <!-- <div class="modal-logo text-center pb-3 pb-sm-5">
+            <img src="assets/img/logo_green_small.png">
+          </div> -->
+  
+          <div class="modal-bottom-content blue-gradient border-radius6 py-3 py-sm-5 px-4">
+            <img src="assets/img/logo_white_web.png" class="img-fluid d-block mx-auto">
+            <p class="text-white font-16 text-center my-4">Are you sure you want to block 14 Apr 2020?  You won't receive any bookings for this date.</p>
+            <button class="btn btn-white2 d-block mx-auto w-100">Proceed</button>
+            <button class="btn btn-white2 mx-auto w-100 mt-4">Cancel</button>
+
+          </div><!-- modal-bottom-content -->
+  
+        </div><!-- end of modal-body -->
+  
+      </div>
+    </div>
+  </div>
+
+<app-inner-footer></app-inner-footer>

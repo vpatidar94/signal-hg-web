@@ -1,0 +1,484 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+    
+    <div class="membership-plan-section py-5">
+        <div class="container" *ngIf ="!payments">
+            <div class="row mt-4">  
+                <div class="col-12">
+                    <div class="section-heading">
+                      <h5 class="title black-color font-w-100 text-uppercase font-16">Purchased Plan </h5>
+                    </div>
+                </div>
+              </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="centered-cover w-100">
+                        <div class="table-responsive mt-3" >
+                            <table class="table">
+                                <!-- <tbody> -->
+                                    <thead>
+                                        <th>Bsiness Name</th>
+                                        <th>Plan Name</th>
+                                        <th>Instructor</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                    </thead>
+                                    <!-- <tr>
+                                        <th>Bsiness Name</th>
+                                        <th>Plan Name</th>
+                                        <th>Instructor</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                    </tr> -->
+                                    <tr>
+                                        <td>
+                                            {{PurchasedPlan.business_name}}
+                                        </td>
+                                        <td>
+                                           {{PurchasedPlan.plan_name}}
+                                        </td>
+                                        <td>
+                                           {{PurchasedPlan.instructor}}
+                                        </td>
+                                        <td>
+                                           {{PurchasedPlan.start_date}}
+                                        </td>
+                                        <td>
+                                           {{PurchasedPlan.end_date}}
+                                        </td>
+                                       
+                                        <!-- <td>
+                                            <div class="clientcircle">
+                                                <img [src]="items.thumbnail" class="img-fluid">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <h6 *ngIf="items.status == 'Active'" (click)="changeVideoStatus(items,1)"><i class="fas fa-circle brand-green"></i></h6>
+                                            <h6 *ngIf="items.status == 'Deactive'" (click)="changeVideoStatus(items,1)"><i class="fas fa-circle brand-red"></i></h6>
+                                        </td>
+                                        <td >
+                                            <h6><a href="javascript:void(0)" (click)="changeVideoStatus(items,2)" ><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                            <a *ngIf="items.self_upload == '1'" class="ml-3" href="javascript:void(0)" (click)="viewEdit(items)" ><i class="fas fa-pencil-alt" aria-hidden="true"></i></a></h6>
+                                        </td>  -->
+                                    </tr>
+                                <!-- </tbody> -->
+                            </table>
+                        </div>
+
+                    </div><!-- end of centered-cover -->                  
+                </div><!-- end of col-md-4 -->               
+              </div> <!-- end of row --> 
+              <div class="row mt-4">  
+                <div class="col-12">
+                    <div class="section-heading">
+                      <h5 class="title black-color font-w-100 text-uppercase font-16">New Plan </h5>
+                    </div>
+                </div>
+              </div>
+          <div class="row">
+            <div class="col-12 col-md-4">
+                <div class="centered-cover w-100">
+                <div class="flex-break">
+                    <div class="std-detail-select bg-white border-radius10 position-relative w-100">
+                    <select class="form form-control brand-color1 border-radius6" [(ngModel)]="businessId" (change)="getDetail($event,1)">
+                        <option selected="" value=""> Select Studio </option>
+                        <option *ngFor="let items of studioList" value="{{items.id}}"> {{items.business_name}} </option>
+                      </select>
+                    </div>
+                </div><!-- end of flex-break -->
+                </div><!-- end of centered-cover -->                  
+            </div><!-- end of col-md-4 -->               
+          </div> <!-- end of row -->  
+          <div *ngIf="planview">
+            <div class="row mt-4">  
+                <div class="col-12">
+                    <div class="section-heading">
+                      <h5 class="title black-color font-w-100 text-uppercase font-16">Plan </h5>
+                    </div>
+                </div>
+              </div><!-- end of section-heading -->
+              <div *ngIf="planList.length != 0">
+              <div class="row mb-3" >  
+                <div class="col-12 col-sm-4 col-md-4 pb-3" *ngFor="let items of planList">                
+                    <div class="selectplan_box white-bg border-radius6 box-shadow1" (click)="getPlan(items)">
+                        <label class="select-card checked_select">
+                            <input type="radio" name="radio" [id]="items.id" value="">
+                            <span class="checkmark"></span>
+                            {{items.price}}
+                            <p> {{items.name}}</p>                       
+                        </label>
+                    </div>
+                </div>
+              </div>  
+            <div class="row" *ngIf="instructorList.length != 0" >
+                <div class="col-12 col-md-4">
+                    <div class="centered-cover w-100">
+                    <div class="flex-break">
+                        <div class="std-detail-select bg-white border-radius10 position-relative w-100">
+                            <select class="form form-control brand-color1 border-radius6" [(ngModel)]="instructorId" (change)="getDetail($event,2)">
+                                <option selected="" value=""> Select Instructor </option>
+                                <option *ngFor="let items of instructorList" value="{{items.id}}"> {{items.name}} {{items.lastname}} </option>
+                              </select>                   
+                        </div>
+                    </div><!-- end of flex-break -->
+                    </div><!-- end of centered-cover -->                  
+                </div><!-- end of col-md-4 -->               
+              </div> <!-- end of row -->
+            <div class="row mt-3">
+                <div class="col-12 col-md-4">
+                    <button type="button" class="btn btn-blue-grad px-2 text-uppercase" (click)="redirectPayment()">Payment </button>
+                </div>    
+            </div>
+            </div>
+            <div class="row  border-radius6 p-3" *ngIf="planList.length == 0">
+                <div class="col-md-4"></div>
+                <div class="col-md-4 text-center">
+                  <p class="font-awesome black-color font-18 d-inline mx-2 "> Not available</p>
+                </div>
+                <div class="col-md-4"></div>
+            </div>   
+          </div>
+        </div>
+        <div class="container" *ngIf ="payments">
+            <div class="adddiet_btn">
+                <a href="javascript:void(0)" class="btn btn-blue-grad mr-3" (click)="payments = false" ><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> </a>
+                </div>
+            <div class="client-payment mt-3">
+                <div class="col-12 col-lg-6 mt-5 mt-lg-0" >
+                    <div class="client-buy-process border-radius6 box-shadow1 white-bg">
+                    <div class="p-3 text-left light-bg border-t-lr-6">
+                        <h5 class="title black-color font-w-100 text-uppercase font-16 mb-0"> credit card / debit card </h5>
+                    </div>
+        
+                    <div class="px-3 pt-4 pb-3 border-bottom">
+                        <div class="row mb-2">
+                        <div class="col-6 text-left">
+                            <p class="title black-color font-w-100 font-18 mb-0"> Amount Payable </p>
+                        </div>
+                        <div class="col-6 text-right">
+                            <p class="title black-color font-w-100 font-18 mb-0"> $ {{selectedPlan.price}} </p>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="client-payment-input border-radius6 box-shadow1 white-bg p-4">
+        
+                        <div class="row">
+                        <div class="col-12 mb-3" *ngFor="let cardsave of customerData">
+                            <div class="client-card-img white-bg border-radius6 box-shadow1" *ngIf="cardsave.length != 0">
+                            
+                            <label class="select-card select-card-img select-card-cvv mb-2"> 
+                                <img src="assets/img/visa_card.png" *ngIf="cardsave.card_type== 'visa'" class="img-fluid payment_img">
+                                <img src="assets/img/master_card.png" *ngIf="cardsave.card_type== 'mc'" class="img-fluid payment_img">
+                            <img src="assets/img/american_express.png" *ngIf="cardsave.card_type== 'am'" class="img-fluid payment_img">
+        
+                                <p class="mb-0 font-12 dark-color mt-2">{{cardsave.number}} </p>
+                                <h5 class="mb-0 font-12 dark-color mt-2">Valid Till(MM/YYYY) </h5>
+                                <p class="mb-0 font-12 dark-color mt-2">{{cardsave.expiry_month}} / {{cardsave.expiry_year}}</p>
+        
+                                <input type="radio" checked="checked" name="radio" [id]="cardsave.card_id"
+                                [value]="cardsave.card_id" [(ngModel)]="cardType" [ngModelOptions]="{standalone: true}"
+                                (change)="getCardType($event)">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+        
+                            <form [formGroup]="savedCard" *ngIf="cardsave.checked == true && cardType == cardsave.card_id">
+                                <div class="text-center d-flex flex-wrap">
+                                <input type="password" autocomplete="off" class="form-control w-25 ml-5" onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="CVV" pattern="\d{3,4}"  onKeyPress="if(this.value.length >=4) return false;" formControlName="cvv_no" [ngClass]="{ 'is-invalid': submitted && sf.cvv_no.errors }">
+                                <div *ngIf="submitted && sf.cvv_no.errors" class="invalid-feedback">
+                                    <div *ngIf="sf.cvv_no.errors.required">CVV is required</div>  
+                                    <div *ngIf="sf.cvv_no.errors.pattern">CVV is not valid</div> 
+                                </div>  
+                                <button type="button" class="btn btn-blue-grad px-4 w-50 text-uppercase mb-0 mb-md-3 ml-5"
+                                    (click)="generateToken(2)"> Pay </button>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <div class="white-bg border-radius6 box-shadow1">
+                            <label class="select-card"> New Card
+                                <input type="radio" checked="checked" name="radio" id="new" value="new" [(ngModel)]="cardType"
+                                [ngModelOptions]="{standalone: true}" (change)="getCardType($event)">
+                                <span class="checkmark"></span>
+                            </label>
+                            </div>
+                        </div>
+        
+                        </div> 
+                    </div>
+        
+                    <form [formGroup]="paymentCard" *ngIf="cardType == 'new'">
+                        <div class="row py-4 px-3">
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                            <p class="brand-color3 text-left font-14 mb-2"> Name On Card </p>
+                            <input type="text" class="form-control" autocomplete="off"
+                                onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="Sophie Joe"
+                                formControlName="card_holder_name"
+                                [ngClass]="{ 'is-invalid': submitted && f.card_holder_name.errors }">
+                            <div *ngIf="submitted && f.card_holder_name.errors" class="invalid-feedback">
+                                <div *ngIf="f.card_holder_name.errors.required">Card Holder Name is required</div>
+                                <div *ngIf="f.card_holder_name.errors.pattern">Card Holder Name is required</div>
+                            </div>
+                            </div>
+                        </div>
+        
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group client-buy-input-cardno">
+                            <p class="brand-color3 text-left font-14 mb-2"> Card Number </p>
+                            <input type="text" class="form-control" autocomplete="off"
+                                onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="4121 4411 3131 8554"
+                                pattern="\d{15,19}" onKeyPress="if(this.value.length >= 19) return false;"
+                                formControlName="card_number" [ngClass]="{ 'is-invalid': submitted && f.card_number.errors }">
+                            <div *ngIf="submitted && f.card_number.errors" class="invalid-feedback">
+                                <div *ngIf="f.card_number.errors.required">Card Number is required</div>
+                                <div *ngIf="f.card_number.errors.pattern">Card Number is not valid</div>
+        
+                            </div>
+                            </div>
+                        </div>
+        
+                        <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                            <div class="form-group">
+                            <p class="brand-color3 text-left font-14 mb-2"> Valid Till </p>
+                            <input type="text" class="form-control" autocomplete="off" placeholder="MM/YYYY"
+                                formControlName="expiry" [ngClass]="{ 'is-invalid': submitted && f.expiry.errors }"
+                                minlength="7" maxlength="7"
+                                onKeyPress="if(this.value.length == 2) return this.value=this.value.replace(this.value, this.value+'/');"
+                                pattern="^\d{2}/\d{4}">
+                            <div *ngIf="submitted && f.expiry.errors" class="invalid-feedback">
+                                <div *ngIf="f.expiry.errors.required">Valid Till is required</div>
+                                <div *ngIf="f.expiry.errors.pattern">Valid Till is like MM/YY</div>
+        
+                            </div>
+                            </div>
+                        </div>
+        
+                        <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                            <div class="form-group">
+                            <p class="brand-color3 text-left font-14 mb-2"> CVV </p>
+                            <input type="password" class="form-control" autocomplete="off"
+                                onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="eg. 201" pattern="\d{3,4}"
+                                onKeyPress="if(this.value.length >=4) return false;" formControlName="cvv_no"
+                                [ngClass]="{ 'is-invalid': submitted && f.cvv_no.errors }">
+                            <div *ngIf="submitted && f.cvv_no.errors" class="invalid-feedback">
+                                <div *ngIf="f.cvv_no.errors.required">CVV is required</div>
+                                <div *ngIf="f.cvv_no.errors.pattern">CVV is not valid</div>
+        
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <input type="checkbox" (change)="Savecard($event)"> Save Card
+                        </div>
+                        <div class="w-100 pt-5 pt-3 text-center">
+                            <button type="button" class="btn btn-blue-grad px-4 w-50 text-uppercase mb-0"
+                            (click)="generateToken(1)"> Pay </button>
+                        </div>
+        
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>        
+
+
+
+
+    <!-- <div class="favourite py-5 internal-studio" >
+        <div class="studio-cards" >
+          <div class="container" >
+              <div class="col-12 pb-3">
+                <div class="section-heading">
+                  <h5 class="title black-color font-w-100 text-uppercase font-16"> Plans </h5>
+                </div>
+              </div>
+           
+               <div class="row" *ngIf="planList.length !=0">
+                  <div  class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 px-2" *ngFor="let items of planList">
+                <div class="studio-position-heart">
+                  <a href="Javascript:void(0);" (click)="getPlan(items)">
+                   
+                    <div class="studio-card-newcustom gradient-studio-overlay box-shadow1" >
+                      <div class="img-box" style="background-image: url({{businessLogo}})">
+                      </div>
+    
+                      <div class="studio-detail p-3">
+                        <div class="row mx-0 align-items-start">
+                          <div class="studio-profile-detail flex-fill pl-4">
+                            <h5 class="nametitle classname-title mb-1">{{items.name}}</h5>
+                            <p class="brand-color3 paratitle mb-2" >
+                              {{items.price}}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>         
+                </div>
+                </div>
+              </div>
+              <div class="row  border-radius6 p-3" *ngIf="planList.length == 0">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                  <p class="font-awesome black-color font-18 d-inline mx-2 "> Not available</p>
+                </div>
+                <div class="col-md-4"></div>
+              </div>
+          </div>
+        </div>
+        <div class="container" *ngIf="payments">
+            <div class="client-payment" *ngIf="payments">
+                <div class=" col-6 text-right mb-3">
+                    <button type="button" class="btn btn-blue-grad px-2 text-uppercase" (click)="payments = false" >Back </button>
+                </div> 
+                <div class="col-12 col-lg-6 mt-5 mt-lg-0" >
+                    <div class="client-buy-process border-radius6 box-shadow1 white-bg">
+                    <div class="p-3 text-left light-bg border-t-lr-6">
+                        <h5 class="title black-color font-w-100 text-uppercase font-16 mb-0"> credit card / debit card </h5>
+                    </div>
+        
+                    <div class="px-3 pt-4 pb-3 border-bottom">
+                        <div class="row mb-2">
+                        <div class="col-6 text-left">
+                            <p class="title black-color font-w-100 font-18 mb-0"> Amount Payable </p>
+                        </div>
+                        <div class="col-6 text-right">
+                            <p class="title black-color font-w-100 font-18 mb-0"> $ {{selectedPlan.price}} </p>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="client-payment-input border-radius6 box-shadow1 white-bg p-4">
+        
+                        <div class="row">
+                        <div class="col-12 mb-3" *ngFor="let cardsave of customerData">
+                            <div class="client-card-img white-bg border-radius6 box-shadow1" *ngIf="cardsave.length != 0">
+                            
+                            <label class="select-card select-card-img select-card-cvv mb-2"> 
+                                <img src="assets/img/visa_card.png" *ngIf="cardsave.card_type== 'visa'" class="img-fluid payment_img">
+                                <img src="assets/img/master_card.png" *ngIf="cardsave.card_type== 'mc'" class="img-fluid payment_img">
+                            <img src="assets/img/american_express.png" *ngIf="cardsave.card_type== 'am'" class="img-fluid payment_img">
+        
+                                <p class="mb-0 font-12 dark-color mt-2">{{cardsave.number}} </p>
+                                <h5 class="mb-0 font-12 dark-color mt-2">Valid Till(MM/YYYY) </h5>
+                                <p class="mb-0 font-12 dark-color mt-2">{{cardsave.expiry_month}} / {{cardsave.expiry_year}}</p>
+        
+                                <input type="radio" checked="checked" name="radio" [id]="cardsave.card_id"
+                                [value]="cardsave.card_id" [(ngModel)]="cardType" [ngModelOptions]="{standalone: true}"
+                                (change)="getCardType($event)">
+                                <span class="checkmark"></span>
+                            </label>
+                            
+        
+                            <form [formGroup]="savedCard" *ngIf="cardsave.checked == true && cardType == cardsave.card_id">
+                                <div class="text-center d-flex flex-wrap">
+                                <input type="password" autocomplete="off" class="form-control w-25 ml-5" onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="CVV" pattern="\d{3,4}"  onKeyPress="if(this.value.length >=4) return false;" formControlName="cvv_no" [ngClass]="{ 'is-invalid': submitted && sf.cvv_no.errors }">
+                                <div *ngIf="submitted && sf.cvv_no.errors" class="invalid-feedback">
+                                    <div *ngIf="sf.cvv_no.errors.required">CVV is required</div>  
+                                    <div *ngIf="sf.cvv_no.errors.pattern">CVV is not valid</div> 
+                                </div>  
+                                <button type="button" class="btn btn-blue-grad px-4 w-50 text-uppercase mb-0 mb-md-3 ml-5"
+                                    (click)="generateToken(2)"> Pay </button>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <div class="white-bg border-radius6 box-shadow1">
+                            <label class="select-card"> New Card
+                                <input type="radio" checked="checked" name="radio" id="new" value="new" [(ngModel)]="cardType"
+                                [ngModelOptions]="{standalone: true}" (change)="getCardType($event)">
+                                <span class="checkmark"></span>
+                            </label>
+                            </div>
+                        </div>
+        
+                        </div> 
+                    </div>
+        
+                    <form [formGroup]="paymentCard" *ngIf="cardType == 'new'">
+                        <div class="row py-4 px-3">
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                            <p class="brand-color3 text-left font-14 mb-2"> Name On Card </p>
+                            <input type="text" class="form-control" autocomplete="off"
+                                onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="Sophie Joe"
+                                formControlName="card_holder_name"
+                                [ngClass]="{ 'is-invalid': submitted && f.card_holder_name.errors }">
+                            <div *ngIf="submitted && f.card_holder_name.errors" class="invalid-feedback">
+                                <div *ngIf="f.card_holder_name.errors.required">Card Holder Name is required</div>
+                                <div *ngIf="f.card_holder_name.errors.pattern">Card Holder Name is required</div>
+                            </div>
+                            </div>
+                        </div>
+        
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group client-buy-input-cardno">
+                            <p class="brand-color3 text-left font-14 mb-2"> Card Number </p>
+                            <input type="text" class="form-control" autocomplete="off"
+                                onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="4121 4411 3131 8554"
+                                pattern="\d{15,19}" onKeyPress="if(this.value.length >= 19) return false;"
+                                formControlName="card_number" [ngClass]="{ 'is-invalid': submitted && f.card_number.errors }">
+                            <div *ngIf="submitted && f.card_number.errors" class="invalid-feedback">
+                                <div *ngIf="f.card_number.errors.required">Card Number is required</div>
+                                <div *ngIf="f.card_number.errors.pattern">Card Number is not valid</div>
+        
+                            </div>
+                            </div>
+                        </div>
+        
+                        <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                            <div class="form-group">
+                            <p class="brand-color3 text-left font-14 mb-2"> Valid Till </p>
+                            <input type="text" class="form-control" autocomplete="off" placeholder="MM/YYYY"
+                                formControlName="expiry" [ngClass]="{ 'is-invalid': submitted && f.expiry.errors }"
+                                minlength="7" maxlength="7"
+                                onKeyPress="if(this.value.length == 2) return this.value=this.value.replace(this.value, this.value+'/');"
+                                pattern="^\d{2}/\d{4}">
+                            <div *ngIf="submitted && f.expiry.errors" class="invalid-feedback">
+                                <div *ngIf="f.expiry.errors.required">Valid Till is required</div>
+                                <div *ngIf="f.expiry.errors.pattern">Valid Till is like MM/YY</div>
+        
+                            </div>
+                            </div>
+                        </div>
+        
+                        <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                            <div class="form-group">
+                            <p class="brand-color3 text-left font-14 mb-2"> CVV </p>
+                            <input type="password" class="form-control" autocomplete="off"
+                                onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="eg. 201" pattern="\d{3,4}"
+                                onKeyPress="if(this.value.length >=4) return false;" formControlName="cvv_no"
+                                [ngClass]="{ 'is-invalid': submitted && f.cvv_no.errors }">
+                            <div *ngIf="submitted && f.cvv_no.errors" class="invalid-feedback">
+                                <div *ngIf="f.cvv_no.errors.required">CVV is required</div>
+                                <div *ngIf="f.cvv_no.errors.pattern">CVV is not valid</div>
+        
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <input type="checkbox" (change)="Savecard($event)"> Save Card
+                        </div>
+                        <div class="w-100 py-5 text-center">
+                            <button type="button" class="btn btn-blue-grad px-4 w-50 text-uppercase mb-0 mb-md-5"
+                            (click)="generateToken(1)"> Pay </button>
+                        </div>
+        
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   -->
+
+   
+
+   
+    
+</div>
+<app-inner-footer></app-inner-footer>

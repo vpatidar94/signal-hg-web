@@ -1,0 +1,97 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+<!-- My Studios Section -->
+<div class="my-studio py-5 internal-studio">
+    <div class="inner_newsfeed">
+      <div class="container">
+        <div class="text-right mb-2">
+            <button type="button" class="btn btn-blue-grad px-2 text-uppercase" routerLink="/news-feed" >Back </button>
+          </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="social_box">
+                    <img [src]="feedList.newsfeed_img_url" class="img-fluid large_image" alt="news-feed-image">
+                    <!-- <img src="../../../assets/img/inner-news-feed.png" class="img-fluid large_image" alt="news-feed-image">                     -->
+                </div>
+                <div class="newsfeed_content mt-4">
+                    <h3> {{feedList.title}},</h3>
+                    <p> {{feedList.description}}</p>
+                    <div class="row social_box">
+                        <div class="col-3 col-lg-1 ic_favorite_left">
+                            <div *ngIf="feedList.is_like=='1'" class="mb-2">
+                                <img src="assets/img/ic_heart_active.png" class="img-fluid" alt="icon-heart" (click)="postLike(feedList.id,'0')">
+                            </div>
+                            <div *ngIf="feedList.is_like=='0'" class="mb-2">
+                                <img src="assets/img/ic_heart_inactive.png" class="img-fluid" alt="icon-heart" (click)="postLike(feedList.id,'1')">
+                            </div>
+                          
+                            <a class="mr-3 text-dark" > {{feedList.total_like_count}} Likes</a>
+                        </div>    
+
+                        <div class="col-4 col-lg-2 ic_chat_right">
+                            <div class="mb-2">  
+                                <img src="assets/img/ic_chat_active.png" class="img-fluid" alt="icon-chat">
+                            </div>
+                            <a class="text-dark" > {{feedList.total_comment_count}} Comments</a>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="d-flex align-items-center justify-content-center my-4">
+                        <div class="container" >
+                            <div class="row justify-content-center mb-4" *ngFor="let item of commentList">
+                                <div class="col-lg-12 px-0" >
+                                <div  infinite-scroll  [infiniteScrollDistance]="scrollDistance"  [infiniteScrollUpDistance]="scrollUpDistance"  [infiniteScrollThrottle]="throttle"  (scrolled)="onScroll()" alwaysCallback="true" > 
+                                    <div class="comments" >
+                                        <div class="comment d-flex">
+                                            <div class="flex-shrink-0">
+                                                <div class="chat_profile chat_profile-sm rounded-circle">
+                                                    <img class="chat_profile-img" [src]="item.img_url" alt="" />
+                                                </div>
+                                            </div>
+                                            <div class="flex-shrink-1 comment-main ml-2 ml-md-3" >
+                                                <div class="comment-meta d-flex">
+                                                    <h4 class="mb-1 mr-2">{{item.username}}</h4>
+                                                    <span class="text-muted">{{item.newtime}}</span>
+                                                </div>
+                                                <div class="comment-body">
+{{item.comments}}                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-12 px-0">
+                                    <div class="comment-form d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            <div class="chat_profile chat_profile-sm rounded-circle">
+                                                <img class="chat_profile-img" src="{{userInfo.profile_img}}?auto=compress&cs=tinysrgb&crop=faces&fit=crop&h=200&w=200" alt="" />
+                                            </div>
+                                        </div>
+                                        <div class="flex-grow-1 ml-2 ml-md-3">
+                                            <form>
+                                                <textarea class="form-control form-custom-control py-0 px-1 border-0" rows="1" placeholder="Start writing..."  [(ngModel)]="comment"   [ngModelOptions]="{standalone: true}"></textarea>
+                                                <img src="../../../assets/img/ic_send.png" class="ic_send" alt="icon-send" (click)="postComment(feedList.id)">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end  of row -->
+
+      </div>
+    </div><!-- End of inner newsfeed -->
+</div>          
+<!-- End of My Studios Section -->
+</div>
+<app-inner-footer></app-inner-footer>

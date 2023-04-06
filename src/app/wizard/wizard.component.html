@@ -1,0 +1,1041 @@
+<div *ngIf="loginInfo">
+    <app-inner-header></app-inner-header>
+  </div>
+  <div *ngIf="!loginInfo">
+    <app-header></app-header>
+  </div>
+  <!-- Help Content Section -->
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+  <div class="contact-content-section py-4 mt-2">
+    <div class="container">
+      <div class="wizard_form text-left wow animated zoomIn">
+        <h2 class="dark-color text-center font-w-900 pb-3"> Registration</h2>
+        <ng-wizard [config]="config" (stepChanged)="stepChanged($event)" >
+  
+          <ng-wizard-step [title]="'1'" [description]="''"
+            [canEnter]="isValidTypeBoolean" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+            <div class="step_content step_content_center">
+              <h4> Please select what you will be using our web for:</h4>
+              
+              <div *ngFor="let category of categoryList">
+                <input class="form-check-input" type="radio" name="radio" [value]="category.id" [id]="category.id" [(ngModel)]="submittedData.step_1_data.category_id"  (change)="getCategoryID($event)">
+                <h3 class="font-weight-bold" [for]="category.id"> {{category.category_name}}</h3>
+                <div class="clearfix mb-3" *ngIf="category.status == true">
+                  <div class="form-check form-check-inline"*ngFor="let subcategory of category.sub_category_child" >
+                    <input class="form-check-input" type="radio" [id]="subcategory.id" name="radio1"   [value]="subcategory.id" [(ngModel)]="submittedData.step_1_data.subcategory_id"  (change)="getsubCategoryID($event)">
+                    <label class="form-check-label" [for]="subcategory.id">{{subcategory.category_name}}</label>
+                  </div>
+                </div>  
+              </div>          
+            </div>
+          </ng-wizard-step>
+          
+          <ng-wizard-step [title]="'2'" [description]="''"
+            [canEnter]="isValidFunctionReturnsObservable.bind(this)" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+            <div class="step_content">
+              <h4> Please complete our <strong> Consent & Liabilities Waiver Form:</strong></h4>
+              <h3 class="font-weight-bold"> Consent and liability waiver release form</h3>
+
+              <form class=“form-inline” [formGroup]="secondForm">
+                <p> 
+                  I <input type=“text” class=“form-control” [(ngModel)]="submittedData.step_2_data.parent_name" formControlName="parent_name" [ngClass]="{ 'is-invalid': submitted && sf.parent_name.errors }">
+                          <!-- <div *ngIf="submitted && sf.parent_name.errors" class="invalid-feedback"></div>  -->
+                          (Parent or Guardian if customer is under 18 years old) on behalf of <input type=“text” class=“form-control” [(ngModel)]="submittedData.step_2_data.child_name" formControlName="child_name" [ngClass]="{ 'is-invalid': submitted && sf.child_name.errors }">
+                          <!-- <div *ngIf="submitted && sf.child_name.errors" class="invalid-feedback"></div>  -->
+                          (minor or child under 18) of <input type=“text” class=“form-control” [(ngModel)]="submittedData.step_2_data.city" formControlName="city" [ngClass]="{ 'is-invalid': submitted && sf.city.errors }">
+                          <!-- <div *ngIf="submitted && sf.city.errors" class="invalid-feedback"></div>  -->
+                          (City) of <input type=“text” class=“form-control” [(ngModel)]="submittedData.step_2_data.state" formControlName="state" [ngClass]="{ 'is-invalid': submitted && sf.state.errors }">
+                          <!-- <div *ngIf="submitted && sf.state.errors" class="invalid-feedback"></div>  -->
+                          (State) hereby affirm that | am entering a course of instruction in physical fitness and performance training. By enrolling in this course | certify that | am cognizant of all of the inherent dangers of physical fitness and therapy, and the basic  safety rules for activities connected herewith.
+                </p>
+
+                <p> | understand and agree that neither the class nor its owners, operators, agents, or instructors,</p>
+                <p> 
+                  including but not limited to <input type=“text” class=“form-control” [(ngModel)]="submittedData.step_2_data.limited1" formControlName="limited1" [ngClass]="{ 'is-invalid': submitted && sf.limited1.errors }">
+                          <!-- <div *ngIf="submitted && sf.limited1.errors" class="invalid-feedback"></div> -->
+                           and/or , <input type=“text” class=“form-control” [(ngModel)]="submittedData.step_2_data.limited2" formControlName="limited2" [ngClass]="{ 'is-invalid': submitted && sf.limited2.errors }">
+                          <!-- <div *ngIf="submitted && sf.limited2.errors" class="invalid-feedback"></div>  -->
+                          may be held liable in any way for any occurrence in connection with my physical fitness and performance, which may result in injury, death, or damages to me or my family, heirs, or assignees. |further acknowledge and forever release <input type=“text” class=“form-control” [(ngModel)]="submittedData.step_2_data.release1" formControlName="release1" [ngClass]="{ 'is-invalid': submitted && sf.release1.errors }">
+                          <!-- <div *ngIf="submitted && sf.release1.errors" class="invalid-feedback"></div>  -->
+                          and/or <input type=“text” class=“form-control” [(ngModel)]="submittedData.step_2_data.release2" formControlName="release2" [ngClass]="{ 'is-invalid': submitted && sf.release2.errors }">
+                          <!-- <div *ngIf="submitted && sf.release2.errors" class="invalid-feedback"></div>  -->
+                          in connection directly or indirectly with my physical fitness, training and therapy as result of <input type=“text” class=“form-control” [(ngModel)]="submittedData.step_2_data.result1" formControlName="result1" [ngClass]="{ 'is-invalid': submitted && sf.result1.errors }">
+                          <!-- <div *ngIf="submitted && sf.result1.errors" class="invalid-feedback"></div>  -->
+                          and/or <input type=“text” class=“form-control” [(ngModel)]="submittedData.step_2_data.result2" formControlName="result2" [ngClass]="{ 'is-invalid': submitted && sf.result2.errors }">
+                          <!-- <div *ngIf="submitted && sf.result2.errors" class="invalid-feedback"></div>  -->
+                          own negligence, which may result in injury, death or damages to me or my family, heirs, or assignees.
+                </p>
+
+                <p> In consideration of being allowed to enroll in this course | hereby personally assume all risks connected with the course, and | further release the instructors, program, agents, and operators, including but not limited to the persons mentioned for any injury or damage which may be incurred by me while | am enrolled in the fitness or performance course, including all risks connected therewith, whether foreseen or unforeseen; and further to save and hold harmless the program and persons from any claim by me, or my family, estate, heirs, or assignees, arising out of my enrollment and participation in this course.</p>
+                <p> I further state that | am of lawful age and legally competent to sign this aforementioned release; that | understand that the terms herein is contractual and not a mere recital; and that | have signed this document as my own free act.</p>
+                <p> | have fully informed myself of the contents of this aforementioned and release by reading it before I sign it, | have been advised to submit, at my own expense and time, to a medical examination to ensure myself, and assume my own responsibility of physical fitness and capability to perform under the normal conditions of the fitness and therapy program, and am physically fit as tested by a medical examination. | also understand that the owner reserves the right of membership.</p>
+
+                <p> 
+                  IN WITNESS WHEREOF, | have executed this aforementioned and release at (location) <input type=“text” class=“form-control”  autocomplete="off" ngx-google-places-autocomplete  (onAddressChange)="handleAddressChange($event)" [(ngModel)]="submittedData.step_2_data.location" formControlName="location" [ngClass]="{ 'is-invalid': submitted && sf.location.errors }">
+                          <!-- <div *ngIf="submitted && sf.location.errors" class="invalid-feedback"></div>  -->
+                          on (Date) 
+                          <mat-form-field   >
+                            <input matInput [matDatepicker]="passdate2"  [min]="minDate"  [(ngModel)]="submittedData.step_2_data.date1" formControlName="date1"  [ngClass]="{ 'is-invalid': submitted && sf.date1.errors }" style="color: black;" readonly  >
+                            <mat-datepicker-toggle matSuffix [for]="passdate2" ></mat-datepicker-toggle>
+                            <mat-datepicker #passdate2 ></mat-datepicker>
+                        </mat-form-field>
+                        <!-- <div *ngIf="submitted && sf.date1.errors" class="invalid-feedback"></div>. -->
+                          <!-- <input type=“text” class=“form-control” [(ngModel)]="submittedData." formControlName="date1" [ngClass]="{ 'is-invalid': submitted && sf.date1.errors }">
+                          <div *ngIf="submitted && sf.date1.errors" class="invalid-feedback"></div>. -->
+                </p>
+
+                <div class="btn_input pt-3">
+                  <input type=“text” class=“form-control” [(ngModel)]="submittedData.step_2_data.auth_signature1" formControlName="auth_signature1" [ngClass]="{ 'is-invalid': submitted && sf.auth_signature1.errors }">
+                          <div *ngIf="submitted && sf.auth_signature1.errors" class="invalid-feedback"></div> 
+                  <div class="dropdown">
+                      <button class="btn btn-blue dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Font
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" *ngFor="let item of fontList">{{item.fontname}}</a>
+                      </div>
+                  </div>
+                  <input type=“text” class=“form-control” [(ngModel)]="submittedData.step_2_data.client_signature1" formControlName="client_signature1" [ngClass]="{ 'is-invalid': submitted && sf.client_signature1.errors }">
+                          <div *ngIf="submitted && sf.client_signature1.errors" class="invalid-feedback"></div>
+                  <div class="dropdown">
+                      <button class="btn btn-blue dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Font
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" *ngFor="let item of fontList">{{item.fontname}}</a>
+                      </div>
+                  </div>                  
+                </div>
+                <p> <span class="font-italic mr-5"> Authorized Signature</span> <span class="font-italic ml-5"> Client</span> </p>
+              </form>
+              
+            </div>
+          </ng-wizard-step>
+
+          <ng-wizard-step [title]="'3'" [description]="''"
+            [canEnter]="isValidFunctionReturnsObservable.bind(this)" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+            <div class="step_content">
+              <h4> Please complete our <strong> Online Training Consent Form:</strong></h4>
+              <h3 class="font-weight-bold"> Training Consent form</h3>
+
+              <form class=“form-inline” [formGroup]="thirdForm">
+                <p class="mb-4"> 
+                  Name: <input type=“text” class=“form-control” [(ngModel)]="submittedData.step_3_data.name1" formControlName="name1" [ngClass]="{ 'is-invalid': submitted && tf.name1.errors }">
+                          <!-- <div *ngIf="submitted && tf.name1.errors" class="invalid-feedback"></div>  -->
+                          Phone: <input type=“text” class=“form-control” [(ngModel)]="submittedData.step_3_data.phone" formControlName="phone" [ngClass]="{ 'is-invalid': submitted && tf.phone.errors }">
+                          <!-- <div *ngIf="submitted && tf.phone.errors" class="invalid-feedback"></div>  -->
+                          Full Address: <input type=“text” class=“form-control” [(ngModel)]="submittedData.step_3_data.address" formControlName="address" [ngClass]="{ 'is-invalid': submitted && tf.address.errors }">
+                          <!-- <div *ngIf="submitted && tf.address.errors" class="invalid-feedback"></div> -->
+                </p>
+
+                <h3 class="mb-1"> General Statement of program objectives and procedures:</h3>
+                <p> I understand that this personal training program may include exercises to build the cardiorespiratory system (heart and lungs), the musculoskeletal system, (which involves muscular endurance, strength and overall flexibility), and to improve body composition (increasing muscle and bone and decreasing body fat). Exercise includes aerobic activities, such as walking, running, bicycle riding, rowing machine, group aerobics, swimming and other aerobic activities, weight lifting using dumbbells, machines and other equipment to improve muscular strength and endurance, as well as flexibility exercises to improve joint range of motion.</p>
+
+                <h3 class="mb-1"> Description of potential risks:</h3>
+                <p> I understand that the reaction of the heart, lung, blood vessels as well as other systems to exercise cannot always be predicted with accuracy. | know there is a risk of certain abnormal changes occurring during the following exercise, which include abnormalities of blood pressure or heart attacks as well as other side effects. Use of weight lifting equipment, and engaging in heavy body calisthenics may lead to musculoskeletal strains, pain and injury if adequate warm-up, gradual progression, and safety procedures are not consistently followed. | understand that SIGNAL HEALTH GROUP and LESLIE DOUGLAS shall not be liable for any damages arising from personal injuries sustained by CUSTOMER while and during and/or from a personal training program does so at his/her own risk. CUSTOMER assumes full responsibilities for any injuries or damages which may occur during and/or after training.</p>
+                <p> hereby fully and forever release and discharge the personal trainer (seller), its assigns and agents rom all claims, demands, damages, rights of action, present and future therein.</p>
+                <p> understand and warrant, release and agree that | am in good physical condition and that | have no disability, impairment or ailment preventing me from engaging in active or passive exercise that will be detrimental to heart, safety, or comfort, or physical condition if | engage or participate (other than those items fully discussed on the health history form).</p>
+                <p> state that | have had a recent physical check-up and have my personal physician's permission to engage in aerobic and/or anaerobic conditioning.</p>
+
+                <h3 class="mb-1"> Description of potential benefits:</h3>
+                <p> understand that a program of regular exercise for the heart, lungs, muscles and joints has many benefits associated with it. These may include a decrease in body fat, improvement in blood fats and blood pressure, improvement in physiological function and decrease in heart disease.</p>
+                <div class="clearfix mb-3">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox"  id="inlineCheckbox1" [(ngModel)]="submittedData.step_3_data.check1" formControlName="check1" [ngClass]="{ 'is-invalid': submitted && tf.check1.errors }" >
+                    <label class="form-check-label" for="inlineCheckbox1">I have read the foregoing information and understand it. Any questions, which may have occurred, have been answered to my satisfaction.</label>
+                  </div>
+                </div> 
+
+                <div class="btn_input pt-3">
+                  <input type=“text” class=“form-control” [(ngModel)]="submittedData.step_3_data.auth_signature2" formControlName="auth_signature2" [ngClass]="{ 'is-invalid': submitted && tf.auth_signature2.errors }">
+                          <div *ngIf="submitted && tf.auth_signature2.errors" class="invalid-feedback"></div> 
+                  <div class="dropdown">
+                      <button class="btn btn-blue dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Font
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" *ngFor="let item of fontList">{{item.fontname}}</a>
+                      </div>
+                  </div>
+                  <input type=“text” class=“form-control” [(ngModel)]="submittedData.step_3_data.client_signature2" formControlName="client_signature2" [ngClass]="{ 'is-invalid': submitted && tf.client_signature2.errors }">
+                          <div *ngIf="submitted && tf.client_signature2.errors" class="invalid-feedback"></div>
+                  <div class="dropdown">
+                      <button class="btn btn-blue dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Font
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" *ngFor="let item of fontList">{{item.fontname}}</a>
+                      </div>
+                  </div>                  
+                </div>
+                <p> <span class="font-italic mr-5"> Authorized Signature</span> <span class="font-italic ml-5"> Client</span> </p>
+              </form>
+
+            </div>
+          </ng-wizard-step>
+         
+          <ng-wizard-step [title]="'4'" [description]="''">
+            <div class="step_content">
+              <h4> Please complete our <strong> Physical Activity Readiness Questionnaire:</strong></h4>
+              <h2> Par-Q & You</h2>
+              <h3 class="font-weight-bold"> Physical Activity Readiness Questionaire</h3>
+
+              <form class=“form-inline” [formGroup]="forthForm">
+                <p> Regular physical activity is fun and healthy, and increasingly more people are starting to become more active every day. Being more active is very safe for most people. However, some people should check with their doctor before they start becoming much more physically active.</p>
+                <p> If you are planning to become much more physically active than you are now, start by answering the seven questions in the box below. If you are between the ages of 15 and 69, the PAR-Q will tell you if you should check with your doctor before you start. If you are over 69 years of age, and you are not used to being very active, check with your doctor.</p>
+                <p> Common sense is your best guide when you answer these questions. Please read the questions carefully and answer each one honestly: Check <strong> YES</strong> or <strong> NO</strong>.</p>
+                
+                <p class="font-weight-bold mb-0">Yes  No</p>
+                <div class="clearfix mb-3">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="activity_1" id="inlineCheckbox2" value="Yes" [(ngModel)]="submittedData.step_4_data.activity_1" formControlName="activity_1" [ngClass]="{ 'is-invalid': submitted && ff.activity_1.errors }">
+                    <input class="form-check-input mx-2" type="radio" name="activity_1" id="inlineCheckbox2" value="No" [(ngModel)]="submittedData.step_4_data.activity_1" formControlName="activity_1" [ngClass]="{ 'is-invalid': submitted && ff.activity_1.errors }">
+                    <label class="form-check-label" for="inlineCheckbox2"> Has your doctor ever said that you have a heart condition and that you should only do physical activity recommended by a doctor?</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="activity_2" id="inlineCheckbox3" value="Yes" [(ngModel)]="submittedData.step_4_data.activity_2" formControlName="activity_2" [ngClass]="{ 'is-invalid': submitted && ff.activity_2.errors }">
+                    <input class="form-check-input mx-2" type="radio" name="activity_2" id="inlineCheckbox3" value="No" [(ngModel)]="submittedData.step_4_data.activity_2" formControlName="activity_2" [ngClass]="{ 'is-invalid': submitted && ff.activity_2.errors }">
+                    <label class="form-check-label" for="inlineCheckbox3"> Do you feel pain in your chest when you do physical activity?</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="activity_3" id="inlineCheckbox4" value="Yes" [(ngModel)]="submittedData.step_4_data.activity_3" formControlName="activity_3" [ngClass]="{ 'is-invalid': submitted && ff.activity_3.errors }">
+                    <input class="form-check-input mx-2" type="radio" name="activity_3" id="inlineCheckbox4" value="No" [(ngModel)]="submittedData.step_4_data.activity_3" formControlName="activity_3" [ngClass]="{ 'is-invalid': submitted && ff.activity_3.errors }">
+                    <label class="form-check-label" for="inlineCheckbox4"> In the past month, have you had chest pain when you were not doing physical activity?</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="activity_4" id="inlineCheckbox5" value="Yes" [(ngModel)]="submittedData.step_4_data.activity_4" formControlName="activity_4" [ngClass]="{ 'is-invalid': submitted && ff.activity_4.errors }">
+                    <input class="form-check-input mx-2" type="radio" name="activity_4" id="inlineCheckbox5" value="No" [(ngModel)]="submittedData.step_4_data.activity_4" formControlName="activity_4" [ngClass]="{ 'is-invalid': submitted && ff.activity_4.errors }">
+                    <label class="form-check-label" for="inlineCheckbox5"> Do you lose your balance because of dizziness or do you ever lose consciousness?</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="activity_5" id="inlineCheckbox6" value="Yes" [(ngModel)]="submittedData.step_4_data.activity_5" formControlName="activity_5" [ngClass]="{ 'is-invalid': submitted && ff.activity_5.errors }">
+                    <input class="form-check-input mx-2" type="radio" name="activity_5" id="inlineCheckbox6" value="No" [(ngModel)]="submittedData.step_4_data.activity_5" formControlName="activity_5" [ngClass]="{ 'is-invalid': submitted && ff.activity_5.errors }">
+                    <label class="form-check-label" for="inlineCheckbox6"> Do you have a bone or joint problem (for example, back, knee or hip) that could be made worse by a change in your physical activity?</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="activity_6" id="inlineCheckbox7" value="Yes" [(ngModel)]="submittedData.step_4_data.activity_6" formControlName="activity_6" [ngClass]="{ 'is-invalid': submitted && ff.activity_6.errors }">
+                    <input class="form-check-input mx-2" type="radio" name="activity_6" id="inlineCheckbox7" value="No" [(ngModel)]="submittedData.step_4_data.activity_6" formControlName="activity_6" [ngClass]="{ 'is-invalid': submitted && ff.activity_6.errors }">
+                    <label class="form-check-label" for="inlineCheckbox7"> Is your doctor currently prescribing drugs (for example, water pills) for your blood pressure or heart condition?</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="activity_7" id="inlineCheckbox8" value="Yes" [(ngModel)]="submittedData.step_4_data.activity_7" formControlName="activity_7" [ngClass]="{ 'is-invalid': submitted && ff.activity_7.errors }">
+                    <input class="form-check-input mx-2" type="radio" name="activity_7" id="inlineCheckbox8" value="No" [(ngModel)]="submittedData.step_4_data.activity_7" formControlName="activity_7" [ngClass]="{ 'is-invalid': submitted && ff.activity_7.errors }">
+                    <label class="form-check-label" for="inlineCheckbox8"> Do you know of any other reason why you should not do physical activity?</label>
+                  </div>
+                </div> 
+
+                <h4 class="mb-1 font-weight-bold"> If you answered YES to one or more questions:</h4>
+                <p> Talk with your doctor by phone or in person BEFORE you start becoming much more physically active. <br>
+                  You may be able to do any activity you want - as long as you start slowly and build up gradually.</p>
+                <p> Or, you may need to restrict your activities to those which are safe for you. Talk with your doctor about the kinds of activities you wish to participate in and follow his/her advice.</p>
+                <p> Find out which programs are safe and helpful for you.</p>
+                
+                <h4 class="mb-1 font-weight-bold"> If you answered NO honestly to all PAR-Q questions, you can be reasonably sure that you can:</h4>  
+                <p> Start becoming much more physically active - begin slowly and build up gradually. This is the safest and easiest way to go. Take part in a fitness appraisal - this is an excellent way to determine your basic fitness so that you can plan the best way for you to live actively. It is also highly recommended that you have your blood pressure evaluated. If your reading is over 144/94, talk with your doctor before you start becoming much more physically active.</p>  
+                  
+                <div class="box_shadow mb-3">
+                  <p> If you are not feeling well because of a temporary illness such as a cold or a fever - wait until you feel better; or if you are or may be pregnant - talk to your doctor before you start becoming more active.</p>
+                  <p class="mb-0"> <strong> Please note:</strong> If your health changes so that you then answer "YES" to any of the above questions, tell your fitness or health professional. Ask whether you should change your physical activity plan.</p>
+                </div>  
+                
+                <p> <strong> Informed Use of the PAR-Q:</strong> Signal Health Group and Leslie Douglas assumes no liability for persons who undertake physical activity, and if in doubt after completing this questionnaire, consult your doctor prior to physical activity.</p>
+                <div class="clearfix mb-3">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox"  id="inlineCheckbox9" [(ngModel)]="submittedData.step_4_data.check2" formControlName="check2" [ngClass]="{ 'is-invalid': submitted && ff.check2.errors }">
+                    <label class="form-check-label font-italic" for="inlineCheckbox9">I have read, understood and completed this questionnaire. Any questions | had were answered to my full satisfaction.</label>
+                  </div>
+                </div> 
+
+                <div class="btn_input pt-3">
+                  <input type=“text” class=“form-control” [(ngModel)]="submittedData.step_4_data.auth_signature3" formControlName="auth_signature3" [ngClass]="{ 'is-invalid': submitted && ff.auth_signature3.errors }">
+                          <div *ngIf="submitted && ff.auth_signature3.errors" class="invalid-feedback"></div>
+                  <input type=“text” class=“form-control” [(ngModel)]="submittedData.step_4_data.client_signature3" formControlName="client_signature3" [ngClass]="{ 'is-invalid': submitted && ff.client_signature3.errors }">
+                          <div *ngIf="submitted && ff.client_signature3.errors" class="invalid-feedback"></div> 
+                  <div class="dropdown">
+                      <button class="btn btn-blue dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Font
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" *ngFor="let item of fontList">{{item.fontname}}</a>
+                      </div>
+                  </div>
+                  <!-- <input type=“text” class=“form-control” [(ngModel)]="submittedData." formControlName="" [ngClass]="{ 'is-invalid': submitted && sf..errors }">
+                          <div *ngIf="submitted && sf..errors" class="invalid-feedback"></div>                 
+                -->
+              </div>
+                <p> <span class="font-italic mr-5"> Authorized Signature</span> <span class="font-italic ml-5"> Client</span> </p>
+              
+                <div class="text-center m-auto font-italic"> <p class="mb-3"> This physical activity clearance is valid for a maximum of 12 months from the date it is completed and becomes invalid if
+                  your condition changes so that you would answer YES to any of the seven questions.</p>
+                  <a href="https://signalhealthgroup.com/wp-content/uploads/2021/03/Medical-Release-Form.pdf" target="blank" download class="btn btn-blue"> Medical Release Form Download</a>
+                </div>
+                  
+              </form>
+            </div>
+          </ng-wizard-step>
+         
+          <ng-wizard-step [title]="'5'" [description]="''"
+            [canEnter]="isValidFunctionReturnsObservable.bind(this)" [canExit]="isValidFunctionReturnsBoolean.bind(this)">
+            <div class="step_content">
+              <h4> Please complete our <strong> Personal Training New Customer Agreement:</strong></h4>
+              <h3 class="font-weight-bold"> PERSONAL TRAINER FITNESS AGREEMENTS</h3>
+
+              <form class=“form-inline” [formGroup]="fifthForm">
+                <p class="mb-4"> 
+                  Name: <input type=“text” class=“form-control” [(ngModel)]="submittedData.step_5_data.name2" formControlName="name2" [ngClass]="{ 'is-invalid': submitted && fvf.name2.errors }">
+                          <!-- <div *ngIf="submitted && fvf.name2.errors" class="invalid-feedback"></div>  -->
+                          Date: 
+                          <mat-form-field  >
+                            <input matInput [matDatepicker]="passdate1"  [min]="minDate"  [(ngModel)]="submittedData.step_5_data.date2" formControlName="date2" [ngClass]="{ 'is-invalid': submitted && fvf.date2.errors }"  style="color: black;" readonly >
+                            <mat-datepicker-toggle matSuffix [for]="passdate1"></mat-datepicker-toggle>
+                            <mat-datepicker #passdate1></mat-datepicker>
+                        </mat-form-field>
+                        <!-- <div *ngIf="submitted && fvf.date2.errors" class="invalid-feedback"></div>. -->
+                          <!-- <input type=“text” class=“form-control” [(ngModel)]="submittedData." formControlName="" [ngClass]="{ 'is-invalid': submitted && fvf..errors }">
+                          <div *ngIf="submitted && fvf..errors" class="invalid-feedback"></div> -->
+                </p>
+
+                <h3 class="mb-1"> PERSONAL TRAINER FITNESS AGREEMENTS</h3>
+                <p> I have volunteered to participate in a programme of physical exercise under the instruction of any Signal Health Wellness Personal Trainer. Training may include, but is not limited to, weight and/or resistance training, cardiovascular training, and floor mat exercises.</p>
+                <p> Signal Health Wellness Personal Trainer agrees to instruct, assist and train me.</p>
+                <p> I realise that a large portion of my success will be based on my commitment to follow instruction, changing my lifestyle, and my attitude towards the fitness programme. Unfortunately Signal Health Wellness Personal Trainer cannot guarantee results, but my willingness to work hard will improve the opportunity of success.</p>
+
+                <h3 class="mb-1"> LATE / NO-SHOW / CANCELLATION AGREEMENT</h3>
+                <p> <strong>Our main goal is to provide the best possible service to our customers.</strong></p>
+                <p> Signal Health Wellness Personal Trainer works on an appointment based schedule to allow you the time required for your personal training session.</p>
+                <p> Sessions will generally be 30 minutes. Please be on time for your appointments. If you are late for a session it will still end at the scheduled time. If you are more than 10 minutes late for a session, it will be considered a no-show and you will be required to pay the fee for the session.</p>
+                <p> Due to this schedule it is important that you give us sufficient notice when you need to cancel an appointment. This means a cancellation should be made at least 12 hours before the scheduled appointment. Failure to cancel a training session within this time will result in you being charged for the session. Should you wish to reschedule an appointment, a minimum of 12 hours notice is required.</p>
+                <p> We will do our best to accommodate this.</p>
+                <p> We understand that emergencies happen. We provide every customer with one free short-notice cancellation. You will not be charged for your first cancellation with less than 12 hour notice.<br>
+                  Subsequent short-notice cancellations will be charged for the session. The free short-notice cancellation only applies if we are notified prior to the session start time. No-shows are not eligible for the free cancellation.
+                </p>
+
+                <div class="box_shadow mb-3">
+                  <p class="mb-0"> <strong>Refund Agreement</strong></p>
+                  <p> If you are not satisfied with our services, we will be happy to refund services <strong> not performed</strong>. I have read the above policy and agree to its terms.</p>
+                  <p class="mb-0"> <strong>Payment Agreement</strong></p>
+                  <p class="mb-0"> Sessions will be pre-paid one session <strong> in advance</strong>. Single sessions are good for 90 days from the original date of purchase.</p>
+                </div>
+
+                <div class="clearfix mb-3">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox10"  [(ngModel)]="submittedData.step_5_data.check3" formControlName="check3" [ngClass]="{ 'is-invalid': submitted && fvf.check3.errors }">
+                    <label class="form-check-label font-italic" for="inlineCheckbox10">I have read, understood and completed this questionnaire. Any questions | had were answered to my full satisfaction.</label>
+                  </div>
+                </div> 
+
+                <div class="btn_input pt-3">
+                  <input type=“text” class=“form-control” [(ngModel)]="submittedData.step_5_data.signature" formControlName="signature" [ngClass]="{ 'is-invalid': submitted && fvf.signature.errors }">
+                          <div *ngIf="submitted && fvf.signature.errors" class="invalid-feedback"></div> 
+                  <div class="dropdown">
+                      <button class="btn btn-blue dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Font
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" *ngFor="let item of fontList">{{item.fontname}}</a>
+                      </div>
+                  </div>                  
+                </div>
+                <p> <span class="font-italic mr-5"> Signature</span> </p>
+              </form>
+
+            </div>
+          </ng-wizard-step>
+          
+          <ng-wizard-step [title]="'6'" [description]="''" [state]="stepStates.error">
+            <div class="step_content">
+              <h4> Please complete our <strong> Lifestyle Questionnaire:</strong></h4>
+              <h3 class="font-weight-bold"> LIFESTYLE QUESTIONNAIRE</h3>
+
+              <form class=“form-inline” [formGroup]="sixForm">
+                <!-- <p class="mb-4">  -->
+                  Name: <input type=“text” class=“form-control” class="w-80" [(ngModel)]="submittedData.step_6_data.name3" formControlName="name3" [ngClass]="{ 'is-invalid': submitted && sxf.name3.errors }">
+                          <div *ngIf="submitted && sxf.name3.errors" class="invalid-feedback"></div> 
+                <!-- </p> -->
+                
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4" class="font-weight-bold">1. Occupation</label>
+                    <input type="text" class="form-control step_formcontrol"  [(ngModel)]="submittedData.step_6_data.question_1" formControlName="question_1" [ngClass]="{ 'is-invalid': submitted && sxf.question_1.errors }">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputPassword4" class="font-weight-bold">2. How many hours on average do you work each week?</label>
+                    <input type="text" class="form-control step_formcontrol"  [(ngModel)]="submittedData.step_6_data.question_2" formControlName="question_2" [ngClass]="{ 'is-invalid': submitted && sxf.question_2.errors }">
+                  </div>
+                </div>
+<!-- [(ngModel)]="submittedData.step_6_data.question_3" [ngModelOptions]="{standalone: true}"
+[(ngModel)]="submittedData.step_6_data.question_3" [ngModelOptions]="{standalone: true}" 
+formControlName="question_3" [ngClass]="{ 'is-invalid': submitted && sxf.question_3.errors }"
+formControlName="question_3" [ngClass]="{ 'is-invalid': submitted && sxf.question_3.errors }"-->
+                <div class="clearfix mb-3">
+                  <h4 class="mb-2 font-weight-bold"> 3. How do you spend the majority of your time at work?</h4>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input"  type="radio"  id="inlineCheckbox11" name="question_3" value="1" [(ngModel)]="submittedData.step_6_data.question_3" formControlName="question_3" [ngClass]="{ 'is-invalid': submitted && sxf.question_3.errors }"  >
+                    <label class="form-check-label" for="inlineCheckbox11">Tired and find it difficult to pull yourself out of bed</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio"  id="inlineCheckbox12"  name="question_3" value ="2" [(ngModel)]="submittedData.step_6_data.question_3" formControlName="question_3" [ngClass]="{ 'is-invalid': submitted && sxf.question_3.errors }"   >
+                    <label class="form-check-label" for="inlineCheckbox12">Refreshed and ready to start the day</label>
+                  </div>
+                </div>
+
+                <div class="clearfix mb-3">
+                  <h4 class="mb-2 font-weight-bold"> 4. When you wake up are you:</h4>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="inlineCheckbox13" name="question_4" value="1" [(ngModel)]="submittedData.step_6_data.question_4" formControlName="question_4" [ngClass]="{ 'is-invalid': submitted && sxf.question_4.errors }">
+                    <label class="form-check-label" for="inlineCheckbox13">Standing</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="inlineCheckbox14" name="question_4" value="2"  [(ngModel)]="submittedData.step_6_data.question_4" formControlName="question_4" [ngClass]="{ 'is-invalid': submitted && sxf.question_4.errors }">
+                    <label class="form-check-label" for="inlineCheckbox14">Sitting</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="inlineCheckbox15" name="question_4" value="3"  [(ngModel)]="submittedData.step_6_data.question_4" formControlName="question_4" [ngClass]="{ 'is-invalid': submitted && sxf.question_4.errors }">
+                    <label class="form-check-label" for="inlineCheckbox15">Driving</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="inlineCheckbox16" name="question_4" value="4"  [(ngModel)]="submittedData.step_6_data.question_4" formControlName="question_4" [ngClass]="{ 'is-invalid': submitted && sxf.question_4.errors }">
+                    <label class="form-check-label" for="inlineCheckbox16">Active</label>
+                  </div>
+                </div>
+
+                <div class="clearfix mb-3">
+                  <h4 class="mb-2 font-weight-bold"> 5. Would you characterise your life as:</h4>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="inlineCheckbox17" name="question_5" value="1"  [(ngModel)]="submittedData.step_6_data.question_5" formControlName="question_5" [ngClass]="{ 'is-invalid': submitted && sxf.question_5.errors }">
+                    <label class="form-check-label" for="inlineCheckbox17">Highly stressful</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="inlineCheckbox18" name="question_5" value="2"  [(ngModel)]="submittedData.step_6_data.question_5" formControlName="question_5" [ngClass]="{ 'is-invalid': submitted && sxf.question_5.errors }">
+                    <label class="form-check-label" for="inlineCheckbox18">Moderately stressful</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="inlineCheckbox19" name="question_5" value="3"  [(ngModel)]="submittedData.step_6_data.question_5" formControlName="question_5" [ngClass]="{ 'is-invalid': submitted && sxf.question_5.errors }">
+                    <label class="form-check-label" for="inlineCheckbox19">Low in stress</label>
+                  </div>
+                </div>
+
+                <div class="clearfix mb-3">
+                  <h4 class="mb-2 font-weight-bold"> 6. How would you consider your current body weight?</h4>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="inlineCheckbox20" name="question_6" value="1"  [(ngModel)]="submittedData.step_6_data.question_6" formControlName="question_6" [ngClass]="{ 'is-invalid': submitted && sxf.question_6.errors }">
+                    <label class="form-check-label" for="inlineCheckbox20">Underweight</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="inlineCheckbox21" name="question_6" value="2"  [(ngModel)]="submittedData.step_6_data.question_6" formControlName="question_6" [ngClass]="{ 'is-invalid': submitted && sxf.question_6.errors }">
+                    <label class="form-check-label" for="inlineCheckbox21">Ideal</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="inlineCheckbox22" name="question_6" value="3"  [(ngModel)]="submittedData.step_6_data.question_6" formControlName="question_6" [ngClass]="{ 'is-invalid': submitted && sxf.question_6.errors }">
+                    <label class="form-check-label" for="inlineCheckbox22">Bit overweight</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="inlineCheckbox23" name="question_6" value="4"  [(ngModel)]="submittedData.step_6_data.question_6" formControlName="question_6" [ngClass]="{ 'is-invalid': submitted && sxf.question_6.errors }">
+                    <label class="form-check-label" for="inlineCheckbox23">Very overweight</label>
+                  </div>
+                </div>
+                
+                  <div class="clearfix mb-3">
+                    <h4 class="mb-2 font-weight-bold"> 7. What does your typical day look like?</h4>
+                    <div class="row">
+                      <div class="form-group col-md-6">
+                        <label for="exampleFormControlSelect1">Time you wake up:</label>
+                        <select class="form-control step_selectcontrol" id="exampleFormControlSelect1" [(ngModel)]="submittedData.step_6_data.question_7_a" formControlName="question_7_a" [ngClass]="{ 'is-invalid': submitted && sxf.question_7_a.errors }">
+                          <option value="1">05:00 AM</option>
+                          <option value="2">05:30 AM</option>
+                          <option value="3">06:00 AM</option>
+                          <option value="4">06:30 AM</option>
+                          <option value="5">07:00 AM</option>
+                          <option value="6">07:30 AM</option>
+                          <option value="7">08:00 AM</option>
+                          <option value="8">08:30 AM</option>
+                          <option value="9">09:00 AM</option>
+                          <option value="10">09:30 AM</option>
+                          <option value="11">10:00 AM</option>
+                          <option value="12">10:30 AM</option>
+
+                        </select>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="exampleFormControlSelect1">Work times:</label>
+                        <select class="form-control step_selectcontrol" id="exampleFormControlSelect1"   [(ngModel)]="submittedData.step_6_data.question_7_b" formControlName="question_7_b" [ngClass]="{ 'is-invalid': submitted && sxf.question_7_b.errors }">
+                          <option value="1">8 hours/day</option>
+                          <option value="2">Less than 8 hours/day</option>
+                          <option value="3">More than 8 hours/day</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-md-6">
+                        <label for="exampleFormControlSelect1">Evening activities:</label>
+                        <input type="text" class="form-control step_formcontrol"   [(ngModel)]="submittedData.step_6_data.question_7_c" formControlName="question_7_c" [ngClass]="{ 'is-invalid': submitted && sxf.question_7_c.errors }" >
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="exampleFormControlSelect1">Time you go to bed:</label>
+                        <select class="form-control step_selectcontrol" id="exampleFormControlSelect1"  [(ngModel)]="submittedData.step_6_data.question_7_d" formControlName="question_7_d" [ngClass]="{ 'is-invalid': submitted && sxf.question_7_d.errors }">
+                          <option value="1">9:00 PM - 10:00 PM</option>
+                          <option value="2">10:00 PM - 11:00 PM</option>
+                          <option value="3">11:00 PM - 12:00 AM</option>
+                          <option value="4">12:00 AM - 1:00 AM</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>    
+
+                  <div class="clearfix mb-3">
+                    <h4 class="mb-2 font-weight-bold"> 8. How would you describe your current activity level:</h4>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox24" name="question_8" value="1"  [(ngModel)]="submittedData.step_6_data.question_8" formControlName="question_8" [ngClass]="{ 'is-invalid': submitted && sxf.question_8.errors }">
+                      <label class="form-check-label" for="inlineCheckbox24">Sedentary</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox25" name="question_8"  value="2"  [(ngModel)]="submittedData.step_6_data.question_8" formControlName="question_8" [ngClass]="{ 'is-invalid': submitted && sxf.question_8.errors }">
+                      <label class="form-check-label" for="inlineCheckbox25">Moderately active</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox26" name="question_8" value="3"  [(ngModel)]="submittedData.step_6_data.question_8" formControlName="question_8" [ngClass]="{ 'is-invalid': submitted && sxf.question_8.errors }">
+                      <label class="form-check-label" for="inlineCheckbox26">active</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox27" name="question_8" value="4"  [(ngModel)]="submittedData.step_6_data.question_8" formControlName="question_8" [ngClass]="{ 'is-invalid': submitted && sxf.question_8.errors }">
+                      <label class="form-check-label" for="inlineCheckbox27">Highly active</label>
+                    </div>
+                  </div>
+
+                  <div class="clearfix mb-3">
+                    <h4 class="mb-2 font-weight-bold"> 9. How would you rate your present level of fitness?</h4>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox28" name="question_9"  value="1" [(ngModel)]="submittedData.step_6_data.question_9" formControlName="question_9" [ngClass]="{ 'is-invalid': submitted && sxf.question_9.errors }">
+                      <label class="form-check-label" for="inlineCheckbox28">Unfit</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox29" name="question_9" value="2" [(ngModel)]="submittedData.step_6_data.question_9" formControlName="question_9" [ngClass]="{ 'is-invalid': submitted && sxf.question_9.errors }">
+                      <label class="form-check-label" for="inlineCheckbox29">Moderately fit</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox30" name="question_9" value="3" [(ngModel)]="submittedData.step_6_data.question_9" formControlName="question_9" [ngClass]="{ 'is-invalid': submitted && sxf.question_9.errors }">
+                      <label class="form-check-label" for="inlineCheckbox30">Trained</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox31" name="question_9" value="4" [(ngModel)]="submittedData.step_6_data.question_9" formControlName="question_9" [ngClass]="{ 'is-invalid': submitted && sxf.question_9.errors }">
+                      <label class="form-check-label" for="inlineCheckbox31">Highly trained</label>
+                    </div>
+                  </div>
+
+                  <div class="clearfix mb-3">
+                    <h4 class="mb-2 font-weight-bold"> 10. Have you ever had a personal training session?</h4>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox32" name="question_10" value="1"  [(ngModel)]="submittedData.step_6_data.question_10" formControlName="question_10" [ngClass]="{ 'is-invalid': submitted && sxf.question_10.errors }">
+                      <label class="form-check-label" for="inlineCheckbox32">YES</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox33" name="question_10" value="2"  [(ngModel)]="submittedData.step_6_data.question_10" formControlName="question_10" [ngClass]="{ 'is-invalid': submitted && sxf.question_10.errors }">
+                      <label class="form-check-label" for="inlineCheckbox33">NO</label>
+                    </div>
+                  </div>
+
+                  <div class="clearfix mb-3">
+                    <h4 class="mb-2 font-weight-bold"> 11. Do you currently exercise?</h4>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox34" name="question_11" value="1"  [(ngModel)]="submittedData.step_6_data.question_11" formControlName="question_11" [ngClass]="{ 'is-invalid': submitted && sxf.question_11.errors }">
+                      <label class="form-check-label" for="inlineCheckbox34">YES</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox35" name="question_11"  value="2" [(ngModel)]="submittedData.step_6_data.question_11" formControlName="question_11" [ngClass]="{ 'is-invalid': submitted && sxf.question_11.errors }">
+                      <label class="form-check-label" for="inlineCheckbox35">NO</label>
+                    </div>
+                  </div>
+
+                  <div class="clearfix mb-3">
+                    <span class="mr-5"> <strong> If none:</strong> any previous regular exercise?</span> 
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox36" name="question_skip" value="Yes" [(ngModel)]="submittedData.step_6_data.question_skip" formControlName="question_skip" [ngClass]="{ 'is-invalid': submitted && sxf.question_skip.errors }" (click)="showrequired($event)">
+                      <label class="form-check-label" for="inlineCheckbox36">YES</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox37" name="question_skip" value="No"  [(ngModel)]="submittedData.step_6_data.question_skip" formControlName="question_skip" [ngClass]="{ 'is-invalid': submitted && sxf.question_skip.errors }" (click)="showrequired($event)">
+                      <label class="form-check-label" for="inlineCheckbox37">NO</label>
+                    </div>
+                  </div>
+                  <p class="font-italic blue_color"> If you currently do NOT exercise, skip the following questions and go to question 19.</p>
+    
+                  <div class="clearfix mb-3">
+                    <h4 class="mb-2 font-weight-bold"> 12. How long have you been training/exercising?</h4>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox38" name="question_12"  value="1"  [(ngModel)]="submittedData.step_6_data.question_12" formControlName="question_12" [ngClass]="{ 'is-invalid': submitted && sxf.question_12.errors }">
+                      <label class="form-check-label" for="inlineCheckbox38">A few weeks</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox39" name="question_12" value="2"  [(ngModel)]="submittedData.step_6_data.question_12" formControlName="question_12" [ngClass]="{ 'is-invalid': submitted && sxf.question_12.errors }">
+                      <label class="form-check-label" for="inlineCheckbox39">A few months</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox40" name="question_12" value="3"  [(ngModel)]="submittedData.step_6_data.question_12" formControlName="question_12" [ngClass]="{ 'is-invalid': submitted && sxf.question_12.errors }">
+                      <label class="form-check-label" for="inlineCheckbox40">Around a year</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox41" name="question_12" value="4" [(ngModel)]="submittedData.step_6_data.question_12" formControlName="question_12" [ngClass]="{ 'is-invalid': submitted && sxf.question_12.errors }">
+                      <label class="form-check-label" for="inlineCheckbox41">Over a year</label>
+                    </div>
+                  </div>
+
+                  <div class="clearfix mb-3">
+                    <h4 class="mb-2 font-weight-bold"> 13. How often do you train?</h4>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox42" name="question_13"  value="1" [(ngModel)]="submittedData.step_6_data.question_13" formControlName="question_13" [ngClass]="{ 'is-invalid': submitted && sxf.question_13.errors }">
+                      <label class="form-check-label" for="inlineCheckbox42">Once a week</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox43" name="question_13" value="2" [(ngModel)]="submittedData.step_6_data.question_13" formControlName="question_13" [ngClass]="{ 'is-invalid': submitted && sxf.question_13.errors }">
+                      <label class="form-check-label" for="inlineCheckbox43">2x week</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox44" name="question_13" value="3"  [(ngModel)]="submittedData.step_6_data.question_13" formControlName="question_13" [ngClass]="{ 'is-invalid': submitted && sxf.question_13.errors }">
+                      <label class="form-check-label" for="inlineCheckbox44">3x week</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox45" name="question_13" value="4"  [(ngModel)]="submittedData.step_6_data.question_13" formControlName="question_13" [ngClass]="{ 'is-invalid': submitted && sxf.question_13.errors }">
+                      <label class="form-check-label" for="inlineCheckbox45">4x week</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox46" name="question_13"  value="5"  [(ngModel)]="submittedData.step_6_data.question_13" formControlName="question_13" [ngClass]="{ 'is-invalid': submitted && sxf.question_13.errors }">
+                      <label class="form-check-label" for="inlineCheckbox46">5x week</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox47" name="question_13" value="6" [(ngModel)]="submittedData.step_6_data.question_13" formControlName="question_13" [ngClass]="{ 'is-invalid': submitted && sxf.question_13.errors }">
+                      <label class="form-check-label" for="inlineCheckbox47">6x week</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox48" name="question_13" value="7" [(ngModel)]="submittedData.step_6_data.question_13" formControlName="question_13" [ngClass]="{ 'is-invalid': submitted && sxf.question_13.errors }">
+                      <label class="form-check-label" for="inlineCheckbox48">Every day</label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1" class="mb-2 font-weight-bold">14. What type of exercise do you do?</label>
+                    <textarea class="form-control step_formcontrol h-50" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="submittedData.step_6_data.question_14" formControlName="question_14" [ngClass]="{ 'is-invalid': submitted && sxf.question_14.errors }"></textarea>
+                  </div>
+
+                  <div class="clearfix mb-3">
+                    <h4 class="mb-2 font-weight-bold"> 15. How long is each training session?</h4>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox49" name="question_15" value="1"  [(ngModel)]="submittedData.step_6_data.question_15" formControlName="question_15" [ngClass]="{ 'is-invalid': submitted && sxf.question_15.errors }">
+                      <label class="form-check-label" for="inlineCheckbox49">1/2 hour</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox50" name="question_15" value="2" [(ngModel)]="submittedData.step_6_data.question_15" formControlName="question_15" [ngClass]="{ 'is-invalid': submitted && sxf.question_15.errors }">
+                      <label class="form-check-label" for="inlineCheckbox50">1 hour</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox51" name="question_15" value="3"  [(ngModel)]="submittedData.step_6_data.question_15" formControlName="question_15" [ngClass]="{ 'is-invalid': submitted && sxf.question_15.errors }">
+                      <label class="form-check-label" for="inlineCheckbox51"> 1.5 hour</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox52" name="question_15" value="4"  [(ngModel)]="submittedData.step_6_data.question_15" formControlName="question_15" [ngClass]="{ 'is-invalid': submitted && sxf.question_15.errors }">
+                      <label class="form-check-label" for="inlineCheckbox52">2 hours</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox53" name="question_15" value="5" [(ngModel)]="submittedData.step_6_data.question_15" formControlName="question_15" [ngClass]="{ 'is-invalid': submitted && sxf.question_15.errors }">
+                      <label class="form-check-label" for="inlineCheckbox53">Longer</label>
+                    </div>
+                  </div>
+
+                  <div class="clearfix mb-3">
+                    <h4 class="mb-2 font-weight-bold"> 16. Where do you exercise?</h4>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox54" name="question_16"  value="1"  [(ngModel)]="submittedData.step_6_data.question_16" formControlName="question_16" [ngClass]="{ 'is-invalid': submitted && sxf.question_16.errors }">
+                      <label class="form-check-label" for="inlineCheckbox54">Gym</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox55" name="question_16" value="2"  [(ngModel)]="submittedData.step_6_data.question_16" formControlName="question_16" [ngClass]="{ 'is-invalid': submitted && sxf.question_16.errors }">
+                      <label class="form-check-label" for="inlineCheckbox55">Home</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox56" name="question_16" value="3" [(ngModel)]="submittedData.step_6_data.question_16" formControlName="question_16" [ngClass]="{ 'is-invalid': submitted && sxf.question_16.errors }">
+                      <label class="form-check-label" for="inlineCheckbox56">Swimming pool</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox57" name="question_16" value="4"  [(ngModel)]="submittedData.step_6_data.question_16" formControlName="question_16" [ngClass]="{ 'is-invalid': submitted && sxf.question_16.errors }">
+                      <label class="form-check-label" for="inlineCheckbox57">Other</label>
+                    </div>
+                  </div>
+                  <div class="clearfix mb-3">
+                    <h4 class="mb-2 font-weight-bold"> 17. What time of day do you normally train?</h4>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox58" name="question_17" value="1"  [(ngModel)]="submittedData.step_6_data.question_17" formControlName="question_17" [ngClass]="{ 'is-invalid': submitted && sxf.question_17.errors }">
+                      <label class="form-check-label" for="inlineCheckbox58">Morning</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox59" name="question_17" value="2" [(ngModel)]="submittedData.step_6_data.question_17" formControlName="question_17" [ngClass]="{ 'is-invalid': submitted && sxf.question_17.errors }">
+                      <label class="form-check-label" for="inlineCheckbox59">Afternoon</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox60" name="question_17" value="3" [(ngModel)]="submittedData.step_6_data.question_17" formControlName="question_17" [ngClass]="{ 'is-invalid': submitted && sxf.question_17.errors }">
+                      <label class="form-check-label" for="inlineCheckbox60">Evening</label>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label for="exampleFormControlTextarea1" class="mb-2 font-weight-bold">18. Do you participate in any particular sports?</label>
+                      <textarea class="form-control step_formcontrol h-50" id="exampleFormControlTextarea1" rows="3" name="question_18"  [(ngModel)]="submittedData.step_6_data.question_18" formControlName="question_18" [ngClass]="{ 'is-invalid': submitted && sxf.question_18.errors }"></textarea>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="exampleFormControlTextarea1" class="mb-2 font-weight-bold">19. What fitness equipment do you have access to?</label>
+                      <textarea class="form-control step_formcontrol h-50" id="exampleFormControlTextarea1" rows="3" name="question_19"  [(ngModel)]="submittedData.step_6_data.question_19" formControlName="question_19" [ngClass]="{ 'is-invalid': submitted && sxf.question_19.errors }"></textarea>
+                    </div>
+                  </div>  
+
+                  <div class="clearfix mb-3">
+                    <h4 class="mb-2 font-weight-bold"> 20. How much time will you have to exercise each week?</h4>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox61" name="question_20" value="1" [(ngModel)]="submittedData.step_6_data.question_20" formControlName="question_20" [ngClass]="{ 'is-invalid': submitted && sxf.question_20.errors }">
+                      <label class="form-check-label" for="inlineCheckbox61">1 hour</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox62" name="question_20" value="2" [(ngModel)]="submittedData.step_6_data.question_20" formControlName="question_20" [ngClass]="{ 'is-invalid': submitted && sxf.question_20.errors }">
+                      <label class="form-check-label" for="inlineCheckbox62">2 hour</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox63" name="question_20"  value="3" [(ngModel)]="submittedData.step_6_data.question_20" formControlName="question_20" [ngClass]="{ 'is-invalid': submitted && sxf.question_20.errors }">
+                      <label class="form-check-label" for="inlineCheckbox63">3 hour</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox64" name="question_20" value="4" [(ngModel)]="submittedData.step_6_data.question_20" formControlName="question_20" [ngClass]="{ 'is-invalid': submitted && sxf.question_20.errors }">
+                      <label class="form-check-label" for="inlineCheckbox64">4 hour</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox65" name="question_20" value="5" [(ngModel)]="submittedData.step_6_data.question_20" formControlName="question_20" [ngClass]="{ 'is-invalid': submitted && sxf.question_20.errors }">
+                      <label class="form-check-label" for="inlineCheckbox65">More</label>
+                    </div>
+                    <!-- <div class="input-group w-25 mb-3">
+                      <select class="custom-select step_selectcontrol selectcontrol_more" id="inputGroupSelect02" name="question_20"  [(ngModel)]="submittedData.step_6_data.question_20" formControlName="question_20" [ngClass]="{ 'is-invalid': submitted && sxf.question_20.errors }">
+                        <option selected>More</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                    </div> -->
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="inputEmail4" class="font-weight-bold">21. What did/do you like the least about exercise?</label>
+                      <input type="text" class="form-control step_formcontrol" name="question_21"  [(ngModel)]="submittedData.step_6_data.question_21" formControlName="question_21" [ngClass]="{ 'is-invalid': submitted && sxf.question_21.errors }">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputPassword4" class="font-weight-bold">22. What did/do you like about exercise?</label>
+                      <input type="text" class="form-control step_formcontrol" name="question_22"  [(ngModel)]="submittedData.step_6_data.question_22" formControlName="question_22" [ngClass]="{ 'is-invalid': submitted && sxf.question_22.errors }">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlSelect1" class="font-weight-bold">23. How many meals do you eat each day?</label>
+                    <select class="form-control step_selectcontrol" id="exampleFormControlSelect1" name="question_23"  [(ngModel)]="submittedData.step_6_data.question_23" formControlName="question_23" [ngClass]="{ 'is-invalid': submitted && sxf.question_23.errors }">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1" class="mb-2 font-weight-bold">24. Do you ever skip meals?, if so which ones and how regularly?
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="inlineCheckbox66" name="question_24" value="Yes"  [(ngModel)]="submittedData.step_6_data.question_24" formControlName="question_24" [ngClass]="{ 'is-invalid': submitted && sxf.question_24.errors }" (click)="show24($event)">
+                        <label class="form-check-label" for="inlineCheckbox66">YES</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="inlineCheckbox67" name="question_24" value="No"  [(ngModel)]="submittedData.step_6_data.question_24" formControlName="question_24" [ngClass]="{ 'is-invalid': submitted && sxf.question_24.errors }" (click)="show24($event)">
+                        <label class="form-check-label" for="inlineCheckbox67">NO</label>
+                      </div>  
+                    </label>
+                    <textarea *ngIf="text24 == true"class="form-control step_formcontrol h-50" id="exampleFormControlTextarea1" rows="3" name="question_24_y"  [(ngModel)]="submittedData.step_6_data.question_24_y" formControlName="question_24_y" [ngClass]="{ 'is-invalid': submitted && sxf.question_24_y.errors }"></textarea>
+                  </div>
+
+                  <div class="clearfix mb-3">
+                    <h4 class="mb-2 font-weight-bold"> 25. What time of the day do you usually eat your meals?</h4>
+                    <div class="row">
+                      <div class="form-group col-md-4">
+                        <label for="exampleFormControlSelect1">Breakfast</label>
+                        <input type="text" class="form-control step_formcontrol" name="question_25_a"  [(ngModel)]="submittedData.step_6_data.question_25_a" formControlName="question_25_a" [ngClass]="{ 'is-invalid': submitted && sxf.question_25_a.errors }">
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="exampleFormControlSelect1">Lunch</label>
+                        <input type="text" class="form-control step_formcontrol" name="question_25_b"  [(ngModel)]="submittedData.step_6_data.question_25_b" formControlName="question_25_b" [ngClass]="{ 'is-invalid': submitted && sxf.question_25_b.errors }">
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="exampleFormControlSelect1">Evening</label>
+                        <input type="text" class="form-control step_formcontrol" name="question_25_c"  [(ngModel)]="submittedData.step_6_data.question_25_c" formControlName="question_25_c" [ngClass]="{ 'is-invalid': submitted && sxf.question_25_c.errors }">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-md-4">
+                        <label for="exampleFormControlSelect1">Snack</label>
+                        <input type="text" class="form-control step_formcontrol" name="question_25_d"  [(ngModel)]="submittedData.step_6_data.question_25_d" formControlName="question_25_d" [ngClass]="{ 'is-invalid': submitted && sxf.question_25_d.errors }">
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="exampleFormControlSelect1">Snack</label>
+                        <input type="text" class="form-control step_formcontrol" name="question_25_e"  [(ngModel)]="submittedData.step_6_data.question_25_e" formControlName="question_25_e" [ngClass]="{ 'is-invalid': submitted && sxf.question_25_e.errors }">
+                      </div>
+                      <div class="form-group col-md-4">
+                        <label for="exampleFormControlSelect1">Supper</label>
+                        <input type="text" class="form-control step_formcontrol" name="question_25_f"  [(ngModel)]="submittedData.step_6_data.question_25_f" formControlName="question_25_f" [ngClass]="{ 'is-invalid': submitted && sxf.question_25_f.errors }">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="clearfix mb-3">
+                    <h4 class="mb-2 font-weight-bold"> 26. How big would you say your meals were?</h4>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox68" name="question_26" value="1" [(ngModel)]="submittedData.step_6_data.question_26" formControlName="question_26" [ngClass]="{ 'is-invalid': submitted && sxf.question_26.errors }">
+                      <label class="form-check-label" for="inlineCheckbox68">Small</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox69" name="question_26" value="2" [(ngModel)]="submittedData.step_6_data.question_26" formControlName="question_26" [ngClass]="{ 'is-invalid': submitted && sxf.question_26.errors }">
+                      <label class="form-check-label" for="inlineCheckbox69">Medium</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox70" name="question_26" value="3" [(ngModel)]="submittedData.step_6_data.question_26" formControlName="question_26" [ngClass]="{ 'is-invalid': submitted && sxf.question_26.errors }">
+                      <label class="form-check-label" for="inlineCheckbox70">Large</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox71" name="question_26" value="4" [(ngModel)]="submittedData.step_6_data.question_26" formControlName="question_26" [ngClass]="{ 'is-invalid': submitted && sxf.question_26.errors }">
+                      <label class="form-check-label" for="inlineCheckbox71">Extra Large</label>
+                    </div>
+                  </div>
+                  <div class="clearfix mb-3">
+                    <h4 class="mb-2 font-weight-bold"> 27. Do you ever get hungry between meals?</h4>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox72" name="question_27" value="1" [(ngModel)]="submittedData.step_6_data.question_27" formControlName="question_27" [ngClass]="{ 'is-invalid': submitted && sxf.question_27.errors }">
+                      <label class="form-check-label" for="inlineCheckbox72">NO</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox73" name="question_27" value="2" [(ngModel)]="submittedData.step_6_data.question_27" formControlName="question_27" [ngClass]="{ 'is-invalid': submitted && sxf.question_27.errors }">
+                      <label class="form-check-label" for="inlineCheckbox73">Some</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox74" name="question_27" value="3" [(ngModel)]="submittedData.step_6_data.question_27" formControlName="question_27" [ngClass]="{ 'is-invalid': submitted && sxf.question_27.errors }">
+                      <label class="form-check-label" for="inlineCheckbox74">YES</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox75" name="question_27"  value="4"  [(ngModel)]="submittedData.step_6_data.question_27" formControlName="question_27" [ngClass]="{ 'is-invalid': submitted && sxf.question_27.errors }">
+                      <label class="form-check-label" for="inlineCheckbox75">Extreme</label>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputEmail4" class="font-weight-bold">28. Do you take any supplements?</label>
+                    <input type="text" class="form-control step_formcontrol" name="question_28"  [(ngModel)]="submittedData.step_6_data.question_28" formControlName="question_28" [ngClass]="{ 'is-invalid': submitted && sxf.question_28.errors }">
+                  </div>
+                  <div class="clearfix mb-3">
+                    <span class="mr-5"> <strong> 29. Are you currently on a diet?</strong></span> 
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox76" name="question_29" value="1" [(ngModel)]="submittedData.step_6_data.question_29" formControlName="question_29" [ngClass]="{ 'is-invalid': submitted && sxf.question_29.errors }">
+                      <label class="form-check-label" for="inlineCheckbox76">YES</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox77" name="question_29" value="2" [(ngModel)]="submittedData.step_6_data.question_29" formControlName="question_29" [ngClass]="{ 'is-invalid': submitted && sxf.question_29.errors }">
+                      <label class="form-check-label" for="inlineCheckbox77">NO</label>
+                    </div>
+                  </div> 
+
+                  <div class="clearfix mb-3">
+                    <h4 class="mb-2 font-weight-bold"> 30. How would you rate your current eating habits?</h4>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox78" name="question_30" value="1"  [(ngModel)]="submittedData.step_6_data.question_30" formControlName="question_30" [ngClass]="{ 'is-invalid': submitted && sxf.question_30.errors }">
+                      <label class="form-check-label" for="inlineCheckbox78">Poor</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox79" name="question_30" value="2" [(ngModel)]="submittedData.step_6_data.question_30" formControlName="question_30" [ngClass]="{ 'is-invalid': submitted && sxf.question_30.errors }">
+                      <label class="form-check-label" for="inlineCheckbox79">Average</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" id="inlineCheckbox80" name="question_30" value="3" [(ngModel)]="submittedData.step_6_data.question_30" formControlName="question_30" [ngClass]="{ 'is-invalid': submitted && sxf.question_30.errors }">
+                      <label class="form-check-label" for="inlineCheckbox80">Good</label>
+                    </div>
+                  </div>
+
+                  <div class="clearfix mb-3">
+                    <h4 class="mb-2 font-weight-bold"> 31. On average, how many portions of fruit and vegetables do you eat per day?</h4>
+                    <div class="row">
+                      <div class="form-group col-md-6">
+                        <label for="exampleFormControlSelect1">Fruit</label>
+                        <input type="text" class="form-control step_formcontrol" name="question_31_a"  [(ngModel)]="submittedData.step_6_data.question_31_a" formControlName="question_31_a" [ngClass]="{ 'is-invalid': submitted && sxf.question_31_a.errors }">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="exampleFormControlSelect1">Vegetables</label>
+                        <input type="text" class="form-control step_formcontrol" name="question_31_b"  [(ngModel)]="submittedData.step_6_data.question_31_b" formControlName="question_31_b" [ngClass]="{ 'is-invalid': submitted && sxf.question_31_b.errors }">
+                      </div>
+                    </div>
+                  </div>  
+
+                  <div class="form-group">
+                    <label for="inputEmail4" class="font-weight-bold">32. If you snack or have any weaknesses, what do you generally tend to eat/drink?</label>
+                    <input type="text" class="form-control step_formcontrol" name="question_32"  [(ngModel)]="submittedData.step_6_data.question_32" formControlName="question_32" [ngClass]="{ 'is-invalid': submitted && sxf.question_32.errors }">
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail4"> <strong> 33. How many alcoholic units do you drink per week?</strong> (1 unit = wine 1 glass, beer 1/2 pint)</label>
+                    <input type="text" class="form-control step_formcontrol" name="question_33"  [(ngModel)]="submittedData.step_6_data.question_33" formControlName="question_33" [ngClass]="{ 'is-invalid': submitted && sxf.question_33.errors }">
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail4"> <strong> 34. How much water do you drink each day?</strong> (glasses/litres)</label>
+                    <input type="text" class="form-control step_formcontrol" name="question_34"  [(ngModel)]="submittedData.step_6_data.question_34" formControlName="question_34" [ngClass]="{ 'is-invalid': submitted && sxf.question_34.errors }">
+                  </div>
+              </form>  
+
+            </div>
+          </ng-wizard-step>
+
+          <ng-wizard-step [title]="'7'" [description]="''" [state]="stepStates.error">
+            <div class="step_content">
+              <h4> <strong> Please select user type:</strong></h4>
+              <form class=“form-inline” [formGroup]="sevenForm">
+              <div class="clearfix mb-3">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="inlineCheckbox81" name="user_type" value="3"  [(ngModel)]="submittedData.step_7_data.user_type"  formControlName="user_type" [ngClass]="{ 'is-invalid': submitted && snf.user_type.errors }"(click)="getUserType($event)" >
+                  <label class="form-check-label" for="inlineCheckbox81">New User</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="inlineCheckbox82" name="user_type" value="1"  [(ngModel)]="submittedData.step_7_data.user_type"  formControlName="user_type" [ngClass]="{ 'is-invalid': submitted && snf.user_type.errors }"(click)="getUserType($event)" >
+                  <label class="form-check-label" for="inlineCheckbox82">SHG’s Employee</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="inlineCheckbox83" name="user_type"  value="2" [(ngModel)]="submittedData.step_7_data.user_type"  formControlName="user_type" [ngClass]="{ 'is-invalid': submitted && snf.user_type.errors }"(click)="getUserType($event)" >
+                  <label class="form-check-label" for="inlineCheckbox83">Employee’s Family Member</label>
+                </div>
+              </div>
+
+              <div class="box_shadow mb-3">
+                <ul class="content_list">
+                  <li *ngIf="userType == '3'"> <span> New User:</span> ${{platFormFees[2].value}}/month </li>
+                  <li *ngIf="userType == '1'"> <span> SHG’s Employee:</span> ${{platFormFees[0].value}}/month</li>
+                  <li *ngIf="userType == '2'"> <span> Employee’s Family Member:</span> ${{platFormFees[1].value}}/month</li>
+                </ul> 
+              </div>
+              <ul class="content_list" *ngIf="userType != '0' ">
+                <li> <span> Name:</span> {{submittedData.step_3_data.name1}}</li>
+                <li *ngIf="userType == '3'"> <span> User Type:</span> New User</li>
+                <li *ngIf="userType == '1'"> <span> User Type:</span> SHG’s Employee</li>
+                <li *ngIf="userType == '2'"> <span> User Type:</span>Employee’s Family Member</li>
+              <li> <span> Phone:</span> {{submittedData.step_3_data.phone}}</li>
+                <li> <span> Address:</span> {{submittedData.step_3_data.address}}</li>
+                <li> <span> Purpose:</span> <strong> {{categoryName}}</strong> - {{subcategoryName}}</li>
+              </ul>
+
+              <div class="row" *ngIf="userType != '0' ">
+                <div class="col-md-9">
+                  <div class="box_shadow my-3">
+                    <ul class="content_list">
+                      <li> <span> Membership fee:</span> ${{usertypePrice}} / month</li>
+                      <!-- <li> <span> {{subcategoryName}} fee:</span> ${{selectedPrice}} /3 months</li> -->
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-3" *ngIf="userType != '0' ">
+                  <div class="btn-group-vertical mt-3 w-50" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-blue">TOTAL</button>
+                    <button type="button" class="btn btn-blue font-weight-bold">${{TotalAmount}}</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="clearfix my-3" *ngIf="userType != '0'">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox84" name="check4"  [(ngModel)]="submittedData.step_7_data.check4" formControlName="check4" [ngClass]="{ 'is-invalid': submitted && snf.check4.errors }" (click)="showcard($event)">
+                  <label class="form-check-label font-italic" for="inlineCheckbox84"> I have read, understand and agree to the Signal Health Group <u class="blue_color"> Terms and Conditions.</u></label>
+                </div>
+              </div>
+              <div *ngIf="payments">
+              <div class="m-auto font-italic"> <p class="mb-3"> Your card will be charged automatically after your 7 days trial period. Please contact us before your 7 days trial period is up to cancel if you do not wish to continue.</p>
+              </div>              
+              <div class="custom-control custom-radio mb-3">
+                <!-- <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input custom-input"> -->
+                <label class="custom-control-label custom-label" for="customRadio1">Credit Card / Debit Card</label>
+              </div>
+              <h4> Pay securely using your credit card.</h4>
+              <!-- <div class="form-group">
+                <label for="inputEmail4">Name on Card</label>
+                <input type="text" class="form-control step_formcontrol" autocomplete="off"
+                          onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="Sophie Joe"
+                          formControlName="card_holder_name"
+                          [ngClass]="{ 'is-invalid': submitted && snf.card_holder_name.errors }">
+                        <div *ngIf="submitted && snf.card_holder_name.errors" class="invalid-feedback">
+                          <div *ngIf="snf.card_holder_name.errors.required">Card Holder Name is required</div>
+                          <div *ngIf="snf.card_holder_name.errors.pattern">Card Holder Name is required</div>
+                        </div>
+              </div> -->
+              <div class="form-group">
+                <label for="cc-number" class="control-label">Card number</label>
+                <!-- <input id="cc-number" name="cc-number" type="tel" class="form-control step_formcontrol cc-number identified visa" value="" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
+                <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span> -->
+              
+                <input type="text" class="form-control step_formcontrol" autocomplete="off"
+                onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="4121 4411 3131 8554"
+                pattern="\d{15,19}" onKeyPress="if(this.value.length >= 19) return false;"
+                formControlName="card_number" [ngClass]="{ 'is-invalid': submitted && snf.card_number.errors }">
+              <!-- <img src="assets/img/ic_visacard.png" class="input-visa-img"> -->
+              <div *ngIf="submitted && snf.card_number.errors" class="invalid-feedback">
+                <div *ngIf="snf.card_number.errors.required">Card Number is required</div>
+                <div *ngIf="snf.card_number.errors.pattern">Card Number is not valid</div>
+
+              </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Valid Trough</label>
+                  <!-- <input type="text" class="form-control step_formcontrol" id="" placeholder="MM / DD"> -->
+                  <input type="text" class="form-control step_formcontrol" autocomplete="off" placeholder="MM/YYYY"
+                  formControlName="expiry" [ngClass]="{ 'is-invalid': submitted && snf.expiry.errors }"
+                  minlength="7" maxlength="7"
+                  onKeyPress="if(this.value.length == 2) return this.value=this.value.replace(this.value, this.value+'/');"
+                  pattern="^\d{2}/\d{4}">
+                <!-- <input type="number"  class="form-control"  placeholder="MM/YYYY" formControlName="expiry" pattern="\d{2}/\d{2}"  onKeyPress="if(this.value.length >=5) return false;" [ngClass]="{ 'is-invalid': submitted && snf.expiry.errors }"> -->
+                <div *ngIf="submitted && snf.expiry.errors" class="invalid-feedback">
+                  <div *ngIf="snf.expiry.errors.required">Valid Till is required</div>
+                  <div *ngIf="snf.expiry.errors.pattern">Valid Till is like MM/YY</div>
+
+                </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">CVV</label>
+                  <!-- <input type="text" class="form-control step_formcontrol" id="" placeholder="eg. 201"> -->
+                
+                  <input type="password" class="form-control step_formcontrol" autocomplete="off"
+                  onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="eg. 201" pattern="\d{3,4}"
+                  onKeyPress="if(this.value.length >=4) return false;" formControlName="cvv_no"
+                  [ngClass]="{ 'is-invalid': submitted && snf.cvv_no.errors }">
+                <div *ngIf="submitted && snf.cvv_no.errors" class="invalid-feedback">
+                  <div *ngIf="snf.cvv_no.errors.required">CVV is required</div>
+                  <div *ngIf="snf.cvv_no.errors.pattern">CVV is not valid</div>
+
+                </div></div>
+              </div>
+              <button class="btn btn-blue-grad text-uppercase"  type="submit"  (click)="currentStep = 7;onSubmit()"> submit </button>
+            </div>
+              </form>
+            </div>
+          </ng-wizard-step>  
+          
+          <!-- <ng-wizard-step [title]="'8'" [description]="''" [state]="stepStates.error">
+            <div class="step_content">
+              
+              <div class="m-auto font-italic"> <p class="mb-3"> Thank you</p>
+              </div>              
+
+            </div>
+          </ng-wizard-step> -->
+          
+        </ng-wizard>
+
+      </div>
+    </div><!-- end of container -->
+  </div>
+  <!-- End of Help Content Section -->
+  
+  
+  <div *ngIf="loginInfo">
+    <app-inner-footer></app-inner-footer>
+  </div>
+  <div *ngIf="!loginInfo">
+    <app-footer></app-footer>
+  </div>

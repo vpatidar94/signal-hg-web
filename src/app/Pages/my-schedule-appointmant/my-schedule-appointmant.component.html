@@ -1,0 +1,55 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+    <!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}"></ngx-loading> -->
+<!-- My Studio Card Detials-Service Section -->
+<div class="studio-details">
+    <div class="container">
+        <app-sub-header></app-sub-header>
+      <div class="studio-details-service pb-5">
+        <div class="row">
+          <div class="col-12">
+            <div class="white-bg border-radius6 box-shadow1 p-3">
+                <div class="row">
+                <div class="col-12 col-md-4" *ngFor="let items of serviceList">
+                  <a href="javascript:void(0)"  (click) ="redirect(items)">
+                    <div class="service-btn-cards white-bg box-shadow1 border-radius6 p-3">
+                      <div class="row">
+                        <div class="col-3 col-md-12 col-lg-3">
+                          <div class="service-btn-card-left text-center">
+                            <img src="{{businessDetail.logo}}" class="img-fluid">
+                          </div>
+                        </div><!-- end of col-3 -->
+
+                        <div class="col-9 col-md-12 col-lg-9 pl-0 pl-md-2 pl-lg-0">
+                          <div class="service-btn-card-right">
+                            <div class="row pt-2">
+                              <div class="col-7 text-left">
+                                <p class="black-color font-w-100 font-14 mb-1"> {{items.service_name}} </p>
+                              </div>
+                             
+                            </div><!-- end of row(Name & Date) -->
+
+                            <div class="row pt-0 pt-md-3 pt-lg-0">
+                              <div class="col-7 text-left">
+                                <p class="d-inline black-color font-w-100 font-14 mb-0"> {{items.service_category}} </p>
+                              </div>
+                            
+                            </div><!-- end of row(Name & Date) -->
+                          </div>
+                        </div><!-- end of col-9 -->
+                      </div><!-- end of row -->
+                    </div><!-- end of service-btn-cards -->
+                  </a>
+                </div><!-- end of col-md-4 -->
+              </div><!-- end of row -->
+          </div>
+        </div>
+        </div><!-- end of row -->        
+      </div><!-- end of studio-details-service -->
+
+    </div><!-- end of container -->
+  </div>          
+<!-- End of My Studio Card Detials-Service Section -->
+
+
+<app-inner-footer></app-inner-footer>

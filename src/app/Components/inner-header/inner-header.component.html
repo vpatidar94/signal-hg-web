@@ -1,0 +1,639 @@
+<!-- Header Section -->
+<header class="header-customer box-shadow1 py-2 px-0 px-sm-3" id="myHeader">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light white-bg p-0">
+      <a class="navbar-brand" routerLink="/home"><img src="assets/img/logo_colored.png" class="img-fluid img-size"></a>
+      <button class="navbar-toggler ml-auto my-3 my-lg-0" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button><!-- buttons ends here -->
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown" *ngIf="userDetail.address">
+        <ul class="navbar-nav ml-auto" *ngIf="userDetail.consent_status == 7">
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link header-css text-uppercase" routerLink="/home"> Home </a>
+          </li><!-- Home -->
+          
+          <li class="nav-item" routerLinkActive="active" *ngIf="userDetail.role_id == 3">
+            <a class="nav-link header-css text-uppercase" routerLink="/news-feed"> News Feed </a>
+          </li><!-- Studios -->
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link header-css text-uppercase" routerLink="/studio"> Studios </a>
+          </li><!-- Studios -->
+          <li class="nav-item" routerLinkActive="active" *ngIf="userDetail.role_id == 3">
+            <a class="nav-link header-css text-uppercase" routerLink="/family" > Family </a>
+          </li>
+          <li class="nav-item" routerLinkActive="active" *ngIf="userDetail.role_id == 3">
+            <a class="nav-link header-css text-uppercase" routerLink="/payment" > Payment </a>
+          </li>
+
+          
+          <li class="nav-item" routerLinkActive="active" *ngIf="userDetail.role_id == 3">
+            <a class="nav-link header-css text-uppercase" routerLink="/my-transaction" > Transaction </a>
+          </li><!-- Schedule -->
+          <!-- <li class="nav-item" routerLinkActive="active" *ngIf="userDetail.role_id == 4">
+            <a class="nav-link" routerLink="/my-payout" > Payout </a>
+          </li> -->
+          <!-- Schedule -->
+
+
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link header-css text-uppercase" routerLink="/myfavorites"> Favorites </a>
+          </li><!-- Schedule -->
+          <li class="nav-item" routerLinkActive="active" *ngIf="userDetail.role_id == 4">
+            <a class="nav-link header-css text-uppercase" routerLink="/preference"> Preference </a>
+          </li><!-- Schedule -->
+
+          <li class="nav-item" routerLinkActive="active" *ngIf="userDetail.role_id == 3">
+            <a class="nav-link header-css text-uppercase" routerLink="/workout" >Workout </a>
+          </li><!-- Schedule -->
+          <li class="nav-item" routerLinkActive="active" *ngIf="userDetail.role_id == 3">
+            <a class="nav-link header-css text-uppercase" routerLink="/my-nutrition">Nutrition </a>
+          </li><!-- Schedule -->
+          <li class="nav-item" routerLinkActive="active" *ngIf="userDetail.role_id == 4">
+            <a class="nav-link header-css text-uppercase" routerLink="/my-profile" > Profile </a>
+          </li><!-- Profile -->
+          <li class="nav-item"  *ngIf="userDetail.role_id == 4" >
+            <a class="nav-link header-css text-uppercase" routerLink="/Home" (click)="logOut()"> Logout </a>
+          </li><!-- Logout -->
+             
+          <li class="nav-item" routerLinkActive="active" *ngIf="userDetail.role_id == 3">
+            <!-- <a href="#" class="nav-link notificationico dropdown-toggle" id="notificationBox" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="far fa-bell"></i>
+            <span class="notification-count">3</span>
+          </a> -->
+            <a class="nav-link" routerLink ="/cart">
+              <!-- {{cartCount}} <img src="assets/img/ic_cart.png"> -->
+              <i class="fa fa-shopping-cart fa-lg"></i>
+              <sup> <span class="notification-count" style="font-size: 20px;color: #1B96D3;">{{cartCount}} </span></sup> </a>
+          </li><!-- Cart -->
+
+          <li class="nav-item dropdown" (click)="getNotifiction()">
+            <a class="nav-link dropdown-toggle" href="Javascript:void(0);" id="navbDropNotification" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img src="assets/img/ic_notifications.png"> </a>
+
+            <div class="dropdown-menu dropdown-noti-menu" aria-labelledby="navbarDropdownNotification">
+              <div class="row">
+                <div class="col-12">
+                  <div class="nav-upper px-3 pt-4">
+                    <div class="row">
+                      <div class="col-12 col-md-3 text-center" >
+                        <img src="assets/img/ic_notification.png" class="img-fluid">
+                      </div>
+                      <div class="col-12 col-md-9">
+                        <div class="notification-text">
+                          <h4 class="title dark-color mb-0 mt-1"> Notifications </h4>
+                          <p class="brand-color3 font-16" *ngIf="UnreadCount != 0"> {{UnreadCount}} new notifications </p>
+                        </div>
+                      </div>
+                      <div class="col-12 text-right">
+                        <div class="notification-mark pb-2">
+                          <!-- <a href="Javascript:void(0);" class="brand-color1 font-12"> Mark all as read </a> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- end of nav-upper -->
+
+                <div class="col-12 nav-lower">
+                  <div class="notify-content">
+                                            
+                    <div class="notifi-block border-bottom" *ngFor="let notfy of NotificationDetail">
+                      <div  infinite-scroll  [infiniteScrollDistance]="scrollDistance"  [infiniteScrollUpDistance]="scrollUpDistance"  [infiniteScrollThrottle]="throttle"  (scrolled)="onScroll()" alwaysCallback="true"> 
+
+                      <div class="row p-3" (click)="getMarkRead(notfy)" *ngIf="notfy.read == 1">
+                        <div class="col-6 text-left">
+                          <p class="dark-color font-16 font-w-600">{{notfy.title}}  </p>
+                        </div>
+                        <div class="col-6 text-right">
+                          <p class="brand-color3 font-14 font-w-100">{{notfy.create_dt_utc_new}}</p>
+                        </div>
+                        <div class="col-12">
+                          <p class="dark-color font-14 font-w-600" [innerHtml]="notfy.message"> </p>
+                        </div>
+                      </div>
+                      <div class="row light-bg p-3" (click)="getMarkRead(notfy)" *ngIf="notfy.read == 0">
+                        <div class="col-6 text-left">
+                          <p class="dark-color font-16 font-w-600">{{notfy.title}}  </p>
+                        </div>
+                        <div class="col-6 text-right">
+                          <p class="brand-color3 font-14 font-w-100">{{notfy.create_dt_utc_new}}</p>
+                        </div>
+                        <div class="col-12">
+                          <p class="dark-color font-14 font-w-600" [innerHtml]="notfy.message">{{notfy.message}} </p>
+                        </div>
+                      </div>
+                    </div><!-- Notification - 2 -->
+                    </div>
+                  </div><!-- end of notify-content -->
+                </div><!-- end of nav-lower -->
+              </div><!-- end of row -->
+            </div><!-- end of dropdown-noti-menu -->
+          </li><!-- Bell -->         
+
+          <li class="nav-item dropdown"   *ngIf="userDetail.role_id == 3">
+            <a href="javascript:void(0)" class="nav-link usertopcircle dropdown-toggle" id="userBox" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <div class="header-profile-menu">
+                <img src="{{userDetail.profile_img}}"  class="img-fluid" >
+              </div>
+            </a>
+            <div class="dropdown-menu useroptions" aria-labelledby="navbarDropdown">
+              <div class="accountoptions px-4 py-1">
+                <ul class="list-group">
+                  <li class="py-1" routerLinkActive="active">
+                    <a routerLink="/profile">My Profile</a>
+                  </li>
+                  <li class="py-1" routerLinkActive="active">
+                    <a routerLink="/preference"> Preference </a>
+                  </li>
+                  <li class="py-1" routerLinkActive="active">
+                    <a routerLink="/studio-membership-plan">Subscription Plan</a>
+                  </li>
+                  <li class="py-1" routerLinkActive="active">
+                    <a routerLink="/Home" (click)="logOut()" style="cursor: pointer;">Logout</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown d-lg-none">
+            <a class="nav-link dropdown-toggle" href="Javascript:void(0);" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img src="assets/img/ic_menu.png"> </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <div class="row">
+                <div class="col-12">
+                  <div class="menu-list">
+                    <ul>
+                      <li routerLinkActive="active" *ngIf="userDetail.role_id == 4"> <a routerLink="/my-profile" class="text-uppercase"> My Profile </a> </li>
+                      <li routerLinkActive="active" *ngIf="userDetail.role_id == 3"> <a routerLink="/profile" class="text-uppercase"> My Profile </a> </li>
+                      <li routerLinkActive="active"> <a routerLink="/studio" class="text-uppercase"> My Studios </a> </li>
+                      <!-- <li routerLinkActive="active" *ngIf="userDetail.role_id == 4"> <a routerLink="/my-schedule"> My Schedule </a> </li> -->
+                      <li routerLinkActive="active"> <a routerLink="/myfavorites" class="text-uppercase"> My Favorites </a> </li>
+                      <li routerLinkActive="active" *ngIf="userDetail.role_id == 3"> <a routerLink="/payment" class="text-uppercase"> My Payments </a> </li>
+                      <li routerLinkActive="active"  *ngIf="userDetail.role_id == 3"> <a routerLink="/family" class="text-uppercase"> My Family </a> </li>
+                      <!--  -->
+
+                      <li routerLinkActive="active"> <a routerLink="/preference" class="text-uppercase"> My Preference </a> </li>
+                      <li routerLinkActive="active"> <a  routerLink="/Home" (click)="logOut()" class="text-uppercase"> Logout </a> </li>
+                    </ul>
+                  </div><!-- End of menu-list -->
+                  <div class="menu-list-bottom light-bg">
+                    <ul>
+                      <li routerLinkActive="active"> <a routerLink="/apps" class="text-uppercase"> Apps </a> </li>
+                      <!-- <li routerLinkActive="active"> <a routerLink="/allproduct" class="text-uppercase"> Products </a> </li> -->
+                      <li routerLinkActive="active"> <a routerLink="/faq" class="text-uppercase"> FAQs </a> </li>
+                    </ul>
+                  </div><!-- ENd of menu-list-bottom -->
+                </div>
+              </div>
+            </div>
+          </li><!-- Menu -->
+        </ul>
+        <ul class="navbar-nav ml-auto" *ngIf="userDetail.role_id == 3 && userDetail.consent_status < 7">
+          <li class="nav-item" >
+            <a class="nav-link header-css text-uppercase" > Home </a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link header-css text-uppercase" > News Feed </a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link header-css text-uppercase"> Studios </a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link header-css text-uppercase"> Family </a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link header-css text-uppercase" > Payment </a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link header-css text-uppercase" > Transaction </a>
+          </li> 
+          <li class="nav-item" >
+            <a class="nav-link header-css text-uppercase" > Favorites </a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link header-css text-uppercase" > Workout </a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link header-css text-uppercase" > Nutrition </a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link">
+              <i class="fa fa-shopping-cart"></i>
+              <sup> <span class="notification-count">{{cartCount}} </span></sup> </a>
+          </li>
+
+          <li class="nav-item dropdown" (click)="getNotifiction()">
+            <a class="nav-link dropdown-toggle" href="Javascript:void(0);" id="navbDropNotification" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img src="assets/img/ic_notifications.png" > </a>
+
+            <div class="dropdown-menu dropdown-noti-menu" aria-labelledby="navbarDropdownNotification">
+              <div class="row">
+                <div class="col-12">
+                  <div class="nav-upper px-3 pt-4">
+                    <div class="row">
+                      <div class="col-12 col-md-3 text-center" >
+                        <img src="assets/img/ic_notification.png" class="img-fluid">
+                      </div>
+                      <div class="col-12 col-md-9">
+                        <div class="notification-text">
+                          <h4 class="title dark-color mb-0 mt-1"> Notifications </h4>
+                          <p class="brand-color3 font-16" *ngIf="UnreadCount != 0"> {{UnreadCount}} new notifications </p>
+                        </div>
+                      </div>
+                      <div class="col-12 text-right">
+                        <div class="notification-mark pb-2">
+                          <!-- <a href="Javascript:void(0);" class="brand-color1 font-12"> Mark all as read </a> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- end of nav-upper -->
+
+                <div class="col-12 nav-lower">
+                  <div class="notify-content">
+                                            
+                    <div class="notifi-block border-bottom pt-3" *ngFor="let notfy of NotificationDetail">
+                      <div  infinite-scroll  [infiniteScrollDistance]="scrollDistance"  [infiniteScrollUpDistance]="scrollUpDistance"  [infiniteScrollThrottle]="throttle"  (scrolled)="onScroll()" alwaysCallback="true"> 
+
+                        <div class="row p-3"  *ngIf="notfy.read == 1">
+                          <div class="col-6 text-left">
+                            <p class="dark-color font-16 font-w-600">{{notfy.title}}  </p>
+                          </div>
+                          <div class="col-6 text-right">
+                            <p class="brand-color3 font-14 font-w-100">{{notfy.create_dt_utc_new}}</p>
+                          </div>
+                          <div class="col-12">
+                            <p class="dark-color font-14 font-w-600">{{notfy.message}} </p>
+                          </div>
+                        </div>
+                        <div class="row light-bg p-3" (click)="getMarkRead(notfy.id)" *ngIf="notfy.read == 0">
+                          <div class="col-6 text-left">
+                            <p class="dark-color font-16 font-w-600">{{notfy.title}}  </p>
+                          </div>
+                          <div class="col-6 text-right">
+                            <p class="brand-color3 font-14 font-w-100">{{notfy.create_dt_utc_new}}</p>
+                          </div>
+                          <div class="col-12">
+                            <p class="dark-color font-14 font-w-600">{{notfy.message}} </p>
+                          </div>
+                        </div>
+                    </div><!-- Notification - 2 -->
+                    </div>
+                    </div>
+                  </div><!-- end of notify-content -->
+                </div><!-- end of nav-lower -->
+              </div>
+          </li><!-- Bell -->
+         
+        <li class="nav-item dropdown">
+          <a href="javascript:void(0)" class="nav-link usertopcircle dropdown-toggle" id="userBox" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <div class="header-profile-menu">
+              <img src="{{userDetail.profile_img}}"  class="img-fluid" >
+            </div>
+          </a>
+          <div class="dropdown-menu useroptions" aria-labelledby="navbarDropdown">
+            <div class="accountoptions px-4 py-1">
+              <ul class="list-group">
+                <li class="py-1">
+                  <a >My Profile</a>
+                </li>
+                <li class="py-1">
+                  <a> Preference </a>
+                </li>
+                <li class="py-1">
+                  <a >Subscription Plan</a>
+                </li>
+                <li class="py-1">
+                  <a routerLink="/Home" (click)="logOut()" style="cursor: pointer;">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+          <li class="nav-item dropdown  d-lg-none">
+            <a class="nav-link dropdown-toggle" href="Javascript:void(0);" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img src="assets/img/ic_menu.png"> </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <div class="row">
+                <div class="col-12">
+                  <div class="menu-list">
+                    <ul>
+                      <li  *ngIf="userDetail.role_id == 4"> <a routerLink="/my-profile" class="text-uppercase"> My Profile </a> </li>
+                      <li  *ngIf="userDetail.role_id == 3"> <a routerLink="/profile" class="text-uppercase"> My Profile </a> </li>
+                      <li > <a class="text-uppercase"> My Studios </a> </li>
+                      <li  *ngIf="userDetail.role_id == 4" class="text-uppercase"> <a > My Schedule </a> </li>
+                      <li > <a class="text-uppercase"> My Favorites </a> </li>
+                      <li  *ngIf="userDetail.role_id == 3"> <a class="text-uppercase"> My Payments </a> </li>
+                      <li   *ngIf="userDetail.role_id == 3"> <a class="text-uppercase"> My Transaction </a> </li>
+
+                      <!-- <li  *ngIf="userDetail.role_id == 4"> <a routerLink="/my-payout"> My Payout </a> </li> -->
+                      <li   *ngIf="userDetail.role_id == 3"> <a class="text-uppercase"> My Family </a> </li>
+
+                      <!--  -->
+
+                      <li > <a > My Preference </a> </li>
+                      <li > <a  routerLink="/Home" (click)="logOut()" class="text-uppercase"> Logout </a> </li>
+                    </ul>
+                  </div><!-- End of menu-list -->
+                  <div class="menu-list-bottom light-bg">
+                    <ul>
+                      <li > <a routerLink="/apps" class="text-uppercase"> Apps </a> </li>
+                      <!-- <li > <a > Products </a> </li> -->
+                      <li > <a routerLink="/faq" class="text-uppercase"> FAQs </a> </li>
+                    </ul>
+                  </div><!-- ENd of menu-list-bottom -->
+                </div>
+              </div>
+            </div>
+          </li><!-- Menu -->
+        </ul>
+      </div><!-- end of navbar-collapse -->
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown" *ngIf="!userDetail.address">
+        <ul class="navbar-nav ml-auto" *ngIf="userDetail.role_id == 3">
+          <li class="nav-item" >
+            <a class="nav-link header-css text-uppercase" > Home </a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link header-css text-uppercase" > News Feed </a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link header-css text-uppercase"> Studios </a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link header-css text-uppercase"> Family </a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link header-css text-uppercase" > Payment </a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link header-css text-uppercase" > Transaction </a>
+          </li> 
+          <li class="nav-item" >
+            <a class="nav-link header-css text-uppercase" > Favorites </a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link header-css text-uppercase" > Workout </a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link header-css text-uppercase" > Nutrition </a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link">
+              <i class="fa fa-shopping-cart"></i>
+              <sup> <span class="notification-count">{{cartCount}} </span></sup> </a>
+          </li>
+
+          <li class="nav-item dropdown" (click)="getNotifiction()">
+            <a class="nav-link dropdown-toggle" href="Javascript:void(0);" id="navbDropNotification" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img src="assets/img/ic_notifications.png" > </a>
+
+            <div class="dropdown-menu dropdown-noti-menu" aria-labelledby="navbarDropdownNotification">
+              <div class="row">
+                <div class="col-12">
+                  <div class="nav-upper px-3 pt-4">
+                    <div class="row">
+                      <div class="col-12 col-md-3 text-center" >
+                        <img src="assets/img/ic_notification.png" class="img-fluid">
+                      </div>
+                      <div class="col-12 col-md-9">
+                        <div class="notification-text">
+                          <h4 class="title dark-color mb-0 mt-1"> Notifications </h4>
+                          <p class="brand-color3 font-16" *ngIf="UnreadCount != 0"> {{UnreadCount}} new notifications </p>
+                        </div>
+                      </div>
+                      <div class="col-12 text-right">
+                        <div class="notification-mark pb-2">
+                          <!-- <a href="Javascript:void(0);" class="brand-color1 font-12"> Mark all as read </a> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- end of nav-upper -->
+
+                <div class="col-12 nav-lower">
+                  <div class="notify-content">
+                                            
+                    <div class="notifi-block border-bottom pt-3" *ngFor="let notfy of NotificationDetail">
+                      <div  infinite-scroll  [infiniteScrollDistance]="scrollDistance"  [infiniteScrollUpDistance]="scrollUpDistance"  [infiniteScrollThrottle]="throttle"  (scrolled)="onScroll()" alwaysCallback="true"> 
+
+                        <div class="row p-3"  *ngIf="notfy.read == 1">
+                          <div class="col-6 text-left">
+                            <p class="dark-color font-16 font-w-600">{{notfy.title}}  </p>
+                          </div>
+                          <div class="col-6 text-right">
+                            <p class="brand-color3 font-14 font-w-100">{{notfy.create_dt_utc_new}}</p>
+                          </div>
+                          <div class="col-12">
+                            <p class="dark-color font-14 font-w-600">{{notfy.message}} </p>
+                          </div>
+                        </div>
+                        <div class="row light-bg p-3" (click)="getMarkRead(notfy.id)" *ngIf="notfy.read == 0">
+                          <div class="col-6 text-left">
+                            <p class="dark-color font-16 font-w-600">{{notfy.title}}  </p>
+                          </div>
+                          <div class="col-6 text-right">
+                            <p class="brand-color3 font-14 font-w-100">{{notfy.create_dt_utc_new}}</p>
+                          </div>
+                          <div class="col-12">
+                            <p class="dark-color font-14 font-w-600">{{notfy.message}} </p>
+                          </div>
+                        </div>
+                    </div><!-- Notification - 2 -->
+                    </div>
+                    </div>
+                  </div><!-- end of notify-content -->
+                </div><!-- end of nav-lower -->
+              </div>
+          </li><!-- Bell -->
+         
+        <li class="nav-item dropdown">
+          <a href="javascript:void(0)" class="nav-link usertopcircle dropdown-toggle" id="userBox" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <div class="header-profile-menu">
+              <img src="{{userDetail.profile_img}}"  class="img-fluid" >
+            </div>
+          </a>
+          <div class="dropdown-menu useroptions" aria-labelledby="navbarDropdown">
+            <div class="accountoptions px-4 py-1">
+              <ul class="list-group">
+                <li class="py-1">
+                  <a routerLink="/profile">My Profile</a>
+                </li>
+                <li class="py-1">
+                  <a> Preference </a>
+                </li>
+                <li class="py-1">
+                  <a >Subscription Plan</a>
+                </li>
+                <li class="py-1">
+                  <a routerLink="/Home" (click)="logOut()" style="cursor: pointer;">Logout</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+          <li class="nav-item dropdown  d-lg-none">
+            <a class="nav-link dropdown-toggle" href="Javascript:void(0);" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img src="assets/img/ic_menu.png"> </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <div class="row">
+                <div class="col-12">
+                  <div class="menu-list">
+                    <ul>
+                      <li  *ngIf="userDetail.role_id == 4"> <a routerLink="/my-profile" class="text-uppercase"> My Profile </a> </li>
+                      <li  *ngIf="userDetail.role_id == 3"> <a routerLink="/profile" class="text-uppercase"> My Profile </a> </li>
+                      <li > <a class="text-uppercase"> My Studios </a> </li>
+                      <li  *ngIf="userDetail.role_id == 4" class="text-uppercase"> <a > My Schedule </a> </li>
+                      <li > <a class="text-uppercase"> My Favorites </a> </li>
+                      <li  *ngIf="userDetail.role_id == 3"> <a class="text-uppercase"> My Payments </a> </li>
+                      <li   *ngIf="userDetail.role_id == 3"> <a class="text-uppercase"> My Transaction </a> </li>
+
+                      <!-- <li  *ngIf="userDetail.role_id == 4"> <a routerLink="/my-payout"> My Payout </a> </li> -->
+                      <li   *ngIf="userDetail.role_id == 3"> <a class="text-uppercase"> My Family </a> </li>
+
+                      <!--  -->
+
+                      <li > <a > My Preference </a> </li>
+                      <li > <a  routerLink="/Home" (click)="logOut()" class="text-uppercase"> Logout </a> </li>
+                    </ul>
+                  </div><!-- End of menu-list -->
+                  <div class="menu-list-bottom light-bg">
+                    <ul>
+                      <li > <a routerLink="/apps" class="text-uppercase"> Apps </a> </li>
+                      <!-- <li > <a > Products </a> </li> -->
+                      <li > <a routerLink="/faq" class="text-uppercase"> FAQs </a> </li>
+                    </ul>
+                  </div><!-- ENd of menu-list-bottom -->
+                </div>
+              </div>
+            </div>
+          </li><!-- Menu -->
+        </ul>
+        <ul class="navbar-nav ml-auto" *ngIf="userDetail.role_id == 4">
+          <li class="nav-item" >
+            <a class="nav-link header-css text-uppercase" > Home </a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link header-css text-uppercase"> Studios </a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link header-css text-uppercase" > Favorites </a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link header-css text-uppercase" > Preference </a>
+          </li>   
+          <li class="nav-item">
+            <a class="nav-link header-css text-uppercase" routerLink="/my-Profile"> Profile </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link header-css text-uppercase" routerLink="/Home" (click)="logOut()"> Logout </a>
+          </li>
+
+        
+
+          <li class="nav-item dropdown" (click)="getNotifiction()">
+            <a class="nav-link dropdown-toggle" href="Javascript:void(0);" id="navbDropNotification" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img src="assets/img/ic_notifications.png" > </a>
+
+            <div class="dropdown-menu dropdown-noti-menu" aria-labelledby="navbarDropdownNotification">
+              <div class="row">
+                <div class="col-12">
+                  <div class="nav-upper px-3 pt-4">
+                    <div class="row">
+                      <div class="col-12 col-md-3 text-center" >
+                        <img src="assets/img/ic_notification.png" class="img-fluid">
+                      </div>
+                      <div class="col-12 col-md-9">
+                        <div class="notification-text">
+                          <h4 class="title dark-color mb-0 mt-1"> Notifications </h4>
+                          <p class="brand-color3 font-16" *ngIf="UnreadCount != 0"> {{UnreadCount}} new notifications </p>
+                        </div>
+                      </div>
+                      <div class="col-12 text-right">
+                        <div class="notification-mark pb-2">
+                          <!-- <a href="Javascript:void(0);" class="brand-color1 font-12"> Mark all as read </a> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- end of nav-upper -->
+
+                <div class="col-12 nav-lower">
+                  <div class="notify-content">
+                                            
+                    <div class="notifi-block border-bottom pt-3" *ngFor="let notfy of NotificationDetail">
+                      <div  infinite-scroll  [infiniteScrollDistance]="scrollDistance"  [infiniteScrollUpDistance]="scrollUpDistance"  [infiniteScrollThrottle]="throttle"  (scrolled)="onScroll()" alwaysCallback="true"> 
+
+                        <div class="row p-3"  *ngIf="notfy.read == 1">
+                          <div class="col-6 text-left">
+                            <p class="dark-color font-16 font-w-600">{{notfy.title}}  </p>
+                          </div>
+                          <div class="col-6 text-right">
+                            <p class="brand-color3 font-14 font-w-100">{{notfy.create_dt_utc_new}}</p>
+                          </div>
+                          <div class="col-12">
+                            <p class="dark-color font-14 font-w-600">{{notfy.message}} </p>
+                          </div>
+                        </div>
+                        <div class="row light-bg p-3" (click)="getMarkRead(notfy.id)" *ngIf="notfy.read == 0">
+                          <div class="col-6 text-left">
+                            <p class="dark-color font-16 font-w-600">{{notfy.title}}  </p>
+                          </div>
+                          <div class="col-6 text-right">
+                            <p class="brand-color3 font-14 font-w-100">{{notfy.create_dt_utc_new}}</p>
+                          </div>
+                          <div class="col-12">
+                            <p class="dark-color font-14 font-w-600">{{notfy.message}} </p>
+                          </div>
+                        </div>
+                    </div><!-- Notification - 2 -->
+                    </div>
+                    </div>
+                  </div><!-- end of notify-content -->
+                </div><!-- end of nav-lower -->
+              </div>
+          </li><!-- Bell -->
+
+          <li class="nav-item dropdown  d-lg-none">
+            <a class="nav-link dropdown-toggle" href="Javascript:void(0);" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img src="assets/img/ic_menu.png"> </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <div class="row">
+                <div class="col-12">
+                  <div class="menu-list">
+                    <ul>
+                      <li  *ngIf="userDetail.role_id == 4"> <a routerLink="/my-profile" class="text-uppercase"> My Profile </a> </li>
+                      <li  *ngIf="userDetail.role_id == 3"> <a routerLink="/profile" class="text-uppercase"> My Profile </a> </li>
+                      <li > <a class="text-uppercase"> My Studios </a> </li>
+                      <li  *ngIf="userDetail.role_id == 4" class="text-uppercase"> <a > My Schedule </a> </li>
+                      <li > <a class="text-uppercase"> My Favorites </a> </li>
+                      <li  *ngIf="userDetail.role_id == 3"> <a class="text-uppercase"> My Payments </a> </li>
+                      <li   *ngIf="userDetail.role_id == 3"> <a class="text-uppercase"> My Transaction </a> </li>
+
+                      <!-- <li  *ngIf="userDetail.role_id == 4"> <a routerLink="/my-payout"> My Payout </a> </li> -->
+                      <li   *ngIf="userDetail.role_id == 3"> <a class="text-uppercase"> My Family </a> </li>
+
+                      <!--  -->
+
+                      <li > <a > My Preference </a> </li>
+                      <li > <a  routerLink="/Home" (click)="logOut()" class="text-uppercase"> Logout </a> </li>
+                    </ul>
+                  </div><!-- End of menu-list -->
+                  <div class="menu-list-bottom light-bg">
+                    <ul>
+                      <li > <a routerLink="/apps" class="text-uppercase"> Apps </a> </li>
+                      <!-- <li > <a > Products </a> </li> -->
+                      <li > <a routerLink="/faq" class="text-uppercase"> FAQs </a> </li>
+                    </ul>
+                  </div><!-- ENd of menu-list-bottom -->
+                </div>
+              </div>
+            </div>
+          </li><!-- Menu -->
+        </ul>
+      </div>
+      <!-- end of navbar-collapse -->
+      
+    </nav>
+  </div><!-- end of container -->
+</header>
+<!-- Header Section Ends Here -->
+

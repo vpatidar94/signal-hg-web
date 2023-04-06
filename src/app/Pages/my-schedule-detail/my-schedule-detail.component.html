@@ -1,0 +1,127 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+<!-- My Studio Card Detials Section -->
+<div class="studio-details client-home-inner mb-5">
+    <div class="container pb-5">
+      <div class="studio-details-upper box-shadow1 white-bg mb-3">
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <div class="std-details-upper-left d-flex align-items-center justify-content-center" style="background-image:url({{businessDetail.business_img}});background-size: cover;background-position:center;min-height:406px">
+              <!-- <img src="{{businessDetail.business_img}}" class="img-fluid w-100"> -->
+              <!-- <div class="std-position-logo text-center">
+                <img src="assets/img/logo_white_web.png" class="img-fluid">
+              </div> -->
+            </div>
+          </div><!-- end of std-details-upper-left -->
+
+          <div class="col-12 col-lg-6">
+            <div class="std-details-upper-right text-center p-3">
+              <div class="">
+                <img src="{{businessDetail.logo}}" class="mb-4 log-img">
+                <h4 class="title dark-color mb-2"> {{businessDetail.business_name}} </h4>
+                <p class="brand-color3 font-12 mb-0" *ngIf="addresslength <= 40"> {{businessDetail.address}} </p>
+                <p class="brand-color3 font-12 mb-0"  *ngIf="addresslength > 40"> {{businessDetail.address | ellipsis:40}} </p>
+                <ul class="studio-contact-details my-4">
+                  <li class="ml-0"> <a  href="tel:{{businessDetail.business_phone}}" target="blank"> <img src="assets/img/ic_call_web.png"> <span> Call </span></a> </li>
+                  <li> <a href="http://maps.google.com/maps?q={{businessDetail.latitude}},{{businessDetail.longitude}},14z?hl=en@{{businessDetail.address}}"  target="blank" > <img src="assets/img/ic_direction_web.png"> <span> Directions </span></a> </li>
+                  <li> <a href="https://mail.google.com/mail/u/0/?view=cm&to={{businessDetail.email}}&:&bcc&cc&fs=1&tf=1" target="blank"> <img src="assets/img/ic_email_web.png"> <span> Email </span></a> </li>
+                  <li class="mr-0"> 
+                    <a href="Javascript:void(0);"  *ngIf="businessDetail.favourite == 0" (click)="addFav(businessDetail.business_id,1)"> <img src="assets/img/ic_unfavourite_web.png"> <span> Favorite </span></a>
+                    <a href="Javascript:void(0);" *ngIf="businessDetail.favourite == 1" (click)="addFav(businessDetail.business_id,0)"> <img src="assets/img/ic_favourite_web.png"> <span> Favorite </span></a>
+                   </li>
+                </ul>
+                <ul class="studio-service-details" >
+                  <li class="ml-md-0" *ngIf="businessDetail.is_register == 1">
+                    <a href="Javascript:void(0);" (click)="redirect('/classess')"> <img src="assets/img/ic_class.png"> <span> Classes </span> </a> 
+                    </li>                  
+                  <li *ngIf="businessDetail.is_register == 1"> 
+                    <a href="Javascript:void(0);" (click)="redirect('/appointment')"> <img src="assets/img/ic_appointment.png"> <span> Appointment </span> </a> 
+                  </li >
+                  <li class="mr-md-0" *ngIf="businessDetail.is_register == 1">
+                    <a href="Javascript:void(0);" (click)="redirect('/workshopss')"> <img src="assets/img/ic_workshop.png"> <span> Workshops </span> </a> 
+                    </li>
+                </ul>
+               
+              </div>
+            </div>
+          </div><!-- end of std-details-upper-right -->
+        </div><!-- end of row -->
+      </div><!-- end of studio-details-upper -->
+  
+
+  <div class="container-fluid pr-0 white-bg mb-3 mt-3" >      
+      <div class="mb-2 pb-1">
+        <a href="Javascript:void(0);" (click)="redirect('/my-schedule-class')">
+        <div class="row">
+          <div class="col-12 col-md-1">
+            <div class="text-center pt-3">
+              <img src="assets/img/ic_workshop.png"> 
+            </div>
+          </div>
+          <div class="col-12 col-md-11"> 
+            <div class="inner-staff-card pt-3">   
+              <span> Classes</span>
+              <p class="black-color font-w-100 font-16">  {{businessDetail.class_categories}}</p>
+                   
+               </div><!-- end of inner-staff-card -->
+          </div>
+        </div>
+      </a>
+       
+      </div><!-- end of Heading -->
+    </div><!-- end of home-inner-class -->
+
+    <div class="container-fluid pr-0  white-bg mb-3">
+ 
+      <div class="mb-2 pb-1">
+        <a href="Javascript:void(0);" (click)="redirect('/my-schedule-appointments')">
+        <div class="row">
+          <div class="col-12 col-md-1">  <div class="text-center pt-3"> <img src="assets/img/ic_services.png"> </div></div>
+          <div class="col-12 col-md-11">
+            <div class="inner-staff-card pt-3"> 
+              <span> Appointment </span>            
+              <p class="black-color font-w-100 font-16">  {{businessDetail.services_categories}}</p>
+                  
+            </div><!-- end of inner-staff-card -->
+          </div>
+        </div>
+        </a> 
+      
+       
+  
+      </div><!-- end of Heading -->
+  
+  </div><!-- end of home-inner-class -->
+  <div class="container-fluid pr-0  white-bg mb-3">
+
+      <div class="mb-2 pb-1">
+        <a href="Javascript:void(0);" (click)="redirect('/my-schedule-workshop')"> 
+        <div class="row">
+          <div class="col-12 col-md-1">
+            <div class="text-center pt-3">
+            <img src="assets/img/ic_workshop.png">
+          </div></div>
+          <div class="col-12 col-md-11">
+            <div class="inner-staff-card pt-3">    
+              <span> Workshops </span>        
+              <p class="black-color font-w-100 font-16">  {{businessDetail.workshop_categories}}</p>
+                
+            </div><!-- end of inner-staff-card -->
+          </div>
+        </div>
+        </a> 
+       
+       
+
+      </div><!-- end of Heading -->
+
+</div><!-- end of home-inner-class -->
+
+</div><!-- end of container --> 
+<!-- End of My Studio Card Detials Section -->
+</div>
+</div>
+<app-inner-footer></app-inner-footer>

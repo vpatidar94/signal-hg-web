@@ -1,0 +1,146 @@
+<app-inner-header></app-inner-header>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+<div class="body-grey">
+<!-- Profile Section -->
+<div class="profile-section py-5">
+        <div class="container">
+          <div class="white-bg p-4 p-md-5 border-radius6 box-shadow1">
+          <form  method="post" action="#">
+            <div class="row">
+              <div class="col-12 pb-4">
+                <div class="profile-details">
+                  <div class="row align-items-center">
+                    <div class="col-12 col-md-3">
+                      <div class="profile-detail-image ">
+                        <div class="userprofile_img box-shadow1"><img [src]="ProfileDetail.profile_img" *ngIf="!imgURL" class="img-fluid border-radius100 w-100"style="height: 200px" >
+                        <img [src]="imgURL"  *ngIf="imgURL"class="img-fluid border-radius100  w-100"style="height: 200px" >
+
+                      </div>
+                      </div>
+                    </div>
+                                           
+                    <div class="col-12 col-md-9">
+                      <div class="profile-detail-text">
+                        <h2 class="title dark-color font-24 mb-2 text-capitalize">{{ProfileDetail.name}} {{ProfileDetail.lastname}}</h2>
+                        <p class="brand-color3"> {{ProfileDetail.email}}</p>
+                      </div>
+                    </div>
+                
+                  </div>
+                </div>    
+              </div>
+    
+              <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1">First Name </p>
+                  <input id="" readonly type="text" name="name" class="form-control colorchnage" [(ngModel)]="ProfileDetail.name"   placeholder="Enter your name">
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1">Last Name </p>
+                  <input id="" readonly type="text" name="lastname" class="form-control colorchnage" [(ngModel)]="ProfileDetail.lastname"   placeholder="Enter your name">
+                </div>
+              </div>
+              <!-- Name -->
+    
+              <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1"> Email </p>
+                  <input id="" type="email" name="email" class="form-control colorchnage" [(ngModel)]="ProfileDetail.email"  placeholder="Enter your e-mail" readonly>
+                </div>
+              </div>
+              <!-- Email -->
+      <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1"> Phone </p>
+                  <input id=""  type="text" name="mobile1" class="form-control colorchnage" [(ngModel)]="ProfileDetail.mobile1"  placeholder="Enter your phone no." readonly>
+                </div>
+              </div>
+              <!-- Phone -->
+              <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1"> DOB </p>
+                <input  [(ngModel)]="ProfileDetail.date_of_birth" class="form-control colorchnage"  name="date_of_birth"  style="color: black;" readonly >
+                </div>
+              </div><!-- DOB -->
+    
+              <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1"> Address </p>
+                  <input id="" readonly name="address" class="form-control colorchnage" [(ngModel)]="ProfileDetail.address"  autocomplete="off" placeholder="Enter your address" >
+                </div>
+              </div><!-- Address -->
+    
+              <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1"> Country </p>
+                  <input id="" readonly name="country" class="form-control colorchnage" [(ngModel)]="ProfileDetail.country"  placeholder="Enter your country">
+                </div>
+              </div><!-- Country -->
+    
+              <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1"> State/Province </p>
+                  <input id="" readonly name="state" class="form-control colorchnage" [(ngModel)]="ProfileDetail.state"   placeholder="Enter your state/province">
+                </div>
+              </div><!-- State/Province -->
+    
+              <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1"> City </p>
+                  <input id="" readonly name="city" class="form-control colorchnage" [(ngModel)]="ProfileDetail.city"  placeholder="Enter your city">
+                </div>
+              </div><!-- City -->         
+               
+              <div class="col-12 col-sm-6 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1"> Emergency Contact Person </p>
+                  <input id="" readonly name="emergency_contact_person" class="form-control colorchnage" [(ngModel)]="ProfileDetail.emergency_contact_person"  placeholder="Enter name of your emergency contact person">
+                </div>
+              </div><!-- Emergency Contact Person -->
+              <div class="col-12 col-sm-6 mt-2 mt-md-3" >
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1"> Emergency Country Code </p>
+                  <input class="form-control  colorchnage"  [(ngModel)]="ProfileDetail.emergency_country_code"   name="emergency_country_code" readonly>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 mt-2 mt-md-3" >
+                <div class="form-group">
+                  <p class="black-color font-w-900 text-left font-18 mb-0 ml-2 pl-1"> Emergency Contact Number </p>
+                  <input id="" readonly type="number" name="emergency_contact_no" class="form-control colorchnage"  onKeyPress="if(this.value.length >= 12) return false;"    [(ngModel)]="ProfileDetail.emergency_contact_no" placeholder="Enter number of your emergency contact person">
+                </div>
+              </div><!-- Emergency Contact Number -->
+    
+              <div class="col-12 col-sm-8 mt-2 mt-md-3">
+                <div class="form-group profile-gender mb-0">
+                  <p class="brand-color3 text-left font-14 mb-3"> Gender </p>
+                  <div class="profile-gender-button">
+                    <input type='radio' id='male' value="male" name='radio' [ngModelOptions]="{standalone: true}" [(ngModel)]="gender"  readonly disabled>
+                    <label for='male'>Male</label>
+    
+                    <input type='radio' id='female' value="female"  name='radio' [ngModelOptions]="{standalone: true}" [(ngModel)]="gender" readonly disabled>
+                    <label for='female'>Female</label>
+    
+                    <input type='radio' id='other' value="other" name='radio' [ngModelOptions]="{standalone: true}" [(ngModel)]="gender"   readonly disabled>
+                    <label for='other'>Other</label>
+                  </div><!-- end of profile-gender-button -->
+                </div>
+              </div><!-- Gender -->
+              <div class="col-12 col-sm-4 mt-2 mt-sm-4 mt-md-4 mt-lg-5 pt-0 pt-sm-4  password-align">
+                <button (click)="back()" class="brand-color1 font-14"> Back </button>
+              </div><!-- Change Password -->
+            </div><!-- end of Input fields -->
+          </form>
+          </div>
+        </div><!-- end of container -->
+      </div>         
+    <!-- End of Profile Section -->
+
+
+</div>
+    <app-inner-footer></app-inner-footer>
+
+
+
+

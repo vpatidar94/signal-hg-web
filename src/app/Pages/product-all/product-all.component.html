@@ -1,0 +1,129 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+<!-- Product All Section -->
+<div class="studio-details">
+    <div class="container">
+      <app-sub-header></app-sub-header>
+
+
+      <div class="pb-2 pt-2">
+        <div class="row">
+          <div class="col-5 text-left">
+            <h4 class="title black-color text-uppercase"> products </h4>
+          </div>
+          <div class="col-4">
+            <div class="section-search">
+            <div class="form-group has-search pl-0 pl-md-3" > 
+              <a href="Javascript:void(0);" >
+                   <span class="fas fa-search form-control-feedback" (click)="gatAllProductList()"  style="bottom:7px;top: unset;pointer-events: initial;"></span>
+               </a>                
+              <input type="text" class="form-control" onkeyup="this.value=this.value.replace(/^\s+/g, '')" placeholder="Search" [(ngModel)]="search_text" (change)="gatAllProductList()">
+            </div>
+          </div>
+          </div>
+          <div class="col-1 ">
+            <a href="Javascript:void(0);" > <button type="button" class="btn btn-green-grad w-100" (click)="clearAll()">Reset </button></a>
+          </div> 
+          <div class="col-1">
+            <a href="Javascript:void(0);" data-toggle="modal" data-target="#addFilter"> <img src="assets/img/ic_filter.png" class="img-fluid box-shadow1" style="height: 46px;
+              width: 56px;"></a>
+          </div> 
+          <div class=" col-1 text-right">
+            <button type="button" class="btn btn-blue-grad px-2 text-uppercase" routerLink="/detail" >Back </button>
+          </div>       
+          </div><!-- end of col-6 -->
+        </div><!-- End of Heading -->
+
+        <!-- <div class="row" *ngIf="ItemDetail.length !=0">
+          <div class="col-12 col-md-3  mb-2 px-2" *ngFor ="let item of ItemDetail">
+            <a href="Javascript:void(0);"  (click) ="redirectUrl(item.product_id)">
+              <div class="white-bg border-radius6 p-3 mb-2 text-center">
+                <img src="{{item.product_images[0].image_name}} " class="img-fluid" style="height:128px">
+              </div>
+              <p class="title black-color mt-1 mb-2 pl-2 font-14"> {{item.product_name}} </p>
+              <p class="brand-color3 font-12 pl-2"> $ {{item.product_price}}  </p>
+            </a>
+          </div> -->
+          <!-- card-1 -->
+          <div class="row" *ngIf="ItemDetail.length !=0">
+          <div class="col-12 col-md-3 mb-3" *ngFor="let productlist of ItemDetail ; let p =index">
+            <a href="Javascript:void(0);" (click) ="redirectUrl(productlist.product_id)" >
+              <div class="border-radius6 box-shadow1 white-bg px-3 pt-3 pb-2 detail-products">
+                <img src="{{productlist.product_images[0].image_name}}" class="img-fluid w-100" style="height:221px">
+                <div class="row pt-3 pb-1">
+                  <div class="col-6 text-left pt-3">
+                    <h5 class="black-color heading-titlenew productname">{{productlist.product_name}}  </h5>
+                  </div>
+                  <div class="col-6 text-right">
+                    <button type="button" class="btn btn-green-grad">  $ {{productlist.product_price}} </button>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+         </div>
+        </div><!-- end of row -->
+        <div class="pb-3">
+        <div class="row  border-radius6 p-3" *ngIf="ItemDetail.length ==0">
+          <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <p class="font-awesome black-color font-18 d-inline mx-2 "> No Record Found</p>
+            </div>
+            <div class="col-md-4"></div>
+          </div>        
+        </div>
+
+
+    </div><!-- end of container -->
+           
+<!-- End of Product All Section -->
+
+</div>
+
+
+<app-inner-footer></app-inner-footer>
+<div class="modal fade" id="addFilter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body light-bg box-shadow1 border-radius6 px-4 pb-4 px-md-5 pb-md-5">
+        <div class="mb-5">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"> <img src="assets/img/ic_close.png" class="img-fluid"> </span>
+          </button>
+        </div>
+
+        <div class="form-group profile-gender mb-2">
+          <p class="brand-color3 text-left font-14 mb-2"> Sort by price </p>
+          <div class="profile-gender-button text-left">
+            <input type='radio' id='Me' [(ngModel)]="sort_price" [ngModelOptions]="{standalone: true}"   value="low" name='radio' (change)="getPrice($event)" >
+            <label for='Me'>Low to high</label>
+
+            <input type='radio' id='Family' name='radio'  [ngModelOptions]="{standalone: true}"  [(ngModel)]="sort_price"   value="hign" (change)="getPrice($event)" >
+            <label for='Family'>High to low</label>
+          </div><!-- end of profile-gender-button -->
+        </div><!-- Gender -->
+
+        <!-- <div class="form-group relative mt-5">
+          <h5 class="title black-color"> Find your studio </h5>
+          <i class="fas fa-chevron-down"></i>
+          <select class="form-control-1 white-color" [(ngModel)]="categoryText" (change)="getCategories()">
+            <option selected="" value=""> Select the category </option>
+            <option *ngFor="let cd of categoryList" value="{{cd.id}}"> {{cd.category_name}} </option>
+          </select>
+        </div> -->
+        <!-- Find youe studio -->
+         
+
+
+        <div class="form-group px-3">
+          <button type="button" data-dismiss="modal" class="btn btn-blue-grad text-uppercase w-100 mt-3" (click)="gatAllProductList()"> Apply filter </button>
+        </div>
+
+      </div><!-- end of modal-body -->
+
+    </div>
+  </div>
+</div>

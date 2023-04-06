@@ -1,0 +1,293 @@
+// --------===================================
+// ------ GLOBAL VARIABLES ----------
+// --------===================================
+
+
+// Color Css
+$brandcolor1: #2B93AC;
+$brandcolor2: #FF7493;
+$brandcolor3: #979797;
+$brand-color3: #979797;
+$dark: #222222;
+$blue :#153f63;
+$orange :#FF7E26;
+$orangelight :#FF9A5A;
+$pink :#FF2B50;
+$pinklight :#FF7493;
+$purple: #747CFF;
+$bluelight: #14B5D9;
+$bluelightextra: #009ABD;
+$darkblue: #492BFF;
+$green :#A0D180;
+$yellow: #FCFBD3;
+$red: #FF0000;
+$light: #F2F2F2;
+$light2: #e4e7ec;
+$white: #ffffff;
+$black: #000000;
+$transparent: transparent;
+$base-color: cadetblue;
+
+//Gradient BACKGROUND COLOR
+$bluegradient: linear-gradient(270deg, #2B93AC 0%, #5EBFCF 100%);
+$greengradient: linear-gradient(270deg, #0D8340 0%, #75BA81 100%);
+$orangegradient: linear-gradient(270deg, #FF7E26 0%, #FF9A5A 100%);
+$pinkgradient: linear-gradient(270deg, #FF2B50 0%, #FF7493 100%);
+
+//Box-Shadow 
+$box-shadow-green: 0 2px 5px 0 rgba(14,133,66,.2);
+$box-shadow-blue: 0 13px 25px 0 rgba(29,150,211,0.30);
+$box-shadow1 : 0 2px 5px 0 rgba(14,133,66,.2);
+
+//FONT WEIGHT
+$Thin: 100;
+$ExtraLight: 200;
+$Light: 300;
+$Regular: normal;
+$Medium: 500;
+$SemiBold: 600;
+$bold: bold;
+$ExtraBold: 800;
+$Black: 900;
+
+//FONT SIZE
+$font10: 0.625rem;
+$font11: 0.6875rem;
+$font12: 0.75rem;
+$font13: 0.8125rem;
+$font14: 0.875rem;
+$font15: 0.9375rem;
+$font16: 1rem;
+$font17: 1.0625rem;
+$font18: 1.125rem;
+$font19: 1.1875rem;
+$font20: 1.25rem;
+$font21: 1.3125rem;
+$font22: 1.375rem;
+$font23: 1.4375rem;
+$font24: 1.5rem;
+$font25: 1.5625rem;
+$font26: 1.625rem;
+$font27: 1.6875rem;
+$font28: 1.75rem;
+$font29: 1.8125rem;
+$font30: 1.875rem;
+$font31: 1.9375rem;
+$font32: 2rem;
+$font33: 2.0625rem;
+$font34: 2.125rem;
+$font35: 2.1875rem;
+$font36: 2.25rem;
+$font37: 2.3125rem;
+$font38: 2.375rem;
+$font39: 2.4375rem;
+$font40: 2.5rem;
+$font41: 2.5625rem;
+$font42: 2.625rem;
+$font43: 2.6875rem;
+$font44: 2.75rem;
+$font45: 2.8125rem;
+$font46: 2.875rem;
+$font47: 2.9375rem;
+$font48: 3rem;
+$font49: 3.0625rem;
+$font50: 3.125rem;
+
+//LINE HEIGHT
+$lineheight12: 0.75rem;
+$lineheight13: 0.8125rem;
+$lineheight14: 0.875rem;
+$lineheight15: 0.9375rem;
+$lineheight16: 1rem;
+$lineheight17: 1.0625rem;
+$lineheight18: 1.125rem;
+$lineheight19: 1.1875rem;
+$lineheight20: 1.25rem;
+$lineheight21: 1.3125rem;
+$lineheight22: 1.375rem;
+$lineheight23: 1.4375rem;
+$lineheight24: 1.5rem;
+$lineheight25: 1.5625rem;
+$lineheight26: 1.625rem;
+$lineheight27: 1.6875rem;
+$lineheight28: 1.75rem;
+$lineheight29: 1.8125rem;
+$lineheight30: 1.875rem;
+$lineheight31: 1.9375rem;
+$lineheight32: 2rem;
+$lineheight33: 2.0625rem;
+$lineheight34: 2.125rem;
+$lineheight35: 2.1875rem;
+$lineheight36: 2.25rem;
+$lineheight37: 2.3125rem;
+$lineheight38: 2.375rem;
+$lineheight39: 2.4375rem;
+$lineheight40: 2.5rem;
+$lineheight41: 2.5625rem;
+$lineheight42: 2.625rem;
+$lineheight43: 2.6875rem;
+$lineheight44: 2.75rem;
+$lineheight45: 2.8125rem;
+$lineheight46: 2.875rem;
+$lineheight47: 2.9375rem;
+$lineheight48: 3rem;
+$lineheight49: 3.0625rem;
+$lineheight50: 3.125rem;
+$lineheight51: 2.5625rem;
+$lineheight52: 2.625rem;
+$lineheight53: 2.6875rem;
+$lineheight54: 2.75rem;
+$lineheight55: 2.8125rem;
+$lineheight56: 2.875rem;
+$lineheight57: 2.9375rem;
+$lineheight58: 3rem;
+$lineheight59: 3.0625rem;
+$lineheight60: 3.125rem;
+
+//Border Radius Css
+$borderradius0:0px;
+$borderradius4:4px;
+$borderradius5:5px;
+$borderradius6:6px;
+$borderradius10:10px;
+$borderradius15:15px;
+$borderradius20:20px;
+$borderradius25:25px;
+$borderradius30:30px;
+$borderradius35:35px;
+$borderradius40:40px;
+$borderradius45:45px;
+$borderradius50:50px;
+$borderradius100:100%;
+
+//ELEMENT WIDTH
+$fullwidth: 100%;
+$halfwidth: 50%;
+$triwidth: 33.33333%;
+$quartwidth: 25%;
+$pentawidth: 20%;
+$VWwidth: 100vw;
+$h-75vh: 75vh;
+
+//ELEMETN HEIGHT
+$fullheight: 100%;
+$halfheight: 50%;
+$triheight: 33.33333%;
+$quartheight: 25%;
+$pentaheight: 20%;
+$VHheight: 100vh;
+
+//OPACITY Css
+$opacity0:0;
+$opacity05:0.05;
+$opacity10:0.10;
+$opacity15:0.15;
+$opacity20:0.20;
+$opacity25:0.25;
+$opacity30:0.30;
+$opacity35:0.35;
+$opacity40:0.40;
+$opacity45:0.45;
+$opacity50:0.50;
+$opacity55:0.55;
+$opacity60:0.60;
+$opacity65:0.65;
+$opacity70:0.70;
+$opacity75:0.75;
+$opacity80:0.80;
+$opacity85:0.85;
+$opacity90:0.90;
+
+//Socail color css
+$facebook:#475993;
+$linkedin:#0077B7;
+$twitter:#76A9EA;
+$google:#DC4C3F;
+$whatsapp:#7AD06D;
+$pinterest:#9E1020;
+$sms:#27ae60;
+$mail:#DC4C3F;
+$dribbble:#F61C0D;
+$tumblr:#2C3D52;
+$reddit:#336699;
+$youtube:#F61C0D;
+$phone:#27ae60;
+$skype:#00AAF2;
+
+
+
+
+
+
+
+
+// --------===================================
+// ------ GLOBAL VARIABLES ----------
+// --------===================================
+
+
+
+//BRAND COLOR
+$brandcolor: #f3f3f3;
+$secondarybrandcolor: #333;
+$thirdbrandcolor: #444;
+
+$brandgreen : #0e8543;
+$brandgreenlight: #a0d180;
+$brandpink: #7f0e84;
+$brandyellow: #d37b1d;
+$brandblue: #1d96d3;
+$brandpurple: #210f84;
+$brandred: #ef5454;
+$brandlight: #77787B;
+$brandlightdark: #e4e7ec;
+
+
+//OTHER COLOR
+$white: #ffffff;
+$black: #000000;
+$dark: #222222;
+$secondarydark: #555555;
+$light: #f2f2f2;
+$borderlight: #eaeff5;
+$lightdark: #fafafa;
+$lightdark2: #F5F5F5;
+$transparent: rgba(0,0,0,0);
+
+//Gradient BACKGROUND COLOR
+$primarygradient: linear-gradient(to bottom, rgba(0,0,0,0.4) 10%, rgba(0,0,0,0.6) 30%,rgba(0,0,0,0.7) 60%,rgba(0,0,0,0.8) 70%,rgba(0,0,0,1) 100%);
+$primaryinversegradient: linear-gradient(to bottom, rgba(0,0,0,0.4) 10%, rgba(0,0,0,0.6) 30%,rgba(0,0,0,0.7) 60%,rgba(0,0,0,0.8) 70%,rgba(0,0,0,1) 100%);
+$secondarygradient: linear-gradient(to bottom, rgba(0,0,0,0.4) 10%, rgba(0,0,0,0.6) 30%,rgba(0,0,0,0.7) 60%,rgba(0,0,0,0.8) 70%,rgba(0,0,0,1) 100%);
+$secondaryinversegradient: linear-gradient(to bottom, rgba(0, 0, 0, 0.331) 10%, rgba(0,0,0,0.6) 30%,rgba(0,0,0,0.7) 60%,rgba(0,0,0,0.8) 70%,rgba(0,0,0,1) 100%);
+
+$btngradient: linear-gradient(270deg, #0D92D1 0%, #36C0EE 100%);
+$btngradientreverse: linear-gradient(270deg, #36C0EE 0%, #0D92D1 100%);
+
+
+//bos-shadows 
+
+$shadowdark: 0px 0px 10px rgba($color: $dark,$alpha: 0.4);
+$dualshadow: 0px 0px 10px rgba($color: green,$alpha: 0.4), rgba($color: green,$alpha: 0.4) inset;
+$shadowgreen: 0px 4px 20px 4px rgba($color: green,$alpha: 0.2);
+$shadowgreenlight: 0 2px 6px 0 rgba(14,133,66,.2);
+$shadowred: 0px 4px 20px 4px rgba($color: $brandred,$alpha: 0.3);
+$shadowyellow: 0px 0px 10px rgba($color: red,$alpha: 0.4);
+$shadowblue: 0px 0px 10px rgba($color: red,$alpha: 0.4);
+$shadowpurple: 0px 0px 10px rgba($color: red,$alpha: 0.4); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

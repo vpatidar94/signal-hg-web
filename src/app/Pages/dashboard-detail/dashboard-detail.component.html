@@ -1,0 +1,611 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+<!-- My Studio Card Detials Section -->
+<div class="studio-details client-home-inner mb-5">
+    <div class="container pb-5">
+      <div class="studio-details-upper box-shadow1 white-bg mb-3">
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <div class="std-details-upper-left d-flex align-items-center justify-content-center" style="background-image:url({{businessDetail.business_img}});background-size: cover;background-position:center;min-height:406px">
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-6">
+            <div class="std-details-upper-right text-center p-3">
+              <div class="">
+                <img src="{{businessDetail.logo}}" class="mb-4 log-img">
+                <h4 class="title dark-color mb-2"> {{businessDetail.business_name}} </h4>
+                <p class="brand-color3 font-12 mb-0" *ngIf="addresslength <= 40"> {{businessDetail.address}} </p>
+                <p class="brand-color3 font-12 mb-0"  *ngIf="addresslength > 40"> {{businessDetail.address | ellipsis:40}} </p>
+                <ul class="studio-contact-details my-2">
+                  <li class="ml-0">                     
+                     <a  href="tel:{{businessDetail.business_phone}}" target="blank"> <img src="assets/img/ic_call_web.png"> <span> Call </span></a> </li>
+                    <li> <a href="http://maps.google.com/maps?q={{businessDetail.latitude}},{{businessDetail.longitude}},14z?hl=en@{{businessDetail.address}}"  target="blank" > <img src="assets/img/ic_direction_web.png"> <span> Directions </span></a> </li>
+                    <li> <a href="https://mail.google.com/mail/u/0/?view=cm&to={{businessDetail.email}}&:&bcc&cc&fs=1&tf=1" target="blank"> <img src="assets/img/ic_email_web.png"> <span> Email </span></a> </li>
+                    <li class="mr-0"> 
+                    <a href="Javascript:void(0);"  *ngIf="businessDetail.favourite == 0" (click)="addFav(businessDetail.business_id,1,1)"> <img src="assets/img/ic_unfavourite_web.png"> <span> Favorite </span></a>
+                    <a href="Javascript:void(0);" *ngIf="businessDetail.favourite == 1" (click)="addFav(businessDetail.business_id,0,1)"> <img src="assets/img/ic_favourite_web.png"> <span> Favorite </span></a>
+                   </li>
+                </ul>
+                <ul class="studio-service-details" *ngIf="userDetail.role_id == 4">
+                  <!-- <div class="mb-2 pb-1"  > -->
+                    <a href="Javascript:void(0);"  >
+                      <button type="button" class="btn btn-blue-grad w-100 mb-2" *ngIf="businessDetail.is_register == 0" (click)="RegisterStudio()"> Register With Studio </button> 
+                      <button type="button" class="btn btn-danger w-100  mb-2" *ngIf="businessDetail.is_register == 2"> Request Rejected </button> 
+                      <button type="button" class="btn btn-blue-grad w-100 mb-2" *ngIf="businessDetail.is_register == 1" (click)="redirect('/studio-detail')"> My Studio Details </button> 
+                      <button type="button" class="btn btn-warning w-100  mb-2" *ngIf="businessDetail.is_register == 3"> Request Pending </button> 
+                    </a>
+
+                  <li class="ml-md-0" *ngIf="businessDetail.is_register == 1">
+                    <a href="Javascript:void(0);" (click)="redirect('/classess')"> <img src="assets/img/ic_class.png"> <span> Classes </span> </a> 
+                    </li>                  
+                  <li *ngIf="businessDetail.is_register == 1"> 
+                    <a href="Javascript:void(0);" (click)="redirect('/appointment')"> <img src="assets/img/ic_appointment.png"> <span> Appointment </span> </a> 
+                  </li >
+                  <li class="mr-md-0" *ngIf="businessDetail.is_register == 1 && businessDetail.video_access == '1'">
+                    <a href="Javascript:void(0);" (click)="redirect('/my-videos')"> <img src="assets/img/video.png"> <span> Videos </span> </a> 
+                  </li>
+                    <!-- <li class="mr-md-0" *ngIf="businessDetail.is_register == 1">
+                    <a href="Javascript:void(0);" (click)="redirect('/workshopss')"> <img src="assets/img/ic_workshop.png"> <span> Workshops </span> </a> 
+                    </li> -->
+                </ul>
+                <ul class="studio-service-details" *ngIf="userDetail.role_id == 3">
+                  <a href="Javascript:void(0);"  >
+                    <button type="button" class="btn btn-blue-grad w-100 mb-2" (click) ="redirectdetail()" > My Studio Details </button> 
+                  </a>
+                  <li class="ml-md-0">
+                    <a href="Javascript:void(0);" routerLink='/classes'> <img src="assets/img/ic_class.png"> <span> Classes </span> </a> 
+                    </li>
+                  <li> 
+                    <a href="Javascript:void(0);" routerLink='/staff' > <img src="assets/img/ic_instructors.png"> <span> Instructors </span> </a>
+                   </li>
+                  <li> 
+                    <a href="Javascript:void(0);" routerLink='/services'> <img src="assets/img/ic_services.png"> <span> Services </span> </a> 
+                  </li>
+                  <li class="mr-md-0" *ngIf="businessDetail.video_access == '1'">
+                    <a href="Javascript:void(0);" routerLink='/videos'> <img src="assets/img/video.png"> <span> Videos </span> </a> 
+                  </li>
+                  <!-- <li class="mr-md-0">
+                    <a href="Javascript:void(0);" routerLink='/workshops'> <img src="assets/img/ic_workshop.png"> <span> Workshops </span> </a> 
+                    </li> -->
+                  
+                </ul>
+              </div>
+            </div>
+          </div><!-- end of std-details-upper-right -->
+        </div><!-- end of row -->
+      </div><!-- end of studio-details-upper -->
+<div class="text-right mb-3">
+  <button type="button" class="btn btn-blue-grad px-2 text-uppercase" (click)="reset()" >Back </button>
+</div>
+      
+
+<div *ngIf="userDetail.role_id == 4">
+  <div class="container-fluid pr-0 white-bg mb-3 mt-3" >      
+      <div class="mb-2 pb-1">
+        <a href="Javascript:void(0);" (click)="redirect('/classess')">
+        <div class="row">
+          <div class="col-12 col-md-1">
+            <div class="text-center pt-3">
+              <img src="assets/img/ic_class.png"> 
+            </div>
+          </div>
+          <div class="col-12 col-md-11"> 
+            <div class="inner-staff-card pt-3">   
+              <span> Classes</span>
+              <p class="black-color font-w-100 font-16">  {{businessDetail.class_categories}}</p>
+               </div>
+          </div>
+        </div>
+      </a>
+      </div>
+  </div>
+
+  <div class="container-fluid pr-0  white-bg mb-3">
+      <div class="mb-2 pb-1">
+        <a href="Javascript:void(0);" (click)="redirect('/appointment')">
+        <div class="row">
+          <div class="col-12 col-md-1">  <div class="text-center pt-3"> <img src="assets/img/ic_appointment.png"> </div></div>
+          <div class="col-12 col-md-11">
+            <div class="inner-staff-card pt-3"> 
+              <span> Appointment </span>            
+              <p class="black-color font-w-100 font-16">  {{businessDetail.services_categories}}</p>
+            </div>
+          </div>
+        </div>
+        </a> 
+      </div>
+  </div>
+
+  <div class="container-fluid pr-0  white-bg mb-3" *ngIf="businessDetail.video_access == '1'">
+      <div class="mb-2 pb-1">
+        <a href="Javascript:void(0);" (click)="redirect('/my-videos')"> 
+        <div class="row">
+          <div class="col-12 col-md-1">
+            <div class="text-center pt-3">
+            <img src="assets/img/video.png">
+          </div></div>
+          <div class="col-12 col-md-11">
+            <div class="inner-staff-card pt-3">    
+              <span> Videos </span>        
+              <p class="black-color font-w-100 font-16">  {{businessDetail.video_categories}}</p>
+            </div>
+          </div>
+        </div>
+        </a> 
+      </div>
+  </div>
+
+  <!-- <div class="container-fluid pr-0  white-bg mb-3">
+
+      <div class="mb-2 pb-1">
+        <a href="Javascript:void(0);" (click)="redirect('/workshopss')"> 
+        <div class="row">
+          <div class="col-12 col-md-1">
+            <div class="text-center pt-3">
+            <img src="assets/img/ic_workshop.png">
+          </div></div>
+          <div class="col-12 col-md-11">
+            <div class="inner-staff-card pt-3">    
+              <span> Workshops </span>        
+              <p class="black-color font-w-100 font-16">  {{businessDetail.workshop_categories}}</p>
+                
+            </div>
+          </div>
+        </div>
+        </a> 
+      </div>
+
+</div> -->
+
+</div><!-- End of Classes -->
+ 
+
+<div *ngIf="userDetail.role_id == 3">
+  <div class="container-fluid pr-0 white-bg mb-3 mt-3" >      
+      <div class="mb-2 pb-1">
+        <a href="Javascript:void(0);" routerLink ='/classes'>
+        <div class="row">
+          <div class="col-12 col-md-1">
+            <div class="text-center pt-3">
+              <img src="assets/img/ic_class.png"> 
+            </div>
+          </div>
+          <div class="col-12 col-md-11"> 
+            <div class="inner-staff-card pt-3">   
+              <span> Classes</span>
+              <p class="black-color font-w-100 font-16">  {{businessDetail.class_categories}}</p>
+               </div>
+          </div>
+        </div>
+      </a>
+      </div>
+    </div>
+
+    <div class="container-fluid pr-0  white-bg mb-3">
+      <div class="mb-2 pb-1">
+        <a href="Javascript:void(0);" routerLink ='/services'>
+        <div class="row">
+          <div class="col-12 col-md-1">  <div class="text-center pt-3"> <img src="assets/img/ic_services.png"> </div></div>
+          <div class="col-12 col-md-11">
+            <div class="inner-staff-card pt-3"> 
+              <span> Services </span>            
+              <p class="black-color font-w-100 font-16">  {{businessDetail.services_categories}}</p>
+            </div>
+          </div>
+        </div>
+        </a> 
+      </div>
+  </div>
+
+<div class="container-fluid pr-0  white-bg mb-3">
+  <div class="mb-2 pb-1">
+    <a href="Javascript:void(0);" routerLink ='/staff'> 
+    <div class="row">
+      <div class="col-12 col-md-1">
+        <div class="text-center pt-3">
+        <img src="assets/img/ic_instructors.png">
+      </div></div>
+      <div class="col-12 col-md-11">
+        <div class="inner-staff-card pt-3">    
+          <span>  Instructors </span>        
+          <p class="black-color font-w-100 font-16">  {{businessDetail.instructor_categories}}</p>
+        </div>
+      </div>
+    </div>
+    </a> 
+  </div>
+</div>
+
+<div class="container-fluid pr-0  white-bg mb-3" *ngIf="businessDetail.video_access == '1'">
+  <div class="mb-2 pb-1">
+    <a href="Javascript:void(0);" routerLink ='/videos'> 
+    <div class="row">
+      <div class="col-12 col-md-1">
+        <div class="text-center pt-3">
+        <img src="assets/img/video.png">
+      </div></div>
+      <div class="col-12 col-md-11">
+        <div class="inner-staff-card pt-3">    
+          <span> Videos </span>        
+          <p class="black-color font-w-100 font-16">  {{businessDetail.video_categories}}</p>
+        </div>
+      </div>
+    </div>
+    </a> 
+  </div>
+</div>
+
+<div class="home-inner-product" *ngIf="ProductDetail.length != 0">
+    <div class="row">
+      <div class="col-6">
+        <div class="section-heading pt-2 pb-4 text-left">
+          <a routerLink="/allproduct" class="black-color font-w-100 text-uppercase font-20"> products </a>
+        </div>
+      </div><!-- end of col-6 -->
+
+      <div class="col-6">
+        <div class="section-heading pt-2 pb-3 text-right pr-5">
+          <a routerLink="/allproduct" class="brand-color3 font-w-100 font-14"> View All  </a>
+        </div>
+      </div><!-- end of col-6 -->
+  </div><!-- end of container -->
+
+    <owl-carousel-o [options]="eventDetail_Options" class="product-slider" *ngIf="ProductDetail.length >=4"> 
+      <ng-template carouselSlide *ngFor="let productlist of ProductDetail"  [id]="productlist.product_id">
+      <div class="mb-5">
+              <a href="Javascript:void(0);" (click) ="redirectUrl(productlist.product_id,'/product','')" >
+                <div class="border-radius6 box-shadow1 white-bg px-3 pt-3 pb-2 detail-products">
+                  <img src="{{productlist.product_images[0].image_name}}" class="img-fluid w-100" style="height:221px">
+                  <div class="row pt-3 pb-1">
+                    <div class="col-6 text-left pt-3">
+                      <h5 class="black-color heading-titlenew productname">{{productlist.product_name}}  </h5>
+                    </div>
+                    <div class="col-6 text-right">
+                      <button type="button" class="btn btn-green-grad">  $ {{productlist.product_price}} </button>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              
+      </div><!-- owl-carousel -->
+      
+    </ng-template>                   
+  </owl-carousel-o>
+
+  <div class="mb-5" *ngIf="ProductDetail.length <=3">
+    <div class="row">
+      <div class="col-12 col-md-4 mb-3" *ngFor="let productlist of ProductDetail ; let p =index">
+        <a href="Javascript:void(0);" (click) ="redirectUrl(productlist.product_id,'/product','')" >
+          <div class="border-radius6 box-shadow1 white-bg px-3 pt-3 pb-2 detail-products" *ngIf ="p==0 || p==1 || p==2 || p== 3">
+            <img src="{{productlist.product_images[0].image_name}}" class="img-fluid w-100" style="height:221px">
+            <div class="row pt-3 pb-1">
+              <div class="col-6 text-left pt-3">
+                <h5 class="black-color heading-titlenew productname">{{productlist.product_name}}  </h5>
+              </div>
+              <div class="col-6 text-right">
+                <button type="button" class="btn btn-green-grad">  $ {{productlist.product_price}} </button>
+              </div>
+            </div>
+          </div>
+        </a>
+        </div></div> 
+</div><!-- owl-carousel -->
+</div>
+
+ <!-- <div class="container-fluid pr-0  white-bg mb-3">
+      <div class="mb-2 pb-1">
+        <a href="Javascript:void(0);" routerLink ='/workshops'> 
+        <div class="row">
+          <div class="col-12 col-md-1">
+            <div class="text-center pt-3">
+            <img src="assets/img/ic_workshop.png">
+          </div></div>
+          <div class="col-12 col-md-11">
+            <div class="inner-staff-card pt-3">    
+              <span> Workshops </span>        
+              <p class="black-color font-w-100 font-16">  {{businessDetail.workshop_categories}}</p>
+            </div>
+          </div>
+        </div>
+        </a> 
+      </div>
+</div> -->
+
+  <div class="home-inner-available" *ngIf="PassData.length !=0">
+    <!-- <div class="mb-2 pb-1">
+      <p class="black-color font-w-100 text-uppercase font-20"> Recurring Membership </p>
+    </div>
+
+    <div class="row new-slider-logo" *ngIf="recurringPassDetail.length <=1">
+      <div class="col-6" *ngFor ="let items of recurringPassDetail" >
+        <div class="mb-5" >
+          <div class="available-card" >
+              
+              <div class="available-blue-card p-3 p-sm-4" (click) ="redirectUrl(items,'/passes-detail',currentUrl)">
+
+                <div class="row mx-0 ">
+                  <div class="pass-logo">
+                    <img src="{{businessDetail.logo}}" class="img-fluid">
+                  </div>
+                  <div class="flex-fill pr-4 pl-5 passTextwidth">
+                    <h5 class="white-color font-14 mb-2 mt-0">{{items.pass_name}}</h5>
+                    <h5 class="white-color font-14 mb-2 mt-0">${{items.amount}} <span class="font-12"> Plus Tax </span></h5>
+                  </div>
+                </div>
+                <div class="row mt-5 align-items-end">
+                  <div class="col-6 text-left pr-0">   
+                    <p class="mb-0 white-color paratitle"> Valid For {{items.pass_validity}}</p>         
+                  </div>
+                </div>
+              </div>
+            <div class="studio-card-select">
+              <i class="fas fa-heart brand-color3 font-22" *ngIf="items.favourite == 0" (click)="addFav(items.id,1,2)"></i>
+              <i class="fas fa-heart brand-color2 font-22" *ngIf="items.favourite == 1" (click)="addFav(items.id,0,2)"></i>
+            </div>
+          </div>
+  </div>
+      </div>
+    </div>
+    <owl-carousel-o [options]="passDetail_Options" class="new-slider-logo" *ngIf="recurringPassDetail.length > 1"> 
+      <ng-template carouselSlide *ngFor ="let items of recurringPassDetail"  [id]="items.id">
+  <div class="mb-5" >
+          <div class="available-card" >
+             
+              <div class="available-blue-card p-3 p-sm-4" (click) ="redirectUrl(items,'/passes-detail',currentUrl)">
+
+                <div class="row mx-0 ">
+                  <div class="pass-logo">
+                    <img src="{{businessDetail.logo}}" class="img-fluid">
+                  </div>
+                  <div class="flex-fill pr-4 pl-5 passTextwidth">
+                    <h5 class="white-color font-14 mb-2 mt-0">{{items.pass_name}}</h5>
+                    <h5 class="white-color font-14 mb-2 mt-0">${{items.amount}} <span class="font-12"> Plus Tax </span></h5>
+                  </div>
+                </div>
+                <div class="row mt-5 align-items-end">
+                  <div class="col-6 text-left pr-0">   
+                    <p class="mb-0 white-color paratitle"> Valid For {{items.pass_validity}}</p>         
+                  </div>
+                </div>
+              </div>
+            <div class="studio-card-select">
+              <i class="fas fa-heart brand-color3 font-22" *ngIf="items.favourite == 0" (click)="addFav(items.id,1,2)"></i>
+              <i class="fas fa-heart brand-color2 font-22" *ngIf="items.favourite == 1" (click)="addFav(items.id,0,2)"></i>
+            </div>
+          </div>
+  </div>
+</ng-template>                   
+  </owl-carousel-o> -->
+
+    <div class="mb-2 pb-1">
+      <p class="black-color font-w-100 text-uppercase font-20">Time Frame </p>
+    </div>
+   
+    <div class="row" *ngIf="timePassDetail.length == 0">
+      <div class="col-4"></div>
+      <div class="col-4">
+        <div class="text-center">
+          <p class="font-awesome black-color font-18 d-inline mx-2 " > No Pass Available</p>
+        </div> 
+      </div>
+      <div class="col-4"></div>
+    
+    </div>
+    <div class="row new-slider-logo" *ngIf="timePassDetail.length <=2">
+      <div class="col-6" *ngFor ="let items of timePassDetail" >
+        <div class="mb-5" >
+          <div class="available-card" >
+              
+              <div class="available-blue-card p-3 p-sm-4" (click) ="redirectUrl(items,'/passes-detail',currentUrl)">
+
+                <div class="row mx-0 ">
+                  <div class="pass-logo">
+                    <img src="{{businessDetail.logo}}" class="img-fluid">
+                  </div>
+                  <div class="flex-fill pr-4 pl-5 passTextwidth">
+                    <h5 class="white-color font-14 mb-2 mt-0">{{items.pass_name}}</h5>
+                    <!-- <h5 class="white-color font-14 mb-3 mt-0">{{items.pass_type}}</h5> -->
+                    <h5 class="white-color font-14 mb-2 mt-0">${{items.amount}} <span class="font-12"> Plus Tax </span></h5>
+                  </div>
+                </div>
+                <div class="row mt-5 align-items-end">
+                  <!-- <div class="col-12 text-left pr-0">
+                    <p class="white-color paratitle">Remaining Classes : 4</p>
+                  </div> -->
+                  <div class="col-6 text-left pr-0">   
+                    <p class="mb-0 white-color paratitle"> Valid For {{items.pass_validity}}</p>         
+                    <!-- <p class="mb-0 white-color paratitle"> Start Date : {{items.start_date_utc_new}} </p> -->
+
+                  </div>
+                  <!-- <div class="col-6 text-right pl-0">
+                    <div class="paraframe">
+                    <p class="mb-0 white-color  paratitle"> {{items.pass_type_name}}</p>        
+                    <p class="mb-0 white-color paratitle">Pass Id : {{items.pass_id}} </p>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+            <div class="studio-card-select">
+              <i class="fas fa-heart brand-color3 font-22" *ngIf="items.favourite == 0" (click)="addFav(items.id,1,2)"></i>
+              <i class="fas fa-heart brand-color2 font-22" *ngIf="items.favourite == 1" (click)="addFav(items.id,0,2)"></i>
+
+            </div>
+          </div>
+          
+          <!-- end of purchase-blue-card -->
+  </div>
+      </div>
+    </div>
+    <owl-carousel-o [options]="passDetail_Options" class="new-slider-logo" *ngIf="timePassDetail.length > 2"> 
+      <ng-template carouselSlide *ngFor ="let items of timePassDetail"  [id]="items.id">
+  <div class="mb-5" >
+          <div class="available-card" >
+             
+              <div class="available-blue-card p-3 p-sm-4"  (click) ="redirectUrl(items,'/passes-detail',currentUrl)">
+
+                <div class="row mx-0 ">
+                  <div class="pass-logo">
+                    <img src="{{businessDetail.logo}}" class="img-fluid">
+                  </div>
+                  <div class="flex-fill pr-4 pl-5 passTextwidth">
+                    <h5 class="white-color font-14 mb-2 mt-0">{{items.pass_name}}</h5>
+                    <!-- <h5 class="white-color font-14 mb-3 mt-0">{{items.pass_type}}</h5> -->
+                    <h5 class="white-color font-14 mb-2 mt-0">${{items.amount}} <span class="font-12"> Plus Tax </span></h5>
+                  </div>
+                </div>
+                <div class="row mt-5 align-items-end">
+                  <!-- <div class="col-12 text-left pr-0">
+                    <p class="white-color paratitle">Remaining Classes : 4</p>
+                  </div> -->
+                  <div class="col-6 text-left pr-0">   
+                    <p class="mb-0 white-color paratitle"> Valid For {{items.pass_validity}}</p>         
+                    <!-- <p class="mb-0 white-color paratitle"> Start Date : {{items.start_date_utc_new}} </p> -->
+
+                  </div>
+                  <!-- <div class="col-6 text-right pl-0">
+                    <div class="paraframe">
+                    <p class="mb-0 white-color  paratitle"> {{items.pass_type_name}}</p>        
+                    <p class="mb-0 white-color paratitle"> Pass Id : {{items.pass_id}} </p>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+          
+          
+            <div class="studio-card-select">
+              <i class="fas fa-heart brand-color3 font-22" *ngIf="items.favourite == 0" (click)="addFav(items.id,1,2)"></i>
+              <i class="fas fa-heart brand-color2 font-22" *ngIf="items.favourite == 1" (click)="addFav(items.id,0,2)"></i>
+
+            </div>
+          </div><!-- end of purchase-blue-card -->
+  </div><!-- Card-3 -->
+</ng-template>                   
+  </owl-carousel-o>
+  <div class="row" *ngIf="punchPassDetail.length == 0">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <div class="text-center">
+        <p class="font-awesome black-color font-18 d-inline mx-2 " > No Pass Available</p>
+      </div> 
+    </div>
+    <div class="col-4"></div>  
+  </div>
+    <div class="mb-2 pb-1">
+      <p class="black-color font-w-100 text-uppercase font-20">Punch Card </p>
+    </div>
+    <div class="row new-slider-logo" *ngIf="punchPassDetail.length <=2">
+      <div class="col-6" *ngFor ="let items of punchPassDetail" >
+        <div class="mb-5" >
+          <div class="available-card" >
+              
+              <div class="available-blue-card p-3 p-sm-4" (click) ="redirectUrl(items,'/passes-detail',currentUrl)">
+
+                <div class="row mx-0 ">
+                  <div class="pass-logo">
+                    <img src="{{businessDetail.logo}}" class="img-fluid">
+                  </div>
+                  <div class="flex-fill pr-4 pl-5 passTextwidth">
+                    <h5 class="white-color font-14 mb-2 mt-0">{{items.pass_name}}</h5>
+                    <!-- <h5 class="white-color font-14 mb-3 mt-0">{{items.pass_type}}</h5> -->
+                    <h5 class="white-color font-14 mb-2 mt-0">${{items.amount}} <span class="font-12"> Plus Tax </span></h5>
+                  </div>
+                </div>
+                <div class="row mt-5 align-items-end">
+                  <!-- <div class="col-12 text-left pr-0">
+                    <p class="white-color paratitle">Remaining Classes : 4</p>
+                  </div> -->
+                  <div class="col-6 text-left pr-0">   
+                    <p class="mb-0 white-color paratitle"> Valid For {{items.pass_validity}}</p>         
+                    <!-- <p class="mb-0 white-color paratitle"> Start Date : {{items.start_date_utc_new}} </p> -->
+
+                  </div>
+                  <!-- <div class="col-6 text-right pl-0">
+                    <div class="paraframe">
+                    <p class="mb-0 white-color  paratitle"> {{items.pass_type_name}}</p>        
+                    <p class="mb-0 white-color paratitle">Pass Id : {{items.pass_id}} </p>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+            <div class="studio-card-select">
+              <i class="fas fa-heart brand-color3 font-22" *ngIf="items.favourite == 0" (click)="addFav(items.id,1,2)"></i>
+              <i class="fas fa-heart brand-color2 font-22" *ngIf="items.favourite == 1" (click)="addFav(items.id,0,2)"></i>
+
+            </div>
+          </div>
+          
+          <!-- end of purchase-blue-card -->
+  </div>
+      </div>
+
+  </div>
+  <owl-carousel-o [options]="passDetail_Options" class="new-slider-logo" *ngIf="punchPassDetail.length > 2"> 
+    <ng-template carouselSlide *ngFor ="let items of punchPassDetail"  [id]="items.id">
+<div class="mb-5" >
+        <div class="available-card" >           
+            <div class="available-blue-card p-3 p-sm-4"  (click) ="redirectUrl(items,'/passes-detail',currentUrl)">
+
+              <div class="row mx-0 ">
+                <div class="pass-logo">
+                  <img src="{{businessDetail.logo}}" class="img-fluid">
+                </div>
+                <div class="flex-fill pr-4 pl-5 passTextwidth">
+                  <h5 class="white-color font-14 mb-2 mt-0">{{items.pass_name}}</h5>
+                  <!-- <h5 class="white-color font-14 mb-3 mt-0">{{items.pass_type}}</h5> -->
+                  <h5 class="white-color font-14 mb-2 mt-0">${{items.amount}} <span class="font-12"> Plus Tax </span></h5>
+                </div>
+              </div>
+              <div class="row mt-5 align-items-end">
+                <!-- <div class="col-12 text-left pr-0">
+                  <p class="white-color paratitle">Remaining Classes : 4</p>
+                </div> -->
+                <div class="col-6 text-left pr-0">   
+                  <p class="mb-0 white-color paratitle"> Valid For {{items.pass_validity}}</p>         
+                  <!-- <p class="mb-0 white-color paratitle"> Start Date : {{items.start_date_utc_new}} </p> -->
+
+                </div>
+                <!-- <div class="col-6 text-right pl-0">
+                  <div class="paraframe">
+                  <p class="mb-0 white-color  paratitle"> {{items.pass_type_name}}</p>        
+                  <p class="mb-0 white-color paratitle"> Pass Id : {{items.pass_id}} </p>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+        
+          <div class="studio-card-select">
+            <i class="fas fa-heart brand-color3 font-22" *ngIf="items.favourite == 0" (click)="addFav(items.id,1,2)"></i>
+            <i class="fas fa-heart brand-color2 font-22" *ngIf="items.favourite == 1" (click)="addFav(items.id,0,2)"></i>
+
+          </div>
+        </div><!-- end of purchase-blue-card -->
+</div><!-- Card-3 -->
+</ng-template>                   
+</owl-carousel-o>
+
+
+
+
+
+</div>  
+
+<div class="row" *ngIf="PassData.length == 0">
+  <div class="col-4"></div>
+  <div class="col-4">
+    <div class="text-center">
+      <p class="font-awesome black-color font-18 d-inline mx-2 " > No Pass Available</p>
+    </div> 
+  </div>
+  <div class="col-4"></div>
+
+</div>
+</div><!-- End of Classes -->
+</div><!-- end of container --> 
+<!-- End of My Studio Card Detials Section -->
+</div>
+</div>
+<app-inner-footer></app-inner-footer>

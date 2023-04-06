@@ -1,0 +1,409 @@
+/*------------------------------------------
+//========  THEME SCSS FILE ================
+------------------------------------------
+*/
+:root {
+	font-size: 16px;
+}
+
+// ::-webkit-scrollbar { 
+//     display: none; 
+// }
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	outline: none;
+	font-size-adjust: none;
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-font-smoothing: subpixel-antialiased;
+    -webkit-transform: translate3d(1,1,1);
+    transform:translate3d(1,1,1);    
+    text-rendering: auto;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+*:focus {outline: none;}
+*,*:after,*:before {	
+    -webkit-box-sizing: border-box;	
+    -moz-box-sizing: border-box;	
+    box-sizing: border-box;	
+    padding: 0;	
+    margin: 0;
+}
+
+::selection {background-color:#777777; color:#fff;}
+
+body{
+	margin: 0;
+	padding: 0;
+    font-size:$font16;
+    line-height:$lineheight20;
+    font-weight:$Regular;
+    font-family: 'HelveticaNeue';
+    // color: $light;
+    // background-color: $white;
+    overflow-x: hidden;
+}
+a {
+    font-family: 'HelveticaNeue';
+    font-weight: normal;
+    color: $brandcolor1;
+    line-height: normal;
+    text-decoration: none;
+}
+a {
+    &:hover {
+        text-decoration: none;
+        color:$brandcolor1;
+    }
+}
+
+/**** Color Css ****/
+.brand-color1 {color: $brandcolor1;}
+.brand-color2 {color: $brandcolor2;}
+.brand-color3 {color: $brandcolor3;}
+.dark-color {color: $dark;}
+.blue-color {color: $brandblue;}
+.green-color {color: $green;}
+.yellow-color {color: $yellow;}
+.red-color {color: $red;}
+.light-color {color: $light;}
+.white-color {color: $white;}
+.black-color {color: $black;}
+.transparent {color: $transparent;}
+
+
+/**** Background Color Css ****/
+.brand-bg {background-color: $brandcolor1;}
+.brand-bg2 {background-color: $brandcolor2;}
+.brand-bg3 {background-color: $brandcolor3;}
+.dark-bg {background-color: $dark;}
+.blue-bg {background-color: $blue;}
+.green-bg {background-color: $green;}
+.yellow-bg {background-color: $yellow;}
+.light-bg {background-color: $light;}
+.light-bg2 {background-color: $light2;}
+.white-bg {background-color: $white;}
+.black-bg {background-color: $black;}
+.transparent-bg {background-color: $transparent;}
+
+
+/**** Gradient Color ****/
+.blue-gradient {background-image: $bluegradient;}
+.green-gradient {background-image: $greengradient;}
+.pink-gradient {background-image: $pinkgradient;}
+
+/**** Font Weight Css ****/
+.font-w-100{font-weight:$Thin;}
+.font-w-200{font-weight:$ExtraLight;}
+.font-w-300{font-weight:$Light}
+.font-w-400{font-weight:$Regular;}
+.font-w-500{font-weight:$Medium;}
+.font-w-600{font-weight:$SemiBold;}
+.font-w-700{font-weight:$bold;}
+.font-w-800{font-weight:$ExtraBold;}
+.font-w-900{font-weight:$Black;}
+.bold {font-weight:$bold;}
+.normal {font-weight:$Regular;}
+
+
+/**** Font Size Css ****/
+.font-10{font-size:$font10;}
+.font-11{font-size:$font11;}
+.font-12{font-size:$font12;}
+.font-13{font-size:$font13;}
+.font-14{font-size:$font14;}
+.font-15{font-size:$font15;}
+.font-16{font-size:$font16;}
+.font-17{font-size:$font17;}
+.font-18{font-size:$font18;}
+.font-19{font-size:$font19;}
+.font-20{font-size:$font20;}
+.font-21{font-size:$font21;}
+.font-22{font-size:$font22;}
+.font-23{font-size:$font23;}
+.font-24{font-size:$font24;}
+.font-25{font-size:$font25;}
+.font-26{font-size:$font26;}
+.font-27{font-size:$font27;}
+.font-28{font-size:$font28;}
+.font-29{font-size:$font29;}
+.font-30{font-size:$font30;}
+.font-31{font-size:$font31;}
+.font-32{font-size:$font32;}
+.font-33{font-size:$font33;}
+.font-34{font-size:$font34;}
+.font-35{font-size:$font35;}
+.font-36{font-size:$font36;}
+.font-37{font-size:$font37;}
+.font-38{font-size:$font38;}
+.font-39{font-size:$font39;}
+.font-40{font-size:$font40;}
+.font-41{font-size:$font41;}
+.font-42{font-size:$font42 !important;}
+.font-43{font-size:$font43;}
+.font-44{font-size:$font44;}
+.font-45{font-size:$font45;}
+.font-46{font-size:$font46;}
+.font-47{font-size:$font47;}
+.font-48{font-size:$font48;}
+.font-49{font-size:$font49;}
+.font-50{font-size:$font50;}
+
+
+/**** Heading Css ****/
+h1,h2,h3,h4,h5,h6 {font-family: 'HelveticaNeue'; font-weight:$Medium;}
+h1.title { font-size: $font45; line-height: $lineheight53; }
+h2.title { font-size: $font32; line-height: $lineheight40; }
+h3.title { font-size: $font26; line-height: $lineheight34; }
+h4.title { font-size: $font22; line-height: $lineheight30; }
+h5.title { font-size: $font19; line-height: $lineheight27; }
+h6.title { font-size: $font17; line-height: $lineheight25; }
+h1 { font-size: $font42; line-height: $lineheight48; }
+h2 { font-size: $font32; line-height: $lineheight38; }
+h3 { font-size: $font26; line-height: $lineheight32; }
+h4 { font-size: $font20; line-height: $lineheight26; }
+h5 { font-size: $font18; line-height: $lineheight24; }
+h6 { font-size: $font16; line-height: $lineheight22; }
+
+
+/**** Heading Css ****/        
+h1.new-title { font-family: 'AvenirNext-Bold' !important; }
+h2.new-title { font-family: 'AvenirNext-Bold' !important; }
+h3.new-title { font-family: 'AvenirNext-Bold' !important; }
+h4.new-title { font-family: 'AvenirNext-Bold' !important; }
+h5.new-title { font-family: 'AvenirNext-Bold' !important; }
+h6.new-title { font-family: 'AvenirNext-Bold' !important; }
+
+
+@media (max-width: 768px) {
+    h1.title { font-size: $font24; line-height: $lineheight28; }
+    h2.title { font-size: $font22 !important; line-height: $lineheight26 !important; }
+    h3.title { font-size: $font20; line-height: $lineheight24; }
+    h4.title { font-size: $font18; line-height: $lineheight22; }
+    h5.title { font-size: $font16; line-height: $lineheight20; }
+    h6.title { font-size: $font14; line-height: $lineheight18; }
+    h1 { font-size: $font24; line-height: $lineheight28; }
+    h2 { font-size: $font22; line-height: $lineheight26; }
+    h3 { font-size: $font20; line-height: $lineheight24; }
+    h4 { font-size: $font18; line-height: $lineheight22; }
+    h5 { font-size: $font16; line-height: $lineheight20; }
+    h6 { font-size: $font14; line-height: $lineheight18; }
+}
+
+/**** Border Radius Css ****/
+.border-radius0 {border-radius: $borderradius0;}
+.border-radius4 {border-radius: $borderradius4;}
+.border-radius5 {border-radius: $borderradius5;}
+.border-radius6 {border-radius: $borderradius6;}
+.border-radius10 {border-radius: $borderradius10;}
+.border-radius15 {border-radius: $borderradius15;}
+.border-radius20 {border-radius: $borderradius20;}
+.border-radius25 {border-radius: $borderradius25;}
+.border-radius30 {border-radius: $borderradius30;}
+.border-radius35 {border-radius: $borderradius35;}
+.border-radius40 {border-radius: $borderradius40;}
+.border-radius45 {border-radius: $borderradius45;}
+.border-radius50 {border-radius: $borderradius50;}
+.border-radius100 {border-radius: $borderradius100;}
+.border-t-lr-6 { border-top-left-radius: 6px; border-top-right-radius: 6px;}
+
+
+/**** Width Css ****/
+.w-100 {width: $fullwidth}
+.w-50 {width: $halfwidth}
+.w-33 {width: $triwidth}
+.w-25 {width: $quartwidth;}
+.w-20 {width: $pentawidth;}
+.w-vw {width: $VWwidth;}
+.w-65 {width: 65%;}
+.w-80 {width: 80%;}
+
+
+/**** Width Css ****/
+.h-100 {height: $fullheight}
+.h-50 {height: $halfheight}
+.h-33 {height: $triheight}
+.h-25 {height: $quartheight;}
+.h-20 {height: $pentaheight;}
+.h-vh {height: $VHheight;}
+.h-75vh {height: $h-75vh;}
+
+
+// OPACITY Css
+.opacity-0{opacity:$opacity0;}
+.opacity-05{opacity:$opacity05;}
+.opacity-10{opacity:$opacity10;}
+.opacity-15{opacity:$opacity15;}
+.opacity-20{opacity:$opacity20;}
+.opacity-25{opacity:$opacity25;}
+.opacity-30{opacity:$opacity30;}
+.opacity-35{opacity:$opacity35;}
+.opacity-40{opacity:$opacity40;}
+.opacity-45{opacity:$opacity45;}
+.opacity-50{opacity:$opacity50;}
+.opacity-55{opacity:$opacity55;}
+.opacity-60{opacity:$opacity60;}
+.opacity-65{opacity:$opacity65;}
+.opacity-70{opacity:$opacity70;}
+.opacity-75{opacity:$opacity75;}
+.opacity-80{opacity:$opacity80;}
+.opacity-85{opacity:$opacity85;}
+.opacity-90{opacity:$opacity90;}
+
+
+/**** Line Height Css ****/
+.line-height12 {line-height: $lineheight12;}
+.line-height13 {line-height: $lineheight13;}
+.line-height14 {line-height: $lineheight14;}
+.line-height15 {line-height: $lineheight15;}
+.line-height16 {line-height: $lineheight16;}
+.line-height17 {line-height: $lineheight17;}
+.line-height18 {line-height: $lineheight18;}
+.line-height19 {line-height: $lineheight19;}
+.line-height20 {line-height: $lineheight20;}
+.line-height21 {line-height: $lineheight21;}
+.line-height22 {line-height: $lineheight22;}
+.line-height23 {line-height: $lineheight23;}
+.line-height24 {line-height: $lineheight24;}
+.line-height25 {line-height: $lineheight25;}
+.line-height26 {line-height: $lineheight26;}
+.line-height27 {line-height: $lineheight27;}
+.line-height28 {line-height: $lineheight28;}
+.line-height29 {line-height: $lineheight29;}
+.line-height30 {line-height: $lineheight30;}
+.line-height31 {line-height: $lineheight31;}
+.line-height32 {line-height: $lineheight32;}
+.line-height33 {line-height: $lineheight33;}
+.line-height34 {line-height: $lineheight34;}
+.line-height35 {line-height: $lineheight35;}
+.line-height36 {line-height: $lineheight36;}
+.line-height37 {line-height: $lineheight37;}
+.line-height38 {line-height: $lineheight38;}
+.line-height39 {line-height: $lineheight39;}
+.line-height40 {line-height: $lineheight40;}
+.line-height41 {line-height: $lineheight41;}
+.line-height42 {line-height: $lineheight42;}
+.line-height43 {line-height: $lineheight43;}
+.line-height44 {line-height: $lineheight44;}
+.line-height45 {line-height: $lineheight45;}
+.line-height46 {line-height: $lineheight46;}
+.line-height47 {line-height: $lineheight47;}
+.line-height48 {line-height: $lineheight48;}
+.line-height49 {line-height: $lineheight49;}
+.line-height50 {line-height: $lineheight50 !important;}
+
+.box-shadow1{box-shadow: 0 2px 5px 0 rgba(29,150,211,0.30);}
+.box-shadow-green {box-shadow: 0 2px 5px 0 rgba(14,133,66,.2);}
+.box-shadow-blue {box-shadow: 0 13px 25px 0 rgba(29,150,211,0.30);}
+.box-shadow-bluelight {box-shadow: 0 2px 5px 0 rgba(29,150,211,0.30);}
+
+
+.body-grey { 
+    background-color: #e4e7ec; 
+    min-height: 100vh !important;
+
+    h1.title {
+        font-family: 'Arial-Rounded'; 
+    }
+    
+    h2.title {
+        font-family: 'Arial-Rounded'; 
+    }
+    
+    h3.title {
+        font-family: 'Arial-Rounded'; 
+    }
+    
+    h4.title {
+        font-family: 'Arial-Rounded'; 
+    }
+    
+    h5.title {
+        font-family: 'Arial-Rounded'; 
+    }
+    
+    p {
+        font-family: 'Arial-Rounded'; 
+    }
+    
+    a {
+        font-family: 'Arial-Rounded'; 
+    }
+    
+    input {
+        font-family: 'Arial-Rounded'; 
+        padding-left: 15px;
+    }
+}
+
+.letter-space {
+    letter-spacing: 2px;
+}
+
+
+
+// box-shadows
+.box-shadow-light{@include box-shadow($shadowdark);}
+.box-shadow-dual{@include box-shadow($dualshadow);}
+.box-shadow-green{@include box-shadow($shadowgreen);}
+.box-shadow-greenlight{@include box-shadow($shadowgreenlight);}
+.box-shadow-red{@include box-shadow($shadowred);}
+.box-shadow-yellow{@include box-shadow($shadowyellow);}
+.box-shadow-purple{@include box-shadow($shadowpurple);}
+
+//positions
+
+.static{position: static;}
+.relative{position: relative;}
+.absolute{position: absolute;}
+.fixed{position: fixed;}
+.sticky{position: sticky;}
+
+//
+.font-arialrouded{font-family: 'Arial-Rounded';}
+.customimgcircle{@include customimgcircle(42,$brandred);}
+.border-lightdual{border: 2px solid $borderlight}
+//
+select option { color: black; }
+
+
+////@at-root
+
+.header-css{
+    font-family: Roboto,Helvetica Neue,ui-sans-serif !important;
+}
+
+.nav-item{ 
+    .nav-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        font-weight: 500 !important;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

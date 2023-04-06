@@ -1,0 +1,131 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+
+<!-- My Studio Card Detials Section -->
+<div class="studio-details product-page pb-5">
+    <div class="container">
+      <app-sub-header></app-sub-header>
+
+      <div >
+      
+        <div class="row">
+          <div class="col-6 section-heading">
+            <h5 class="title black-color font-w-100 text-uppercase font-16"> product image </h5>
+          </div>
+          <div class="col-6 text-right mb-3">
+            <button type="button" class="btn btn-blue-grad px-2 text-uppercase" routerLink="/detail" >Back </button>
+          </div> 
+        </div><!-- end of col-12 -->
+
+  <owl-carousel-o [options]="Image_Options"  *ngIf="ProductImages.length > 4"> 
+    <ng-template carouselSlide *ngFor="let images of ProductImages"  [id]="images.product_image_id">
+      <div class="border-radius6 box-shadow1 white-bg p-3" >
+        <img src="{{images.image_name}}" class="img-fluid w-100" style="height: 221px;">
+      </div>
+    
+    </ng-template>                   
+  </owl-carousel-o> 
+
+<div class="row" *ngIf="ProductImages.length <= 4">
+  <div class="col-md-3" *ngFor="let images of ProductImages">
+    <div class="border-radius6 box-shadow1 white-bg p-3" >
+      <img src="{{images.image_name}}" class="img-fluid w-100" style="height: 221px;">
+    </div>
+  </div>
+</div>
+<div *ngIf="ProductImages.length == 0">
+
+</div>
+        
+      </div><!-- end of Product image and Heading -->
+    </div><!-- end of container -->
+
+
+    <div class="container-fluid studio-padding-left py-5 product-detail-similar">
+      <div class="row px-3">
+        <div class="col-12 col-lg-5 respon-product">
+          <h4 class="title black-color font-w-100 font-16"> Product Detail </h4>
+          <div class="product-detail-section white-bg border-radius6 box-shadow1 pt-3 mx-0">
+            <div class="row px-3">
+              <div class="col-8 text-left">
+                <h5 class="heading-titlenew black-color font-w-100 font-16">{{ProductDetail.product_name}} </h5>
+              </div>
+              <div class="col-4 text-right">
+                <button type="button" class="btn btn-green-grad px-4">$ {{ProductDetail.product_price}} </button>
+              </div>
+            </div> <!-- end of row --> 
+
+            <div class="text-left pb-5 px-3">
+              <p class="black-color font-w-100 paratitle mb-2"> Product details </p>
+              <p class="brand-color3 text-justify paratitle pb-3">{{ProductDetail.product_description}} 
+              </p>
+            </div> 
+
+            <div class="product-detail-section-btn" *ngIf="ProductDetail.product_quantity == 0">
+             
+                <!-- <button type="button" class="btn new-blue btn-blue-grad w-100 text-uppercase font-18 border-none"> Add to cart </button> -->
+                <a href="Javascript:void(0);" class="btn new-blue btn-blue-grad font-w-600 text-uppercase mx-0 py-3"> Out of Stock </a>
+              
+            </div> <!-- End of Button --> 
+            <div class="d-flex flex-wrap product-detail-section-btn" *ngIf="ProductDetail.product_quantity != 0">
+              <div class="col-6 px-0">
+                <!-- <button type="button" class="btn new-blue btn-blue-grad w-100 text-uppercase font-18 border-none"> Add to cart </button> -->
+                <a href="Javascript:void(0);" (click)="AddCart(ProductDetail)" class="btn new-blue btn-blue-grad font-w-600 text-uppercase mx-0 py-3" *ngIf="ProductDetail.is_cart == 0"> Add to cart </a>
+                <a routerLink="/cart" class="btn new-blue btn-blue-grad font-w-600 text-uppercase mx-0 py-3" *ngIf="ProductDetail.is_cart == 1"> Go to cart </a>
+
+              </div>
+              <div class="col-6 px-0">
+                <!-- <button type="button" class="btn new-green btn-green-grad w-100 text-uppercase font-18 border-none"> buy now </button> -->
+                <a href="Javascript:void(0);"  (click) ="redirectUrl(ProductDetail)" class="btn new-green btn-green-grad font-w-600 text-uppercase mx-0 py-3"> buy now </a>                
+              </div>
+            </div> <!-- End of Button --> 
+          </div>        
+        </div><!-- end of col-md-5 -->
+
+
+       
+        <div class="col-12 col-lg-7 pl-2 pl-md-4 pl-lg-0 pr-sm-2 pr-md-0 mt-5 mt-md-4 mt-lg-0 client-similar-products">
+          <h4 class="title black-color font-w-100 font-16"> Other Products Available </h4>
+          <owl-carousel-o [options]="Similar_Options" class="new-slider-logo" *ngIf="similarProductDetail.length  >2"> 
+            <ng-template carouselSlide *ngFor="let similarProduct of similarProductDetail"  [id]="similarProduct.product_id">
+                  <a href="Javascript:void(0);"  (click) ="getProductList(similarProduct.product_id);">
+                    <div class="text-center">
+                      <div class="white-bg border-radius6 box-shadow1 p-3 mb-3">
+                        <img src="{{similarProduct.product_images[0].image_name}}" style="height: 221px;">
+                      </div>
+                      <h5 class="heading-titlenew black-color"> {{similarProduct.product_name}}</h5>
+                    </div>
+                  </a><!-- end of similar card -->
+                </ng-template>                   
+              </owl-carousel-o>  
+            
+                <div class="row" *ngIf="similarProductDetail.length <= 2" >
+                  <div class="col-6 mb-3" *ngFor="let similarProduct of similarProductDetail ; let p =index">
+                    <a href="Javascript:void(0);"  (click) ="getProductList(similarProduct.product_id);">
+                      <div class="text-center">
+                        <div class="white-bg border-radius6 box-shadow1 p-3 mb-3">
+                          <img src="{{similarProduct.product_images[0].image_name}}" style="height: 221px;">
+                        </div>
+                        <h5 class="heading-titlenew black-color"> {{similarProduct.product_name}}</h5>
+                      </div>
+                    </a><!-- end of similar card -->
+              </div>  
+              </div>
+             
+          <div *ngIf="similarProductDetail.length == 0" class="black-color">
+            <div class="text-center pt-7 text-justify-center">
+              <p class="font-awesome black-color font-18 d-inline mx-2 paratitle"> No Similar Product Available </p>
+            </div>
+          </div>   
+        </div> <!-- end of col-lg-7 -->  
+       
+      </div><!-- end of row -->
+    </div><!-- end of container-fluid -->
+  </div>          
+<!-- End of My Studio Card Detials Section -->
+</div>
+<app-inner-footer></app-inner-footer>
+

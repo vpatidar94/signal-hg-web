@@ -1,0 +1,156 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+<!-- Video List Details Section -->
+<div class="video-listdetails mb-5 pt-5">
+    <div class="container pb-5">
+        <div class="row">
+            <div class="col-lg-12 d-flex justify-content-between text-uppercase">
+                <div class="col-lg-12  d-flex justify-content-between text-uppercase" >
+                  <div class="">
+                    <div class="adddiet_btn d-flex">
+                      <a href="javascript:void(0)" class="btn btn-blue-grad mr-3" routerLink="/my-library-detail" ><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> </a>
+                      <h4 class="ml-3 text-uppercase">Upload Video</h4>
+                  </div>
+                  </div>
+                </div>
+                <!-- <div class="col-lg-4 d-flex justify-content-between text-uppercase" *ngIf="currentUrl == '/my-videos'">
+                    <h4> <a href="javascript:void(0)" routerLink="/upload-video" class=""> Upload new video</a></h4>
+                </div> -->
+            </div>
+        </div>        
+        <!-- <div class="row">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4" *ngFor="let items of videoList">
+                <div class="video_box">
+                    <div class="video-wrap">
+                        <div class="embed-responsive embed-responsive-16by9 video-fluid">
+                            <video muted name="media" [id]="items.id"><source [src]="items.url" type="video/mp4"></video>
+                        </div>                    
+                    </div>
+                    <div class="video-play-btn">
+                        <img class="mt-0 img-fluid" src="assets/img/play.png" alt="play-button" [id]="'playImg'+items.id" (click)="playvideo(items.id)">
+                        <img class="mt-0 img-fluid" src="assets/img/pause.png" alt="play-button" [id]="'pushImg'+items.id" style="display: none;" (click)="pushvideo(items.id)">
+                    </div>
+                    <div class="video_text p-3">
+                        <div class="d-flex justify-content-between">
+                            <h3> {{items.title}}</h3>
+                            <small> {{items.duration}} hours ago</small>
+                        </div>
+                        <p> {{items.description}}
+                        </p>
+                    </div>    
+                </div>    
+            </div>
+        </div> -->
+
+        <div class="row mt-4">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-4" *ngFor="let items of videoList">
+              <div class="video_box embed-responsive embed-responsive-16by9">
+
+                <!-- <div class="video-wrap" *ngIf="items.self_upload == '1'">
+                  <div class="embed-responsive embed-responsive-16by9 video-fluid">
+                    <video muted name="media" [id]="items.id"><source [src]="items.url" type="video/mp4"></video>
+                  </div>                    
+                </div>
+                <div class="video-play-btn" *ngIf="items.self_upload == '1'">
+                  <img class="mt-0 img-fluid" src="assets/img/play.png" alt="play-button" [id]="'playImg'+items.id" (click)="playvideo(items.id)">
+                  <img class="mt-0 img-fluid" src="assets/img/pause.png" alt="play-button" [id]="'pushImg'+items.id" style="display: none;" (click)="pushvideo(items.id)">
+                </div> -->
+                <div class="videofull_box" *ngIf="items.self_upload == '1'">
+                  <video [id]="items.id" class="video-js vjs-default-skin" controls preload="none"
+                  [poster]="items.thumbnail">
+                  <source [src]="items.url" type='video/mp4' /></video>
+                  </div> 
+                <div class="videofull_box" *ngIf="items.self_upload == '0'">
+                  <iframe class="responsive-iframe" [src]="items.url | vimeoUrl" width="256" height="auto" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
+                <div class="video_text p-3">
+                  <div class="d-flex justify-content-between">
+                    <h3> {{items.name}}</h3>
+                    <input type="checkbox" [id]="items.id" style="height: 25px;width: 20px;"  (change)="getSelected($event)"> 
+
+                    <!-- <small> {{items.duration}} hours ago</small> -->
+                  </div>
+                  <p> {{items.description}} </p>
+                </div>    
+              </div>    
+          </div>
+          </div>
+          <div class="row mt-4">
+          <div class="col-md-12">
+            <div class="add_new">
+                <a href="javascript:void(0)" class="btn btn-blue-grad mr-3" (click)="onSubmit()">Submit</a>
+            </div>  
+            </div> 
+        </div> 
+      </div>
+    </div>
+
+</div>
+<app-inner-footer></app-inner-footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <app-inner-header></app-inner-header>
+<div class="body-grey">
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+<div class="form_upload_video mb-5 pt-5">
+    <div class="container pb-5">
+        <div class="row">
+            <div class="col-lg-12 d-flex justify-content-between text-uppercase">
+                <div class="">
+                    <h4>Upload Video</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form_detail box-shadow1 white-bg mb-3">  
+                        <div class="form-group">
+                          <input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="uploadVideo($event)">
+                        </div>
+                </div>
+            </div>       
+            <div class="col-md-6">
+                    <div class="add_new">
+                        <a href="javascript:void(0)" class="btn btn-blue-grad mr-3" (click)="onSubmit()">Submit</a>
+                    </div>   
+            </div> 
+            <div class="col-md-12">
+              <div class="mb-1 mt-1" *ngFor="let items of selectedVidoe">
+                  <label >{{items.name}}
+                    <a href="javascript:void(0)" (click)="removeVideo(items.id)" ><i class="fa fa-trash ml-5" aria-hidden="true"></i></a>
+                  </label> 
+
+              </div>
+            </div>    
+        </div>
+    </div>
+</div> 
+</div>
+<app-inner-footer></app-inner-footer> -->

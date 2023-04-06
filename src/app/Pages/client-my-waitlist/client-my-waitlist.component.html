@@ -1,0 +1,210 @@
+<app-inner-header></app-inner-header>
+<div class="body-grey">
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' ,fullScreenBackdrop:true}" ></ngx-loading>
+
+<!-- My Studio Card Detials Section -->
+<div class="studio-details">
+    <div class="container">
+       <app-sub-header></app-sub-header>
+      <div class="studio-details-lower pb-5">
+        <div class="row mt-3">                   
+          <div class="col-sm-4 col-lg-8">
+            <h4 class="black-color font-w-400 font-18 mb-0 text-uppercase font-arialrouded" *ngIf="currentUrl == '/my-waitlist'">My Waitlists </h4>
+            <h4 class="black-color font-w-400 font-18 mb-0 text-uppercase font-arialrouded" *ngIf="currentUrl == '/my-classlist'">My Classes </h4>
+
+          </div>
+          <div class="col-md-4 col-sm-6 text-right mb-3">
+            <button type="button" class="btn btn-blue-grad px-2 text-uppercase" (click)="reset()" >Back </button>
+
+          </div>  
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="white-bg border-radius6 box-shadow1 p-3">
+              <div class="col-4 std-detail-select" *ngIf="currentUrl == '/my-classlist'">
+                <select class="form form-control brand-color1 border-radius6" (change)="showHide($event)">
+                  <option value="0"> My Future Classes </option>
+                  <option value="1" > My Past Classes </option>
+                  <!-- <option value="my-attendence" (click) ="attandanceList()"> My Attendance </option>
+                  <option value="my-purchase"  (click)="puchaseList('2')"> My Purchases </option> -->
+                </select>                    
+              </div>
+              <div class="centered-cover">
+                <div class="flex-break">                   
+                  <div class="box my-classes" *ngIf="currentUrl == '/my-classlist'">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="detail-top-right pt-2">
+                          <div class="text-right">
+                            <!-- <mat-form-field >
+                              <input matInput [matDatepicker]="passdate"[min]="minValue" [(ngModel)]="currentDate"  name="currentDate"  style="color: black;" readonly (dateChange)="upcoming()" >
+                              <mat-datepicker-toggle matSuffix [for]="passdate" ></mat-datepicker-toggle>
+                              <mat-datepicker #passdate ></mat-datepicker>
+                          </mat-form-field> -->
+                            <!-- <a href="Javascript:void(0);"> <i class="far fa-calendar-alt brand-color1 font-30"></i> </a> -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="activity-card-section mt-4 pt-2">
+                      <div class="row" *ngIf="ClassDetail.length!=0">
+                        <div class="col-12 col-md-4 mb-4" *ngFor="let classlist of ClassDetail">
+
+                            <div class="activity-card box-shadow1 border-radius6 white-bg p-2">
+                              <div class="row">
+                                <div class="col-3 col-sm-3 col-md-12 col-lg-3">
+                                  <a href="Javascript:void(0);"  (click) ="redirectUrl('/classes-detail',classlist.class_id,classlist.scheduled_id,classlist.start_date_utc)">
+
+                                  <div class="activity-card-logo">
+                                    <img src="{{businessDetail.logo}}" class="box-shadow1 new-log-img">
+                                  </div>
+                                </a>
+
+                                </div><!-- end of col-3 -->
+                                <div class="col-9 col-sm-9 col-md-12 col-lg-9 pl-0 pl-sm-0 pl-md-3 pl-lg-0">
+                                  <a href="Javascript:void(0);"  (click) ="redirectUrl('/classes-detail',classlist.class_id,classlist.scheduled_id,classlist.start_date_utc)">
+
+                                    <div class="row">
+                                      <div class="col-7 col-md-12 col-lg-7 mt-0 mt-md-4 mt-lg-0 pl-0 pl-sm-0 pl-md-3 pl-lg-0">
+                                        <div class="activity-card-details text-left">
+                                          <h5 class="classname-title black-color mb-0"> {{classlist.class_name}}</h5>
+                                          <ul class="client-inner-align"  *ngIf="classlist.instructor_details[0]" >
+                                            <li><div class="subinst-profileimg"> <img src="{{classlist.instructor_details[0].profile_img}}" class="img-fluid"> </div></li>
+                                            <li> <h5 class="black-color mb-0 classname-title pl-2"> {{classlist.instructor_details[0].name}}  {{classlist.instructor_details[0].lastname}} </h5> </li>
+                                          </ul>
+
+                                        </div>
+                                      </div><!-- end of col-7 -->
+                                      <div class="col-5 col-md-12 col-lg-5 pr-1">
+                                        <div class="text-right pt-1">
+                                          <p class="black-color font-w-100 font-14 mr-1 mb-1"> {{classlist.start_date_utc_new}} </p>
+                                          <div class="card-green-box text-center pt-2">
+                                            <p class="white-color mb-0 mt-1"> {{classlist.capacity_used }} / {{classlist.total_capacity}} </p>
+                                          </div>
+                                        </div>
+                                      </div><!-- end of col-5 -->
+                                    </div><!-- end of row -->
+                                  </a>
+
+                                    <div class="row pt-3">
+                                      <p class="black-color font-w-100 paratitle mb-0">Location :
+                                      </p>
+                                      <h5 class="heading-titlenew ml-2 mb-0 black-color" *ngIf="classlist.location_url"><a href="{{classlist.location_url}}" target="_blank">{{classlist.location}}</a></h5>
+                                      <h5 class="heading-titlenew ml-2 mb-0 black-color" *ngIf="!classlist.location_url">{{classlist.location}}</h5>
+      
+                                      <!-- <h5 class="heading-titlenew ml-2 mb-0 black-color">{{classlist.location}}</h5> -->
+                                    </div>
+                                    <a href="Javascript:void(0);"  (click) ="redirectUrl('/classes-detail',classlist.class_id,classlist.scheduled_id,classlist.start_date_utc)">
+
+                                    <div class="row pt-2">
+                                      <div class="col-6 col-sm-6 col-md-6 col-lg-6 px-0 border-right">
+                                        <div class="text-left">
+                                          <p class="paratitle black-color mb-1"> Start Time </p>
+                                          <h5 class="classname-title black-color mb-0"> {{classlist.from_time_utc_new}} </h5>
+                                        </div>
+                                      </div>
+                                      <div class="col-6 col-sm-6 col-md-6 col-lg-6 d-flex justify-content-end">
+                                        <div class="text-left">
+                                          <p class="paratitle black-color mb-1"> Duration </p>
+                                          <h5 class="classname-title black-color mb-0"> {{classlist.duration}} </h5>                        
+                                        </div>
+                                      </div>
+                                    </div><!-- end of row -->
+                                  </a>
+
+                                </div><!-- end of col-9 -->
+                              </div><!-- end of row -->
+                            </div><!-- end of activity-card -->
+                        </div><!-- end of col-4 -->
+                      </div><!-- end of row -->
+                      <div *ngIf="ClassDetail.length == 0">
+                        <div class="text-center">
+                          <p class="font-awesome black-color font-18 d-inline mx-2 "> No Classes Are scheduled</p>
+                        </div>                      </div>
+                    </div><!-- end of activity-card-section -->
+                  </div> <!-- end of my-classes -->
+                
+                  <div class="box my-waitlist pt-4" *ngIf="currentUrl == '/my-waitlist'">
+                    <div class="activity-card-section pt-5">
+                      <div class="row" *ngIf="WaitingDetail.length!=0">
+                        <div class="col-12 col-md-4 mb-4" *ngFor="let classlist of WaitingDetail">
+                         
+                            <div class="activity-card box-shadow1 border-radius6 white-bg p-2">
+                              <div class="row">
+                                <div class="col-3 col-sm-3 col-md-12 col-lg-3">
+                                  <div class="activity-card-logo">
+                                    <img src="{{businessDetail.logo}}" class="box-shadow1 new-log-img">
+                                  </div>
+                                </div><!-- end of col-3 -->
+
+                                <div class="col-9 col-sm-9 col-md-12 col-lg-9 pl-0 pl-sm-0 pl-md-3 pl-lg-0">
+                                    <div class="row">
+                                      <div class="col-7 col-md-12 col-lg-7 mt-0 mt-md-4 mt-lg-0 pl-0 pl-sm-0 pl-md-3 pl-lg-0">
+                                        <div class="activity-card-details text-left">
+                                          <h5 class="classname-title black-color mb-0"> {{classlist.class_name}}</h5>
+                                          <ul class="client-inner-align"  *ngIf="classlist.instructor_details[0]" >
+                                            <li><div class="subinst-profileimg"> <img src="{{classlist.instructor_details[0].profile_img}}" class="img-fluid"></div> </li>
+                                            <li> <h5 class="black-color mb-0 classname-title pl-2"> {{classlist.instructor_details[0].name}}  {{classlist.instructor_details[0].lastname}} </h5> </li>
+                                          </ul>
+
+                                        </div>
+                                      </div><!-- end of col-7 -->
+                                      <div class="col-5 col-md-12 col-lg-5 pr-1">
+                                        <div class="text-right pt-1">
+                                          <p class="black-color font-w-100 font-14 mr-1 mb-1"> {{classlist.start_date_utc_new}} </p>
+                                          <div class="card-green-box text-center pt-2">
+                                            <p class="white-color mb-0 mt-1"> {{classlist.capacity_used }} / {{classlist.total_capacity }} </p>
+                                          </div>
+                                        </div>
+                                      </div><!-- end of col-5 -->
+                                    </div><!-- end of row -->
+            
+                                    <div class="row pt-3">
+                                      <p class="black-color font-w-100 paratitle mb-0">Location :
+                                      </p>
+                                      <h5 class="heading-titlenew ml-2 mb-0 black-color" *ngIf="classlist.location_url"><a href="{{classlist.location_url}}" target="_blank">{{classlist.location}}</a></h5>
+                                      <h5 class="heading-titlenew ml-2 mb-0 black-color" *ngIf="!classlist.location_url">{{classlist.location}}</h5>
+      
+                                      <!-- <h5 class="heading-titlenew ml-2 mb-0 black-color">{{classlist.location}}</h5> -->
+                                    </div>
+      
+                                    <div class="row pt-2">
+                                      <div class="col-6 col-sm-6 col-md-6 col-lg-6 px-0 border-right">
+                                        <div class="text-left">
+                                          <p class="paratitle black-color mb-1"> Start Time </p>
+                                          <h5 class="classname-title black-color mb-0"> {{classlist.from_time_utc_new}} </h5>
+                                        </div>
+                                      </div>
+                                      <div class="col-6 col-sm-6 col-md-6 col-lg-6 d-flex justify-content-end">
+                                        <div class="text-left">
+                                          <p class="paratitle black-color mb-1"> Duration </p>
+                                          <h5 class="classname-title black-color mb-0"> {{classlist.duration}} </h5>                        
+                                        </div>
+                                      </div>
+                                    </div><!-- end of row -->
+                                </div><!-- end of col-9 -->
+                              </div><!-- end of row -->
+                            </div><!-- end of activity-card -->
+                        </div><!-- end of col-4 -->
+                      </div><!-- end of row -->
+                      <div  *ngIf="WaitingDetail.length == 0">
+                        <div class="text-center">
+                          <p class="font-awesome black-color font-18 d-inline mx-2 "> No Waitlist Available</p>
+                        </div>
+                        </div>
+                    </div><!-- end of activity-card-section -->
+                  </div> <!-- end of my-waitlist -->
+                </div><!-- end of flex-break -->
+              </div><!-- end of centered-cover -->
+            </div>
+
+          </div>
+        </div><!-- end of row -->        
+      </div><!-- end of studio-details-lower -->
+    </div><!-- end of container -->
+  </div>          
+<!-- End of My Studio Card Detials Section -->
+
+</div>
+<app-inner-footer></app-inner-footer>
