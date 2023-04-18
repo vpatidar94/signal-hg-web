@@ -128,6 +128,7 @@ import { MyWorkoutComponent } from './Pages/my-workout/my-workout.component';
 import { MyNutritionComponent } from './Pages/my-nutrition/my-nutrition.component';
 import { MyNutritionDetailComponent } from './Pages/my-nutrition-detail/my-nutrition-detail.component';
 import { MyNutritionDescriptionComponent } from './Pages/my-nutrition-description/my-nutrition-description.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
  
 const ngWizardConfig: NgWizardConfig = {
   theme: THEME.default
@@ -259,6 +260,7 @@ const ngWizardConfig: NgWizardConfig = {
     ImageCropperModule,
     SlickCarouselModule,
     AutocompleteLibModule,
+    NgbModule
    // AgmCoreModule.forRoot()
   
   ],
