@@ -129,6 +129,7 @@ import { MyNutritionComponent } from './Pages/my-nutrition/my-nutrition.componen
 import { MyNutritionDetailComponent } from './Pages/my-nutrition-detail/my-nutrition-detail.component';
 import { MyNutritionDescriptionComponent } from './Pages/my-nutrition-description/my-nutrition-description.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TopBarComponent } from './Components/top-bar/top-bar.component';
  
 const ngWizardConfig: NgWizardConfig = {
   theme: THEME.default
@@ -235,7 +236,8 @@ const ngWizardConfig: NgWizardConfig = {
     MyWorkoutComponent,
     MyNutritionComponent,
     MyNutritionDetailComponent,
-    MyNutritionDescriptionComponent ],
+    MyNutritionDescriptionComponent,
+    TopBarComponent],
 
   imports: [
     NgWizardModule.forRoot(ngWizardConfig),

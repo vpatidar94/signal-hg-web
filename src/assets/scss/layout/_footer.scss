@@ -1,123 +1,98 @@
+.main_footer {
 
+	.top_footer {
+		padding: 80px 0px;
+		background: #D8D8D8;
+		background-image: linear-gradient(136deg, #77C8DB 0%, #15829D 44%, #126C82 100%);
 
+		@media (max-width: 575.98px) {
+			padding: 60px 0px;
+		}
 
-
-
-
-
-
-
-footer {
-	border-top: 1px solid $brandcolor3;
-	
-	.footer-top {
-		border-bottom: 2px dotted $brandcolor3;
-
-		.footer-left {
-			text-align: left;
+		.description {
+			p {
+				color: rgba(255, 255, 255, 0.60);
+			}
 
 			ul {
-				margin: 0px;
-				padding: 0px;
-
 				li {
-					text-decoration: none;
-					display: inline-block;
-					text-align: left;
-					color: $brandcolor3;
-					margin-right: 20px;
-					font-weight: 900;
+					margin-bottom: 10px;
 
 					a {
-						color: $brandcolor3;
+						color: rgba(255, 255, 255, 0.60);
+					}
+				}
+			}
+
+			@media (max-width: 575.98px) {
+				margin-bottom: 30px;
+			}
+		}
+
+		.foot_linking {
+			h4 {
+				color: $white;
+				font-weight: normal;
+				margin-bottom: 30px;
+			}
+
+			ul {
+				li {
+					a {
+						color: rgba(255, 255, 255, 0.60);
+						margin-bottom: 10px;
+
+						&:hover {
+							color: rgba(255, 255, 255, 1);
+						}
 					}
 				}
 			}
 		}
+	}
 
-		.footer-right {
-			text-align: right;
+	.top_bottom {
+		background-color: #165D6E;
+		padding: 20px 0px;
 
-			ul {
-				margin: 0px;
-				padding: 0px;
+		.copyright_text {
+			p {
+				color: rgba(255, 255, 255, 0.60);
+			}
 
-				li {
-					text-decoration: none;
-					display: inline-block;
-					text-align: right;
-					color: $white !important;
-					text-align: center;
-					height: 20px;
-					width: 20px;
-					background-color: $brandcolor3;
-					border-radius: $borderradius10;
-					margin-left: 12px;
+			a {
+				color: rgba(255, 255, 255, 0.60);
+				margin-bottom: 10px;
 
-					a {
-						color: $white !important;
-
-
-					}
+				&:hover {
+					color: rgba(255, 255, 255, 1);
 				}
 			}
 		}
 
-		@media (max-width: 768px) {
-			.footer-left {
-				text-align: center;
-				padding-bottom: 15px;
-			}
-			.footer-right {
-				text-align: center;
-			}
-		}
-	}
+		.social_link {
+			float: right;
 
-	.footer-bottom {
-		text-align: left;
-	}
+			@media (max-width: 575.98px) {
+				float: none;
+				text-align: center;
+				padding: 10px 0px;
+			}
 
-	@media (max-width: 768px) {
-		.footer-bottom {
-			text-align: center;
+			ul {
+				li {
+					margin-left: 10px;
+					display: inline-block;
+
+					a {
+						color: rgba(255, 255, 255, 0.60);
+
+						&:hover {
+							color: rgba(255, 255, 255, 1);
+						}
+					}
+				}
+			}
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

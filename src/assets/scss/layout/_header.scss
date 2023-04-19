@@ -78,8 +78,8 @@
                     /*font-family: 'Avenir LT Std';*/
 
 	  				&:hover {
-	  					color: $brandcolor1 !important;
-  						border-bottom: 3px solid $brandcolor1;
+	  					color: $brandcolor2 !important;
+  						// border-bottom: 3px solid $brandcolor1;
 	  				}
 
                     .btn {
@@ -100,8 +100,8 @@
 
   			.active {
   				a.link {
-  					color: $brandcolor1 !important;
-  					border-bottom: 3px solid $brandcolor1;
+  					color: $brandcolor2 !important;
+  					// border-bottom: 3px solid $brandcolor1;
   				}
   			}
       	}
