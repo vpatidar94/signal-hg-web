@@ -1,0 +1,50 @@
+.app-section-cover {
+    background-image: url(https://images.pexels.com/photos/40751/running-runner-long-distance-fitness-40751.jpeg?cs=srgb&dl=pexels-pixabay-40751.jpg&fm=jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 460px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    img {
+        width: 150px;
+    }
+    h3 {
+        text-align: center;
+        padding: 30px;
+    }
+    h1 {
+        font-weight: 700;
+        font-size: 35px;
+    }
+}
+
+.card {
+    background-color: #f7fcfd;
+    padding: 15px;
+    box-shadow: 1px;
+    img {
+        height: 330px;
+    }
+    .card-data {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .btn-store {
+            height: 50px;
+        }
+    }
+    .ins-image {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+}
+
+.border-new {
+    padding-bottom: 10px !important;
+}

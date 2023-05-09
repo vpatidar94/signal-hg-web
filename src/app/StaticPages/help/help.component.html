@@ -1,125 +1,178 @@
 <div *ngIf="loginInfo">
-    <app-inner-header></app-inner-header>
-  </div>
-  <div *ngIf="!loginInfo">
-    <app-header></app-header>
-  </div>
-  <!-- Help Content Section -->
-  <div class="contact-content-section py-4 mt-2">
+  <app-inner-header></app-inner-header>
+</div>
+<div *ngIf="!loginInfo">
+  <app-header></app-header>
+</div>
+<!-- Help Content Section -->
+<section id="single-page-header">
+  <div class="overlay">
     <div class="container">
-      <div class="text-left wow animated zoomIn">
-        <h2 class="dark-color font-w-900 pb-5"> Help & Contact Us </h2>
-        <form  [formGroup]="HelpUsForm" (ngSubmit)="SendMessage()">
-
-        <div class="row pb-5">
-          <div class="col-12 col-sm-4">
-            <div class="form-group">
-              <p class="black-color text-left font-18 font-w-900 mb-0 ml-2 pl-1"> Name </p>
-              <input  class="form-control" formControlName="name"  onkeyup="this.value=this.value.replace(/^\s+/g, '')"  [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
-              <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                  <div *ngIf="f.name.errors.required">Name is required</div>
-                  <div *ngIf="f.name.errors.pattern">Name is required</div>
-            </div>            </div>
-          </div><!-- Name -->
-          <div class="col-12 col-sm-4">
-            <div class="form-group">
-              <p class="black-color text-left font-18 font-w-900 mb-0 ml-2 pl-1"> Phone No. </p>
-              <input type="number" class="form-control" formControlName="phone"  onkeyup="this.value=this.value.replace(/^\s+/g, '')" onKeyPress="if(this.value.length >= 12) return false;"  [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
-              <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
-                  <div *ngIf="f.phone.errors.required">Phone is required</div>
-                  <div *ngIf="f.phone.errors.pattern">Phone number not valid</div>
-
-            </div>            </div>
-          </div><!-- Phone No. -->
-          <div class="col-12 col-sm-4">
-            <div class="form-group">
-              <p class="black-color text-left font-18 font-w-900 mb-0 ml-2 pl-1"> Email </p>
-              <input type="email" class="form-control" formControlName="email"  onkeyup="this.value=this.value.replace(/^\s+/g, '')"  [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
-              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                  <div *ngIf="f.email.errors.required">Email is required</div>
-                  <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
-            </div>            </div>
-          </div><!-- Email -->
-          <div class="col-12 col-sm-12 mt-2 mt-md-3">
-            <div class="form-group">
-              <p class="black-color text-left font-18 font-w-900 mb-0 ml-2 pl-1"> Message </p>
-              <textarea  rows="5" class="form-control" formControlName="message"  onkeyup="this.value=this.value.replace(/^\s+/g, '')"  [ngClass]="{ 'is-invalid': submitted && f.message.errors }"></textarea>
-              <div *ngIf="submitted && f.message.errors" class="invalid-feedback">
-                  <div *ngIf="f.message.errors.required">Message is required</div>
-                  <div *ngIf="f.message.errors.pattern">Message is required</div>
-            </div>            </div>
-          </div><!-- Message -->
-          <div class="col-12 col-sm-6 mt-2">
-            <button class="btn btn-blue text-uppercase"  type="submit" [disabled]="helpSpinner"> <span class="spinner-grow spinner-grow-sm" *ngIf="helpSpinner" role="status" aria-hidden="true"></span> send message </button>
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="single-page-header-left">
+            <h2>Help & Contact Us</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
           </div>
-        </div><!-- end of Input fields(Name, Phone, Email, Message and Button) -->
-      </form>
+        </div>
 
-        <div class="row pt-0 pt-3 pb-5">
-          <div class="col-12 col-md-5 col-lg-4 col-xl-3 order-2 order-md-1">
-            <div class="contact-content-left">
-              <div class="contact-client-detail">
-                <ul>
-                  <li> <i class="fas fa-home"></i> 
-                  </li>
-                  <li> 
-                    <h5 class="title brand-color1 font-w-400">  3753 Howard Huges Parkway  </h5>                                        <span class="font-14">Suite 200 Las Vegas, NV 89169</span>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="contact-content-section py-4 mt-2">
+  <div class="container">
+    <div class="text-left wow animated zoomIn">
+      <!-- <h2 class="dark-color font-w-900 pb-5"> Help & Contact Us </h2> -->
 
-                  </li>
-                </ul>
-              </div><!-- Address -->
-  
-              <!-- <div class="contact-client-detail">
-                <ul>
-                  <li> <i class="fas fa-phone"></i> </li>
-                  <li> 
-                    <h5 class="title brand-color1 font-w-400"> +1 (800)278-0747  </h5>
-                    <p class="brand-color3"> 9am-9pm Monday through Friday. IST </p>
-                  </li>
-                </ul>
-              </div> -->
-              <!-- Phone Number -->
-  
-              <div class="contact-client-detail">
-                <ul>
-                  <li> <i class="fas fa-envelope"></i> </li>
-                  <li> 
-                    <h5 class="title brand-color1 font-w-400"> <a href="https://mail.google.com/mail/u/0/?view=cm&to=info@signalhg.com&:&bcc&cc&fs=1&tf=1" target="blank" class="brand-color1"> info@signalhg.com </a></h5>
-                    <p class="brand-color3">Send your query anytime! </p>
-                  </li>
-                </ul>
-              </div><!-- Email -->
-  
-              <div class="contact-social-account pt-3">
-                <ul>
-                  <li> <a href="https://www.facebook.com/SignalhgWellness" target="_blank"> <img src="assets/img/fb-icon.png"> </a> </li>
-                  <li> <a href="https://www.instagram.com/signalhgwellness/" target="_blank"> <img src="assets/img/insta-icon.png"> </a> </li>
-                  <li> <a href="https://twitter.com/SignalWellness" target="_blank"> <img src="assets/img/twitter-icon.png"> </a> </li>
-                  <!-- <li> <a href="https://www.linkedin.com/company/signal-health-group/" target="_blank"> <img src="assets/img/linkedin-icon.png"> </a> </li> -->
-                </ul>
+      <div class="row info-address">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-data d-flex align-items-center justify-content-center">
+                <span><i class="fas fa-home"></i></span>
+                <span class="label-address">Our Address</span>
+                <span>3753 Howard Huges Parkway</span>
+                <span>Suite 200 Las Vegas, NV 89169</span>
               </div>
             </div>
-          </div><!-- end of contact-content-left -->
-  
-          <div class="col-12 col-md-7 col-lg-8 col-xl-9 order-1 order-md-2">
-            <div>
-              <p class="pb-3 mb-0 dark font-18 line-height25 text-justify"> Our support team at <a href="javascript:void(0)" style="cursor: text;"> Signal Health Group Wellness</a> is ready to assist you with your inquiry. Please send us a detailed email with your Name, Business Name, Primary Contact Information, and Matter of Inquiry.   
- </p>
-              <p class="pb-3 mb-0 dark font-18 line-height25 text-justify">A member of our team will work to respond to your inquiry within 2-3 business days.
-              </p>
-              <p class="pb-3 mb-0 dark font-18 line-height25 text-justify"> Our support is available from 9:00 AM to 9:00 PM EST Monday through Friday. </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-data d-flex align-items-center justify-content-center">
+                <span><i class="fas fa-envelope"></i></span>
+                <span class="label-address">Our Email</span>
+                <span><a href="https://mail.google.com/mail/u/0/?view=cm&to=info@signalhg.com&:&bcc&cc&fs=1&tf=1"
+                    target="blank" class="brand-color1"> info@signalhg.com </a></span>
+                <span>Send your query anytime!</span>
+              </div>
             </div>
-          </div><!-- end of contact-content-left -->
-        </div><!-- end of row -->        
+          </div>
+        </div>
+        <!-- <ul>
+          <li> <i class="fas fa-envelope"></i> </li>
+          <li>
+            <h5 class="title brand-color1 font-w-400"> <a
+                href="https://mail.google.com/mail/u/0/?view=cm&to=info@signalhg.com&:&bcc&cc&fs=1&tf=1" target="blank"
+                class="brand-color1"> info@signalhg.com </a></h5>
+            <p class="brand-color3">Send your query anytime! </p>
+          </li>
+        </ul> -->
+        <!-- <div class="col-md-3">
+          mmmm
+        </div> -->
       </div>
-    </div><!-- end of container -->
-  </div>
-  <!-- End of Help Content Section -->
-  
-  
-  <div *ngIf="loginInfo">
-    <app-inner-footer></app-inner-footer>
-  </div>
-  <div *ngIf="!loginInfo">
-    <app-footer></app-footer>
-  </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <form [formGroup]="HelpUsForm" (ngSubmit)="SendMessage()">
+
+            <div class="row pb-5">
+              <div class="col-12 col-sm-12 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="label-form black-color text-left font-18 font-w-900 mb-0 ml-2 pl-1"> Name </p>
+                  <input class="form-control" formControlName="name"
+                    onkeyup="this.value=this.value.replace(/^\s+/g, '')"
+                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                  <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    <div *ngIf="f.name.errors.required">Name is required</div>
+                    <div *ngIf="f.name.errors.pattern">Name is required</div>
+                  </div>
+                </div>
+              </div><!-- Name -->
+              <div class="col-12 col-sm-12 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="label-form black-color text-left font-18 font-w-900 mb-0 ml-2 pl-1"> Phone No. </p>
+                  <input type="number" class="form-control" formControlName="phone"
+                    onkeyup="this.value=this.value.replace(/^\s+/g, '')"
+                    onKeyPress="if(this.value.length >= 12) return false;"
+                    [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
+                  <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                    <div *ngIf="f.phone.errors.required">Phone is required</div>
+                    <div *ngIf="f.phone.errors.pattern">Phone number not valid</div>
+
+                  </div>
+                </div>
+              </div><!-- Phone No. -->
+              <div class="col-12 col-sm-12 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="label-form black-color text-left font-18 font-w-900 mb-0 ml-2 pl-1"> Email </p>
+                  <input type="email" class="form-control" formControlName="email"
+                    onkeyup="this.value=this.value.replace(/^\s+/g, '')"
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                  </div>
+                </div>
+              </div><!-- Email -->
+              <div class="col-12 col-sm-12 mt-2 mt-md-3">
+                <div class="form-group">
+                  <p class="label-form black-color text-left font-18 font-w-900 mb-0 ml-2 pl-1"> Message </p>
+                  <textarea rows="5" class="form-control" formControlName="message"
+                    onkeyup="this.value=this.value.replace(/^\s+/g, '')"
+                    [ngClass]="{ 'is-invalid': submitted && f.message.errors }"></textarea>
+                  <div *ngIf="submitted && f.message.errors" class="invalid-feedback">
+                    <div *ngIf="f.message.errors.required">Message is required</div>
+                    <div *ngIf="f.message.errors.pattern">Message is required</div>
+                  </div>
+                </div>
+              </div><!-- Message -->
+              <div class="col-12 col-sm-6 mt-2">
+                <button class="btn btn-blue text-uppercase" type="submit" [disabled]="helpSpinner"> <span
+                    class="spinner-grow spinner-grow-sm" *ngIf="helpSpinner" role="status" aria-hidden="true"></span>
+                  send
+                  message </button>
+              </div>
+            </div><!-- end of Input fields(Name, Phone, Email, Message and Button) -->
+          </form>
+        </div>
+        <div class="col-md-6 map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
+            frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="row info-addresss">
+        <div>
+          <p class="text-center mb-0 dark font-15 line-height25 text-justify"> Our support team at <a href="javascript:void(0)"
+              style="cursor: text;"> Signal Health Group Wellness</a> is ready to assist you
+            with your inquiry. Please send us a detailed email with your Name, Business Name, Primary Contact
+            Information, and Matter of Inquiry.
+          </p>
+          <p class="text-center mb-0 dark font-15 line-height25 text-justify">A member of our team will work to respond to
+            your inquiry within 2-3 business days.
+          </p>
+          <p class="text-center mb-0 dark font-15 line-height25 text-justify"> Our support is available from 9:00 AM to 9:00
+            PM EST Monday through Friday. </p>
+          <div class="text-center">
+            <div class="contact-social-account pt-3">
+              <span class="pr-2"> <a href="https://www.facebook.com/SignalhgWellness" target="_blank"> <img
+                    src="assets/img/fb-icon.png">
+                </a> </span>
+              <span class="pr-2"> <a href="https://www.instagram.com/signalhgwellness/" target="_blank"> <img
+                    src="assets/img/insta-icon.png">
+                </a> </span>
+              <span class="pr-2"> <a href="https://twitter.com/SignalWellness" target="_blank"> <img
+                    src="assets/img/twitter-icon.png">
+                </a> </span>
+              <!-- <li> <a href="https://www.linkedin.com/company/signal-health-group/" target="_blank"> <img src="assets/img/linkedin-icon.png"> </a> </li> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end of container -->
+</div>
+<!-- End of Help Content Section -->
+
+
+<div *ngIf="loginInfo">
+  <app-inner-footer></app-inner-footer>
+</div>
+<div *ngIf="!loginInfo">
+  <app-footer></app-footer>
+</div>

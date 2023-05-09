@@ -130,6 +130,8 @@ import { MyNutritionDetailComponent } from './Pages/my-nutrition-detail/my-nutri
 import { MyNutritionDescriptionComponent } from './Pages/my-nutrition-description/my-nutrition-description.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TopBarComponent } from './Components/top-bar/top-bar.component';
+import { SolutionV2Component } from './StaticPages/solution/solution-v2.component';
+import { SolutionDetailComponent } from './StaticPages/solution/solution-detail/solution-detail.component';
  
 const ngWizardConfig: NgWizardConfig = {
   theme: THEME.default
@@ -149,6 +151,7 @@ const ngWizardConfig: NgWizardConfig = {
     PricingComponent,
     PrivacyPolicyComponent,
     SolutionComponent,
+    SolutionV2Component,
     TermsConditionComponent,
     HeaderComponent,
     InnerHeaderComponent,
@@ -237,7 +240,8 @@ const ngWizardConfig: NgWizardConfig = {
     MyNutritionComponent,
     MyNutritionDetailComponent,
     MyNutritionDescriptionComponent,
-    TopBarComponent],
+    TopBarComponent,
+    SolutionDetailComponent],
 
   imports: [
     NgWizardModule.forRoot(ngWizardConfig),

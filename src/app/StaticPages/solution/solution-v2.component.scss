@@ -1,0 +1,51 @@
+#single-page-header {
+    background: #d8d8d8;
+    background-image: linear-gradient(270deg, #2B93AC 0%, #5EBFCF 100%);
+    color: #ffffff;
+    display: inline;
+    float: left;
+    width: 100%;
+    padding: 100px 0;
+    margin-bottom: 3rem;
+
+    .single-page-header-left {
+        h2 {
+            text-transform: uppercase;
+        }
+
+        h2,
+        p {
+            color: #ffffff !important;
+        }
+    }
+}
+
+.features_section {
+    padding-top: 3rem !important;
+    padding-bottom: 1.5rem !important;
+
+    .card {
+        img {
+            max-height: 195px;
+        }
+    }
+
+    .card-body {
+        background: #f7fcfd;
+    }
+
+    .card-text {
+        max-height: 100px;
+        height: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: wrap;
+    }
+
+    .card-title {
+        max-height: 28px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

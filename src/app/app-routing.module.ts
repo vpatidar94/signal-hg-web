@@ -96,6 +96,8 @@ import { MyWorkoutComponent } from './Pages/my-workout/my-workout.component';
 import { MyNutritionComponent } from './Pages/my-nutrition/my-nutrition.component';
 import { MyNutritionDetailComponent } from './Pages/my-nutrition-detail/my-nutrition-detail.component';
 import { MyNutritionDescriptionComponent } from './Pages/my-nutrition-description/my-nutrition-description.component';
+import { SolutionV2Component } from './StaticPages/solution/solution-v2.component';
+import { SolutionDetailComponent } from './StaticPages/solution/solution-detail/solution-detail.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -113,7 +115,11 @@ const routes: Routes = [
   { path: 'pricing', component: PricingComponent },
   { path: 'apps', component: AppsComponent },
 
-  { path: 'solution', component: SolutionComponent },
+  {
+    path: 'solution/:solutionId',
+    component: SolutionDetailComponent
+  },
+  { path: 'solution', component: SolutionV2Component },
   { path: 'contact-us', component: HelpComponent },
   { path: 'demo', component: DemoComponent },
   { path: 'login', component: LoginComponent},

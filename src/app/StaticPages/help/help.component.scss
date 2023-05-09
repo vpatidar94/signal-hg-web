@@ -1,0 +1,84 @@
+#single-page-header {
+    background: #d8d8d8;
+    background-image: linear-gradient(270deg, #2B93AC 0%, #5EBFCF 100%);
+    color: #ffffff;
+    display: inline;
+    float: left;
+    width: 100%;
+    padding: 100px 0;
+    margin-bottom: 3rem;
+
+    .single-page-header-left {
+        h2 {
+            text-transform: uppercase;
+        }
+
+        h2,
+        p {
+            color: #ffffff !important;
+        }
+    }
+}
+
+.label-form {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    padding-bottom: 10px;
+}
+
+.info-address {
+    padding-bottom: 10px;
+}
+
+.map {
+    margin-top: 22px !important;
+}
+
+.info-addresss {
+    background-color: #f7fcfd;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 0.2);
+    padding: 30px 20px;
+    text-align: center;
+    a {
+        color: #2B93AC;
+    }
+}
+
+.card {
+    // background-color: #f7fcfd;
+    padding: 15px;
+    box-shadow: 1px;
+
+    img {
+        height: 330px;
+    }
+
+    .card-data {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        // .btn-store {
+        //     height: 50px;
+        // }
+        .label-address {
+            font-size: 20px;
+            padding: 5px 0;
+        }
+
+        span {
+            padding-bottom: 5px;
+        }
+
+        i {
+            color: #2B93AC;
+        }
+    }
+
+    .ins-image {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+}

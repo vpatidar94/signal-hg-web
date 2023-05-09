@@ -1,6 +1,5 @@
-
 .pricing-studio-cards {
-	border-top: 1px solid $brandcolor3;
+	// border-top: 1px solid $brandcolor3;
 
 	ul {
 		margin: 0;
@@ -16,12 +15,18 @@
 			border-radius: $borderradius6;
 			margin: 0px 8px;
 			padding: 0;
-			opacity: 0.5;
+			opacity: 1;
 
 			.pricing-card {
 				border: 1px solid $brandcolor3;
-				background-color: $white;
-
+				background-color: #f7fcfd;
+				box-shadow: 0 10px 20px rgb(0 0 0 / 0.2);
+				
+				.price {
+					font-size: 15px !important;
+					color: #2c93ac;
+				}
+				
 				a {
 					border: 1px solid $brandcolor3;
 					background-color: $white;
@@ -41,8 +46,8 @@
 			}
 
 			&:hover {
-				box-shadow: 0 13px 25px 0 rgba(14,133,66,.3);
-				transform: scale(1.1,1.1);
+				box-shadow: 0 13px 25px 0 rgba(14, 133, 66, .3);
+				transform: scale(1.1, 1.1);
 				opacity: 1;
 			}
 		}
@@ -53,42 +58,4 @@
 			}
 		}
 	}
-}	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}

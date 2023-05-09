@@ -1,7 +1,7 @@
 .login-bg {
-    background: url(/assets/img/login_bg.jpg) no-repeat;
+    background: url(/assets/img/slider-img-1.jpeg) no-repeat;
     background-position: left top;
-    background-size: cover;
+    // background-size: cover;
 }
 
 .login-form-section {
@@ -60,37 +60,37 @@
 
 
 	&:hover {
-		background-color: transparent;
-		background-image: $bluegradient;
-		box-shadow: $box-shadow-blue;
-		transition: all 0.9s;
+		// background-color: transparent;
+		// background-image: $bluegradient;
+		// box-shadow: $box-shadow-blue;
+		// transition: all 0.9s;
 
 		.img-color {
-			display: none;
+			// display: none;
 		}
 
 		.img-white {
-			display: block;
+			// display: block;
 		}
 
 		h3 {
-			color: $white;
+			// color: $white;
 		}
 
 		p {
-			color: $white;
+			// color: $white;
 		}
 
-		button.login {
-			background-color: $white;
-			border-color: $white;
-		}
+		// button.login {
+		// 	background-color: $white;
+		// 	border-color: $white;
+		// }
 
-		button.register {
-			background-color: transparent;
-			background-image: none;
-			border-color: $white;
-		}
+		// button.register {
+		// 	background-color: transparent;
+		// 	background-image: none;
+		// 	border-color: $white;
+		// }
 	}
 
 }

@@ -1,0 +1,62 @@
+<app-header></app-header>
+<section id="single-page-header">
+    <div class="overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="single-page-header-left">
+                        <h2>{{content.title}}</h2>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container features_section">
+            <img class="img-blog" src="{{'../../../../assets/img/' + content.img }}" />
+            <div>
+                <div class="title_line">
+                    <h5>{{content.title}}</h5>
+                    <p>By <a class="blog-author" href="#">JOHN POWELL</a> <span class="blog-date"> | 27 February 2023</span></p>
+                </div>
+            </div>
+            <div class="blog-content">
+                <p [innerHTML]="content.text">
+                </p>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                    standard
+                    dummy text ever since the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                    been the industry's standard dummy text ever since the Lorem Ipsum is simply dummy text of the printing and
+                    typesetting
+                    industry. Lorem Ipsum has been the industry's standard dummy text ever since the Lorem Ipsum is simply dummy text of
+                    the
+                    printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+                </p>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                    standard
+                    dummy text ever since the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                    been the industry's standard dummy text ever since the Lorem Ipsum is simply dummy text of the printing and
+                    typesetting
+                    industry. Lorem Ipsum has been the industry's standard dummy text ever since the Lorem Ipsum is simply dummy text of
+                    the
+                    printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+                </p>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                    standard
+                    dummy text ever since the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                    been the industry's standard dummy text ever since the Lorem Ipsum is simply dummy text of the printing and
+                    typesetting
+                    industry. Lorem Ipsum has been the industry's standard dummy text ever since the Lorem Ipsum is simply dummy text of
+                    the
+                    printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+                </p>
+            </div>
+    </div>
+    
+</section>
+<app-footer></app-footer>
