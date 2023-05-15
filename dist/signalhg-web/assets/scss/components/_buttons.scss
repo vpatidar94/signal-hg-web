@@ -1,0 +1,183 @@
+.btn{
+    padding: .75rem .8rem;
+    line-height: normal;
+    transition: all 0.9s;
+}
+
+.btn-brand {
+    border-color: $brandcolor1;
+    color: $white;
+    background-color: $brandcolor1;
+}
+.btn-brand:hover {
+    border-color: $brandcolor1;
+    color: $brandcolor1;
+    background-color: $white;
+}
+
+
+.btn-blue {
+    border-color: $transparent;
+    color: $white;
+    background-image: $bluegradient;
+    background-color: $transparent;
+}
+.btn-blue:hover {
+    border-color: $brandcolor1;
+    color: $brandcolor1;
+    background-color: $transparent;
+    background-image: none;
+}
+
+
+.btn-green {
+    border-color: $transparent;
+    color: $white;
+    background-image: $greengradient;
+    background-color: $transparent;
+}
+.btn-green:hover {
+    border-color: $brandcolor2;
+    color: $brandcolor2;
+    background-color: $transparent;
+    background-image: $transparent;
+}
+
+
+.btn-white {
+    border-color: $white;
+    color: $dark;
+    background-color: $white;
+    box-shadow: 0 2px 5px 0 rgba(14,133,66,.2)
+}
+.btn-white:hover {
+    border-color: $brandcolor2;
+    color: $brandcolor2;
+    background-color: $transparent;
+    box-shadow: 0 13px 25px 0 rgba(14,133,66,.3);
+}
+
+
+.btn-transparent {
+    border-color: $transparent;
+    background-color: $brandcolor1;
+    color: $brandcolor1;
+}
+.btn-transparent:hover {
+    border-color: $transparent;
+    background-color: $transparent;
+    color: $dark;
+}
+
+
+.btn-border {
+    border-color: $brandcolor3;
+    background-color: $transparent;
+    color: $brandcolor3;
+}
+.btn-border:hover {
+    border-color: $transparent;
+    background-color: $brandcolor1;
+    color: $white;
+}
+
+
+.btn-blue-grad {
+    border-color: $transparent;
+    color: $white !important;
+    background-image: $bluegradient;
+    background-color: $transparent;
+}
+.btn-blue-grad:hover {
+    border-color: $brandcolor1;
+    color: $brandcolor1 !important;
+    background-color: $transparent;
+    background-image: none;
+    box-shadow: $box-shadow-blue;
+}
+
+
+.btn-green-grad {
+    border-color: $transparent;
+    color: $white !important;
+    background-image: $greengradient;
+    background-color: $transparent;
+    box-shadow: transparent;
+}
+.btn-green-grad:hover {
+    border-color: $brandcolor2;
+    color: $brandcolor2 !important;
+    background-color: $white !important;
+    background-image: none;
+    box-shadow: 0 13px 25px 0 rgba(14,133,66,.3);
+}
+
+.btn-orange-grad {
+    border-color: $orangelight;
+    color: $white !important;
+    background-image: $orangegradient;
+    background-color: $transparent;
+    box-shadow: transparent;
+}
+.btn-orange-grad:hover {
+    border-color: $orange;
+    color: $orange !important;
+    background-color: $white !important;
+    background-image: none;
+    box-shadow: 0 13px 25px 0 rgba(255,126,38,.3);
+}
+.btn-pink-grad {
+    border-color: $pinklight;
+    color: $white !important;
+    background-image: $pinkgradient;
+    background-color: $transparent;
+    box-shadow: transparent;
+}
+.btn-pink-grad:hover {
+    border-color: $pink;
+    color: $pink !important;
+    background-color: $white !important;
+    background-image: none;
+    box-shadow: 0 13px 25px 0 rgba(255,126,38,.3);
+}
+
+.btn-white2 {
+    border-color: $white;
+    color: $brandcolor1;
+    background-color: $white;
+    box-shadow: 0 2px 5px 0 rgba(14,133,66,.2)
+}
+.btn-white2:hover {
+    border-color: $white;
+    color: $white;
+    background-color: $transparent;
+    box-shadow: 0 13px 25px 0 rgba(14,133,66,.3);
+}
+
+
+.btn-white3 {
+    border-color: $white;
+    color: $brandcolor2;
+    background-color: $white;
+    box-shadow: 0 2px 5px 0 rgba(14,133,66,.2)
+}
+.btn-white3:hover {
+    border-color: $white;
+    color: $white;
+    background-color: $transparent;
+    box-shadow: 0 13px 25px 0 rgba(14,133,66,.3);
+}
+
+
+
+
+
+
+
+
+
+@media (max-width: 767px) {
+    .btn{
+        padding: 0.55rem .75rem;
+    }
+}

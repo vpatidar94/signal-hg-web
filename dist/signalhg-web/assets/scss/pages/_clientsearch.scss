@@ -1,0 +1,81 @@
+.client-search-section{
+    .nav-tabs{
+        border-bottom: 0;
+        .nav-item{
+            // padding: 10px;
+            width: 33%;
+            .nav-link{
+                background-color: $white;
+                border-radius: 10px;
+                height: 50px;
+                text-align: center;
+                color: $brandcolor1;
+                @include flexcenter;
+                border: 0;
+                font-size: 1.2rem;
+            }
+            .active{
+                border-color: $transparent;
+                color: $white !important;
+                background-image: $bluegradient;
+                background-color: $transparent;
+                color: #fff;
+                height: 50px;
+                border: 0;
+                font-size: 1.2rem;
+            }
+        }
+    }
+}
+.searchbar{
+    position: relative;
+    .form-control{
+        background-color: #fff;
+        border-radius: 10px;
+        height: 50px;
+        border: 0;
+        padding-right: 40px;
+    }
+    button{
+        width: 40px;
+        height: 50px;
+        border: 0;
+        background: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+}
+
+.client-slot-box{
+    .client-img{
+        @include circle(60);
+        overflow: hidden;
+    }
+    .client-detail{
+        .nametitle{
+            max-width: 170px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+}
+
+.add-newclient{
+    .mat-form-field-wrapper{
+        display: block;
+    }
+    .mat-input-element{
+        color: $dark;
+    }
+    .btn-green-grad{
+        width: 30%;
+    }
+}
+
+.client-detail-wrp{
+    .btn-green-grad{
+        width: 30%;
+    }
+}

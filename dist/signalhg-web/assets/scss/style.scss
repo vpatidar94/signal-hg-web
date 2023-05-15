@@ -1,0 +1,57 @@
+// IMPORT ALL SCSS REQUIRED FILES ----------
+//--Abstracts --
+@import "abstracts/variables";
+@import "abstracts/functions";
+@import "abstracts/mixins";
+//--Base --
+@import "base/typography";
+@import "base/iconfont";
+//--components--
+@import "components/buttons";
+@import "components/customsliders";
+//--components--
+@import "layout/header";
+@import "layout/header-customer";
+@import "layout/footer";
+@import "layout/footer-customer";
+@import "layout/sidebar";
+@import "layout/forms";
+@import "layout/layout";
+//--theme--
+@import "theme/theme";
+//--pages--
+@import "pages/index";
+@import "pages/about-us";
+@import "pages/faq";
+@import "pages/help";
+@import "pages/login";
+@import "pages/demo";
+@import "pages/apps";
+@import "pages/pricing";
+@import "pages/solution";
+@import "pages/client";
+@import "pages/favourite";
+@import "pages/login-owner";
+@import "pages/login-register";
+@import "pages/client-profile";
+@import "pages/client-studio-details";
+@import "pages/client-studio-detail-purchase";
+@import "pages/client-products";
+@import "pages/calender";
+@import "pages/client-preference";
+@import "pages/family";
+@import "pages/client-payment";
+@import "pages/client-search";
+@import "pages/client-search";
+@import "pages/clientsearch";
+@import "pages/schedule";
+@import "pages/news-feed";
+@import "pages/tracking-meal";
+@import "pages/video-page";
+@import "pages/tracking-meal-addnew";
+@import "pages/my-nutrition";
+@import "pages/studio-membership-plan";
+
+// ------------------- Staff
+@import "pages/staff";
+@import "pages/makepurchase";

@@ -1,0 +1,96 @@
+/*
+    ============ MIXINS ==============
+*/
+
+@mixin transition-time{
+    -webkit-transition: 0.6s ease-in-out;
+    -moz-transition: 0.6s ease-in-out;
+    transition: 0.6s ease-in-out;
+}
+
+@mixin anchor-transition{
+    -webkit-transition: 0.4s ease-in-out;
+    -moz-transition: 0.4s ease-in-out;
+    transition: 0.4s ease-in-out;
+}
+/*
+    ============ MIXINS ==============
+*/
+@mixin flexcenter {
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center !important;
+    -ms-flex-pack: center !important;
+    justify-content: center !important;
+    -ms-flex-align: center !important;
+    align-items: center !important;
+  }
+
+@mixin transition($time,$function){
+    -webkit-transition: #{$time} #{$function};
+    -moz-transition: #{$time} #{$function};
+    transition: #{$time} #{$function};
+}
+
+@mixin box-shadow($params){
+    -webkit-box-shadow: $params;
+  -moz-box-shadow: $params;
+  box-shadow: $params;
+}
+
+@mixin animation($animation,$animationtime,$interval) {
+    -webkit-animation: $animation $animationtime $interval;
+    -moz-animation: $animation $animationtime $interval;;
+    animation: $animation $animationtime $interval;
+}
+
+@mixin linear-gradient ($direction,$color1,$color2){
+    background-image: -webkit-linear-gradient($direction,$color1,$color2);
+    background-image: -o-linear-gradient($direction,$color1,$color2);
+    background-image: -moz-linear-gradient($direction,$color1,$color2);
+    background-image: linear-gradient($direction,$color1,$color2);
+}
+
+@mixin paddingx($left,$right){
+    padding-left: #{$left}px;
+    padding-right: #{$right}px;
+}
+@mixin circle($size){
+    width: #{$size}px;
+    height: #{$size}px;
+    border-radius: 100%;
+}
+
+@mixin border-radius-leftside($val){
+    border-top-left-radius: #{$val}px;
+    border-bottom-left-radius: #{$val}px;
+}
+
+@mixin border-radius-rightside($val){
+    border-top-right-radius: #{$val}px;
+    border-bottom-right-radius: #{$val}px;
+}
+
+@mixin border-radius-topside($val){
+    border-top-left-radius: #{$val}px;
+    border-top-right-radius: #{$val}px;
+}
+
+@mixin border-radius-bottomside($val){
+    border-bottom-left-radius: #{$val}px;
+    border-bottom-right-radius: #{$val}px;
+}
+
+@mixin rounded-box($boxwidth,$boxheight,$radius){
+    width: #{$boxwidth}px;
+    height: #{$boxheight}px;
+    border-radius: #{$radius}px;
+}
+
+@mixin customimgcircle($size,$background){
+    width: #{$size}px;
+    height: #{$size}px;
+    border-radius: 100%;
+    background: $background;
+    overflow: hidden;
+}

@@ -1,0 +1,127 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?6ctd9w');
+  src:  url('fonts/icomoon.eot?6ctd9w#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?6ctd9w') format('truetype'),
+    url('fonts/icomoon.woff?6ctd9w') format('woff'),
+    url('fonts/icomoon.svg?6ctd9w#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow_bottom:before {
+  content: "\e900";
+}
+.icon-bottom-ic:before {
+  content: "\e901";
+  color: #5e5e5e;
+}
+.icon-bottom:before {
+  content: "\e902";
+  color: #fff;
+}
+.icon-calendar:before {
+  content: "\e903";
+  color: #7091fb;
+}
+.icon-checked:before {
+  content: "\e904";
+  color: #7091fb;
+}
+.icon-cloud_upload:before {
+  content: "\e905";
+  color: #7091fb;
+}
+.icon-email:before {
+  content: "\e906";
+  color: #fff;
+}
+.icon-facebook:before {
+  content: "\e907";
+  color: #00a499;
+}
+.icon-google .path1:before {
+  content: "\e909";
+  color: rgb(251, 187, 0);
+}
+.icon-google .path2:before {
+  content: "\e90a";
+  margin-left: -1em;
+  color: rgb(81, 142, 248);
+}
+.icon-google .path3:before {
+  content: "\e90b";
+  margin-left: -1em;
+  color: rgb(40, 180, 70);
+}
+.icon-google .path4:before {
+  content: "\e90c";
+  margin-left: -1em;
+  color: rgb(241, 67, 54);
+}
+.icon-instagram:before {
+  content: "\e90d";
+  color: #00a499;
+}
+.icon-linkedin .path1:before {
+  content: "\e90f";
+  color: rgb(0, 164, 153);
+}
+.icon-linkedin .path2:before {
+  content: "\e910";
+  margin-left: -1em;
+  color: rgb(0, 164, 153);
+}
+.icon-location:before {
+  content: "\e912";
+  color: #7091fb;
+}
+.icon-snapchat:before {
+  content: "\e913";
+  color: #00a499;
+}
+.icon-time:before {
+  content: "\e915";
+  color: #7091fb;
+}
+.icon-twitter:before {
+  content: "\e916";
+  color: #00a499;
+}
+.icon-unchecked:before {
+  content: "\e918";
+  color: #7091fb;
+}
+.icon-user:before {
+  content: "\e919";
+  color: #fff;
+}
+.icon-whatsapp .path1:before {
+  content: "\e91a";
+  color: rgb(0, 164, 153);
+}
+.icon-whatsapp .path2:before {
+  content: "\e91b";
+  margin-left: -1em;
+  color: rgb(0, 164, 153);
+}
+.icon-youtube:before {
+  content: "\e91d";
+  color: #00a499;
+}

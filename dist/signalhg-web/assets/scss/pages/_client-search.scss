@@ -1,0 +1,157 @@
+
+
+
+
+
+
+
+
+
+#addFilter {
+	.modal-body {
+		.form-group {
+
+			i.fas {
+				position: absolute;
+			    right: 17px;
+			    font-size: 20px;
+			    color: $brandcolor2;
+			    font-weight: 600;
+			    top: 46px;
+			    z-index: 9;
+			}
+
+			select.form-control-1 {
+				position: relative;
+				color: $black;
+				background-image: none !important;
+				background-color: $white !important;
+			}
+		}
+	}
+
+
+    .custom-control {
+        &.ios-switch {
+            --color: $brandcolor1;
+            padding: 0px;
+            min-height: 30px;
+            vertical-align: middle;
+
+            .ios-switch-control-input {
+                display: none;
+
+                &:active~.ios-switch-control-indicator {
+
+                    &::after {
+                        width: 20px;
+                    }
+                }
+
+                &:checked {
+                    ~.ios-switch-control-indicator {
+                        border: 12px solid $brandcolor1;
+
+                        &::after {
+                            top: -10px;
+                            left: 6px;
+                        }
+                    }
+
+                    &:active~.ios-switch-control-indicator {
+                        &::after {
+                            left: 0px;
+                        }
+                    }
+                }
+            }
+
+            .ios-switch-control-indicator{
+                display: inline-block;
+                position: relative;
+                margin: 0 10px;
+                top: 4px;
+                width: 40px;
+                height: 24px;
+                background: #fff;
+                border-radius: 16px;
+                transition: .3s;
+                border: 2px solid #ddd;
+                margin-right: 0;
+
+                &::after{
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 16px;
+                    transition: .3s;
+                    top: 0px;
+                    left: 0px;
+                    background: #fff;
+                    box-shadow: 0 0 2px #aaa, 0 2px 5px #999;
+                }
+            }
+        }
+    }
+}
+
+
+
+.show-business-button input[type="radio"] {
+  display: none;
+}
+
+.show-business-button input[type="radio"] + label {
+  z-index: 8;
+  margin: 0 20px 10px 0;
+  position: relative;
+  color: $brandcolor3;
+  text-shadow: 0 1px 0 rgba(255,255,255,.1);
+  font-weight: 400;
+  background-color: $white;
+  border: 2px solid #ced4da;
+  cursor: pointer;
+  transition: all 200ms ease;
+  font-size: 14px;
+}
+
+.show-business-button input[type="radio"]:checked + label {
+  color: $white;
+  background-color: $transparent;
+  background-image: $greengradient;
+  border: 2px solid $brandcolor2;
+}
+
+.show-business-button input[type="radio"] + label {
+  padding: 10px 16px;
+  border-radius: 6px;
+}
+.log-img {
+    height: 90px;
+    border-radius: 100%;
+    width: 90px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

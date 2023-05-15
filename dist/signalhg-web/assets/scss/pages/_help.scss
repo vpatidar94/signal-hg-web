@@ -1,0 +1,98 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.contact-content-section {
+	.contact-content-left {
+		
+		.contact-client-detail {
+			ul {
+				list-style: none;
+				margin: 0px;
+				padding: 0px;
+
+				li {
+					display: inline-block;
+					margin-right: 10px;
+					text-decoration: none;
+					vertical-align: top;
+
+					i.fas {
+						color: $brandcolor1;
+						font-size: $font20;
+						margin-top: 8px;
+					}
+
+					h5 {
+						margin-bottom: 0px;
+					}
+
+					p {
+						font-size: $font12;
+						font-weight: $Light;
+					}
+				}
+			}
+		}
+
+		.contact-social-account {
+			ul {
+				list-style: none;
+				margin: 0px;
+				padding: 0px;
+
+				li {
+					display: inline-block;
+					text-decoration: none;
+					text-align: left;
+
+					img {
+						width: 70%;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

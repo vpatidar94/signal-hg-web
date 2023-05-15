@@ -1,0 +1,89 @@
+
+
+
+
+
+
+
+
+
+
+.faq-content-section {
+	min-height: calc(100vh - 150px);
+
+	.myaccordion {
+		margin: 0 auto;
+
+		.card {
+			margin-bottom: 25px;
+			box-shadow: 0 13px 25px 0 rgba(14,133,66,.3);
+
+			.card-header {
+				background-color: $white;
+				border-bottom: none;
+
+				button {
+					background-color: $white;
+					color: $dark;
+
+					&:hover {
+						text-decoration: none;
+						outline: none;
+					}
+					&:focus {
+						text-decoration: none;
+						outline: none;
+					}
+				}
+			}
+
+			.card-body {
+				background-color: $white;
+
+				p {
+					line-height: 25px;
+					color: $brandcolor3;
+					font-weight: 100;
+					font-size: 16px;
+				}
+			}
+		}
+	}
+
+}
+
+
+
+
+@media (max-width: 1280px) {
+	.faq-content-section {
+		height: calc(100vh - 50px)
+	}
+}
+
+@media (max-width: 1024px) {
+	.faq-content-section {
+		height: calc(100vh - 268px)
+	}
+}
+
+@media (max-width: 768px) {
+	.faq-content-section {
+		height: calc(100vh - 190px);
+	}
+}
+
+@media (max-width: 650px) {
+	.faq-content-section {
+		height: auto;
+	}
+}
+
+
+
+
+
+
+
+
+

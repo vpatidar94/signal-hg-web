@@ -1,0 +1,125 @@
+.video-listdetails{
+	.video_box{
+		background: #ffffff;
+		margin-bottom: 30px;
+		padding-top: 0px !important;
+		top: 0px;
+		position: relative;
+		::before{
+			padding-top: 0%;
+		}
+		iframe{
+			padding-top: 0px;
+		}
+		.videofull_box{
+			width: 100%;
+			height: 200px;
+			overflow: hidden;
+			position: absolute;
+			top: 0;			
+		}
+		.video_text{
+			clear: both;
+			height: 100px;
+			max-height: 100px;
+			display: inline-block;
+			width: 330px;
+			white-space: nowrap;
+			overflow: hidden !important;
+			text-overflow: ellipsis;
+			h3{
+				font-weight: 600 !important;
+			}
+		}
+		.video-wrap{
+			height: 100%;
+			width: 100%;
+			display: block;
+			overflow: hidden;
+			position: relative;
+			.video_overlay {
+				position: relative;
+				display: block;
+				width: 100%;
+				padding: 0;
+				border-radius: 8px;
+				overflow: hidden;
+			}
+		}
+		img {
+			position: absolute;
+			left: 50%;
+			margin: 0 auto;
+			z-index: 1;
+			top: 26%;
+			transform: translate(-50%, -50%);
+		}
+		.video-play-btn{
+			
+		}
+		.custom_control{
+			border-radius: 10px;
+			border-bottom: none;
+			width: 100%;
+			:focus{
+				border: none !important;
+			}
+		}
+		select:focus, select.form-control:focus{
+			border: none !important;
+		}
+		
+		
+
+	}
+	.bradius10{
+		border-radius: 10px;
+	}
+
+}
+
+/************ Upload Video Page ************/
+.form_upload_video{
+	.form_detail{
+		border-radius: 10px;
+		input{
+			color: $black;
+			border-bottom: none;
+		}
+		.form-group{
+			padding-top: 12px;
+			.form-control-file{
+				width: 100%;
+				color: $white;
+				height: 34px;
+				background: $white;
+				border-radius: 10px;
+			}
+		}
+		.bootstrap-tagsinput{
+			width: 100%;
+		}
+		.label-info{
+			background-color: #17a2b8;	
+		}
+		.label {	
+			display: inline-block;	
+			padding: .25em .4em;	
+			font-size: 75%;	
+			font-weight: 700;	
+			line-height: 1;	
+			text-align: center;	
+			white-space: nowrap;	
+			vertical-align: baseline;	
+			border-radius: .25rem;	
+			transition: color .15s ease-in-out,background-color .15s ease-in-out,	
+			border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+		}
+
+	}
+	
+
+}
+
+
+

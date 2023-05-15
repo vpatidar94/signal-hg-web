@@ -20,10 +20,10 @@ export class DataService {
 
 
 // AWS Development Server URL
-baseUrl: string = 'https://signalhg.consagous.co.in/';
+// baseUrl: string = 'https://signalhg.consagous.co.in/';
 
 // // AWS testing  Server URL 
-//  baseUrl: string = 'https://signalhgwellness.com/';
+ baseUrl: string = 'https://signalhgwellness.com/';
  
   private currentUser      : any = {};   
   private loggedUserObject : any = {};

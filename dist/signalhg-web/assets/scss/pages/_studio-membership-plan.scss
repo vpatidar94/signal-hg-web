@@ -1,0 +1,39 @@
+.membership-plan-section{
+	.selectplan_box{
+		border-radius: 10px;
+		border: 2px solid #019ABC;
+		.checked_select{
+			display: block;
+			position: relative;
+			padding: 20px 0px 20px 20px;
+			cursor: pointer;
+			font-size: 14px;
+			color: #000000;
+			font-family: "Arial-Rounded";
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			user-select: none;
+		}
+		.checked_select{
+			padding: 20px 0px 20px 50px;
+			font-size: 1.125rem;
+			margin-bottom: 0px;
+			p{
+				font-size: $font14;
+				display: block;
+				margin-bottom: 0px;
+			}
+			.checkmark{
+				top: 27px;
+				left: 15px;
+				border: 2px solid #019ABC;
+			}
+			input:checked ~ .checkmark{
+				background-color: #019ABC;
+			}
+		}	
+
+	}
+
+}
+

@@ -1,0 +1,128 @@
+
+
+
+
+
+
+
+
+
+
+
+
+.client-family {
+    min-height: calc(100vh - 187px);
+}
+
+
+@media (max-width: 440px) {
+    .client-family {
+        height: auto;
+    }
+}
+
+@media (min-width: 640px) and (max-width: 640px) {
+    .client-family {
+        height: auto;
+    }
+}
+
+/*@media (min-width: 375px) and (max-width: 375px) {
+    .client-family {
+        min-height: 570px;
+    }
+}*/
+
+
+#addFamily {
+	.modal-body {
+		.modal-logo {
+			height: 120px;
+			width: 120px;
+			border-radius: 100%;
+			border: 5px solid $brandcolor1;
+			margin: 0 auto;
+			text-align: center;
+			background-color: #e4e7ec;
+			position: relative;
+			overflow:hidden;
+			// img {
+			// 	width: 80%;
+			// 	margin: 36px auto;
+			// }
+
+			.logo-camera {
+				height: 35px;
+				width: 35px;
+				background-color: $white;
+				border-radius: 100%;
+				position: absolute;
+				bottom: 0px;
+				right: 35px;
+			}
+		}
+
+		.modal-bottom-content {
+			.form-group {
+
+				i.fas {
+					position: absolute;
+				    right: 17px;
+				    font-size: 20px;
+				    color: #fff;
+				    font-weight: 600;
+				    top: 16px;
+				}
+
+				select.form-control {
+					border-bottom: 1px solid $white;
+					border-top: none;
+					border-left: none;
+					border-right: none;
+					border-radius: 0;
+					position: relative;
+					background: none !important;
+
+					&:focus {
+						box-shadow: 0 2px 5px 3px rgba(14,133,66,.2);
+						color: $white;
+					}
+
+					&:active {
+						color: $white;
+					}
+				}
+			}
+		}
+	}
+	.mat-form-field-appearance-legacy .mat-form-field-underline {
+		height: 0px !important;
+	}
+	.mat-button-wrapper{
+		color:white;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,85 @@
+.page_links{
+    background-color: #fff;
+    border-radius: 6px;
+    a{
+        i{
+            color: #000;
+        }
+    }
+}
+.weeks_day{
+    border-radius: 6px;
+    font-size: $font12;
+    font-weight: 600;
+    text-align: center;
+    a{
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+        display: block;
+    }
+}
+.add_new{
+    .btn_add{
+        border-color: rgba(0, 0, 0, 0);
+        color: #ffffff !important;
+        background-image: linear-gradient(270deg, #2B93AC 0%, #5EBFCF 100%);
+        background-color: rgba(0, 0, 0, 0);
+    }
+    .btn_add:hover{
+        border-color: #2B93AC;
+        color: #2B93AC !important;
+        background-color: rgba(0, 0, 0, 0);
+        background-image: none;
+        box-shadow: 0 13px 25px 0 rgba(29, 150, 211, 0.3);
+    }
+}
+.meal_box{
+    border-radius: 8px;
+    color: $white;
+    width: 100%;
+    padding: 20px 30px;
+    margin-bottom: 30px;
+    position: relative;
+    p{
+        margin-bottom: 0px;
+        font-size: $font20;
+    }
+    .icon_right{
+        position: absolute;
+        right: 15px;
+        bottom: 15px;
+        a{
+            i{
+                color: $white;
+            }
+        }
+    }
+
+}
+
+.bg-pink{
+    background-color: $pink;
+}
+.bg-pinklight{
+    background-color: $pinklight;
+}
+.bg-purple{
+    background-color: $purple;
+}
+.bg-bluelight{  
+    background-color: $bluelight;
+}
+.bg-darkblue{
+    background-color: $darkblue;
+}
+.bg-bluelightextra{
+    background-color: $bluelightextra;
+}
+
+
+@media (min-width: 768px) and (max-width: 1199.98px){
+    .weeks_day {
+        width: 56px;
+    }
+}

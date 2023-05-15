@@ -1,0 +1,103 @@
+
+
+
+
+
+
+
+
+
+.client-refer {
+    min-height: calc(120vh - 211px);    
+    height: auto;
+
+    .custom-control {
+        &.ios-switch {
+            --color: $brandcolor1;
+            padding: 23px 11px;
+            min-height: 70px;
+            vertical-align: middle;
+
+            .ios-switch-control-input {
+                display: none;
+
+                &:active~.ios-switch-control-indicator {
+
+                    &::after {
+                        width: 20px;
+                    }
+                }
+
+                &:checked {
+                    ~.ios-switch-control-indicator {
+                        border: 12px solid $brandcolor1;
+
+                        &::after {
+                            top: -10px;
+                            left: 6px;
+                        }
+                    }
+
+                    &:active~.ios-switch-control-indicator {
+                        &::after {
+                            left: 0px;
+                        }
+                    }
+                }
+            }
+
+            .ios-switch-control-indicator{
+                display: inline-block;
+                position: relative;
+                margin: 0 10px;
+                top: 4px;
+                width: 40px;
+                height: 24px;
+                background: #fff;
+                border-radius: 16px;
+                transition: .3s;
+                border: 2px solid #ddd;
+                margin-right: 0;
+
+                &::after{
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 16px;
+                    transition: .3s;
+                    top: 0px;
+                    left: 0px;
+                    background: #fff;
+                    box-shadow: 0 0 2px #aaa, 0 2px 5px #999;
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 440px) {
+    .client-refer {
+        height: auto;
+    }
+}
+
+@media (min-width: 640px) and (max-width: 640px) {
+    .client-refer {
+        height: auto;
+    }
+}
+
+@media (min-width: 411px) and (max-width: 411px) {
+    .client-refer {
+        height: calc(100vh - 242px);
+    }
+}
+
+@media (min-width: 375px) and (max-width: 375px) {
+    .client-refer {
+        min-height: 570px;
+    }
+}

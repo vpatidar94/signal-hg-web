@@ -1,0 +1,97 @@
+.activity-section{
+	.cal_days{
+		position: relative;
+		width: 100%;
+		height: 60px;
+		text-align: center;
+		a{
+			padding: 20px;
+			color: #1C748A;
+			display: block;
+			border: 1px solid #1C748A;
+			border-radius: 10px;
+			&:hover{
+				padding: 20px;
+				color: $white;
+				background-image: linear-gradient(121deg, #5EB0C5 0%, #1C748A 93%);
+				border-radius: 10px;
+			}
+		}
+	}
+
+}
+.breakfast-box{
+	width: 100%;
+	height: 200px;
+	display: block;
+	overflow: hidden;
+	background-image: linear-gradient(133deg, #5EB0C5 0%, #1C748A 100%);
+	.left_box{
+		width: 60%;
+		float: left;
+		overflow: hidden;
+		img{
+			width: 100%;
+		}
+	}
+	.right_box{
+		width: 40%;
+		float: left;
+		color: $white;
+		h5{
+			color: $white;
+			font-size: $font18 !important;
+		}
+		p{
+			color: #e6e6e6;
+		}
+		a{
+			color: $white;
+		}
+	}
+	.topright_icon{
+		position: absolute;
+		right: 25px;
+		top: 10px;
+		.delete_ic{
+			width: 26px;
+			height: 26px;
+			border: 1px solid #fff;
+			padding: 6px 8px;
+			margin-right: 5px;
+			border-radius: 50%;
+			i{
+				font-size: $font12;
+			}
+		}
+		.edit_ic{
+			width: 26px;
+			height: 26px;
+			border: 1px solid #fff;
+			padding: 6px 8px;
+			border-radius: 50%;
+			i{
+				font-size: $font12;
+			}
+		}
+
+	}
+
+}
+
+/************* Description Section Css Start *************/
+.description-section{
+	.nutritional_detail{
+		li{
+			width: 100%;
+			span{
+				text-align: right;
+				display: block;
+				float: right;
+			}
+		}
+		
+	}
+}
+
+/************* Description Section Css End *************/

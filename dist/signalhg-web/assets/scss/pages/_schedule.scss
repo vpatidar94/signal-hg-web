@@ -1,0 +1,50 @@
+.schedule-tab{
+    box-shadow: $shadowgreenlight;
+    border-radius: 6px;
+    min-height: 100px;
+    background-color: $white;
+    .img-box{
+        @include circle(50);
+        box-shadow: $shadowgreenlight;
+        overflow: hidden;
+        img{
+            height: 55px;
+        }
+    }
+    .nametitle{
+        white-space: nowrap;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: 500;
+        font-size: 15px;
+    }
+}
+
+.custom-col20{
+    @media (min-width: 992px){
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+}
+
+// -------- schduled appointment --------
+
+.scheduled-services{
+    .btn-green-grad{
+        width: 55%;
+    }
+}
+.schedule-foot-btns{
+    button{
+        width: 30%;
+    }
+}
+.services-offered{
+    button{
+        margin-left: 15px;
+        &:first-child{
+            margin-left: 0;
+        }
+    }
+}

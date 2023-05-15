@@ -1,0 +1,138 @@
+// ------ Requred form elements
+
+// input[type="text"].form-control,
+// input[type="password"].form-control,
+// input[type="date"].form-control,
+// input[type="time"].form-control,
+// input[type="number"].form-control,
+// input[type="tel"].form-control,
+// input[type="email"].form-control {
+//   width: 100%;
+//   height: 50px;
+//   border-radius: 10px;
+//   background-color: #fff;
+//   border: 2px solid #e0e0e1;
+//   &:focus {
+//     box-shadow: none !important;
+//     border: 2px solid $dark;
+//   }
+// }
+
+select,
+select.form-control {
+  background: url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right !important;
+  -webkit-appearance: none !important;
+  background-position-x: 95% !important;
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  border: 2px solid #e0e0e1;
+  &:focus {
+    box-shadow: none !important;
+    border: 2px solid $dark;
+  }
+}
+
+textarea.form-control {
+  border-radius: 0px;
+  // border: 2px solid #e0e0e1;
+  resize: both;
+  &:focus {
+    box-shadow: none !important;
+    // border: 2px solid $dark;
+    box-shadow: 0 2px 5px 3px rgba(14,133,66,.2) !important;
+  }
+}
+
+// .form-control:active {
+//   color: #222;
+//   background-color: transparent;
+//   outline: 0;
+//   border-bottom: 1px solid #0e8542;
+//   border-top: none;
+//   border-right: none;
+//   border-left: none;
+//   box-shadow: 0 2px 5px 3px rgba(14,133,66,.2);
+// }
+
+// - custom checkbox
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff;
+  border-color: $brandgreen;
+  background-color: $brandgreen;
+}
+
+.custom-control-input:focus~.custom-control-label::before {
+    box-shadow: 0 0 0 0.2rem rgba(14,133,67,.25);
+}
+
+
+.checkboxtypebtn{
+  .form-control{
+    width: 30px;
+    height: 25px;
+    border-radius: 5px;
+    opacity: 0;
+    z-index: 1;
+    position: absolute;
+  }
+  label{
+    position: relative;
+    display: block;
+    &:before{
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0px;
+      width: 30px;
+      height: 25px;
+      border-radius: 5px;
+      border: 2px solid #ced4da;
+      background-color: #f2f2f2;
+    }
+    &:after{
+      content: "\2713";
+      position: absolute;
+      top: 0;
+      left: 0px;
+      width: 30px;
+      height: 25px;
+      border-radius: 5px;
+      color: #fff;
+      display: none;
+      font-size: 15px;
+      font-weight: 600;
+    }
+    span{
+      margin-left: 38px;
+      display: block;
+      padding-top: 3px;
+    }
+  }
+
+  input:checked ~ label{
+    &:before{
+      background-color: red;
+      border-color: red;
+    }
+    &:after{
+      @include flexcenter;
+    }
+  }
+
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #c7c7c7;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #c7c7c7;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #c7c7c7;
+}
+

@@ -1,0 +1,91 @@
+
+
+
+
+
+
+
+
+
+
+.about-content-height {
+	min-height: calc(100vh - 214px);
+}
+
+.background-before {
+	position: relative;
+
+	&:before {
+		content: " ";
+	    position: absolute;
+	    // background-image: url('./assets/img/watermark_bg.png');
+		background-image: none;
+	    background-repeat: no-repeat;
+	    background-position: top right;
+	    min-height: 475px;
+	    width: 100%;
+	}
+}
+
+@media (max-width: 1024px) {
+	.about-content-height {
+		height: auto;
+		min-height: 81vh;
+	}
+}
+
+@media (max-width: 992px) {
+	.about-content-height {
+		height: auto;
+	}
+}
+
+@media (max-width: 768px) {
+	.about-content-height {
+		height: calc(100vh - -40px);
+	}
+}
+
+@media (max-width: 	650px) {
+	.about-content-height {
+		height: auto;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
