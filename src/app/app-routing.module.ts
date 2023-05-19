@@ -100,7 +100,6 @@ import { SolutionV2Component } from './StaticPages/solution/solution-v2.componen
 import { SolutionDetailComponent } from './StaticPages/solution/solution-detail/solution-detail.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent},
   { path: 'Home', component: HomeComponent},
   { path: 'about-us', component: AboutUsComponent },
   { path: 'consent-form', component: WizardComponent, canActivate: [AuthGuard] },
@@ -244,6 +243,7 @@ const routes: Routes = [
   { path: 'my-nutrition-detail',component:MyNutritionDetailComponent, canActivate: [AuthGuard]},
   { path: 'nutrition-detail',component:MyNutritionDetailComponent, canActivate: [AuthGuard]},
   { path: 'nutrition-description',component:MyNutritionDescriptionComponent, canActivate: [AuthGuard]},
+  { path: '', redirectTo: '/Home', pathMatch: 'full' },
 
 ];
 
